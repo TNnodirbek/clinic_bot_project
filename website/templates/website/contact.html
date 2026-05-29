@@ -1,0 +1,71 @@
+{% extends "website/base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Aloqa" %} | VetClinic{% endblock %}
+
+{% block content %}
+<section class="contact-hero-final">
+    <div class="container contact-hero-final-grid">
+        <div class="contact-hero-left">
+            <span class="section-badge">📞 {% trans "Aloqa" %}</span>
+            <h1>{% trans "Biz bilan bog‘laning" %}</h1>
+            <p>{% trans "Ariza yuborish uchun Telegram botdan foydalaning yoki quyidagi aloqa ma’lumotlari orqali murojaat qiling." %}</p>
+            <div class="contact-hero-actions">
+                <a href="https://t.me/veterenariya_klinikabot" target="_blank" class="btn-primary">✈ {% trans "Telegram orqali ariza yuborish" %}</a>
+                <a href="#contact-map" class="btn-secondary">🗺 {% trans "Xaritani ko‘rish" %}</a>
+            </div>
+        </div>
+
+        <div class="contact-hero-right">
+            <div class="contact-hero-image-box">
+               <img 
+    src="{% static 'website/images/news-vaccine.jpg' %}" 
+    alt="VetClinic"
+    onerror="this.style.display='none'; this.parentElement.classList.add('contact-hero-placeholder');">
+                <div class="contact-hero-placeholder-content">
+                    <span>📞</span>
+                    <p>{% trans "Aloqa sahifasi rasmi keyin qo‘shiladi" %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section contact-map-section" id="contact-map">
+    <div class="container contact-map-grid">
+        <div class="contact-map-content">
+            <div class="section-title section-title-left">
+                <span>{% trans "Manzil" %}</span>
+                <h2>{% trans "Klinika joylashuvi" %}</h2>
+                <p>{% trans "Quyidagi xarita orqali klinika joylashuvini ko‘rishingiz mumkin. Manzilni keyin o‘zingizning haqiqiy klinika manzilingizga almashtirasiz." %}</p>
+            </div>
+
+            <div class="contact-address-list">
+                <div><strong>📍 {% trans "Manzil" %}</strong><span>{% trans "Xorazm viloyati, Urganch shahri" %}</span></div>
+                <div><strong>📞 {% trans "Telefon" %}</strong><span>+998 90 123 45 67</span></div>
+                <div><strong>🕒 {% trans "Ish vaqti" %}</strong><span>{% trans "Har kuni 09:00 - 18:00" %}</span></div>
+            </div>
+        </div>
+
+        <div class="contact-map-card">
+            <iframe
+                title="VetClinic map"
+                src="https://www.google.com/maps?q=Urganch%20Xorazm%20Uzbekistan&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</section>
+
+<section class="section contact-process-section">
+    <div class="container">
+        <div class="section-title">
+            <span>{% trans "Qanday ishlaydi?" %}</span>
+            <h2>{% trans "Ariza yuborish tartibi" %}</h2>
+            <p>{% trans "Telegram botda telefon raqamingiz, ism-familiyangiz, hayvon nomi va hayvon turi kiritiladi. So‘ng administrator arizani ko‘rib chiqadi." %}</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

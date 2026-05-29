@@ -1,0 +1,385 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Veterinar dashboard" %}{% endblock %}
+
+{% block page_title %}{% trans "Veterinar dashboard" %}{% endblock %}
+
+{% block page_subtitle %}
+{% trans "Bemorlarni ko‘rish, laboratoriyaga yuborish va yakuniy ko‘rik/PDF jarayonlarini boshqarish" %}
+{% endblock %}
+
+{% block notification_count %}
+    {% if active_patients|length > 0 %}
+        <span>{{ active_patients|length }}</span>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% if doctor_profile %}
+<div class="compact-panel">
+    <div class="compact-panel-header">
+        <h2>
+            <i class="fa-solid fa-user-doctor"></i>
+            {% trans "Veterinar ma’lumoti" %}
+        </h2>
+    </div>
+
+    <div class="compact-info-grid">
+        <div class="compact-info-card">
+            <span>{% trans "F.I.Sh" %}</span>
+            <strong>{{ doctor_profile.full_name|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Mutaxassislik" %}</span>
+            <strong>{{ doctor_profile.specialization|default:"Mutaxassislik ko‘rsatilmagan" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Telefon" %}</span>
+            <strong>{{ doctor_profile.phone|default:"-" }}</strong>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+        <div class="stat-icon stat-blue">
+            <i class="fa-solid fa-dog"></i>
+        </div>
+        <div>
+            <h3>{{ active_patients|length }}</h3>
+            <p>{% trans "Faol bemorlar" %}</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon stat-green">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+        </div>
+        <div>
+            <h3>{{ history_patients|length }}</h3>
+            <p>{% trans "Bemorlar tarixi" %}</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon stat-orange">
+            <i class="fa-solid fa-flask"></i>
+        </div>
+        <div>
+            <h3>{{ lab_requests|length }}</h3>
+            <p>{% trans "Analiz so‘rovlari" %}</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon stat-purple">
+            <i class="fa-solid fa-file-pdf"></i>
+        </div>
+        <div>
+            <h3>{% trans "PDF" %}</h3>
+            <p>{% trans "Yakuniy ko‘rik" %}</p>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="panel" id="active-patients" style="margin-bottom: 24px;">
+    <div class="panel-header">
+        <h2>
+            <i class="fa-solid fa-stethoscope"></i>
+            {% trans "Faol bemorlar" %}
+        </h2>
+    </div>
+
+    <div class="table-responsive">
+        <table class="dashboard-table">
+            <thead>
+                <tr>
+                    <th>{% trans "Bemor kodi" %}</th>
+                    <th>{% trans "F.I.Sh" %}</th>
+                    <th>{% trans "Telefon" %}</th>
+                    <th>{% trans "Hayvon nomi" %}</th>
+                    <th>{% trans "Hayvon turi" %}</th>
+                    <th>{% trans "Holati" %}</th>
+                    <th>{% trans "Izoh" %}</th>
+                    <th>{% trans "Amal" %}</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for patient in active_patients %}
+                    <tr>
+                        <td><strong>{{ patient.patient_code|default:"-" }}</strong></td>
+                        <td>{{ patient.full_name|default:"-" }}</td>
+                        <td>{{ patient.phone|default:"-" }}</td>
+                        <td>{{ patient.animal_name|default:"-" }}</td>
+                        <td>{{ patient.get_animal_type_display|default:patient.animal_type }}</td>
+
+                        <td>
+                            {% if patient.status == "assigned_to_vet" %}
+                                <span class="status-badge status-assigned">{% trans "Veterinarga biriktirilgan" %}</span>
+                            {% elif patient.status == "returned_to_vet" %}
+                                <span class="status-badge status-returned">{% trans "Veterinarga qaytgan" %}</span>
+                            {% else %}
+                                <span class="status-badge status-new">{{ patient.get_status_display }}</span>
+                            {% endif %}
+                        </td>
+
+                        <td class="text-limit">{{ patient.note|default:"-"|truncatechars:100 }}</td>
+
+                        <td>
+                            <div style="display: flex; flex-direction: column; gap: 8px; min-width: 290px;">
+
+                                <a href="{% url 'patient_card' patient.id %}" class="btn btn-light btn-sm">
+                                    <i class="fa-solid fa-id-card"></i>
+                                    {% trans "Bemor kartasi" %}
+                                </a>
+
+                                {% if patient.status == "returned_to_vet" %}
+                                    <a href="{% url 'final_visit' patient.id %}" class="btn btn-purple btn-sm">
+                                        <i class="fa-solid fa-file-medical"></i>
+                                        {% trans "Yakuniy ko‘rik" %}
+                                    </a>
+                                {% else %}
+                                    <form method="post"
+                                          action="{% url 'send_patient_to_lab' patient.id %}"
+                                          style="display: flex; flex-direction: column; gap: 8px;">
+                                        {% csrf_token %}
+
+                                        <select name="analysis_name" required
+                                                style="padding: 9px 11px; border-radius: 11px; border: 1px solid #d1d5db;">
+                                            <option value="">{% trans "Analiz turini tanlang" %}</option>
+                                            <option value="Umumiy qon tahlili">{% trans "Umumiy qon tahlili" %}</option>
+                                            <option value="Biokimyoviy qon tahlili">{% trans "Biokimyoviy qon tahlili" %}</option>
+                                            <option value="Siydik tahlili">{% trans "Siydik tahlili" %}</option>
+                                            <option value="Najas tahlili">{% trans "Najas tahlili" %}</option>
+                                            <option value="Parazitologik tekshiruv">{% trans "Parazitologik tekshiruv" %}</option>
+                                            <option value="Bakteriologik tekshiruv">{% trans "Bakteriologik tekshiruv" %}</option>
+                                            <option value="Allergiya testi">{% trans "Allergiya testi" %}</option>
+                                            <option value="Gormon tahlili">{% trans "Gormon tahlili" %}</option>
+                                            <option value="Boshqa">{% trans "Boshqa" %}</option>
+                                        </select>
+
+                                        <textarea
+                                            name="comment"
+                                            rows="2"
+                                            placeholder="{% trans 'Veterinar izohi...' %}"
+                                            style="padding: 9px 11px; border-radius: 11px; border: 1px solid #d1d5db; resize: vertical;"
+                                        ></textarea>
+
+                                        <button type="submit" class="btn btn-orange btn-sm">
+                                            <i class="fa-solid fa-flask"></i>
+                                            {% trans "Laboratoriyaga yuborish" %}
+                                        </button>
+                                    </form>
+                                {% endif %}
+
+                            </div>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="8" style="text-align: center; color: #64748b; padding: 28px;">
+                            {% trans "Faol bemorlar hozircha yo‘q." %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="panel" id="patients-history" style="margin-bottom: 24px;">
+    <div class="panel-header">
+        <h2>
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            {% trans "Mening bemorlarim tarixi" %}
+        </h2>
+    </div>
+
+    <div class="table-responsive">
+        <table class="dashboard-table">
+            <thead>
+                <tr>
+                    <th>{% trans "Bemor kodi" %}</th>
+                    <th>{% trans "F.I.Sh" %}</th>
+                    <th>{% trans "Telefon" %}</th>
+                    <th>{% trans "Hayvon nomi" %}</th>
+                    <th>{% trans "Hayvon turi" %}</th>
+                    <th>{% trans "Hozirgi holati" %}</th>
+                    <th>{% trans "Oxirgi yangilanish" %}</th>
+                    <th>{% trans "Amal" %}</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for patient in history_patients %}
+                    <tr>
+                        <td><strong>{{ patient.patient_code|default:"-" }}</strong></td>
+                        <td>{{ patient.full_name|default:"-" }}</td>
+                        <td>{{ patient.phone|default:"-" }}</td>
+                        <td>{{ patient.animal_name|default:"-" }}</td>
+                        <td>{{ patient.get_animal_type_display|default:patient.animal_type }}</td>
+
+                        <td>
+                            {% if patient.status == "sent_to_lab" %}
+                                <span class="status-badge status-lab">{% trans "Laboratoriyaga yuborilgan" %}</span>
+                            {% elif patient.status == "sent_to_diagnostic" %}
+                                <span class="status-badge status-diagnostic">{% trans "Diagnostikaga yuborilgan" %}</span>
+                            {% elif patient.status == "returned_to_vet" %}
+                                <span class="status-badge status-returned">{% trans "Veterinarga qaytgan" %}</span>
+                            {% elif patient.status == "completed" %}
+                                <span class="status-badge status-completed">{% trans "Yakunlangan" %}</span>
+                            {% elif patient.status == "cancelled" %}
+                                <span class="status-badge status-cancelled">{% trans "Bekor qilingan" %}</span>
+                            {% else %}
+                                <span class="status-badge status-new">{{ patient.get_status_display }}</span>
+                            {% endif %}
+                        </td>
+
+                        <td>{{ patient.updated_at|date:"d.m.Y H:i" }}</td>
+
+                        <td>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <a href="{% url 'patient_card' patient.id %}" class="btn btn-light btn-sm">
+                                    <i class="fa-solid fa-id-card"></i>
+                                    {% trans "Bemor kartasi" %}
+                                </a>
+
+                                {% if patient.status == "completed" %}
+                                    <a href="{% url 'final_visit' patient.id %}" class="btn btn-green btn-sm">
+                                        <i class="fa-solid fa-file-pdf"></i>
+                                        {% trans "Qayta PDF yuborish" %}
+                                    </a>
+                                {% elif patient.status == "returned_to_vet" %}
+                                    <a href="{% url 'final_visit' patient.id %}" class="btn btn-purple btn-sm">
+                                        <i class="fa-solid fa-file-medical"></i>
+                                        {% trans "Yakuniy ko‘rik" %}
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="8" style="text-align: center; color: #64748b; padding: 28px;">
+                            {% trans "Tarixda bemorlar yo‘q." %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="panel" id="lab-requests-history">
+    <div class="panel-header">
+        <h2>
+            <i class="fa-solid fa-vial-circle-check"></i>
+            {% trans "Analiz so‘rovlari tarixi" %}
+        </h2>
+    </div>
+
+    <div class="table-responsive">
+        <table class="dashboard-table">
+            <thead>
+                <tr>
+                    <th>{% trans "Bemor kodi" %}</th>
+                    <th>{% trans "F.I.Sh" %}</th>
+                    <th>{% trans "Hayvon nomi" %}</th>
+                    <th>{% trans "Analiz turi" %}</th>
+                    <th>{% trans "Veterinar izohi" %}</th>
+                    <th>{% trans "Laboratoriya statusi" %}</th>
+                    <th>{% trans "Bemor statusi" %}</th>
+                    <th>{% trans "Oxirgi yangilanish" %}</th>
+                    <th>{% trans "Amal" %}</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for lab in lab_requests %}
+                    <tr>
+                        <td><strong>{{ lab.patient.patient_code|default:"-" }}</strong></td>
+                        <td>{{ lab.patient.full_name|default:"-" }}</td>
+                        <td>{{ lab.patient.animal_name|default:"-" }}</td>
+
+                        <td>
+                            <span class="status-badge status-lab">
+                                {{ lab.analysis_name|default:"-" }}
+                            </span>
+                        </td>
+
+                        <td class="text-limit">{{ lab.comment|default:"-"|truncatechars:100 }}</td>
+
+                        <td>
+                            {% if lab.status == "waiting" %}
+                                <span class="status-badge status-lab">{% trans "Kutilmoqda" %}</span>
+                            {% elif lab.status == "sent_to_diagnostic" %}
+                                <span class="status-badge status-diagnostic">{% trans "Diagnostikaga yuborilgan" %}</span>
+                            {% elif lab.status == "done" %}
+                                <span class="status-badge status-completed">{% trans "Tayyor" %}</span>
+                            {% else %}
+                                <span class="status-badge status-new">{{ lab.get_status_display }}</span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {% if lab.patient.status == "sent_to_lab" %}
+                                <span class="status-badge status-lab">{% trans "Laboratoriyada" %}</span>
+                            {% elif lab.patient.status == "sent_to_diagnostic" %}
+                                <span class="status-badge status-diagnostic">{% trans "Diagnostikada" %}</span>
+                            {% elif lab.patient.status == "returned_to_vet" %}
+                                <span class="status-badge status-returned">{% trans "Veterinarga qaytgan" %}</span>
+                            {% elif lab.patient.status == "completed" %}
+                                <span class="status-badge status-completed">{% trans "Yakunlangan" %}</span>
+                            {% else %}
+                                <span class="status-badge status-new">{{ lab.patient.get_status_display }}</span>
+                            {% endif %}
+                        </td>
+
+                        <td>{{ lab.updated_at|date:"d.m.Y H:i" }}</td>
+
+                        <td>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <a href="{% url 'patient_card' lab.patient.id %}" class="btn btn-light btn-sm">
+                                    <i class="fa-solid fa-id-card"></i>
+                                    {% trans "Bemor kartasi" %}
+                                </a>
+
+                                <a href="{% url 'view_lab_result' lab.id %}" class="btn btn-light btn-sm">
+                                    <i class="fa-solid fa-eye"></i>
+                                    {% trans "Ko‘rish" %}
+                                </a>
+
+                                {% if lab.status == "waiting" and lab.patient.status != "completed" %}
+                                    <a href="{% url 'edit_vet_lab_request' lab.id %}" class="btn btn-blue btn-sm">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                        {% trans "Tahrirlash" %}
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="9" style="text-align: center; color: #64748b; padding: 28px;">
+                            {% trans "Hozircha analiz so‘rovlari yo‘q." %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

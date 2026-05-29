@@ -1,0 +1,90 @@
+{% extends "website/base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Xizmatlar" %} | VetClinic{% endblock %}
+
+{% block content %}
+
+<section class="services-hero-final">
+  <div class="container services-hero-final-grid">
+
+    <div class="services-hero-left">
+      <span class="section-badge">🐾 {% trans "Xizmatlarimiz" %}</span>
+
+      <h1>{% trans "Hayvonlar uchun sifatli va ishonchli veterinariya xizmatlari" %}</h1>
+
+      <p>{% trans "VetClinic’da ko‘rik, laboratoriya, diagnostika, davolash va profilaktika bo‘yicha xizmatlar ko‘rsatiladi." %}</p>
+
+      <div class="services-hero-actions">
+        <a href="{% url 'website:contact' %}" class="btn-secondary">{% trans "Batafsil ma’lumot" %}</a>
+        <a href="https://t.me/veterenariya_klinikabot" target="_blank" class="btn-primary">✈ {% trans "Telegram orqali ariza yuborish" %}</a>
+      </div>
+    </div>
+
+    <div class="services-hero-right">
+      <div class="services-hero-image-box">
+
+        <img 
+          src="{% static 'website/images/vet-team.jpg' %}" 
+          alt="VetClinic"
+          onerror="this.style.display='none'; this.parentElement.classList.add('services-hero-placeholder');"
+        >
+
+        <div class="services-hero-placeholder-content">
+          <span>🐶 🐱</span>
+          <p>{% trans "Xizmatlar rasmi keyin qo‘shiladi" %}</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section services-cards-final-section">
+  <div class="container">
+
+    <div class="section-title">
+      <span>{% trans "Asosiy xizmatlar" %}</span>
+      <h2>{% trans "Klinikamizda mavjud xizmatlar" %}</h2>
+    </div>
+
+    <div class="services-cards-final-grid">
+
+      <div class="service-final-card">
+        <div class="service-final-icon">🩺</div>
+        <h3>{% trans "Veterinar ko‘rigi" %}</h3>
+      </div>
+
+      <div class="service-final-card">
+        <div class="service-final-icon">🧪</div>
+        <h3>{% trans "Laboratoriya tahlillari" %}</h3>
+      </div>
+
+      <div class="service-final-card">
+        <div class="service-final-icon">🔬</div>
+        <h3>{% trans "Diagnostika" %}</h3>
+      </div>
+
+      <div class="service-final-card">
+        <div class="service-final-icon">💊</div>
+        <h3>{% trans "Davolash" %}</h3>
+      </div>
+
+      <div class="service-final-card">
+        <div class="service-final-icon">💉</div>
+        <h3>{% trans "Emlash va profilaktika" %}</h3>
+      </div>
+
+      <div class="service-final-card">
+        <div class="service-final-icon">💬</div>
+        <h3>{% trans "Maslahat" %}</h3>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

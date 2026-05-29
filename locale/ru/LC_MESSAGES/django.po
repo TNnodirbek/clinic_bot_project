@@ -1,0 +1,2804 @@
+# VetClinic translations
+msgid ""
+msgstr ""
+"Project-Id-Version: VetClinic\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: auto
+msgid "O‘zbek"
+msgstr "Узбекский"
+
+#: auto
+msgid "Русский"
+msgstr "Русский"
+
+#: auto
+msgid "English"
+msgstr "Английский"
+
+#: auto
+msgid "Administrator dashboard"
+msgstr "Панель администратора"
+
+#: auto
+msgid "Yangi arizalarni ko‘rish, veterinarga biriktirish va bemorlar holatini boshqarish"
+msgstr "Просмотр новых заявок, назначение ветеринару и управление состоянием пациентов"
+
+#: auto
+msgid "Yangi bemorlar"
+msgstr "Новые пациенты"
+
+#: auto
+msgid "Bemorlar"
+msgstr "Пациенты"
+
+#: auto
+msgid "Veterinar doktorlar"
+msgstr "Ветеринарные доктора"
+
+#: auto
+msgid "Karta"
+msgstr "Карта"
+
+#: auto
+msgid "Elektron kartoteka"
+msgstr "Электронная картотека"
+
+#: auto
+msgid "Bemor kodi"
+msgstr "Код пациента"
+
+#: auto
+msgid "F.I.Sh"
+msgstr "Ф.И.О."
+
+#: auto
+msgid "Telefon"
+msgstr "Телефон"
+
+#: auto
+msgid "Hayvon nomi"
+msgstr "Кличка животного"
+
+#: auto
+msgid "Hayvon turi"
+msgstr "Вид животного"
+
+#: auto
+msgid "Izoh"
+msgstr "Примечание"
+
+#: auto
+msgid "Ko‘rik vaqti"
+msgstr "Время осмотра"
+
+#: auto
+msgid "Amal"
+msgstr "Действие"
+
+#: auto
+msgid "Biriktirish"
+msgstr "Назначить"
+
+#: auto
+msgid "Bu arizani bekor qilmoqchimisiz?"
+msgstr "Вы хотите отменить эту заявку?"
+
+#: auto
+msgid "Bekor qilish"
+msgstr "Отменить"
+
+#: auto
+msgid "Hozircha yangi arizalar yo‘q."
+msgstr "Пока новых заявок нет."
+
+#: auto
+msgid "Veterinar doktor"
+msgstr "Ветеринарный доктор"
+
+#: auto
+msgid "Status"
+msgstr "Статус"
+
+#: auto
+msgid "Oxirgi yangilanish"
+msgstr "Последнее обновление"
+
+#: auto
+msgid "Laboratoriyada"
+msgstr "В лаборатории"
+
+#: auto
+msgid "Diagnostikada"
+msgstr "На диагностике"
+
+#: auto
+msgid "Yangilangan vaqt"
+msgstr "Время обновления"
+
+#: auto
+msgid "Bekor qilingan"
+msgstr "Отменён"
+
+#: auto
+msgid "Qayta yo‘naltirish"
+msgstr "Перенаправить"
+
+#: auto
+msgid "Bu bemorni bekor qilmoqchimisiz?"
+msgstr "Вы хотите отменить этого пациента?"
+
+#: auto
+msgid "Bemorlar tarixi hozircha yo‘q."
+msgstr "Истории пациентов пока нет."
+
+#: auto
+msgid "Vet Clinic Dashboard"
+msgstr "Панель VetClinic"
+
+#: auto
+msgid "Vet Clinic"
+msgstr "Vet Clinic"
+
+#: auto
+msgid "Boshqaruv paneli"
+msgstr "Панель управления"
+
+#: auto
+msgid "Dashboard"
+msgstr "Панель"
+
+#: auto
+msgid "Admin panel"
+msgstr "Админ-панель"
+
+#: auto
+msgid "Chiqish"
+msgstr "Выход"
+
+#: auto
+msgid "Veterinariya klinikasi"
+msgstr "Ветеринарная клиника"
+
+#: auto
+msgid "Elektron kartoteka tizimi"
+msgstr "Электронная картотека"
+
+#: auto
+msgid "Klinika jarayonlarini boshqarish paneli"
+msgstr "Панель управления процессами клиники"
+
+#: auto
+msgid "Qidirish..."
+msgstr "Поиск..."
+
+#: auto
+msgid "Bildirishnomalar"
+msgstr "Уведомления"
+
+#: auto
+msgid "%(dashboard_notification_count)s ta"
+msgstr "%(dashboard_notification_count)s шт."
+
+#: auto
+msgid "Yangi bildirishnoma yo‘q"
+msgstr "Новых уведомлений нет"
+
+#: auto
+msgid "Superadmin"
+msgstr "Суперадмин"
+
+#: auto
+msgid "Foydalanuvchi"
+msgstr "Пользователь"
+
+#: auto
+msgid "Diagnostika dashboard"
+msgstr "Панель диагностики"
+
+#: auto
+msgid "Laboratoriya natijalarini ko‘rish, diagnostik xulosa yozish va bemorni veterinarga qaytarish"
+msgstr "Просмотр лабораторных результатов, написание диагностического заключения и возврат пациента ветеринару"
+
+#: auto
+msgid "Faol diagnostika"
+msgstr "Активная диагностика"
+
+#: auto
+msgid "Diagnostika tarixi"
+msgstr "История диагностики"
+
+#: auto
+msgid "Lab"
+msgstr "Лаб."
+
+#: auto
+msgid "Analiz natijalari"
+msgstr "Результаты анализов"
+
+#: auto
+msgid "Vet"
+msgstr "Вет."
+
+#: auto
+msgid "Faol diagnostika ishlari"
+msgstr "Активные диагностические работы"
+
+#: auto
+msgid "Analiz turi"
+msgstr "Тип анализа"
+
+#: auto
+msgid "Ko‘rik"
+msgstr "Осмотр"
+
+#: auto
+msgid "Diagnostik xulosa"
+msgstr "Диагностическое заключение"
+
+#: auto
+msgid "Laboratoriya natijasi tahrirlangan"
+msgstr "Лабораторный результат изменён"
+
+#: auto
+msgid "Diagnostik xulosa yozing..."
+msgstr "Напишите диагностическое заключение..."
+
+#: auto
+msgid "required"
+msgstr "обязательно"
+
+#: auto
+msgid "Tavsiya..."
+msgstr "Рекомендация..."
+
+#: auto
+msgid "Diagnostikaga yuborilgan faol bemorlar yo‘q."
+msgstr "Активных пациентов, отправленных на диагностику, нет."
+
+#: auto
+msgid "Diagnostika statusi"
+msgstr "Статус диагностики"
+
+#: auto
+msgid "Bildirishnoma"
+msgstr "Уведомление"
+
+#: auto
+msgid "Kutilmoqda"
+msgstr "Ожидается"
+
+#: auto
+msgid "Tayyor"
+msgstr "Готово"
+
+#: auto
+msgid "Lab natija tahrirlangan"
+msgstr "Результат лаборатории изменён"
+
+#: auto
+msgid "Tahrirlash"
+msgstr "Редактировать"
+
+#: auto
+msgid "Diagnostika tarixida yozuvlar yo‘q."
+msgstr "Записей в истории диагностики нет."
+
+#: auto
+msgid "Diagnostika xulosasini tahrirlash"
+msgstr "Редактировать диагностическое заключение"
+
+#: auto
+msgid "Diagnostik xulosa va tavsiyani qayta ko‘rib chiqish oynasi"
+msgstr "Окно повторной проверки диагностического заключения и рекомендации"
+
+#: auto
+msgid "Ogohlantirish"
+msgstr "Предупреждение"
+
+#: auto
+msgid "Laboratoriya natijasi o‘zgartirilgan. Xulosani qayta tekshiring."
+msgstr "Лабораторный результат был изменён. Проверьте заключение повторно."
+
+#: auto
+msgid "Tahrirlagan xodim"
+msgstr "Изменил сотрудник"
+
+#: auto
+msgid "Bemor ma’lumotlari"
+msgstr "Данные пациента"
+
+#: auto
+msgid "Vaqt ma’lumotlari"
+msgstr "Данные времени"
+
+#: auto
+msgid "Analiz natijasi"
+msgstr "Результат анализа"
+
+#: auto
+msgid "Laboratoriya izohi"
+msgstr "Комментарий лаборатории"
+
+#: auto
+msgid "Tavsiya"
+msgstr "Рекомендация"
+
+#: auto
+msgid "Davolash"
+msgstr "Лечение"
+
+#: auto
+msgid "Orqaga"
+msgstr "Назад"
+
+#: auto
+msgid "Laboratoriya natijasini tahrirlash"
+msgstr "Редактировать лабораторный результат"
+
+#: auto
+msgid "Analiz natijasi va laboratoriya izohini tahrirlash oynasi"
+msgstr "Окно редактирования результата анализа и комментария лаборатории"
+
+#: auto
+msgid "Hayvon ma’lumotlari"
+msgstr "Данные животного"
+
+#: auto
+msgid "Laboratoriya tahlili natijasini to‘liq kiriting."
+msgstr "Введите полный результат лабораторного анализа."
+
+#: auto
+msgid "Qo‘shimcha izoh yoki tavsiyalar bo‘lsa yozing."
+msgstr "Укажите дополнительные комментарии или рекомендации."
+
+#: auto
+msgid "Analiz so‘rovini tahrirlash"
+msgstr "Редактировать запрос анализа"
+
+#: auto
+msgid "Veterinar yuborgan analiz turi va izohini tahrirlash oynasi"
+msgstr "Окно редактирования типа анализа и комментария, отправленных ветеринаром"
+
+#: auto
+msgid "Muhim eslatma"
+msgstr "Важное примечание"
+
+#: auto
+msgid "Tahrirlash qoidasi"
+msgstr "Правило редактирования"
+
+#: auto
+msgid "Bu yerda faqat analiz turi va veterinar izohi tahrirlanadi."
+msgstr "Здесь редактируются только тип анализа и комментарий ветеринара."
+
+#: auto
+msgid "Laboratoriya natija kiritganidan keyin bu so‘rovni o‘zgartirib bo‘lmaydi."
+msgstr "После ввода результата лабораторией этот запрос изменить нельзя."
+
+#: auto
+msgid "Analiz so‘rovi"
+msgstr "Запрос анализа"
+
+#: auto
+msgid "Analiz turini tanlang"
+msgstr "Выберите тип анализа"
+
+#: auto
+msgid "Umumiy qon tahlili"
+msgstr "Общий анализ крови"
+
+#: auto
+msgid "Biokimyoviy qon tahlili"
+msgstr "Биохимический анализ крови"
+
+#: auto
+msgid "Siydik tahlili"
+msgstr "Анализ мочи"
+
+#: auto
+msgid "Najas tahlili"
+msgstr "Анализ кала"
+
+#: auto
+msgid "Parazitologik tekshiruv"
+msgstr "Паразитологическое исследование"
+
+#: auto
+msgid "Bakteriologik tekshiruv"
+msgstr "Бактериологическое исследование"
+
+#: auto
+msgid "Allergiya testi"
+msgstr "Тест на аллергию"
+
+#: auto
+msgid "Gormon tahlili"
+msgstr "Анализ гормонов"
+
+#: auto
+msgid "Boshqa"
+msgstr "Другое"
+
+#: auto
+msgid "Yakuniy ko‘rik / PDF yuborish"
+msgstr "Итоговый осмотр / отправка PDF"
+
+#: auto
+msgid "Yakuniy tashxis, davolash va PDF ko‘rik varaqasini Telegramga yuborish oynasi"
+msgstr "Окно отправки итогового диагноза, лечения и PDF-листа осмотра в Telegram"
+
+#: auto
+msgid "Doktor tanlanmagan"
+msgstr "Врач не выбран"
+
+#: auto
+msgid "Eslatma"
+msgstr "Примечание"
+
+#: auto
+msgid "Bu bemor yakunlangan. Siz bu yerda ko‘rikni qayta yozib,"
+msgstr "Этот пациент завершён. Здесь вы можете заново оформить осмотр и"
+
+#: auto
+msgid "Telegramga yangi PDF yuborishingiz mumkin."
+msgstr "отправить новый PDF в Telegram."
+
+#: auto
+msgid "Laboratoriya natijasi"
+msgstr "Результат лаборатории"
+
+#: auto
+msgid "Diagnostika xulosasi"
+msgstr "Заключение диагностики"
+
+#: auto
+msgid "Xulosa"
+msgstr "Заключение"
+
+#: auto
+msgid "uchun ko‘rik ma’lumotlari"
+msgstr "данные осмотра"
+
+#: auto
+msgid "Shikoyat"
+msgstr "Жалоба"
+
+#: auto
+msgid "Yakuniy tashxis"
+msgstr "Итоговый диагноз"
+
+#: auto
+msgid "Qayta kelish sanasi"
+msgstr "Дата повторного визита"
+
+#: auto
+msgid "Majburiy emas. Kerak bo‘lsa keyingi kelish sanasini tanlang."
+msgstr "Необязательно. При необходимости выберите дату следующего визита."
+
+#: auto
+msgid "PDFni Telegramga yuborish"
+msgstr "Отправить PDF в Telegram"
+
+#: auto
+msgid "Laboratoriya dashboard"
+msgstr "Панель лаборатории"
+
+#: auto
+msgid "Veterinardan kelgan analiz so‘rovlarini ko‘rish, natija kiritish va diagnostikaga yuborish"
+msgstr "Просмотр запросов анализов от ветеринара, ввод результата и отправка на диагностику"
+
+#: auto
+msgid "Faol analizlar"
+msgstr "Активные анализы"
+
+#: auto
+msgid "Laboratoriya tarixi"
+msgstr "История лаборатории"
+
+#: auto
+msgid "Natija"
+msgstr "Результат"
+
+#: auto
+msgid "Diag"
+msgstr "Диаг."
+
+#: auto
+msgid "Diagnostikaga yuborish"
+msgstr "Отправить на диагностику"
+
+#: auto
+msgid "Faol laboratoriya ishlari"
+msgstr "Активные лабораторные работы"
+
+#: auto
+msgid "Natija kiritish"
+msgstr "Внести результат"
+
+#: auto
+msgid "Analiz natijasini yozing..."
+msgstr "Напишите результат анализа..."
+
+#: auto
+msgid "Laboratoriya izohi..."
+msgstr "Комментарий лаборатории..."
+
+#: auto
+msgid "Laboratoriyaga yuborilgan faol bemorlar yo‘q."
+msgstr "Активных пациентов, отправленных в лабораторию, нет."
+
+#: auto
+msgid "Laboratoriya statusi"
+msgstr "Статус лаборатории"
+
+#: auto
+msgid "Diagnostikaga yuborilgan"
+msgstr "Отправлено на диагностику"
+
+#: auto
+msgid "Laboratoriya tarixida yozuvlar yo‘q."
+msgstr "Записей в истории лаборатории нет."
+
+#: auto
+msgid "Tizimga kirish"
+msgstr "Вход в систему"
+
+#: auto
+msgid "Tizimga xush kelibsiz"
+msgstr "Добро пожаловать в систему"
+
+#: auto
+msgid "Klinika xodimlari uchun mo‘ljallangan boshqaruv paneli. Bu yerda arizalar, bemorlar holati, laboratoriya natijalari, diagnostika xulosalari va yakuniy ko‘riklar boshqariladi."
+msgstr "Панель управления для сотрудников клиники. Здесь управляются заявки, состояние пациентов, лабораторные результаты, диагностические заключения и итоговые осмотры."
+
+#: auto
+msgid "Bemorlar jarayoni va yakuniy ko‘riklar nazorati."
+msgstr "Контроль процесса лечения и итоговых осмотров."
+
+#: auto
+msgid "Laboratoriya va diagnostika"
+msgstr "Лаборатория и диагностика"
+
+#: auto
+msgid "Analiz natijalari va diagnostik xulosalarni yuritish."
+msgstr "Ведение результатов анализов и диагностических заключений."
+
+#: auto
+msgid "Bemor kartalari va ko‘rik tarixini bir joyda saqlash."
+msgstr "Хранение карт пациентов и истории осмотров в одном месте."
+
+#: auto
+msgid "Login va parolingizni kiriting"
+msgstr "Введите логин и пароль"
+
+#: auto
+msgid "Login yoki parol noto‘g‘ri. Qayta urinib ko‘ring."
+msgstr "Логин или пароль неверный. Попробуйте снова."
+
+#: auto
+msgid "Login"
+msgstr "Логин"
+
+#: auto
+msgid "Loginni kiriting"
+msgstr "Введите логин"
+
+#: auto
+msgid "Parol"
+msgstr "Пароль"
+
+#: auto
+msgid "Parolni kiriting"
+msgstr "Введите пароль"
+
+#: auto
+msgid "Kirish"
+msgstr "Войти"
+
+#: auto
+msgid "VetClinic elektron kartoteka tizimi"
+msgstr "Электронная картотека VetClinic"
+
+#: auto
+msgid "Administrator / Veterinar / Laboratoriya / Diagnostika"
+msgstr "Администратор / Ветеринар / Лаборатория / Диагностика"
+
+#: auto
+msgid "Bemorning to‘liq elektron kartotekasi: ariza, laboratoriya, diagnostika va yakuniy ko‘riklar tarixi"
+msgstr "Полная электронная карта пациента: заявка, лаборатория, диагностика и история итоговых осмотров"
+
+#: auto
+msgid "Laboratoriya yozuvlari"
+msgstr "Лабораторные записи"
+
+#: auto
+msgid "Diagnostika yozuvlari"
+msgstr "Диагностические записи"
+
+#: auto
+msgid "Ko‘riklar"
+msgstr "Осмотры"
+
+#: auto
+msgid "Telegram username"
+msgstr "Имя пользователя Telegram"
+
+#: auto
+msgid "Holati"
+msgstr "Статус"
+
+#: auto
+msgid "Biriktirilgan veterinar"
+msgstr "Назначенный ветеринар"
+
+#: auto
+msgid "Telegram xabar"
+msgstr "Сообщение Telegram"
+
+#: auto
+msgid "Ariza izohi"
+msgstr "Комментарий заявки"
+
+#: auto
+msgid "Laboratoriya natijalari"
+msgstr "Лабораторные результаты"
+
+#: auto
+msgid "Laboratoriya xodimi"
+msgstr "Сотрудник лаборатории"
+
+#: auto
+msgid "Laboratoriya yozuvlari mavjud emas."
+msgstr "Лабораторных записей нет."
+
+#: auto
+msgid "Diagnostika xulosalari"
+msgstr "Диагностические заключения"
+
+#: auto
+msgid "Diagnostika xodimi"
+msgstr "Сотрудник диагностики"
+
+#: auto
+msgid "Diagnostika yozuvlari mavjud emas."
+msgstr "Диагностических записей нет."
+
+#: auto
+msgid "Yakuniy ko‘riklar / PDF tarixi"
+msgstr "Итоговые осмотры / история PDF"
+
+#: auto
+msgid "Tashxis"
+msgstr "Диагноз"
+
+#: auto
+msgid "Yuborildimi?"
+msgstr "Отправлено?"
+
+#: auto
+msgid "Kiritilmagan"
+msgstr "Не указано"
+
+#: auto
+msgid "Yakuniy ko‘riklar mavjud emas."
+msgstr "Итоговых осмотров нет."
+
+#: auto
+msgid "Dashboardga qaytish"
+msgstr "Вернуться к панели"
+
+#: auto
+msgid "Bemorlarning hozirgi jarayon holati, mas’ul veterinar va oxirgi yangilanishlarini ko‘rish"
+msgstr "Просмотр текущего статуса процесса пациентов, ответственного ветеринара и последних обновлений"
+
+#: auto
+msgid "Laboratoriya jarayoni"
+msgstr "Лабораторный процесс"
+
+#: auto
+msgid "Diagnostika jarayoni"
+msgstr "Диагностический процесс"
+
+#: auto
+msgid "Yangi"
+msgstr "Новый"
+
+#: auto
+msgid "Laboratoriyaga yuborilgan"
+msgstr "Отправлено в лабораторию"
+
+#: auto
+msgid "Qabul qilindi"
+msgstr "Принято"
+
+#: auto
+msgid "Rad etildi"
+msgstr "Отклонено"
+
+#: auto
+msgid "Hozircha bemorlar mavjud emas."
+msgstr "Пациентов пока нет."
+
+#: auto
+msgid "Bemorlarni ko‘rish, laboratoriyaga yuborish va yakuniy ko‘rik/PDF jarayonlarini boshqarish"
+msgstr "Просмотр пациентов, отправка в лабораторию и управление итоговым осмотром/PDF"
+
+#: auto
+msgid "Mutaxassisligi"
+msgstr "Специализация"
+
+#: auto
+msgid "Analiz so‘rovlari"
+msgstr "Запросы анализов"
+
+#: auto
+msgid "PDF"
+msgstr "PDF"
+
+#: auto
+msgid "Yakuniy ko‘rik"
+msgstr "Итоговый осмотр"
+
+#: auto
+msgid "Laboratoriyaga yuborish"
+msgstr "Отправить в лабораторию"
+
+#: auto
+msgid "Faol bemorlar hozircha yo‘q."
+msgstr "Активных пациентов пока нет."
+
+#: auto
+msgid "Mening bemorlarim"
+msgstr "Мои пациенты"
+
+#: auto
+msgid "Qayta PDF yuborish"
+msgstr "Повторно отправить PDF"
+
+#: auto
+msgid "Barcha bemorlar"
+msgstr "Все пациенты"
+
+#: auto
+msgid "Analiz so‘rovlari tarixi"
+msgstr "История запросов анализов"
+
+#: auto
+msgid "Hozircha analiz so‘rovlari yo‘q."
+msgstr "Пока запросов анализов нет."
+
+#: auto
+msgid "Diagnostika natijasini ko‘rish"
+msgstr "Посмотреть результат диагностики"
+
+#: auto
+msgid "Diagnostika natijasi"
+msgstr "Результат диагностики"
+
+#: auto
+msgid "Bemorning laboratoriya va diagnostika ma’lumotlarini ixcham ko‘rish oynasi"
+msgstr "Краткое окно просмотра лабораторных и диагностических данных пациента"
+
+#: auto
+msgid "Doktor va holat"
+msgstr "Доктор и статус"
+
+#: auto
+msgid "Laboratoriya natijasi diagnostika xulosasidan keyin o‘zgartirilgan."
+msgstr "Лабораторный результат был изменён после диагностического заключения."
+
+#: auto
+msgid "Orqaga qaytish"
+msgstr "Назад"
+
+#: auto
+msgid "Laboratoriya natijasini ko‘rish"
+msgstr "Посмотреть лабораторный результат"
+
+#: auto
+msgid "Bemor laboratoriya natijasi va izohlarini ixcham ko‘rish oynasi"
+msgstr "Краткое окно просмотра лабораторного результата и комментариев пациента"
+
+#: auto
+msgid "Hurmatli mijoz"
+msgstr "Уважаемый клиент"
+
+#: auto
+msgid "hayvoningiz"
+msgstr "ваше животное"
+
+#: auto
+msgid "Assalomu alaykum"
+msgstr "Здравствуйте"
+
+#: auto
+msgid "Qo‘shimcha xabar"
+msgstr "Дополнительное сообщение"
+
+#: auto
+msgid "Ko‘rik varaqasi PDF shaklida ham yuborildi."
+msgstr "Лист осмотра также отправлен в формате PDF."
+
+#: auto
+msgid "Aniqlanmagan"
+msgstr "Не определено"
+
+#: auto
+msgid "Ko‘rik varaqasi"
+msgstr "Лист осмотра"
+
+#: auto
+msgid "Ko‘rik raqami"
+msgstr "Номер осмотра"
+
+#: auto
+msgid "Egasi F.I.Sh"
+msgstr "Ф.И.О. владельца"
+
+#: auto
+msgid "Mas’ul doktor"
+msgstr "Ответственный врач"
+
+#: auto
+msgid "Ko‘rik sanasi"
+msgstr "Дата осмотра"
+
+#: auto
+msgid "Ushbu varaqa elektron kartoteka tizimi orqali shakllantirildi."
+msgstr "Данный лист сформирован через систему электронной картотеки."
+
+#: auto
+msgid "Ko‘rik ma’lumotlari"
+msgstr "Данные осмотра"
+
+#: auto
+msgid "Tibbiy ma’lumotlar"
+msgstr "Медицинские данные"
+
+#: auto
+msgid "Egasi aniqlanmagan"
+msgstr "Владелец не определён"
+
+#: auto
+msgid "Egasi"
+msgstr "Владелец"
+
+#: auto
+msgid "Noma’lum hayvon"
+msgstr "Неизвестное животное"
+
+#: auto
+msgid "{} sizga tegishli emas."
+msgstr "{} вам не принадлежит."
+
+#: auto
+msgid "{} uchun hayvon egasi topilmadi."
+msgstr "Для {} владелец животного не найден."
+
+#: auto
+msgid "{} uchun Telegram ID yo‘q."
+msgstr "Для {} отсутствует Telegram ID."
+
+#: auto
+msgid "{} uchun xabar matni shakllanmadi."
+msgstr "Для {} текст сообщения не сформирован."
+
+#: auto
+msgid "Xatolik: {}"
+msgstr "Ошибка: {}"
+
+#: auto
+msgid "Ko‘rik varaqasi PDF"
+msgstr "PDF лист осмотра"
+
+#: auto
+msgid "PDF yuborishda xatolik: {}"
+msgstr "Ошибка при отправке PDF: {}"
+
+#: auto
+msgid "Yuborildi: {} ta. Xato: {} ta."
+msgstr "Отправлено: {}. Ошибок: {}."
+
+#: auto
+msgid "Tanlangan ko‘riklar bo‘yicha Telegram xabar yuborish"
+msgstr "Отправить Telegram-сообщение по выбранным осмотрам"
+
+#: auto
+msgid "Tanlangan bemorlarga Telegram xabar yuborish"
+msgstr "Отправить Telegram-сообщение выбранным пациентам"
+
+#: auto
+msgid "Doktor akkaunti"
+msgstr "Аккаунт врача"
+
+#: auto
+msgid "Shaxsiy ma’lumotlar"
+msgstr "Личные данные"
+
+#: auto
+msgid "Rezyume"
+msgstr "Резюме"
+
+#: auto
+msgid "Egasi kodi"
+msgstr "Код владельца"
+
+#: auto
+msgid "Telegram ID"
+msgstr "Telegram ID"
+
+#: auto
+msgid "Manzil"
+msgstr "Адрес"
+
+#: auto
+msgid "Ro‘yxatga olingan vaqt"
+msgstr "Время регистрации"
+
+#: auto
+msgid "Hayvon egasi"
+msgstr "Владелец животного"
+
+#: auto
+msgid "Hayvon egalari"
+msgstr "Владельцы животных"
+
+#: auto
+msgid "It"
+msgstr "Собака"
+
+#: auto
+msgid "Mushuk"
+msgstr "Кошка"
+
+#: auto
+msgid "Sigir"
+msgstr "Корова"
+
+#: auto
+msgid "Ot"
+msgstr "Лошадь"
+
+#: auto
+msgid "Qo‘y"
+msgstr "Овца"
+
+#: auto
+msgid "Echki"
+msgstr "Коза"
+
+#: auto
+msgid "Qush"
+msgstr "Птица"
+
+#: auto
+msgid "Hayvon kodi"
+msgstr "Код животного"
+
+#: auto
+msgid "Hayvon"
+msgstr "Животное"
+
+#: auto
+msgid "Hayvonlar"
+msgstr "Животные"
+
+#: auto
+msgid "Ish tajribasi"
+msgstr "Опыт работы"
+
+#: auto
+msgid "Faolmi?"
+msgstr "Активен?"
+
+#: auto
+msgid "Yaratilgan vaqt"
+msgstr "Время создания"
+
+#: auto
+msgid "Laboratoriyaga yuborildi"
+msgstr "Отправлено в лабораторию"
+
+#: auto
+msgid "Diagnostikaga yuborildi"
+msgstr "Отправлено на диагностику"
+
+#: auto
+msgid "Yakunlandi"
+msgstr "Завершено"
+
+#: auto
+msgid "Tanlangan doktor"
+msgstr "Выбранный врач"
+
+#: auto
+msgid "Kelgan vaqti"
+msgstr "Время поступления"
+
+#: auto
+msgid "Yangi bemor"
+msgstr "Новый пациент"
+
+#: auto
+msgid "Hayvon yozilmagan"
+msgstr "Животное не указано"
+
+#: auto
+msgid "Xabar matni"
+msgstr "Текст сообщения"
+
+#: auto
+msgid "Hayvon tanlanmagan"
+msgstr "Животное не выбрано"
+
+#: auto
+msgid "Yuborgan veterinar"
+msgstr "Направивший ветеринар"
+
+#: auto
+msgid "Analiz nomi"
+msgstr "Название анализа"
+
+#: auto
+msgid "Laboratoriya natijasi tahrirlanganmi?"
+msgstr "Лабораторный результат изменён?"
+
+#: auto
+msgid "Laboratoriya tahrirlagan xodim"
+msgstr "Сотрудник лаборатории, изменивший запись"
+
+#: auto
+msgid "Diagnostika natijalari"
+msgstr "Результаты диагностики"
+
+#: auto
+msgid "Mening bemorim"
+msgstr "Мой пациент"
+
+#: auto
+msgid "Messages"
+msgstr "Сообщения"
+
+#: auto
+msgid "Site Maps"
+msgstr "Карты сайта"
+
+#: auto
+msgid "Static Files"
+msgstr "Статические файлы"
+
+#: auto
+msgid "Syndication"
+msgstr "Синдикация"
+
+#: auto
+msgid "…"
+msgstr "…"
+
+#: auto
+msgid "That page number is not an integer"
+msgstr "Номер страницы не является целым числом"
+
+#: auto
+msgid "That page number is less than 1"
+msgstr "Номер страницы меньше 1"
+
+#: auto
+msgid "That page contains no results"
+msgstr "На этой странице нет результатов"
+
+#: auto
+msgid "Enter a valid value."
+msgstr "Введите корректное значение."
+
+#: auto
+msgid "Enter a valid domain name."
+msgstr "Введите корректное доменное имя."
+
+#: auto
+msgid "Enter a valid URL."
+msgstr "Введите корректный URL."
+
+#: auto
+msgid "Enter a valid integer."
+msgstr "Введите корректное целое число."
+
+#: auto
+msgid "Enter a valid email address."
+msgstr "Введите корректный адрес электронной почты."
+
+#: auto
+msgid "Enter a valid %(protocol)s address."
+msgstr "Введите корректный адрес %(protocol)s."
+
+#: auto
+msgid "IPv4"
+msgstr "IPv4"
+
+#: auto
+msgid "IPv6"
+msgstr "IPv6"
+
+#: auto
+msgid "IPv4 or IPv6"
+msgstr "IPv4 или IPv6"
+
+#: auto
+msgid "Enter only digits separated by commas."
+msgstr "Введите только цифры, разделённые запятыми."
+
+#: auto
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr ""
+
+#: auto
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr "Убедитесь, что это значение меньше или равно %(limit_value)s."
+
+#: auto
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr "Убедитесь, что это значение больше или равно %(limit_value)s."
+
+#: auto
+msgid "Ensure this value is a multiple of step size %(limit_value)s."
+msgstr "Убедитесь, что это значение кратно размеру шага %(limit_value)s."
+
+#: auto
+msgid "Enter a number."
+msgstr "Введите число."
+
+#: auto
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgstr ""
+
+#: auto
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgstr ""
+
+#: auto
+msgid "Null characters are not allowed."
+msgstr "Нулевые символы не допускаются."
+
+#: auto
+msgid "and"
+msgstr "и"
+
+#: auto
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr "%(model_name)s с такими %(field_labels)s уже существует."
+
+#: auto
+msgid "Constraint “%(name)s” is violated."
+msgstr "Ограничение «%(name)s» нарушено."
+
+#: auto
+msgid "Value %(value)r is not a valid choice."
+msgstr "Значение %(value)r не является допустимым выбором."
+
+#: auto
+msgid "This field cannot be null."
+msgstr "Это поле не может быть null."
+
+#: auto
+msgid "This field cannot be blank."
+msgstr "Это поле не может быть пустым."
+
+#: auto
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr "%(model_name)s с таким полем %(field_label)s уже существует."
+
+#: auto
+msgid "Field of type: %(field_type)s"
+msgstr "Поле типа: %(field_type)s"
+
+#: auto
+msgid "“%(value)s” value must be either True or False."
+msgstr "Значение «%(value)s» должно быть True или False."
+
+#: auto
+msgid "“%(value)s” value must be either True, False, or None."
+msgstr "Значение «%(value)s» должно быть True, False или None."
+
+#: auto
+msgid "Boolean (Either True or False)"
+msgstr "Логическое значение (True или False)"
+
+#: auto
+msgid "String (up to %(max_length)s)"
+msgstr "Строка (до %(max_length)s)"
+
+#: auto
+msgid "String (unlimited)"
+msgstr "Строка (без ограничения)"
+
+#: auto
+msgid "Comma-separated integers"
+msgstr "Целые числа, разделённые запятыми"
+
+#: auto
+msgid "Date (without time)"
+msgstr "Дата (без времени)"
+
+#: auto
+msgid "Date (with time)"
+msgstr "Дата (со временем)"
+
+#: auto
+msgid "“%(value)s” value must be a decimal number."
+msgstr "Значение «%(value)s» должно быть десятичным числом."
+
+#: auto
+msgid "Decimal number"
+msgstr "Десятичное число"
+
+#: auto
+msgid "Duration"
+msgstr "Продолжительность"
+
+#: auto
+msgid "Email address"
+msgstr "Адрес электронной почты"
+
+#: auto
+msgid "File path"
+msgstr "Путь к файлу"
+
+#: auto
+msgid "“%(value)s” value must be a float."
+msgstr "Значение «%(value)s» должно быть числом с плавающей точкой."
+
+#: auto
+msgid "Floating point number"
+msgstr "Число с плавающей точкой"
+
+#: auto
+msgid "“%(value)s” value must be an integer."
+msgstr "Значение «%(value)s» должно быть целым числом."
+
+#: auto
+msgid "Integer"
+msgstr "Целое число"
+
+#: auto
+msgid "Big (8 byte) integer"
+msgstr "Большое целое число (8 байт)"
+
+#: auto
+msgid "Small integer"
+msgstr "Малое целое число"
+
+#: auto
+msgid "IPv4 address"
+msgstr "IPv4-адрес"
+
+#: auto
+msgid "IP address"
+msgstr "IP-адрес"
+
+#: auto
+msgid "“%(value)s” value must be either None, True or False."
+msgstr "Значение «%(value)s» должно быть None, True или False."
+
+#: auto
+msgid "Boolean (Either True, False or None)"
+msgstr "Логическое значение (True, False или None)"
+
+#: auto
+msgid "Positive big integer"
+msgstr "Положительное большое целое число"
+
+#: auto
+msgid "Positive integer"
+msgstr "Положительное целое число"
+
+#: auto
+msgid "Positive small integer"
+msgstr "Положительное малое целое число"
+
+#: auto
+msgid "Slug (up to %(max_length)s)"
+msgstr "Slug (до %(max_length)s)"
+
+#: auto
+msgid "Text"
+msgstr "Текст"
+
+#: auto
+msgid "Time"
+msgstr "Время"
+
+#: auto
+msgid "URL"
+msgstr "URL"
+
+#: auto
+msgid "Raw binary data"
+msgstr "Необработанные двоичные данные"
+
+#: auto
+msgid "“%(value)s” is not a valid UUID."
+msgstr "«%(value)s» не является корректным UUID."
+
+#: auto
+msgid "Universally unique identifier"
+msgstr "Универсальный уникальный идентификатор"
+
+#: auto
+msgid "File"
+msgstr "Файл"
+
+#: auto
+msgid "Image"
+msgstr "Изображение"
+
+#: auto
+msgid "A JSON object"
+msgstr "Объект JSON"
+
+#: auto
+msgid "Value must be valid JSON."
+msgstr "Значение должно быть корректным JSON."
+
+#: auto
+msgid "%(model)s instance with %(field)s %(value)r is not a valid choice."
+msgstr ""
+
+#: auto
+msgid "Foreign Key (type determined by related field)"
+msgstr "Внешний ключ (тип определяется связанным полем)"
+
+#: auto
+msgid "One-to-one relationship"
+msgstr "Связь один к одному"
+
+#: auto
+msgid "%(from)s-%(to)s relationship"
+msgstr "Связь %(from)s-%(to)s"
+
+#: auto
+msgid "%(from)s-%(to)s relationships"
+msgstr "Связи %(from)s-%(to)s"
+
+#: auto
+msgid "Many-to-many relationship"
+msgstr "Связь многие ко многим"
+
+#: auto
+msgid ":?.!"
+msgstr ":?.!"
+
+#: auto
+msgid "This field is required."
+msgstr "Это поле обязательно."
+
+#: auto
+msgid "Enter a whole number."
+msgstr "Введите целое число."
+
+#: auto
+msgid "Enter a valid date."
+msgstr "Введите корректную дату."
+
+#: auto
+msgid "Enter a valid time."
+msgstr "Введите корректное время."
+
+#: auto
+msgid "Enter a valid date/time."
+msgstr "Введите корректную дату/время."
+
+#: auto
+msgid "Enter a valid duration."
+msgstr "Введите корректную продолжительность."
+
+#: auto
+msgid "The number of days must be between {min_days} and {max_days}."
+msgstr "Количество дней должно быть между {min_days} и {max_days}."
+
+#: auto
+msgid "No file was submitted. Check the encoding type on the form."
+msgstr "Файл не был отправлен. Проверьте тип кодирования формы."
+
+#: auto
+msgid "No file was submitted."
+msgstr "Файл не был отправлен."
+
+#: auto
+msgid "The submitted file is empty."
+msgstr "Отправленный файл пуст."
+
+#: auto
+msgid "Please either submit a file or check the clear checkbox, not both."
+msgstr ""
+
+#: auto
+msgid "Enter a list of values."
+msgstr "Введите список значений."
+
+#: auto
+msgid "Enter a complete value."
+msgstr "Введите полное значение."
+
+#: auto
+msgid "Enter a valid UUID."
+msgstr "Введите корректный UUID."
+
+#: auto
+msgid "Enter a valid JSON."
+msgstr "Введите корректный JSON."
+
+#: auto
+msgid ":"
+msgstr ":"
+
+#: auto
+msgid "(Hidden field %(name)s) %(error)s"
+msgstr "(Скрытое поле %(name)s) %(error)s"
+
+#: auto
+msgid "Please submit at most %(num)d form."
+msgstr ""
+
+#: auto
+msgid "Please submit at least %(num)d form."
+msgstr ""
+
+#: auto
+msgid "Order"
+msgstr "Порядок"
+
+#: auto
+msgid "Delete"
+msgstr "Удалить"
+
+#: auto
+msgid "Please correct the duplicate data for %(field)s."
+msgstr "Исправьте дублирующиеся данные для поля %(field)s."
+
+#: auto
+msgid "Please correct the duplicate values below."
+msgstr "Исправьте дублирующиеся значения ниже."
+
+#: auto
+msgid "The inline value did not match the parent instance."
+msgstr "Встроенное значение не соответствует родительскому объекту."
+
+#: auto
+msgid "“%(pk)s” is not a valid value."
+msgstr "«%(pk)s» не является корректным значением."
+
+#: auto
+msgid "Clear"
+msgstr "Очистить"
+
+#: auto
+msgid "Currently"
+msgstr "Сейчас"
+
+#: auto
+msgid "Change"
+msgstr "Изменить"
+
+#: auto
+msgid "Unknown"
+msgstr "Неизвестно"
+
+#: auto
+msgid "Yes"
+msgstr "Да"
+
+#: auto
+msgid "No"
+msgstr "Нет"
+
+#: auto
+msgid "Ready"
+msgstr "Готово"
+
+#: auto
+msgid "Running"
+msgstr "Выполняется"
+
+#: auto
+msgid "Failed"
+msgstr "Не удалось"
+
+#: auto
+msgid "Successful"
+msgstr "Успешно"
+
+#: auto
+msgid "yes,no,maybe"
+msgstr "да,нет,возможно"
+
+#: auto
+msgid "%(size)d byte"
+msgstr ""
+
+#: auto
+msgid "%s KB"
+msgstr "%s КБ"
+
+#: auto
+msgid "%s MB"
+msgstr "%s МБ"
+
+#: auto
+msgid "%s GB"
+msgstr "%s ГБ"
+
+#: auto
+msgid "%s TB"
+msgstr "%s ТБ"
+
+#: auto
+msgid "%s PB"
+msgstr "%s ПБ"
+
+#: auto
+msgid "p.m."
+msgstr "пп"
+
+#: auto
+msgid "a.m."
+msgstr "дп"
+
+#: auto
+msgid "PM"
+msgstr "ПП"
+
+#: auto
+msgid "AM"
+msgstr "ДП"
+
+#: auto
+msgid "midnight"
+msgstr "полночь"
+
+#: auto
+msgid "noon"
+msgstr "полдень"
+
+#: auto
+msgid "Monday"
+msgstr "Понедельник"
+
+#: auto
+msgid "Tuesday"
+msgstr "Вторник"
+
+#: auto
+msgid "Wednesday"
+msgstr "Среда"
+
+#: auto
+msgid "Thursday"
+msgstr "Четверг"
+
+#: auto
+msgid "Friday"
+msgstr "Пятница"
+
+#: auto
+msgid "Saturday"
+msgstr "Суббота"
+
+#: auto
+msgid "Sunday"
+msgstr "Воскресенье"
+
+#: auto
+msgid "Mon"
+msgstr "Пн"
+
+#: auto
+msgid "Tue"
+msgstr "Вт"
+
+#: auto
+msgid "Wed"
+msgstr "Ср"
+
+#: auto
+msgid "Thu"
+msgstr "Чт"
+
+#: auto
+msgid "Fri"
+msgstr "Пт"
+
+#: auto
+msgid "Sat"
+msgstr "Сб"
+
+#: auto
+msgid "Sun"
+msgstr "Вс"
+
+#: auto
+msgid "January"
+msgstr "января"
+
+#: auto
+msgid "February"
+msgstr "февраля"
+
+#: auto
+msgid "March"
+msgstr "марта"
+
+#: auto
+msgid "April"
+msgstr "апреля"
+
+#: auto
+msgid "May"
+msgstr "мая"
+
+#: auto
+msgid "June"
+msgstr "июня"
+
+#: auto
+msgid "July"
+msgstr "июля"
+
+#: auto
+msgid "August"
+msgstr "августа"
+
+#: auto
+msgid "September"
+msgstr "сентября"
+
+#: auto
+msgid "October"
+msgstr "октября"
+
+#: auto
+msgid "November"
+msgstr "ноября"
+
+#: auto
+msgid "December"
+msgstr "декабря"
+
+#: auto
+msgid "jan"
+msgstr "янв"
+
+#: auto
+msgid "feb"
+msgstr "фев"
+
+#: auto
+msgid "mar"
+msgstr "мар"
+
+#: auto
+msgid "apr"
+msgstr "апр"
+
+#: auto
+msgid "may"
+msgstr "май"
+
+#: auto
+msgid "jun"
+msgstr "июн"
+
+#: auto
+msgid "jul"
+msgstr "июл"
+
+#: auto
+msgid "aug"
+msgstr "авг"
+
+#: auto
+msgid "sep"
+msgstr "сен"
+
+#: auto
+msgid "oct"
+msgstr "окт"
+
+#: auto
+msgid "nov"
+msgstr "ноя"
+
+#: auto
+msgid "dec"
+msgstr "дек"
+
+#: auto
+msgid "Jan."
+msgstr "янв."
+
+#: auto
+msgid "Feb."
+msgstr "фев."
+
+#: auto
+msgid "Aug."
+msgstr "авг."
+
+#: auto
+msgid "Sept."
+msgstr "сент."
+
+#: auto
+msgid "Oct."
+msgstr "окт."
+
+#: auto
+msgid "Nov."
+msgstr "нояб."
+
+#: auto
+msgid "Dec."
+msgstr "дек."
+
+#: auto
+msgid "This is not a valid IPv6 address."
+msgstr "Это некорректный IPv6-адрес."
+
+#: auto
+msgid "%(truncated_text)s…"
+msgstr "%(truncated_text)s…"
+
+#: auto
+msgid "or"
+msgstr "или"
+
+#: auto
+msgid ", "
+msgstr ", "
+
+#: auto
+msgid "%(num)d year"
+msgstr ""
+
+#: auto
+msgid "%(num)d month"
+msgstr ""
+
+#: auto
+msgid "%(num)d week"
+msgstr ""
+
+#: auto
+msgid "%(num)d day"
+msgstr ""
+
+#: auto
+msgid "%(num)d hour"
+msgstr ""
+
+#: auto
+msgid "%(num)d minute"
+msgstr ""
+
+#: auto
+msgid "Forbidden"
+msgstr "Доступ запрещён"
+
+#: auto
+msgid "CSRF verification failed. Request aborted."
+msgstr "Проверка CSRF не пройдена. Запрос отклонён."
+
+#: auto
+msgid "More information is available with DEBUG=True."
+msgstr "Больше информации доступно при DEBUG=True."
+
+#: auto
+msgid "No year specified"
+msgstr "Год не указан"
+
+#: auto
+msgid "Date out of range"
+msgstr "Дата вне допустимого диапазона"
+
+#: auto
+msgid "No month specified"
+msgstr "Месяц не указан"
+
+#: auto
+msgid "No day specified"
+msgstr "День не указан"
+
+#: auto
+msgid "No week specified"
+msgstr "Неделя не указана"
+
+#: auto
+msgid "No %(verbose_name_plural)s available"
+msgstr "Нет доступных %(verbose_name_plural)s"
+
+#: auto
+msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
+msgstr "Некорректная строка даты «%(datestr)s» для формата «%(format)s»"
+
+#: auto
+msgid "No %(verbose_name)s found matching the query"
+msgstr "По запросу не найдено ни одного %(verbose_name)s"
+
+#: auto
+msgid "Page is not “last”, nor can it be converted to an int."
+msgstr ""
+
+#: auto
+msgid "Invalid page (%(page_number)s): %(message)s"
+msgstr "Некорректная страница (%(page_number)s): %(message)s"
+
+#: auto
+msgid "Empty list and “%(class_name)s.allow_empty” is False."
+msgstr "Список пуст, а «%(class_name)s.allow_empty» равно False."
+
+#: auto
+msgid "Directory indexes are not allowed here."
+msgstr "Индексы каталогов здесь не разрешены."
+
+#: auto
+msgid "“%(path)s” does not exist"
+msgstr "«%(path)s» не существует"
+
+#: auto
+msgid "Index of %(directory)s"
+msgstr "Индекс каталога %(directory)s"
+
+#: auto
+msgid "The install worked successfully! Congratulations!"
+msgstr "Установка успешно выполнена! Поздравляем!"
+
+#: auto
+msgid "Django Documentation"
+msgstr "Документация Django"
+
+#: auto
+msgid "Topics, references, &amp; how-to’s"
+msgstr "Темы, справочники и практические инструкции"
+
+#: auto
+msgid "Tutorial: A Polling App"
+msgstr "Руководство: приложение для опросов"
+
+#: auto
+msgid "Get started with Django"
+msgstr "Начать работу с Django"
+
+#: auto
+msgid "Django Community"
+msgstr "Сообщество Django"
+
+#: auto
+msgid "Connect, get help, or contribute"
+msgstr "Общайтесь, получайте помощь или участвуйте в разработке"
+
+#: auto
+msgid "%(count)s ta analiz natija kutmoqda"
+msgstr "Ожидают результата анализа: %(count)s"
+
+#: auto
+msgid "%(count)s ta faol bemor bor"
+msgstr "Активных пациентов: %(count)s"
+
+#: auto
+msgid "%(count)s ta xulosa kutmoqda"
+msgstr "Ожидают заключения: %(count)s"
+
+#: auto
+msgid "%(count)s ta yangi ariza kelgan"
+msgstr "Поступило новых заявок: %(count)s"
+
+#: auto
+msgid "Admin panelda faol doctor profile qo‘shilgandan keyin bu yerda avtomatik chiqadi."
+msgstr "После добавления активного профиля врача в админ-панели он автоматически появится здесь."
+
+#: auto
+msgid "Administrator, veterinar, laboratoriya va diagnostika xodimlari o‘rtasidagi ish jarayonini yagona tizimda boshqarish."
+msgstr "Управление рабочим процессом администратора, ветеринара, лаборатории и диагностики в единой системе."
+
+#: auto
+msgid "Aloqa"
+msgstr "Контакты"
+
+#: auto
+msgid "Aloqa ma’lumotlari"
+msgstr "Контактные данные"
+
+#: auto
+msgid "Analiz ma’lumotlari"
+msgstr "Данные анализа"
+
+#: auto
+msgid "Ariza vaqti"
+msgstr "Время заявки"
+
+#: auto
+msgid "Ariza yuborish tartibi"
+msgstr "Порядок отправки заявки"
+
+#: auto
+msgid "Ariza yuborish uchun Telegram botdan foydalaning yoki quyidagi aloqa ma’lumotlari orqali murojaat qiling."
+msgstr "Для отправки заявки используйте Telegram-бот или обратитесь по указанным контактам."
+
+#: auto
+msgid "Asosiy imkoniyatlar"
+msgstr "Основные возможности"
+
+#: auto
+msgid "Asosiy xizmatlar"
+msgstr "Основные услуги"
+
+#: auto
+msgid "Barcha huquqlar himoyalangan."
+msgstr "Все права защищены."
+
+#: auto
+msgid "Batafsil"
+msgstr "Подробнее"
+
+#: auto
+msgid "Batafsil ma’lumot"
+msgstr "Подробнее"
+
+#: auto
+msgid "Bekor qilindi"
+msgstr "Отменено"
+
+#: auto
+msgid "Bemor"
+msgstr "Пациент"
+
+#: auto
+msgid "Bemor holati"
+msgstr "Состояние пациента"
+
+#: auto
+msgid "Bemor kartasi"
+msgstr "Карта пациента"
+
+#: auto
+msgid "Bemor statusi"
+msgstr "Статус пациента"
+
+#: auto
+msgid "Bemor yakunlangan"
+msgstr "Пациент завершён"
+
+#: auto
+msgid "Bemorlar holati"
+msgstr "Состояние пациентов"
+
+#: auto
+msgid "Bemorlar tarixi"
+msgstr "История пациентов"
+
+#: auto
+msgid "Biz bilan bog‘laning"
+msgstr "Свяжитесь с нами"
+
+#: auto
+msgid "Biz haqimizda"
+msgstr "О нас"
+
+#: auto
+msgid "Bizning shifokorlar"
+msgstr "Наши врачи"
+
+#: auto
+msgid "Bosh sahifa"
+msgstr "Главная"
+
+#: auto
+msgid "Botga o‘tish"
+msgstr "Перейти к боту"
+
+#: auto
+msgid "Bo‘limlar"
+msgstr "Разделы"
+
+#: auto
+msgid "Bu bo‘limdagi xodimlar admin paneldagi faol DoctorProfile ma’lumotlaridan avtomatik chiqadi."
+msgstr "Сотрудники в этом разделе автоматически выводятся из активных DoctorProfile в админ-панели."
+
+#: auto
+msgid "Bu sahifada klinika yangiliklari, foydali eslatmalar va parvarish bo‘yicha tavsiyalar joylashtiriladi."
+msgstr "На этой странице размещаются новости клиники, полезные напоминания и советы по уходу."
+
+#: auto
+msgid "Bu xodim haqida qo‘shimcha ma’lumot keyin kiritiladi."
+msgstr "Дополнительная информация об этом сотруднике будет добавлена позже."
+
+#: auto
+msgid "Davolash xizmati"
+msgstr "Лечение"
+
+#: auto
+msgid "Diagnostika"
+msgstr "Диагностика"
+
+#: auto
+msgid "Diagnostika holati"
+msgstr "Статус диагностики"
+
+#: auto
+msgid "Diagnostika ma’lumotlari"
+msgstr "Данные диагностики"
+
+#: auto
+msgid "Elektron nazorat"
+msgstr "Электронный контроль"
+
+#: auto
+msgid "Emlash va profilaktika"
+msgstr "Вакцинация и профилактика"
+
+#: auto
+msgid "Faol bemorlar"
+msgstr "Активные пациенты"
+
+#: auto
+msgid "Faol veterinarlar"
+msgstr "Активные ветеринары"
+
+#: auto
+msgid "Foydali maqolalar"
+msgstr "Полезные статьи"
+
+#: auto
+msgid "Har bir ariza holati aniq bosqichlarda kuzatib boriladi."
+msgstr "Статус каждой заявки отслеживается по конкретным этапам."
+
+#: auto
+msgid "Har bir xodim faqat o‘ziga tegishli ma’lumotlarni ko‘radi va tahrirlaydi."
+msgstr "Каждый сотрудник видит и редактирует только свои данные."
+
+#: auto
+msgid "Har kuni 09:00 - 18:00"
+msgstr "Ежедневно 09:00 - 18:00"
+
+#: auto
+msgid "Hayvoningiz sog‘lig‘iga doimiy e’tibor berish uchun foydali tavsiyalar."
+msgstr "Полезные советы для постоянного внимания к здоровью вашего животного."
+
+#: auto
+msgid "Hayvoningiz uchun ariza yubormoqchimisiz?"
+msgstr "Хотите отправить заявку для вашего питомца?"
+
+#: auto
+msgid "Hayvonlar sog‘lig‘i uchun zamonaviy elektron kartoteka tizimi"
+msgstr "Современная электронная картотека для здоровья животных"
+
+#: auto
+msgid "Hayvonlar sog‘lig‘i uchun zamonaviy veterinariya xizmatlari va elektron kartoteka tizimi."
+msgstr "Современные ветеринарные услуги и электронная картотека для здоровья животных."
+
+#: auto
+msgid "Hayvonlar uchun sifatli va ishonchli veterinariya xizmatlari"
+msgstr "Качественные и надёжные ветеринарные услуги для животных"
+
+#: auto
+msgid "Hayvonlarni ko‘rikdan o‘tkazish, tashxislash va parvarish qilish uchun kerakli xizmatlar bir joyda jamlangan."
+msgstr "Необходимые услуги для осмотра, диагностики и ухода за животными собраны в одном месте."
+
+#: auto
+msgid "Hayvonning holatiga mos ravishda davolash ishlari olib boriladi."
+msgstr "Лечение проводится в соответствии с состоянием животного."
+
+#: auto
+msgid "Hayvonning umumiy holati tekshiriladi va kerakli tavsiyalar beriladi."
+msgstr "Проверяется общее состояние животного и даются необходимые рекомендации."
+
+#: auto
+msgid "Hozircha shifokorlar kiritilmagan"
+msgstr "Врачи пока не добавлены"
+
+#: auto
+msgid "Hozirgi holati"
+msgstr "Текущее состояние"
+
+#: auto
+msgid "Jami bemorlar"
+msgstr "Всего пациентов"
+
+#: auto
+msgid "Kasalliklarning oldini olish uchun emlash va profilaktik nazorat tavsiya etiladi."
+msgstr "Для профилактики заболеваний рекомендуется вакцинация и профилактический контроль."
+
+#: auto
+msgid "Kasallikni erta aniqlash davolash jarayonini yengillashtiradi."
+msgstr "Раннее выявление болезни облегчает процесс лечения."
+
+#: auto
+msgid "Klinika haqida rasm keyin qo‘shiladi"
+msgstr "Фото о клинике будет добавлено позже"
+
+#: auto
+msgid "Klinika ish jarayonlari bosqichma-bosqich va tartibli nazorat qilinadi."
+msgstr "Рабочие процессы клиники контролируются поэтапно и упорядоченно."
+
+#: auto
+msgid "Klinika rasmi keyin qo‘shiladi"
+msgstr "Фото клиники будет добавлено позже"
+
+#: auto
+msgid "Klinikamizda mavjud xizmatlar"
+msgstr "Услуги нашей клиники"
+
+#: auto
+msgid "Ko‘p tillilik"
+msgstr "Многоязычность"
+
+#: auto
+msgid "Ko‘rik kodi"
+msgstr "Код осмотра"
+
+#: auto
+msgid "Ko‘riklar tarixi"
+msgstr "История осмотров"
+
+#: auto
+msgid "Ko‘rish"
+msgstr "Просмотр"
+
+#: auto
+msgid "Laboratoriya"
+msgstr "Лаборатория"
+
+#: auto
+msgid "Laboratoriya ma’lumotlari"
+msgstr "Данные лаборатории"
+
+#: auto
+msgid "Laboratoriya tahlillari"
+msgstr "Лабораторные анализы"
+
+#: auto
+msgid "Laboratoriya tahrirlagan vaqt"
+msgstr "Время изменения лабораторией"
+
+#: auto
+msgid "Loyiha klinika xodimlari ishini yengillashtirish, bemor hayvonlar tarixini saqlash va xizmat jarayonini tartibga solish uchun ishlab chiqilgan."
+msgstr "Проект разработан для облегчения работы сотрудников клиники, хранения истории пациентов-животных и упорядочивания обслуживания."
+
+#: auto
+msgid "Loyihaning asosiy maqsadi"
+msgstr "Основная цель проекта"
+
+#: auto
+msgid "Maqsad"
+msgstr "Цель"
+
+#: auto
+msgid "Maslahat xizmati"
+msgstr "Консультация"
+
+#: auto
+msgid "Ma’lumot yo‘q"
+msgstr "Нет данных"
+
+#: auto
+msgid "Mening bemorlarim tarixi"
+msgstr "История моих пациентов"
+
+#: auto
+msgid "Mijozlar Telegram bot orqali ariza yuboradi, administrator esa ularni ko‘rib chiqadi."
+msgstr "Клиенты отправляют заявки через Telegram-бот, а администратор рассматривает их."
+
+#: auto
+msgid "Muntazam ko‘rikning ahamiyati"
+msgstr "Важность регулярного осмотра"
+
+#: auto
+msgid "Mutaxassislarimiz"
+msgstr "Наши специалисты"
+
+#: auto
+msgid "Mutaxassislarimiz bilan tanishing"
+msgstr "Познакомьтесь с нашими специалистами"
+
+#: auto
+msgid "Mutaxassislik"
+msgstr "Специализация"
+
+#: auto
+msgid "Mutaxassislik kiritilmagan"
+msgstr "Специализация не указана"
+
+#: auto
+msgid "Parvarish"
+msgstr "Уход"
+
+#: auto
+msgid "Parvarish, ovqatlantirish va sog‘lom saqlash bo‘yicha maslahatlar beriladi."
+msgstr "Предоставляются советы по уходу, кормлению и поддержанию здоровья."
+
+#: auto
+msgid "Profilaktika"
+msgstr "Профилактика"
+
+#: auto
+msgid "Qabul qilingan"
+msgstr "Принято"
+
+#: auto
+msgid "Qabul qilish imkoniyati"
+msgstr "Возможность приёма"
+
+#: auto
+msgid "Qanday ishlaydi?"
+msgstr "Как это работает?"
+
+#: auto
+msgid "Rad etilgan"
+msgstr "Отклонено"
+
+#: auto
+msgid "Rollar bo‘yicha kirish"
+msgstr "Доступ по ролям"
+
+#: auto
+msgid "Saqlash"
+msgstr "Сохранить"
+
+#: auto
+msgid "Shifokorlar"
+msgstr "Врачи"
+
+#: auto
+msgid "Shifokorlar jamoasi rasmi keyin qo‘shiladi"
+msgstr "Фото команды врачей будет добавлено позже"
+
+#: auto
+msgid "So‘nggi ma’lumotlar"
+msgstr "Последняя информация"
+
+#: auto
+msgid "Tahlil va ko‘rik natijalariga ko‘ra tashxis qo‘yish va davolash yo‘nalishi belgilanadi."
+msgstr "На основе анализов и осмотра определяется диагноз и направление лечения."
+
+#: auto
+msgid "Tahrirlagan"
+msgstr "Изменил"
+
+#: auto
+msgid "Tahrirlangan vaqt"
+msgstr "Время изменения"
+
+#: auto
+msgid "Tajribali veterinariya mutaxassislari jamoasi"
+msgstr "Команда опытных ветеринарных специалистов"
+
+#: auto
+msgid "Tarixda bemorlar yo‘q."
+msgstr "Пациентов в истории пока нет."
+
+#: auto
+msgid "Tartibli jarayon"
+msgstr "Упорядоченный процесс"
+
+#: auto
+msgid "Tashxis yo‘q"
+msgstr "Диагноза нет"
+
+#: auto
+msgid "Telegram ariza / Izoh"
+msgstr "Заявка Telegram / Примечание"
+
+#: auto
+msgid "Telegram arizalar"
+msgstr "Заявки Telegram"
+
+#: auto
+msgid "Telegram bot"
+msgstr "Telegram-бот"
+
+#: auto
+msgid "Telegram bot orqali ariza yuborish"
+msgstr "Отправить заявку через Telegram-бот"
+
+#: auto
+msgid "Telegram bot orqali tez va qulay ariza qoldiring."
+msgstr "Оставьте заявку быстро и удобно через Telegram-бот."
+
+#: auto
+msgid "Telegram botda telefon raqamingiz, ism-familiyangiz, hayvon nomi va hayvon turi kiritiladi. So‘ng administrator arizani ko‘rib chiqadi."
+msgstr "В Telegram-боте вводятся номер телефона, имя и фамилия, кличка и вид животного. Затем администратор рассматривает заявку."
+
+#: auto
+msgid "Telegram orqali ariza yuborish"
+msgstr "Отправить заявку через Telegram"
+
+#: auto
+msgid "Telegramga yuborilgan"
+msgstr "Отправлено в Telegram"
+
+#: auto
+msgid "Til qo‘llab-quvvatlanadi"
+msgstr "Поддерживаются языки"
+
+#: auto
+msgid "Tizim nimalarni boshqaradi?"
+msgstr "Что управляет система?"
+
+#: auto
+msgid "Tizim o‘zbek, rus va ingliz tillarida ishlaydi."
+msgstr "Система работает на узбекском, русском и английском языках."
+
+#: auto
+msgid "To‘g‘ri ovqatlantirish, toza muhit va muntazam ko‘rik hayvonlar salomatligi uchun muhim."
+msgstr "Правильное кормление, чистая среда и регулярный осмотр важны для здоровья животных."
+
+#: auto
+msgid "Uy hayvonlarini to‘g‘ri parvarish qilish"
+msgstr "Правильный уход за домашними животными"
+
+#: auto
+msgid "VetClinic Admin"
+msgstr "Админ VetClinic"
+
+#: auto
+msgid "VetClinic hayvonlar ko‘rigi, laboratoriya natijalari, diagnostika xulosalari va yakuniy ko‘rik tarixini yagona tizimda yuritishga yordam beradi."
+msgstr "VetClinic помогает вести осмотры животных, лабораторные результаты, диагностические заключения и историю итоговых осмотров в единой системе."
+
+#: auto
+msgid "VetClinic jamoasi hayvonlar salomatligi uchun mehr, tajriba va mas’uliyat bilan xizmat qiladi."
+msgstr "Команда VetClinic служит здоровью животных с заботой, опытом и ответственностью."
+
+#: auto
+msgid "VetClinic — veterinariya klinikasi uchun elektron kartoteka tizimi"
+msgstr "VetClinic — электронная картотека для ветеринарной клиники"
+
+#: auto
+msgid "VetClinic’da ko‘rik, laboratoriya, diagnostika, davolash va profilaktika bo‘yicha xizmatlar ko‘rsatiladi."
+msgstr "В VetClinic предоставляются услуги осмотра, лаборатории, диагностики, лечения и профилактики."
+
+#: auto
+msgid "Veterinar"
+msgstr "Ветеринар"
+
+#: auto
+msgid "Veterinar bemorlari"
+msgstr "Пациенты ветеринара"
+
+#: auto
+msgid "Veterinar bemorni laboratoriya va diagnostika bosqichlaridan o‘tkazadi."
+msgstr "Ветеринар проводит пациента через этапы лаборатории и диагностики."
+
+#: auto
+msgid "Veterinar dashboard"
+msgstr "Панель ветеринара"
+
+#: auto
+msgid "Veterinar izohi"
+msgstr "Комментарий ветеринара"
+
+#: auto
+msgid "Veterinar izohi..."
+msgstr "Комментарий ветеринара..."
+
+#: auto
+msgid "Veterinar ko‘rigi"
+msgstr "Осмотр ветеринара"
+
+#: auto
+msgid "Veterinar ma’lumoti"
+msgstr "Данные ветеринара"
+
+#: auto
+msgid "Veterinar nazorati"
+msgstr "Контроль ветеринара"
+
+#: auto
+msgid "Veterinar tanlang"
+msgstr "Выберите ветеринара"
+
+#: auto
+msgid "Veterinar yuborgan ma’lumot"
+msgstr "Информация от ветеринара"
+
+#: auto
+msgid "Veterinarga biriktirilgan"
+msgstr "Назначен ветеринару"
+
+#: auto
+msgid "Veterinarga qaytarildi"
+msgstr "Возвращено ветеринару"
+
+#: auto
+msgid "Veterinarga qaytarilgan"
+msgstr "Возвращено ветеринару"
+
+#: auto
+msgid "Veterinarga qaytarish"
+msgstr "Вернуть ветеринару"
+
+#: auto
+msgid "Veterinarga qaytdi"
+msgstr "Возвращено ветеринару"
+
+#: auto
+msgid "Veterinarga qaytgan"
+msgstr "Возвращён ветеринару"
+
+#: auto
+msgid "Veterinarga yuborildi"
+msgstr "Отправлено ветеринару"
+
+#: auto
+msgid "Veterinariya klinikasi boshqaruv paneli"
+msgstr "Панель управления ветеринарной клиникой"
+
+#: auto
+msgid "Veterinariya klinikasi boshqaruv paneliga xush kelibsiz"
+msgstr "Добро пожаловать в панель управления ветеринарной клиникой"
+
+#: auto
+msgid "Veterinariya tizimi"
+msgstr "Ветеринарная система"
+
+#: auto
+msgid "Veterinariya va hayvonlar parvarishi bo‘yicha foydali ma’lumotlar"
+msgstr "Полезная информация о ветеринарии и уходе за животными"
+
+#: auto
+msgid "Xizmatlar"
+msgstr "Услуги"
+
+#: auto
+msgid "Xizmatlar bilan tanishish"
+msgstr "Ознакомиться с услугами"
+
+#: auto
+msgid "Xizmatlar sahifasi rasmi keyin qo‘shiladi"
+msgstr "Фото страницы услуг будет добавлено позже"
+
+#: auto
+msgid "Xizmatlarimiz"
+msgstr "Наши услуги"
+
+#: auto
+msgid "Xorazm viloyati, Urganch shahri"
+msgstr "Хорезмская область, город Ургенч"
+
+#: auto
+msgid "Yakuniy PDF"
+msgstr "Итоговый PDF"
+
+#: auto
+msgid "Yakuniy ko‘rik ma’lumotlari"
+msgstr "Данные итогового осмотра"
+
+#: auto
+msgid "Yakuniy ko‘rik natijasi PDF ko‘rinishida mijozga Telegram orqali yuboriladi."
+msgstr "Результат итогового осмотра отправляется клиенту в PDF через Telegram."
+
+#: auto
+msgid "Yakunlangan"
+msgstr "Завершён"
+
+#: auto
+msgid "Yangi ariza"
+msgstr "Новая заявка"
+
+#: auto
+msgid "Yangi arizalar"
+msgstr "Новые заявки"
+
+#: auto
+msgid "Yangiliklar"
+msgstr "Новости"
+
+#: auto
+msgid "Yangiliklar rasmi keyin qo‘shiladi"
+msgstr "Фото новостей будет добавлено позже"
+
+#: auto
+msgid "Yuborilgan"
+msgstr "Отправлено"
+
+#: auto
+msgid "Yuborilmagan"
+msgstr "Не отправлено"
+
+#: auto
+msgid "Zarur tahlillar o‘tkazilib, natijalar asosida aniqroq ma’lumot olinadi."
+msgstr "Проводятся необходимые анализы и на основе результатов получают более точную информацию."
+
+#: auto
+msgid "{{ dashboard_notification_count }} ta"
+msgstr "{{ dashboard_notification_count }} шт."
+
+#: auto
+msgid "%(patient)s bemori %(doctor)s veterinarga qayta yo‘naltirildi."
+msgstr "Пациент %(patient)s повторно направлен ветеринару %(doctor)s."
+
+#: auto
+msgid "%(patient)s bemori %(doctor)s veterinarga yuborildi."
+msgstr "Пациент %(patient)s направлен ветеринару %(doctor)s."
+
+#: auto
+msgid "%(patient)s bemori bekor qilindi."
+msgstr "Пациент %(patient)s отменён."
+
+#: auto
+msgid "%(patient)s bemori laboratoriyaga yuborildi."
+msgstr "Пациент %(patient)s отправлен в лабораторию."
+
+#: auto
+msgid "%(patient)s bemori veterinarga qaytarildi."
+msgstr "Пациент %(patient)s возвращён ветеринару."
+
+#: auto
+msgid "%(patient)s bemorining analiz natijasi diagnostikaga yuborildi."
+msgstr "Результат анализа пациента %(patient)s отправлен в диагностику."
+
+#: auto
+msgid "Bemor topilmadi."
+msgstr "Пациент не найден."
+
+#: auto
+msgid "Bu bemor hali yakuniy ko‘rik uchun tayyor emas."
+msgstr "Этот пациент ещё не готов для итогового осмотра."
+
+#: auto
+msgid "Bu bemor sizga biriktirilmagan."
+msgstr "Этот пациент не назначен вам."
+
+#: auto
+msgid "Diagnostika natijasi topilmadi."
+msgstr "Результат диагностики не найден."
+
+#: auto
+msgid "Diagnostika xulosasi tahrirlandi."
+msgstr "Диагностическое заключение изменено."
+
+#: auto
+msgid "Diagnostika yozuvi topilmadi."
+msgstr "Запись диагностики не найдена."
+
+#: auto
+msgid "Ko‘rik saqlandi, lekin PDF yuborilmadi: %(error)s"
+msgstr "Осмотр сохранён, но PDF не отправлен: %(error)s"
+
+#: auto
+msgid "Ko‘rik saqlandi, lekin Telegram xabar yuborilmadi: %(error)s"
+msgstr "Осмотр сохранён, но сообщение Telegram не отправлено: %(error)s"
+
+#: auto
+msgid "Ko‘rik saqlandi, lekin Telegramga yuborishda xatolik bo‘ldi: %(error)s"
+msgstr "Осмотр сохранён, но при отправке в Telegram произошла ошибка: %(error)s"
+
+#: auto
+msgid "Ko‘rik/PDF Telegram orqali yuborildi."
+msgstr "Осмотр/PDF отправлен через Telegram."
+
+#: auto
+msgid "Laboratoriya allaqachon natija kiritgan. Endi analiz turini o‘zgartirib bo‘lmaydi."
+msgstr "Лаборатория уже внесла результат. Теперь тип анализа изменить нельзя."
+
+#: auto
+msgid "Laboratoriya natijasi tahrirlandi. Diagnostika xodimiga ogohlantirish chiqariladi."
+msgstr "Лабораторный результат изменён. Сотруднику диагностики будет показано предупреждение."
+
+#: auto
+msgid "Laboratoriya natijasi topilmadi."
+msgstr "Лабораторный результат не найден."
+
+#: auto
+msgid "Laboratoriya so‘rovi topilmadi."
+msgstr "Лабораторный запрос не найден."
+
+#: auto
+msgid "Laboratoriya yozuvi topilmadi."
+msgstr "Запись лаборатории не найдена."
+
+#: auto
+msgid "Laboratoriyaga yuborilgan analiz so‘rovi tahrirlandi."
+msgstr "Запрос анализа, отправленный в лабораторию, изменён."
+
+#: auto
+msgid "Natija qaytmadi"
+msgstr "Результат не вернулся"
+
+#: auto
+msgid "Sizda Administrator dashboardiga kirish huquqi yo‘q."
+msgstr "У вас нет доступа к панели администратора."
+
+#: auto
+msgid "Sizda Diagnostika dashboardiga kirish huquqi yo‘q."
+msgstr "У вас нет доступа к панели диагностики."
+
+#: auto
+msgid "Sizda Laboratoriya dashboardiga kirish huquqi yo‘q."
+msgstr "У вас нет доступа к панели лаборатории."
+
+#: auto
+msgid "Sizda Veterinar dashboardiga kirish huquqi yo‘q."
+msgstr "У вас нет доступа к панели ветеринара."
+
+#: auto
+msgid "Sizda bemorlar holatini ko‘rish huquqi yo‘q."
+msgstr "У вас нет права просматривать состояние пациентов."
+
+#: auto
+msgid "Sizda bu amalni bajarish huquqi yo‘q."
+msgstr "У вас нет права выполнить это действие."
+
+#: auto
+msgid "Sizda bu bemor kartasini ko‘rish huquqi yo‘q."
+msgstr "У вас нет права просматривать карту этого пациента."
+
+#: auto
+msgid "Sizda bu sahifaga kirish huquqi yo‘q."
+msgstr "У вас нет доступа к этой странице."
+
+#: auto
+msgid "Sizga dashboard uchun rol biriktirilmagan. Superadmin bilan bog‘laning."
+msgstr "Вам не назначена роль для dashboard. Свяжитесь с суперадмином."
+
+#: auto
+msgid "Sizga veterinar profili biriktirilmagan."
+msgstr "Вам не назначен профиль ветеринара."
+
+#: auto
+msgid "Veterinar topilmadi."
+msgstr "Ветеринар не найден."
+
+#: auto
+msgid "Yakunlangan bemorni bekor qilib bo‘lmaydi."
+msgstr "Завершённого пациента нельзя отменить."
+
+#: auto
+msgid "Yakunlangan bemorni qayta yo‘naltirib bo‘lmaydi."
+msgstr "Завершённого пациента нельзя перенаправить."
+
+#: auto
+msgid "Yakunlangan bemorni tahrirlab bo‘lmaydi."
+msgstr "Завершённого пациента нельзя редактировать."
+
+#: auto
+msgid "Yakunlangan bemorning analiz so‘rovini tahrirlab bo‘lmaydi."
+msgstr "Запрос анализа завершённого пациента нельзя редактировать."
+
+msgid "Zamonaviy veterinariya klinikasi"
+msgstr "Современная ветеринарная клиника"
+
+msgid "Hayvoningiz sog‘lig‘i biz uchun muhim"
+msgstr "Здоровье вашего питомца важно для нас"
+
+msgid "VetClinic — hayvonlar sog‘lig‘i uchun zamonaviy veterinariya xizmatlarini taqdim etuvchi klinika. Arizalar Telegram bot orqali qabul qilinadi va mutaxassislarimiz siz bilan bog‘lanadi."
+msgstr "VetClinic — клиника, предоставляющая современные ветеринарные услуги для здоровья животных. Заявки принимаются через Telegram-бот, после чего наши специалисты свяжутся с вами."
+
+msgid "Xizmatlarni ko‘rish"
+msgstr "Посмотреть услуги"
+
+msgid "Bemor hayvonlar"
+msgstr "Животные-пациенты"
+
+msgid "Mutaxassislar"
+msgstr "Специалисты"
+
+msgid "Mamnun mijozlar"
+msgstr "Довольные клиенты"
+
+msgid "Ariza yuborish qanday ishlaydi?"
+msgstr "Как работает отправка заявки?"
+
+msgid "Oddiy va qulay jarayon"
+msgstr "Простой и удобный процесс"
+
+msgid "Telegram botga o‘ting va kerakli ma’lumotlarni yuboring"
+msgstr "Перейдите в Telegram-бот и отправьте нужные данные"
+
+msgid "Klinika xodimlari arizangizni ko‘rib chiqadi"
+msgstr "Сотрудники клиники рассмотрят вашу заявку"
+
+msgid "Siz bilan bog‘lanib, qulay vaqt kelishiladi"
+msgstr "С вами свяжутся и согласуют удобное время"
+
+msgid "Hayvoningiz klinikada ko‘rikdan o‘tkaziladi"
+msgstr "Ваш питомец пройдёт осмотр в клинике"
+
+msgid "Klinikamiz xizmatlari"
+msgstr "Услуги нашей клиники"
+
+msgid "Hayvonlar salomatligi uchun zarur bo‘lgan asosiy veterinariya, laboratoriya va diagnostika xizmatlari."
+msgstr "Основные ветеринарные, лабораторные и диагностические услуги, необходимые для здоровья животных."
+
+msgid "Hayvonning umumiy holati tekshiriladi va davolash yo‘nalishi belgilanadi."
+msgstr "Проверяется общее состояние животного и определяется направление лечения."
+
+msgid "Tahlil so‘rovlari laboratoriya xodimlari tomonidan qayta ishlanadi."
+msgstr "Запросы на анализы обрабатываются сотрудниками лаборатории."
+
+msgid "Natijalar asosida diagnostik xulosa va tavsiyalar tayyorlanadi."
+msgstr "На основе результатов готовятся диагностическое заключение и рекомендации."
+
+msgid "Barcha xizmatlarni ko‘rish"
+msgstr "Посмотреть все услуги"
+
+msgid "Afzalliklar"
+msgstr "Преимущества"
+
+msgid "Nega VetClinic’ni tanlashadi?"
+msgstr "Почему выбирают VetClinic?"
+
+msgid "VetClinic hayvonlar salomatligiga mas’uliyat bilan yondashadi. Biz mijozlarga qulay, tezkor va ishonchli veterinariya xizmatlarini taqdim etishga harakat qilamiz."
+msgstr "VetClinic ответственно подходит к здоровью животных. Мы стремимся предоставлять клиентам удобные, быстрые и надёжные ветеринарные услуги."
+
+msgid "Tajribali veterinarlar hayvoningiz holatini diqqat bilan tekshiradi."
+msgstr "Опытные ветеринары внимательно проверяют состояние вашего питомца."
+
+msgid "Laboratoriya tahlillari va diagnostika xizmatlari mavjud."
+msgstr "Доступны лабораторные анализы и диагностические услуги."
+
+msgid "Har bir hayvonga mehr va individual yondashuv asosida xizmat ko‘rsatiladi."
+msgstr "Каждому животному предоставляется заботливый и индивидуальный подход."
+
+msgid "Bizning afzalliklarimiz"
+msgstr "Наши преимущества"
+
+msgid "Qulay murojaat"
+msgstr "Удобное обращение"
+
+msgid "Telegram bot orqali tez va oson ariza yuborish mumkin."
+msgstr "Через Telegram-бот можно быстро и легко отправить заявку."
+
+msgid "Malakali mutaxassislar"
+msgstr "Квалифицированные специалисты"
+
+msgid "Hayvonlar salomatligi bo‘yicha tajribali xodimlar xizmat ko‘rsatadi."
+msgstr "Услуги оказывают опытные сотрудники в области здоровья животных."
+
+msgid "Zamonaviy yondashuv"
+msgstr "Современный подход"
+
+msgid "Ko‘rik, tahlil va diagnostika jarayonlari tartibli olib boriladi."
+msgstr "Процессы осмотра, анализа и диагностики ведутся упорядоченно."
+
+msgid "Ishonchli xizmat"
+msgstr "Надёжный сервис"
+
+msgid "Mijozlarga tushunarli, qulay va sifatli xizmat ko‘rsatish maqsad qilingan."
+msgstr "Наша цель — понятное, удобное и качественное обслуживание клиентов."
+
+msgid "Foydali ma’lumotlar"
+msgstr "Полезная информация"
+
+msgid "Hayvonlar parvarishi, emlash, profilaktika va klinika yangiliklari haqida."
+msgstr "О уходе за животными, вакцинации, профилактике и новостях клиники."
+
+msgid "Laboratoriya tahlillari nima uchun kerak?"
+msgstr "Зачем нужны лабораторные анализы?"
+
+msgid "Tahlillar kasallikni aniqlash va davolash yo‘nalishini tanlashda yordam beradi."
+msgstr "Анализы помогают выявить заболевание и выбрать направление лечения."
+
+msgid "Hayvonlarni vaqtida emlash muhim"
+msgstr "Важно вовремя вакцинировать животных"
+
+msgid "Profilaktik emlashlar ko‘plab xavfli kasalliklarning oldini oladi."
+msgstr "Профилактические прививки предотвращают многие опасные заболевания."
+
+msgid "Uy hayvonlarini parvarish qilish"
+msgstr "Уход за домашними животными"
+
+msgid "To‘g‘ri ovqatlantirish va muntazam ko‘rik sog‘liqni saqlashga yordam beradi."
+msgstr "Правильное питание и регулярный осмотр помогают сохранить здоровье."
+
+msgid "Yangiliklarni ko‘rish"
+msgstr "Посмотреть новости"
+
+msgid "Ariza yuborish uchun Telegram botga o‘ting. Klinikamiz xodimlari arizangizni ko‘rib chiqib, siz bilan bog‘lanadi."
+msgstr "Чтобы отправить заявку, перейдите в Telegram-бот. Сотрудники клиники рассмотрят заявку и свяжутся с вами."
+
+msgid "Telegram botga o‘tish"
+msgstr "Перейти в Telegram-бот"

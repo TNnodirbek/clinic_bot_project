@@ -1,0 +1,169 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Laboratoriya natijasini ko‘rish" %}{% endblock %}
+
+{% block page_title %}{% trans "Laboratoriya natijasi" %}{% endblock %}
+
+{% block page_subtitle %}
+{% trans "Bemor laboratoriya natijasi va izohlarini ixcham ko‘rish oynasi" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="compact-stats-grid">
+
+    <div class="compact-stat-card">
+        <div class="compact-stat-icon stat-blue">
+            <i class="fa-solid fa-user"></i>
+        </div>
+        <div>
+            <h3>{{ patient.patient_code|default:"-" }}</h3>
+            <p>{% trans "Bemor kodi" %}</p>
+        </div>
+    </div>
+
+    <div class="compact-stat-card">
+        <div class="compact-stat-icon stat-orange">
+            <i class="fa-solid fa-flask"></i>
+        </div>
+        <div>
+            <h3>{{ lab_result.analysis_name|default:"-" }}</h3>
+            <p>{% trans "Analiz turi" %}</p>
+        </div>
+    </div>
+
+    <div class="compact-stat-card">
+        <div class="compact-stat-icon stat-green">
+            <i class="fa-solid fa-clock"></i>
+        </div>
+        <div>
+            <h3>{{ lab_result.updated_at|date:"d.m.Y" }}</h3>
+            <p>{% trans "Oxirgi yangilanish" %}</p>
+        </div>
+    </div>
+
+    <div class="compact-stat-card">
+        <div class="compact-stat-icon stat-purple">
+            <i class="fa-solid fa-circle-info"></i>
+        </div>
+        <div>
+            <h3>{{ lab_result.get_status_display|default:"-" }}</h3>
+            <p>{% trans "Laboratoriya statusi" %}</p>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="compact-panel">
+    <div class="compact-panel-header">
+        <h2>
+            <i class="fa-solid fa-paw"></i>
+            {% trans "Bemor ma’lumotlari" %}
+        </h2>
+    </div>
+
+    <div class="compact-info-grid">
+
+        <div class="compact-info-card">
+            <span>{% trans "F.I.Sh" %}</span>
+            <strong>{{ patient.full_name|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Telefon" %}</span>
+            <strong>{{ patient.phone|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Hayvon nomi" %}</span>
+            <strong>{{ patient.animal_name|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Hayvon turi" %}</span>
+            <strong>{{ patient.get_animal_type_display|default:patient.animal_type }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Veterinar" %}</span>
+            <strong>
+                {% if patient.selected_doctor %}
+                    {{ patient.selected_doctor.full_name }}
+                {% else %}
+                    -
+                {% endif %}
+            </strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Bemor holati" %}</span>
+            <strong>{{ patient.get_status_display|default:"-" }}</strong>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="compact-panel">
+    <div class="compact-panel-header">
+        <h2>
+            <i class="fa-solid fa-vial"></i>
+            {% trans "Analiz ma’lumotlari" %}
+        </h2>
+    </div>
+
+    <div class="compact-text-grid">
+
+        <div class="compact-text-card">
+            <h3>{% trans "Analiz turi" %}</h3>
+            <p>{{ lab_result.analysis_name|default:"-" }}</p>
+        </div>
+
+        <div class="compact-text-card">
+            <h3>{% trans "Veterinar izohi" %}</h3>
+            <p>{{ lab_result.comment|default:"Izoh kiritilmagan." }}</p>
+        </div>
+
+        <div class="compact-text-card">
+            <h3>{% trans "Analiz natijasi" %}</h3>
+            <p>{{ lab_result.result|default:"Natija hali kiritilmagan." }}</p>
+        </div>
+
+        <div class="compact-text-card">
+            <h3>{% trans "Laboratoriya izohi" %}</h3>
+            <p>{{ lab_result.lab_comment|default:"Izoh yozilmagan." }}</p>
+        </div>
+
+        <div class="compact-text-card">
+            <h3>{% trans "Laboratoriya xodimi" %}</h3>
+            <p>{% if lab_result.lab_worker %}{{ lab_result.lab_worker.get_full_name|default:lab_result.lab_worker.username }}{% else %}-{% endif %}</p>
+        </div>
+
+        <div class="compact-text-card">
+            <h3>{% trans "Oxirgi yangilanish" %}</h3>
+            <p>{{ lab_result.updated_at|date:"d.m.Y H:i" }}</p>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="compact-action-row">
+
+    <a href="{{ back_url }}" class="btn btn-light">
+        <i class="fa-solid fa-arrow-left"></i>
+        {% trans "Orqaga qaytish" %}
+    </a>
+
+    {% if can_edit_lab_result and patient.status != "completed" %}
+        <a href="{% url 'edit_lab_result' lab_result.id %}" class="btn btn-blue">
+            <i class="fa-solid fa-pen-to-square"></i>
+            {% trans "Tahrirlash" %}
+        </a>
+    {% endif %}
+
+</div>
+
+{% endblock %}

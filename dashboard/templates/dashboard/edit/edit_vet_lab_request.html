@@ -1,0 +1,154 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Analiz so‘rovini tahrirlash" %}{% endblock %}
+
+{% block page_title %}{% trans "Analiz so‘rovini tahrirlash" %}{% endblock %}
+
+{% block page_subtitle %}
+{% trans "Veterinar yuborgan analiz turi va izohini tahrirlash oynasi" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="compact-panel">
+    <div class="compact-panel-header">
+        <h2>
+            <i class="fa-solid fa-paw"></i>
+            {% trans "Bemor ma’lumotlari" %}
+        </h2>
+    </div>
+
+    <div class="compact-info-grid">
+
+        <div class="compact-info-card">
+            <span>{% trans "F.I.Sh" %}</span>
+            <strong>{{ patient.full_name|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Bemor kodi" %}</span>
+            <strong>{{ patient.patient_code|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Telefon" %}</span>
+            <strong>{{ patient.phone|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Hayvon nomi" %}</span>
+            <strong>{{ patient.animal_name|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Hayvon turi" %}</span>
+            <strong>{{ patient.get_animal_type_display|default:patient.animal_type }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Bemor holati" %}</span>
+            <strong>{{ patient.get_status_display|default:"-" }}</strong>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="compact-panel warning-panel">
+    <div class="compact-panel-header warning-header">
+        <h2>
+            <i class="fa-solid fa-circle-info"></i>
+            {% trans "Muhim eslatma" %}
+        </h2>
+    </div>
+
+    <div class="compact-info-grid">
+        <div class="compact-info-card">
+            <span>{% trans "Tahrirlash qoidasi" %}</span>
+            <strong class="warning-text">
+                {% trans "Bu yerda faqat analiz turi va veterinar izohi tahrirlanadi." %}
+                {% trans "Laboratoriya natija kiritganidan keyin bu so‘rovni o‘zgartirib bo‘lmaydi." %}
+            </strong>
+        </div>
+    </div>
+</div>
+
+
+<div class="compact-panel">
+    <div class="compact-panel-header">
+        <h2>
+            <i class="fa-solid fa-flask"></i>
+            {% trans "Analiz so‘rovi" %}
+        </h2>
+    </div>
+
+    <div class="panel-body">
+        <form method="post" class="form-card" style="box-shadow: none; border: none; padding: 0;">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>{% trans "Analiz turi" %}<span class="required">*</span></label>
+
+                <select name="analysis_name" required>
+                    <option value="">{% trans "Analiz turini tanlang" %}</option>
+
+                    <option value="Umumiy qon tahlili" {% if lab_result.analysis_name == "Umumiy qon tahlili" %}selected{% endif %}>
+                        {% trans "Umumiy qon tahlili" %}
+                    </option>
+
+                    <option value="Biokimyoviy qon tahlili" {% if lab_result.analysis_name == "Biokimyoviy qon tahlili" %}selected{% endif %}>
+                        {% trans "Biokimyoviy qon tahlili" %}
+                    </option>
+
+                    <option value="Siydik tahlili" {% if lab_result.analysis_name == "Siydik tahlili" %}selected{% endif %}>
+                        {% trans "Siydik tahlili" %}
+                    </option>
+
+                    <option value="Najas tahlili" {% if lab_result.analysis_name == "Najas tahlili" %}selected{% endif %}>
+                        {% trans "Najas tahlili" %}
+                    </option>
+
+                    <option value="Parazitologik tekshiruv" {% if lab_result.analysis_name == "Parazitologik tekshiruv" %}selected{% endif %}>
+                        {% trans "Parazitologik tekshiruv" %}
+                    </option>
+
+                    <option value="Bakteriologik tekshiruv" {% if lab_result.analysis_name == "Bakteriologik tekshiruv" %}selected{% endif %}>
+                        {% trans "Bakteriologik tekshiruv" %}
+                    </option>
+
+                    <option value="Allergiya testi" {% if lab_result.analysis_name == "Allergiya testi" %}selected{% endif %}>
+                        {% trans "Allergiya testi" %}
+                    </option>
+
+                    <option value="Gormon tahlili" {% if lab_result.analysis_name == "Gormon tahlili" %}selected{% endif %}>
+                        {% trans "Gormon tahlili" %}
+                    </option>
+
+                    <option value="Boshqa" {% if lab_result.analysis_name == "Boshqa" %}selected{% endif %}>
+                        {% trans "Boshqa" %}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>{% trans "Veterinar izohi" %}</label>
+                <textarea name="comment" rows="5">{{ lab_result.comment }}</textarea>
+            </div>
+
+            <div class="compact-action-row">
+                <button type="submit" class="btn btn-blue">
+                    <i class="fa-solid fa-save"></i>
+                    {% trans "Saqlash" %}
+                </button>
+
+                <a href="{% url 'veterinar_dashboard' %}" class="btn btn-light">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    {% trans "Orqaga" %}
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

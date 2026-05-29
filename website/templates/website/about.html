@@ -1,0 +1,74 @@
+{% extends "website/base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Biz haqimizda" %} | VetClinic{% endblock %}
+
+{% block content %}
+
+<section class="about-hero-final">
+  <div class="container about-hero-final-grid">
+
+    <div class="about-hero-left">
+      <span class="section-badge">💚 {% trans "Biz haqimizda" %}</span>
+
+      <h1>{% trans "VetClinic — veterinariya klinikasi uchun elektron kartoteka tizimi" %}</h1>
+
+      <p>{% trans "Loyiha klinika xodimlari ishini yengillashtirish, bemor hayvonlar tarixini saqlash va xizmat jarayonini tartibga solish uchun ishlab chiqilgan." %}</p>
+
+      <a href="{% url 'website:contact' %}" class="btn-primary">
+        {% trans "Aloqa" %}
+      </a>
+    </div>
+
+    <div class="about-hero-right">
+      <div class="about-hero-image-box">
+
+        <img 
+          src="{% static 'website/images/clinic-exterior.jpg' %}" 
+          alt="VetClinic"
+          onerror="this.style.display='none'; this.parentElement.classList.add('about-hero-placeholder');"
+        >
+
+        <div class="about-hero-placeholder-content">
+          <span>🏥</span>
+          <p>{% trans "Klinika rasmi keyin qo‘shiladi" %}</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+
+    <div class="section-title">
+      <span>{% trans "Maqsad" %}</span>
+      <h2>{% trans "Loyihaning asosiy maqsadi" %}</h2>
+    </div>
+
+    <div class="services-cards-final-grid">
+
+      <div class="service-final-card">
+        <div class="service-final-icon">🧾</div>
+        <h3>{% trans "Tartibli jarayon" %}</h3>
+      </div>
+
+      <div class="service-final-card">
+        <div class="service-final-icon">🔐</div>
+        <h3>{% trans "Rollar bo‘yicha kirish" %}</h3>
+      </div>
+
+      <div class="service-final-card">
+        <div class="service-final-icon">🌐</div>
+        <h3>{% trans "Ko‘p tillilik" %}</h3>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

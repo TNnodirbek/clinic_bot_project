@@ -1,0 +1,71 @@
+{% extends "website/base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Yangiliklar" %} | VetClinic{% endblock %}
+
+{% block content %}
+
+<section class="news-hero-final">
+  <div class="container news-hero-final-grid">
+
+    <div class="news-hero-left">
+      <span class="section-badge">📰 {% trans "Yangiliklar" %}</span>
+
+      <h1>{% trans "Veterinariya va hayvonlar parvarishi bo‘yicha foydali ma’lumotlar" %}</h1>
+
+      <p>{% trans "Bu sahifada klinika yangiliklari, foydali eslatmalar va parvarish bo‘yicha tavsiyalar joylashtiriladi." %}</p>
+    </div>
+
+    <div class="news-hero-right">
+      <div class="news-hero-image-box">
+
+        <img 
+          src="{% static 'website/images/news-seminar.jpg' %}" 
+          alt="VetClinic"
+          onerror="this.style.display='none'; this.parentElement.classList.add('news-hero-placeholder');"
+        >
+
+        <div class="news-hero-placeholder-content">
+          <span>📰</span>
+          <p>{% trans "Yangiliklar rasmi keyin qo‘shiladi" %}</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section news-cards-final-section">
+  <div class="container">
+
+    <div class="section-title">
+      <span>{% trans "Foydali maqolalar" %}</span>
+      <h2>{% trans "So‘nggi ma’lumotlar" %}</h2>
+    </div>
+
+    <div class="news-cards-final-grid">
+
+      <article class="news-final-card">
+        <div class="news-final-content">
+          <span class="news-final-category">{% trans "Profilaktika" %}</span>
+          <h3>{% trans "Muntazam ko‘rikning ahamiyati" %}</h3>
+          <a href="{% url 'website:contact' %}">{% trans "Batafsil" %} →</a>
+        </div>
+      </article>
+
+      <article class="news-final-card">
+        <div class="news-final-content">
+          <span class="news-final-category">{% trans "Parvarish" %}</span>
+          <h3>{% trans "Uy hayvonlarini to‘g‘ri parvarish qilish" %}</h3>
+          <a href="{% url 'website:contact' %}">{% trans "Batafsil" %} →</a>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

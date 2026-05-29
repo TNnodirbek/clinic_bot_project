@@ -1,0 +1,190 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Yakuniy ko‘rik / PDF yuborish" %}{% endblock %}
+
+{% block page_title %}{% trans "Yakuniy ko‘rik / PDF yuborish" %}{% endblock %}
+
+{% block page_subtitle %}
+{% trans "Yakuniy tashxis, davolash va PDF ko‘rik varaqasini Telegramga yuborish oynasi" %}
+{% endblock %}
+
+{% block content %}
+
+{% if patient.status == "completed" %}
+<div class="compact-panel">
+    <div class="compact-panel-header">
+        <h2>
+            <i class="fa-solid fa-circle-check"></i>
+            {% trans "Bemor yakunlangan" %}
+        </h2>
+    </div>
+
+    <div class="compact-info-grid">
+        <div class="compact-info-card">
+            <span>{% trans "Eslatma" %}</span>
+            <strong>
+                {% trans "Bu bemor yakunlangan. Siz bu yerda ko‘rikni qayta yozib," %}
+                {% trans "Telegramga yangi PDF yuborishingiz mumkin." %}
+            </strong>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+<div class="compact-panel">
+    <div class="compact-panel-header">
+        <h2>
+            <i class="fa-solid fa-paw"></i>
+            {% trans "Bemor ma’lumotlari" %}
+        </h2>
+    </div>
+
+    <div class="compact-info-grid">
+
+        <div class="compact-info-card">
+            <span>{% trans "F.I.Sh" %}</span>
+            <strong>{{ patient.full_name|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Bemor kodi" %}</span>
+            <strong>{{ patient.patient_code|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Telefon" %}</span>
+            <strong>{{ patient.phone|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Hayvon nomi" %}</span>
+            <strong>{{ patient.animal_name|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Hayvon turi" %}</span>
+            <strong>{{ patient.get_animal_type_display|default:patient.animal_type }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Bemor holati" %}</span>
+            <strong>{{ patient.get_status_display|default:"-" }}</strong>
+        </div>
+
+    </div>
+</div>
+
+
+{% if lab_result %}
+<div class="compact-panel">
+    <div class="compact-panel-header">
+        <h2>
+            <i class="fa-solid fa-vial"></i>
+            {% trans "Laboratoriya natijasi" %}
+        </h2>
+    </div>
+
+    <div class="compact-text-grid">
+
+        <div class="compact-text-card">
+            <h3>{% trans "Analiz turi" %}</h3>
+            <p>{{ lab_result.analysis_name|default:"-" }}</p>
+        </div>
+
+        <div class="compact-text-card">
+            <h3>{% trans "Analiz natijasi" %}</h3>
+            <p>{{ lab_result.result|default:"Natija kiritilmagan." }}</p>
+        </div>
+
+        <div class="compact-text-card">
+            <h3>{% trans "Veterinar izohi" %}</h3>
+            <p>{{ lab_result.comment|default:"Izoh yozilmagan." }}</p>
+        </div>
+
+        <div class="compact-text-card">
+            <h3>{% trans "Laboratoriya izohi" %}</h3>
+            <p>{{ lab_result.lab_comment|default:"Izoh yozilmagan." }}</p>
+        </div>
+
+    </div>
+</div>
+{% endif %}
+
+
+{% if diagnostic_result %}
+<div class="compact-panel">
+    <div class="compact-panel-header">
+        <h2>
+            <i class="fa-solid fa-stethoscope"></i>
+            {% trans "Diagnostika xulosasi" %}
+        </h2>
+    </div>
+
+    <div class="compact-text-grid">
+
+        <div class="compact-text-card">
+            <h3>{% trans "Xulosa" %}</h3>
+            <p>{{ diagnostic_result.conclusion|default:"Xulosa yozilmagan." }}</p>
+        </div>
+
+        <div class="compact-text-card">
+            <h3>{% trans "Tavsiya" %}</h3>
+            <p>{{ diagnostic_result.recommendation|default:"Tavsiya yozilmagan." }}</p>
+        </div>
+
+    </div>
+</div>
+{% endif %}
+
+
+<div class="compact-panel">
+    <div class="compact-panel-header">
+        <h2>
+            <i class="fa-solid fa-file-medical"></i>
+            {% trans "Yakuniy ko‘rik ma’lumotlari" %}
+        </h2>
+    </div>
+
+    <div class="panel-body">
+        <form method="post" class="form-card" style="box-shadow: none; border: none; padding: 0;">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>{% trans "Shikoyat" %}</label>
+                <textarea name="complaint" rows="4">{% if last_visit %}{{ last_visit.complaint }}{% else %}{{ patient.note }}{% endif %}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>{% trans "Yakuniy tashxis" %}<span class="required">*</span></label>
+                <textarea name="diagnosis" rows="5" required>{% if last_visit %}{{ last_visit.diagnosis }}{% endif %}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>{% trans "Davolash" %}</label>
+                <textarea name="treatment" rows="5">{% if last_visit %}{{ last_visit.treatment }}{% endif %}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>{% trans "Qayta kelish sanasi" %}</label>
+                <input type="datetime-local" name="next_visit">
+                <div class="form-hint">{% trans "Majburiy emas. Kerak bo‘lsa keyingi kelish sanasini tanlang." %}</div>
+            </div>
+
+            <div class="compact-action-row">
+                <button type="submit" class="btn btn-green">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    {% trans "PDFni Telegramga yuborish" %}
+                </button>
+
+                <a href="{% url 'veterinar_dashboard' %}" class="btn btn-light">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    {% trans "Orqaga" %}
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Laboratoriya natijasini tahrirlash" %}{% endblock %}
+
+{% block page_title %}{% trans "Laboratoriya natijasini tahrirlash" %}{% endblock %}
+
+{% block page_subtitle %}
+{% trans "Analiz natijasi va laboratoriya izohini tahrirlash oynasi" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="compact-panel">
+    <div class="compact-panel-header">
+        <h2>
+            <i class="fa-solid fa-paw"></i>
+            {% trans "Bemor ma’lumotlari" %}
+        </h2>
+    </div>
+
+    <div class="compact-info-grid">
+
+        <div class="compact-info-card">
+            <span>{% trans "F.I.Sh" %}</span>
+            <strong>{{ lab_result.patient.full_name|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Bemor kodi" %}</span>
+            <strong>{{ lab_result.patient.patient_code|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Telefon" %}</span>
+            <strong>{{ lab_result.patient.phone|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Hayvon nomi" %}</span>
+            <strong>{{ lab_result.patient.animal_name|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Hayvon turi" %}</span>
+            <strong>{{ lab_result.patient.get_animal_type_display|default:lab_result.patient.animal_type }}</strong>
+        </div>
+
+        <div class="compact-info-card">
+            <span>{% trans "Bemor holati" %}</span>
+            <strong>{{ lab_result.patient.get_status_display|default:"-" }}</strong>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="compact-panel">
+    <div class="compact-panel-header">
+        <h2>
+            <i class="fa-solid fa-user-doctor"></i>
+            {% trans "Veterinar yuborgan ma’lumot" %}
+        </h2>
+    </div>
+
+    <div class="compact-text-grid">
+
+        <div class="compact-text-card">
+            <h3>{% trans "Analiz turi" %}</h3>
+            <p>{{ lab_result.analysis_name|default:"-" }}</p>
+        </div>
+
+        <div class="compact-text-card">
+            <h3>{% trans "Veterinar izohi" %}</h3>
+            <p>{{ lab_result.comment|default:"Izoh yozilmagan." }}</p>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="compact-panel">
+    <div class="compact-panel-header">
+        <h2>
+            <i class="fa-solid fa-flask"></i>
+            {% trans "Laboratoriya natijasini tahrirlash" %}
+        </h2>
+    </div>
+
+    <div class="panel-body">
+        <form method="post" class="form-card" style="box-shadow: none; border: none; padding: 0;">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>{% trans "Analiz natijasi" %}<span class="required">*</span></label>
+                <textarea name="result" rows="6" required>{{ lab_result.result }}</textarea>
+                <div class="form-hint">{% trans "Laboratoriya tahlili natijasini to‘liq kiriting." %}</div>
+            </div>
+
+            <div class="form-group">
+                <label>{% trans "Laboratoriya izohi" %}</label>
+                <textarea name="lab_comment" rows="4">{{ lab_result.lab_comment }}</textarea>
+                <div class="form-hint">{% trans "Qo‘shimcha izoh yoki tavsiyalar bo‘lsa yozing." %}</div>
+            </div>
+
+            <div class="compact-action-row">
+                <button type="submit" class="btn btn-blue">
+                    <i class="fa-solid fa-save"></i>
+                    {% trans "Saqlash" %}
+                </button>
+
+                <a href="{% url 'laboratoriya_dashboard' %}" class="btn btn-light">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    {% trans "Orqaga" %}
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

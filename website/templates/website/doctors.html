@@ -1,0 +1,86 @@
+{% extends "website/base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Shifokorlar" %} | VetClinic{% endblock %}
+
+{% block content %}
+
+<section class="doctors-hero-final">
+  <div class="container doctors-hero-final-grid">
+
+    <div class="doctors-hero-left">
+      <span class="section-badge">👨‍⚕️ {% trans "Mutaxassislarimiz" %}</span>
+      <h1>{% trans "Tajribali veterinariya mutaxassislari jamoasi" %}</h1>
+      <p>{% trans "VetClinic jamoasi hayvonlar salomatligi uchun mehr, tajriba va mas’uliyat bilan xizmat qiladi." %}</p>
+
+      <div class="doctors-hero-actions">
+        <a href="{% url 'website:contact' %}" class="btn-secondary">{% trans "Aloqa ma’lumotlari" %}</a>
+        <a href="https://t.me/veterenariya_klinikabot" target="_blank" class="btn-primary">✈ {% trans "Telegram orqali ariza yuborish" %}</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section doctors-cards-final-section">
+  <div class="container">
+
+    <div class="section-title">
+      <span>{% trans "Bizning shifokorlar" %}</span>
+      <h2>{% trans "Mutaxassislarimiz bilan tanishing" %}</h2>
+    </div>
+
+    <div class="doctors-cards-final-grid">
+
+      {% for doctor in doctors %}
+
+      <div class="doctor-final-card">
+
+        <div class="doctor-final-photo">
+          
+          {% if "Hakimov" in doctor.full_name %}
+            <!-- <img src="{% static 'website/images/hakimov.jpg' %}" alt="{{ doctor.full_name }}"> -->
+          
+          {% elif "Nilufar" in doctor.full_name %}
+            <!-- <img src="{% static 'website/images/nilufar.jpg' %}" alt="{{ doctor.full_name }}"> -->
+          
+          {% else %}
+            <div class="doctor-final-placeholder-content">👨‍⚕️</div>
+          {% endif %}
+
+        </div>
+
+        <span class="doctor-final-role">{% trans "Veterinar doktor" %}</span>
+        <h3>{{ doctor.full_name }}</h3>
+
+        <p class="doctor-final-speciality">
+          {% if doctor.specialization %}
+            {{ doctor.specialization }}
+          {% else %}
+            {% trans "Mutaxassislik kiritilmagan" %}
+          {% endif %}
+        </p>
+
+        <p class="doctor-final-desc">
+          {% if doctor.resume %}
+            {{ doctor.resume|truncatewords:20 }}
+          {% else %}
+            {% trans "Qo‘shimcha ma’lumot yo‘q" %}
+          {% endif %}
+        </p>
+
+      </div>
+
+      {% empty %}
+        <div class="doctor-final-card">
+          <h3>{% trans "Hozircha shifokorlar yo‘q" %}</h3>
+        </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

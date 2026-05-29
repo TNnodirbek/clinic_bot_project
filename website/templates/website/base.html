@@ -1,0 +1,117 @@
+{% load static i18n %}
+
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE|default:'uz' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}VetClinic{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'website/css/style.css' %}">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
+
+        <label for="navToggle" class="hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <a href="{% url 'website:home' %}" class="logo" aria-label="VetClinic">
+            <span class="logo-icon">♡</span>
+            <span class="brand-text">Vet<span>Clinic</span></span>
+        </a>
+
+        <nav class="navbar">
+            <a href="{% url 'website:home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">{% trans "Bosh sahifa" %}</a>
+            <a href="{% url 'website:about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">{% trans "Biz haqimizda" %}</a>
+            <a href="{% url 'website:services' %}" class="{% if request.resolver_match.url_name == 'services' %}active{% endif %}">{% trans "Xizmatlar" %}</a>
+            <a href="{% url 'website:doctors' %}" class="{% if request.resolver_match.url_name == 'doctors' %}active{% endif %}">{% trans "Shifokorlar" %}</a>
+            <a href="{% url 'website:news' %}" class="{% if request.resolver_match.url_name == 'news' %}active{% endif %}">{% trans "Yangiliklar" %}</a>
+            <a href="{% url 'website:contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">{% trans "Aloqa" %}</a>
+        </nav>
+
+        <div class="site-language-switcher" aria-label="Language switcher">
+            <span class="language-icon">🌐</span>
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <input type="hidden" name="language" value="uz">
+                <button type="submit" class="{% if request.LANGUAGE_CODE == 'uz' %}active{% endif %}">UZ</button>
+            </form>
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <input type="hidden" name="language" value="ru">
+                <button type="submit" class="{% if request.LANGUAGE_CODE == 'ru' %}active{% endif %}">RU</button>
+            </form>
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <input type="hidden" name="language" value="en">
+                <button type="submit" class="{% if request.LANGUAGE_CODE == 'en' %}active{% endif %}">EN</button>
+            </form>
+        </div>
+
+        <a href="https://t.me/veterenariya_klinikabot" target="_blank" class="header-btn">✈ {% trans "Telegram bot" %}</a>
+    </div>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div class="footer-brand">
+            <a href="{% url 'website:home' %}" class="footer-logo">
+                <span class="logo-icon">♡</span>
+                <span>Vet<span>Clinic</span></span>
+            </a>
+            <p>{% trans "Hayvonlar sog‘lig‘i uchun zamonaviy veterinariya xizmatlari va elektron kartoteka tizimi." %}</p>
+            <div class="footer-socials">
+                <a href="https://t.me/veterenariya_klinikabot" target="_blank">✈</a>
+                <a href="#">◎</a>
+                <a href="#">f</a>
+                <a href="#">▶</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>{% trans "Bo‘limlar" %}</h4>
+            <a href="{% url 'website:home' %}">{% trans "Bosh sahifa" %}</a>
+            <a href="{% url 'website:about' %}">{% trans "Biz haqimizda" %}</a>
+            <a href="{% url 'website:services' %}">{% trans "Xizmatlar" %}</a>
+            <a href="{% url 'website:doctors' %}">{% trans "Shifokorlar" %}</a>
+            <a href="{% url 'website:news' %}">{% trans "Yangiliklar" %}</a>
+            <a href="{% url 'website:contact' %}">{% trans "Aloqa" %}</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>{% trans "Xizmatlarimiz" %}</h4>
+            <a href="{% url 'website:services' %}">{% trans "Veterinar ko‘rigi" %}</a>
+            <a href="{% url 'website:services' %}">{% trans "Laboratoriya tahlillari" %}</a>
+            <a href="{% url 'website:services' %}">{% trans "Diagnostika" %}</a>
+            <a href="{% url 'website:services' %}">{% trans "Davolash" %}</a>
+            <a href="{% url 'website:services' %}">{% trans "Profilaktika" %}</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>{% trans "Aloqa ma’lumotlari" %}</h4>
+            <p>📞 +998 90 123 45 67</p>
+            <p>📍 {% trans "Xorazm viloyati, Urganch shahri" %}</p>
+            <p>🕒 {% trans "Har kuni 09:00 - 18:00" %}</p>
+            <a href="https://t.me/veterenariya_klinikabot" target="_blank">✈ {% trans "Telegram bot orqali ariza yuborish" %}</a>
+        </div>
+    </div>
+
+    <div class="container footer-bottom">
+        <p>© 2026 VetClinic. {% trans "Barcha huquqlar himoyalangan." %}</p>
+    </div>
+</footer>
+
+</body>
+</html>

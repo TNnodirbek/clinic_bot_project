@@ -1,0 +1,195 @@
+{% load static i18n %}
+
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE|default:'uz' }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% trans "Vet Clinic Dashboard" %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-paw"></i>
+            </div>
+            <div>
+                <h2>{% trans "Vet Clinic" %}</h2>
+                <p>{% trans "Boshqaruv paneli" %}</p>
+            </div>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="/dashboard/" class="menu-item">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>{% trans "Dashboard" %}</span>
+            </a>
+
+            <a href="/dashboard/patients-status/" class="menu-item">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>{% trans "Bemorlar holati" %}</span>
+            </a>
+
+            {% if request.user.is_superuser %}
+                <a href="/admin/" class="menu-item">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <span>{% trans "Admin panel" %}</span>
+                </a>
+            {% endif %}
+
+            <a href="{% url 'logout' %}" class="menu-item">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>{% trans "Chiqish" %}</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>{% trans "Veterinariya klinikasi" %}</p>
+            <small>{% trans "Elektron kartoteka tizimi" %}</small>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="top-navbar">
+            <div>
+                <h1>{% block page_title %}{% trans "Dashboard" %}{% endblock %}</h1>
+                <p>{% block page_subtitle %}{% trans "Klinika jarayonlarini boshqarish paneli" %}{% endblock %}</p>
+            </div>
+
+            <div class="navbar-right">
+
+                <form action="{% url 'set_language' %}" method="post" class="language-form">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                    <select name="language" onchange="this.form.submit()">
+                        <option value="uz" {% if request.LANGUAGE_CODE == 'uz' %}selected{% endif %}>UZ</option>
+                        <option value="ru" {% if request.LANGUAGE_CODE == 'ru' %}selected{% endif %}>RU</option>
+                        <option value="en" {% if request.LANGUAGE_CODE == 'en' %}selected{% endif %}>EN</option>
+                    </select>
+                </form>
+
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input
+                        type="text"
+                        id="dashboardSearchInput"
+                        placeholder="{% trans 'Qidirish...' %}"
+                        autocomplete="off"
+                    >
+                </div>
+
+                <div class="notification notification-dropdown">
+                    <i class="fa-regular fa-bell"></i>
+
+                    {% if dashboard_notification_count > 0 %}
+                        <span>{{ dashboard_notification_count }}</span>
+                    {% endif %}
+
+                    <div class="notification-menu">
+                        <div class="notification-menu-header">
+                            <strong>{% trans "Bildirishnomalar" %}</strong>
+                            <small>{% blocktrans %}{{ dashboard_notification_count }} ta{% endblocktrans %}</small>
+                        </div>
+
+                        {% if dashboard_notifications %}
+                            {% for item in dashboard_notifications %}
+                                <a href="{{ item.url }}" class="notification-menu-item">
+                                    <div class="notification-menu-icon">
+                                        <i class="{{ item.icon }}"></i>
+                                    </div>
+
+                                    <div class="notification-menu-text">
+                                        <strong>{{ item.title }}</strong>
+                                        <small>{{ item.message }}</small>
+                                    </div>
+
+                                    <b>{{ item.count }}</b>
+                                </a>
+                            {% endfor %}
+                        {% else %}
+                            <div class="notification-empty">
+                                <i class="fa-regular fa-circle-check"></i>
+                                <p>{% trans "Yangi bildirishnoma yo‘q" %}</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="user-box">
+                    <div class="user-avatar">
+                        {{ request.user.username|slice:":1"|upper }}
+                    </div>
+                    <div>
+                        <strong>
+                            {{ request.user.get_full_name|default:request.user.username }}
+                        </strong>
+                        <small>
+                            {% if request.user.is_superuser %}
+                                {% trans "Superadmin" %}
+                            {% else %}
+                                {% trans "Foydalanuvchi" %}
+                            {% endif %}
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <section class="content-wrapper">
+            {% block content %}
+            {% endblock %}
+        </section>
+
+    </main>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("dashboardSearchInput");
+
+    if (!searchInput) return;
+
+    searchInput.addEventListener("input", function () {
+        const query = this.value.toLowerCase().trim();
+        const tables = document.querySelectorAll(".dashboard-table");
+
+        tables.forEach(function (table) {
+            const rows = table.querySelectorAll("tbody tr");
+
+            rows.forEach(function (row) {
+                const rowText = row.innerText.toLowerCase();
+
+                if (!query || rowText.includes(query)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        });
+    });
+});
+</script>
+
+</body>
+</html>
