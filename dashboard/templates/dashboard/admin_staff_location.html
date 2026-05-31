@@ -1,0 +1,63 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Xodimlar joylashuvi" %}{% endblock %}
+{% block page_title %}{% trans "Xodimlar joylashuvi" %}{% endblock %}
+{% block page_subtitle %}
+{% trans "Veterinar xodimlarning joriy ish holatini nazorat qilish" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="panel">
+    <div class="panel-header">
+        <h2>
+            <i class="fa-solid fa-location-dot"></i>
+            {% trans "Xodimlar holati" %}
+        </h2>
+    </div>
+
+    <div class="table-responsive">
+        <table class="dashboard-table">
+            <thead>
+                <tr>
+                    <th>{% trans "Veterinar" %}</th>
+                    <th>{% trans "Telefon" %}</th>
+                    <th>{% trans "Mutaxassislik" %}</th>
+                    <th>{% trans "Joriy holat" %}</th>
+                    <th>{% trans "Faol arizalar" %}</th>
+                    <th>{% trans "Geolokatsiya" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in doctors %}
+                    <tr>
+                        <td><strong>{{ item.profile.full_name }}</strong></td>
+                        <td>{{ item.profile.phone|default:"-" }}</td>
+                        <td>{{ item.profile.specialization|default:"-" }}</td>
+                        <td>
+                            <span class="status-badge {{ item.status.class }}">
+                                <i class="{{ item.status.icon }}"></i>
+                                {{ item.status.label }}
+                            </span>
+                        </td>
+                        <td>{{ item.active_count }}</td>
+                        <td>
+                            <span class="status-badge status-new">
+                                {% trans "Keyingi bosqichda" %}
+                            </span>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6" class="empty-text">
+                            {% trans "Faol veterinar xodimlar topilmadi." %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% load i18n %}
+
+<div class="vet-card-actions">
+    <a href="{% url 'patient_card' patient.id %}" class="btn btn-light btn-sm">
+        <i class="fa-solid fa-id-card"></i>
+        {% trans "Bemor kartasi" %}
+    </a>
+
+    <form method="post" action="{% url 'vet_update_application_stage' patient.id 'accepted' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-blue btn-sm">
+            <i class="fa-solid fa-check"></i>
+            {% trans "Qabul qildim" %}
+        </button>
+    </form>
+
+    {% if patient.can_travel %}
+        <form method="post" action="{% url 'vet_update_application_stage' patient.id 'on_way' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-orange btn-sm">
+                <i class="fa-solid fa-route"></i>
+                {% trans "Yo‘lga chiqdim" %}
+            </button>
+        </form>
+
+        {% if patient.map_url %}
+            <a href="{{ patient.map_url }}" target="_blank" class="btn btn-light btn-sm">
+                <i class="fa-solid fa-map-location-dot"></i>
+                {% trans "Xaritada ko‘rish" %}
+            </a>
+        {% endif %}
+
+        <form method="post" action="{% url 'vet_update_application_stage' patient.id 'arrived' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-purple btn-sm">
+                <i class="fa-solid fa-location-dot"></i>
+                {% trans "Yetib bordim" %}
+            </button>
+        </form>
+    {% else %}
+        <form method="post" action="{% url 'vet_update_application_stage' patient.id 'in_progress' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-orange btn-sm">
+                <i class="fa-regular fa-hourglass-half"></i>
+                {% trans "Jarayonda" %}
+            </button>
+        </form>
+    {% endif %}
+
+    <form method="post" action="{% url 'vet_complete_application' patient.id %}" class="vet-complete-form">
+        {% csrf_token %}
+        <input type="text" name="vet_comment" placeholder="{% trans 'Izoh...' %}">
+        <button type="submit" class="btn btn-green btn-sm">
+            <i class="fa-regular fa-circle-check"></i>
+            {% trans "Yakunlash" %}
+        </button>
+    </form>
+</div>

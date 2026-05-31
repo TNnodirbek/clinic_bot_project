@@ -1,5 +1,5 @@
 from django.utils.translation import gettext as _
-from patients.models import NewPatient, DoctorProfile, LabResult, DiagnosticResult
+from patients.models import NewPatient
 
 
 def user_in_group(user, group_name):
@@ -13,87 +13,60 @@ def dashboard_notifications(request):
         return {
             "dashboard_notification_count": 0,
             "dashboard_notifications": [],
+            "dashboard_is_admin_user": False,
+            "dashboard_is_vet_user": False,
         }
 
     notifications = []
 
-    # Administrator / Superadmin: yangi arizalar
     if user.is_superuser or user_in_group(user, "Administrator"):
-        new_count = NewPatient.objects.filter(status="new").count()
+        new_patients = NewPatient.objects.filter(status="new")
 
-        if new_count > 0:
-            notifications.append({
-                "title": _("Yangi arizalar"),
-                "message": _("%(count)s ta yangi ariza kelgan") % {"count": new_count},
-                "icon": "fa-solid fa-clipboard-list",
-                "url": "/dashboard/administrator/#new-applications",
-                "count": new_count,
-            })
-
-    # Veterinar / Superadmin: faol bemorlar
-    if user.is_superuser or user_in_group(user, "Veterinar"):
-        if user.is_superuser:
-            vet_count = NewPatient.objects.filter(
-                status__in=["assigned_to_vet", "returned_to_vet"]
-            ).count()
-        else:
-            doctor_profile = DoctorProfile.objects.filter(
-                user=user,
-                is_active=True
-            ).first()
-
-            if doctor_profile:
-                vet_count = NewPatient.objects.filter(
-                    selected_doctor=doctor_profile,
-                    status__in=["assigned_to_vet", "returned_to_vet"]
-                ).count()
-            else:
-                vet_count = 0
-
-        if vet_count > 0:
-            notifications.append({
-                "title": _("Veterinar bemorlari"),
-                "message": _("%(count)s ta faol bemor bor") % {"count": vet_count},
-                "icon": "fa-solid fa-user-doctor",
-                "url": "/dashboard/veterinar/#active-patients",
-                "count": vet_count,
-            })
-
-    # Laboratoriya / Superadmin: kutilayotgan analizlar
-    if user.is_superuser or user_in_group(user, "Laboratoriya"):
-        lab_count = LabResult.objects.filter(
-            patient__status="sent_to_lab",
-            status="waiting"
+        clinic_count = new_patients.exclude(
+            note__icontains="Veterinar chaqirish"
+        ).exclude(
+            note__icontains="Xavfli holat"
+        ).count()
+        call_count = new_patients.filter(
+            note__icontains="Veterinar chaqirish"
+        ).count()
+        danger_count = new_patients.filter(
+            note__icontains="Xavfli holat"
         ).count()
 
-        if lab_count > 0:
-            notifications.append({
-                "title": _("Laboratoriya"),
-                "message": _("%(count)s ta analiz natija kutmoqda") % {"count": lab_count},
-                "icon": "fa-solid fa-flask",
-                "url": "/dashboard/laboratoriya/#active-lab-results",
-                "count": lab_count,
-            })
+        notification_items = [
+            {
+                "title": _("Klinikada davolash"),
+                "message": _("%(count)s ta yangi ariza") % {"count": clinic_count},
+                "icon": "fa-solid fa-house-medical",
+                "url": "/dashboard/administrator/?service=clinic#new-applications",
+                "count": clinic_count,
+            },
+            {
+                "title": _("Veterinar chaqirish"),
+                "message": _("%(count)s ta yangi ariza") % {"count": call_count},
+                "icon": "fa-solid fa-truck-medical",
+                "url": "/dashboard/administrator/?service=vet_call#new-applications",
+                "count": call_count,
+            },
+            {
+                "title": _("Xavfli holatlar"),
+                "message": _("%(count)s ta yangi xabar") % {"count": danger_count},
+                "icon": "fa-solid fa-triangle-exclamation",
+                "url": "/dashboard/administrator/?service=danger#new-applications",
+                "count": danger_count,
+            },
+        ]
 
-    # Diagnostika / Superadmin: kutilayotgan diagnostika
-    if user.is_superuser or user_in_group(user, "Diagnostika"):
-        diagnostic_count = DiagnosticResult.objects.filter(
-            patient__status="sent_to_diagnostic",
-            status="waiting"
-        ).count()
-
-        if diagnostic_count > 0:
-            notifications.append({
-                "title": _("Diagnostika"),
-                "message": _("%(count)s ta xulosa kutmoqda") % {"count": diagnostic_count},
-                "icon": "fa-solid fa-stethoscope",
-                "url": "/dashboard/diagnostika/#active-diagnostics",
-                "count": diagnostic_count,
-            })
+        notifications.extend(
+            item for item in notification_items if item["count"] > 0
+        )
 
     total_count = sum(item["count"] for item in notifications)
 
     return {
         "dashboard_notification_count": total_count,
         "dashboard_notifications": notifications,
+        "dashboard_is_admin_user": user.is_superuser or user_in_group(user, "Administrator"),
+        "dashboard_is_vet_user": user_in_group(user, "Veterinar"),
     }

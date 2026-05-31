@@ -17,48 +17,176 @@
 
 {% block content %}
 
-<div class="stats-grid">
-
+<div class="stats-grid admin-stats-grid">
     <div class="stat-card">
         <div class="stat-icon stat-blue">
-            <i class="fa-solid fa-clipboard-list"></i>
+            <i class="fa-regular fa-calendar-check"></i>
         </div>
         <div>
-            <h3>{{ new_patients|length }}</h3>
-            <p>{% trans "Yangi arizalar" %}</p>
+            <h3>{{ admin_stats.today }}</h3>
+            <p>{% trans "Bugungi arizalar" %}</p>
         </div>
     </div>
 
     <div class="stat-card">
         <div class="stat-icon stat-green">
-            <i class="fa-solid fa-clock-rotate-left"></i>
+            <i class="fa-solid fa-clipboard-list"></i>
         </div>
         <div>
-            <h3>{{ history_patients|length }}</h3>
-            <p>{% trans "Bemorlar tarixi" %}</p>
+            <h3>{{ admin_stats.new }}</h3>
+            <p>{% trans "Yangi arizalar" %}</p>
         </div>
     </div>
 
     <div class="stat-card">
         <div class="stat-icon stat-orange">
-            <i class="fa-solid fa-user-doctor"></i>
+            <i class="fa-regular fa-hourglass-half"></i>
         </div>
         <div>
-            <h3>{{ doctors|length }}</h3>
-            <p>{% trans "Faol veterinarlar" %}</p>
+            <h3>{{ admin_stats.in_progress }}</h3>
+            <p>{% trans "Jarayondagi arizalar" %}</p>
         </div>
     </div>
 
     <div class="stat-card">
         <div class="stat-icon stat-purple">
-            <i class="fa-solid fa-id-card"></i>
+            <i class="fa-regular fa-circle-check"></i>
         </div>
         <div>
-            <h3>{% trans "Karta" %}</h3>
-            <p>{% trans "Elektron kartoteka" %}</p>
+            <h3>{{ admin_stats.completed }}</h3>
+            <p>{% trans "Yakunlangan arizalar" %}</p>
         </div>
     </div>
 
+    <div class="stat-card">
+        <div class="stat-icon stat-cyan">
+            <i class="fa-solid fa-user-doctor"></i>
+        </div>
+        <div>
+            <h3>{{ admin_stats.active_doctors }}</h3>
+            <p>{% trans "Faol veterinarlar" %}</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon stat-red">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div>
+            <h3>{{ admin_stats.delayed_calls }}</h3>
+            <p>{% trans "Kechikayotgan chaqiruvlar" %}</p>
+        </div>
+    </div>
+</div>
+
+<div class="panel dashboard-notifications-panel" style="margin-bottom: 24px;">
+    <div class="panel-header">
+        <h2>
+            <i class="fa-regular fa-bell"></i>
+            {% trans "Bildirishnomalar" %}
+        </h2>
+        <span class="status-badge status-new">
+            {{ dashboard_notification_count }} {% trans "ta" %}
+        </span>
+    </div>
+
+    <div class="dashboard-notification-list">
+        {% if dashboard_notifications %}
+            {% for item in dashboard_notifications %}
+                <a href="{{ item.url }}" class="dashboard-notification-card">
+                    <span class="dashboard-notification-icon">
+                        <i class="{{ item.icon }}"></i>
+                    </span>
+                    <span class="dashboard-notification-content">
+                        <strong>{{ item.title }}</strong>
+                        <small>{{ item.message }}</small>
+                    </span>
+                    <span class="dashboard-notification-count">{{ item.count }}</span>
+                    <em>{% trans "Ko‘rish" %}</em>
+                </a>
+            {% endfor %}
+        {% else %}
+            <div class="notification-empty">
+                <i class="fa-regular fa-circle-check"></i>
+                <p>{% trans "Yangi bildirishnoma yo‘q" %}</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="panel" id="quick-request" style="margin-bottom: 24px;">
+    <div class="panel-header">
+        <h2>
+            <i class="fa-solid fa-bolt"></i>
+            {% trans "Tezkor ariza" %}
+        </h2>
+    </div>
+
+    <div class="panel-body">
+        <form method="post" action="{% url 'create_quick_application' %}" class="form-card" style="box-shadow: none; border: none; padding: 0;">
+            {% csrf_token %}
+
+            <div class="form-grid-2">
+                <div class="form-group">
+                    <label>{% trans "Mijoz F.I.Sh." %}<span class="required">*</span></label>
+                    <input type="text" name="full_name" required placeholder="{% trans 'Mijoz ism-familiyasi' %}">
+                </div>
+
+                <div class="form-group">
+                    <label>{% trans "Telefon raqami" %}<span class="required">*</span></label>
+                    <input type="text" name="phone" required placeholder="+998901234567">
+                </div>
+
+                <div class="form-group">
+                    <label>{% trans "Hayvon turi" %}<span class="required">*</span></label>
+                    <select name="animal_type" required>
+                        <option value="">{% trans "Hayvon turini tanlang" %}</option>
+                        {% for code, label in animal_types %}
+                            <option value="{{ code }}">{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>{% trans "Hayvon nomi" %}<span class="required">*</span></label>
+                    <input type="text" name="animal_name" required placeholder="{% trans 'Masalan: Rex' %}">
+                </div>
+
+                <div class="form-group">
+                    <label>{% trans "Xizmat turi" %}<span class="required">*</span></label>
+                    <select name="service_type" id="quickServiceType" required>
+                        <option value="">{% trans "Xizmat turini tanlang" %}</option>
+                        <option value="clinic">{% trans "Klinikada davolash" %}</option>
+                        <option value="call">{% trans "Veterinar chaqirish" %}</option>
+                        <option value="danger">{% trans "Xavfli holat" %}</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="quickAddressGroup">
+                    <label>
+                        {% trans "Manzil" %}
+                        <span class="required" id="quickAddressRequired" hidden>*</span>
+                    </label>
+                    <input type="text" name="address" id="quickAddressInput" placeholder="{% trans 'Mijoz manzili yoki klinikaga kelgan bo‘lsa qisqa izoh' %}">
+                    <div class="form-hint">
+                        {% trans "Veterinar chaqirish yoki xavfli holat uchun majburiy." %}
+                    </div>
+                </div>
+
+                <div class="form-group form-full">
+                    <label>{% trans "Muammo tavsifi / izoh" %}</label>
+                    <textarea name="description" rows="4" placeholder="{% trans 'Murojaat sababi, hayvon holati yoki qo‘shimcha izoh...' %}"></textarea>
+                </div>
+            </div>
+
+            <div class="compact-action-row">
+                <button type="submit" class="btn btn-blue">
+                    <i class="fa-solid fa-plus"></i>
+                    {% trans "Yangi ariza qo‘shish" %}
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
 
 
@@ -66,81 +194,112 @@
     <div class="panel-header">
         <h2>
             <i class="fa-solid fa-clipboard-list"></i>
-            {% trans "Yangi arizalar" %}
+            {% if active_service_filter_title %}
+                {{ active_service_filter_title }}
+            {% else %}
+                {% trans "Yangi arizalar" %}
+            {% endif %}
         </h2>
+
+        {% if active_service_filter %}
+            <a href="{% url 'administrator_dashboard' %}#new-applications" class="btn btn-light btn-sm">
+                <i class="fa-solid fa-list"></i>
+                {% trans "Barcha yangi arizalar" %}
+            </a>
+        {% endif %}
     </div>
 
     <div class="table-responsive">
         <table class="dashboard-table">
             <thead>
                 <tr>
-                    <th>{% trans "Bemor kodi" %}</th>
-                    <th>{% trans "F.I.Sh" %}</th>
+                    <th>{% trans "Mijoz" %}</th>
                     <th>{% trans "Telefon" %}</th>
-                    <th>{% trans "Hayvon nomi" %}</th>
-                    <th>{% trans "Hayvon turi" %}</th>
+                    <th>{% trans "Hayvon" %}</th>
+                    <th>{% trans "Xizmat turi" %}</th>
+                    <th>{% trans "Manzil" %}</th>
+                    <th>{% trans "Status" %}</th>
                     <th>{% trans "Izoh" %}</th>
-                    <th>{% trans "Ariza vaqti" %}</th>
-                    <th>{% trans "Amal" %}</th>
+                    <th>{% trans "Veterinar tanlash" %}</th>
+                    <th>{% trans "Biriktirish" %}</th>
+                    <th>{% trans "Bemor kartasi" %}</th>
+                    <th>{% trans "Bekor qilish" %}</th>
                 </tr>
             </thead>
 
             <tbody>
                 {% for patient in new_patients %}
                     <tr>
-                        <td><strong>{{ patient.patient_code|default:"-" }}</strong></td>
-                        <td>{{ patient.full_name|default:"-" }}</td>
-                        <td>{{ patient.phone|default:"-" }}</td>
-                        <td>{{ patient.animal_name|default:"-" }}</td>
-                        <td>{{ patient.get_animal_type_display|default:patient.animal_type }}</td>
-                        <td class="text-limit">{{ patient.note|default:"-"|truncatechars:100 }}</td>
-                        <td>{{ patient.created_at|date:"d.m.Y H:i" }}</td>
-
                         <td>
-                            <div style="display: flex; flex-direction: column; gap: 8px; min-width: 260px;">
-
-                                <a href="{% url 'patient_card' patient.id %}" class="btn btn-light btn-sm">
-                                    <i class="fa-solid fa-id-card"></i>
-                                    {% trans "Bemor kartasi" %}
-                                </a>
-
-                                <form method="post"
-                                      action="{% url 'assign_patient_to_vet' patient.id %}"
-                                      style="display: flex; gap: 8px; flex-wrap: wrap;">
-                                    {% csrf_token %}
-
-                                    <select name="doctor_id" required
-                                            style="padding: 8px 10px; border-radius: 10px; border: 1px solid #d1d5db; min-width: 170px;">
-                                        <option value="">{% trans "Veterinar tanlang" %}</option>
-                                        {% for doctor in doctors %}
-                                            <option value="{{ doctor.id }}">
-                                                {{ doctor.full_name }}
-                                            </option>
-                                        {% endfor %}
-                                    </select>
-
-                                    <button type="submit" class="btn btn-blue btn-sm">
-                                        <i class="fa-solid fa-user-check"></i>
-                                        {% trans "Biriktirish" %}
-                                    </button>
-                                </form>
-
-                                <form method="post"
-                                      action="{% url 'cancel_patient' patient.id %}"
-                                      onsubmit="return confirm('{% trans 'Bu arizani bekor qilmoqchimisiz?' %}');">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-red btn-sm">
-                                        <i class="fa-solid fa-xmark"></i>
-                                        {% trans "Bekor qilish" %}
-                                    </button>
-                                </form>
-
-                            </div>
+                            <strong>{{ patient.full_name|default:"-" }}</strong>
+                            <small class="table-subtext">{{ patient.patient_code|default:"-" }}</small>
+                        </td>
+                        <td>{{ patient.phone|default:"-" }}</td>
+                        <td>
+                            {{ patient.animal_name|default:"-" }}
+                            <small class="table-subtext">{{ patient.get_animal_type_display|default:patient.animal_type }}</small>
+                        </td>
+                        <td>
+                            <span class="status-badge status-assigned">{{ patient.service_label }}</span>
+                        </td>
+                        <td class="text-limit">{{ patient.address_text|default:"-"|truncatechars:42 }}</td>
+                        <td>
+                            <span class="status-badge {{ patient.compact_status.class }}">
+                                <span class="status-icon-text">{{ patient.compact_status.icon }}</span>
+                                {{ patient.compact_status.label }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="note-preview" title="{{ patient.note|default:'-' }}">
+                                {% if patient.problem_text %}
+                                    {{ patient.problem_text|truncatechars:24 }}
+                                {% else %}
+                                    {% trans "Izoh" %}
+                                {% endif %}
+                            </span>
+                        </td>
+                        <td>
+                            <form method="post"
+                                  id="assign-form-{{ patient.id }}"
+                                  action="{% url 'assign_patient_to_vet' patient.id %}">
+                                {% csrf_token %}
+                                <select name="doctor_id" required class="table-select">
+                                    <option value="">{% trans "Veterinar tanlang" %}</option>
+                                    {% for doctor in doctors %}
+                                        <option value="{{ doctor.id }}">
+                                            {{ doctor.full_name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </form>
+                        </td>
+                        <td>
+                            <button type="submit" form="assign-form-{{ patient.id }}" class="btn btn-blue btn-sm">
+                                <i class="fa-solid fa-user-check"></i>
+                                {% trans "Biriktirish" %}
+                            </button>
+                        </td>
+                        <td>
+                            <a href="{% url 'patient_card' patient.id %}" class="btn btn-light btn-sm">
+                                <i class="fa-solid fa-id-card"></i>
+                                {% trans "Bemor kartasi" %}
+                            </a>
+                        </td>
+                        <td>
+                            <form method="post"
+                                  action="{% url 'cancel_patient' patient.id %}"
+                                  onsubmit="return confirm('{% trans 'Bu arizani bekor qilmoqchimisiz?' %}');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-red btn-sm">
+                                    <i class="fa-solid fa-xmark"></i>
+                                    {% trans "Bekor" %}
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="8" style="text-align: center; color: #64748b; padding: 28px;">
+                        <td colspan="11" style="text-align: center; color: #64748b; padding: 28px;">
                             {% trans "Hozircha yangi arizalar yo‘q." %}
                         </td>
                     </tr>
@@ -150,122 +309,23 @@
     </div>
 </div>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const serviceType = document.getElementById("quickServiceType");
+    const addressInput = document.getElementById("quickAddressInput");
+    const addressRequired = document.getElementById("quickAddressRequired");
 
-<div class="panel" id="patients-history">
-    <div class="panel-header">
-        <h2>
-            <i class="fa-solid fa-clock-rotate-left"></i>
-            {% trans "Bemorlar tarixi" %}
-        </h2>
-    </div>
+    if (!serviceType || !addressInput || !addressRequired) return;
 
-    <div class="table-responsive">
-        <table class="dashboard-table">
-            <thead>
-                <tr>
-                    <th>{% trans "Bemor kodi" %}</th>
-                    <th>{% trans "F.I.Sh" %}</th>
-                    <th>{% trans "Telefon" %}</th>
-                    <th>{% trans "Hayvon nomi" %}</th>
-                    <th>{% trans "Hayvon turi" %}</th>
-                    <th>{% trans "Veterinar" %}</th>
-                    <th>{% trans "Status" %}</th>
-                    <th>{% trans "Oxirgi yangilanish" %}</th>
-                    <th>{% trans "Amal" %}</th>
-                </tr>
-            </thead>
+    function toggleAddress() {
+        const needsAddress = serviceType.value === "call" || serviceType.value === "danger";
+        addressInput.required = needsAddress;
+        addressRequired.hidden = !needsAddress;
+    }
 
-            <tbody>
-                {% for patient in history_patients %}
-                    <tr>
-                        <td><strong>{{ patient.patient_code|default:"-" }}</strong></td>
-                        <td>{{ patient.full_name|default:"-" }}</td>
-                        <td>{{ patient.phone|default:"-" }}</td>
-                        <td>{{ patient.animal_name|default:"-" }}</td>
-                        <td>{{ patient.get_animal_type_display|default:patient.animal_type }}</td>
-
-                        <td>
-                            {% if patient.selected_doctor %}
-                                {{ patient.selected_doctor.full_name }}
-                            {% else %}
-                                -
-                            {% endif %}
-                        </td>
-
-                        <td>
-                            {% if patient.status == "assigned_to_vet" %}
-                                <span class="status-badge status-assigned">{% trans "Veterinarga biriktirilgan" %}</span>
-                            {% elif patient.status == "sent_to_lab" %}
-                                <span class="status-badge status-lab">{% trans "Laboratoriyada" %}</span>
-                            {% elif patient.status == "sent_to_diagnostic" %}
-                                <span class="status-badge status-diagnostic">{% trans "Diagnostikada" %}</span>
-                            {% elif patient.status == "returned_to_vet" %}
-                                <span class="status-badge status-returned">{% trans "Veterinarga qaytgan" %}</span>
-                            {% elif patient.status == "completed" %}
-                                <span class="status-badge status-completed">{% trans "Yakunlangan" %}</span>
-                            {% elif patient.status == "cancelled" %}
-                                <span class="status-badge status-cancelled">{% trans "Bekor qilingan" %}</span>
-                            {% else %}
-                                <span class="status-badge status-new">{{ patient.get_status_display }}</span>
-                            {% endif %}
-                        </td>
-
-                        <td>{{ patient.updated_at|date:"d.m.Y H:i" }}</td>
-
-                        <td>
-                            <div style="display: flex; flex-direction: column; gap: 8px; min-width: 260px;">
-
-                                <a href="{% url 'patient_card' patient.id %}" class="btn btn-light btn-sm">
-                                    <i class="fa-solid fa-id-card"></i>
-                                    {% trans "Bemor kartasi" %}
-                                </a>
-
-                                {% if patient.status != "completed" and patient.status != "cancelled" %}
-                                    <form method="post"
-                                          action="{% url 'redirect_patient_to_vet' patient.id %}"
-                                          style="display: flex; gap: 8px; flex-wrap: wrap;">
-                                        {% csrf_token %}
-
-                                        <select name="doctor_id" required
-                                                style="padding: 8px 10px; border-radius: 10px; border: 1px solid #d1d5db; min-width: 170px;">
-                                            <option value="">{% trans "Veterinar tanlang" %}</option>
-                                            {% for doctor in doctors %}
-                                                <option value="{{ doctor.id }}">
-                                                    {{ doctor.full_name }}
-                                                </option>
-                                            {% endfor %}
-                                        </select>
-
-                                        <button type="submit" class="btn btn-orange btn-sm">
-                                            <i class="fa-solid fa-share"></i>
-                                            {% trans "Qayta yo‘naltirish" %}
-                                        </button>
-                                    </form>
-
-                                    <form method="post"
-                                          action="{% url 'cancel_patient' patient.id %}"
-                                          onsubmit="return confirm('{% trans 'Bu bemorni bekor qilmoqchimisiz?' %}');">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn btn-red btn-sm">
-                                            <i class="fa-solid fa-xmark"></i>
-                                            {% trans "Bekor qilish" %}
-                                        </button>
-                                    </form>
-                                {% endif %}
-
-                            </div>
-                        </td>
-                    </tr>
-                {% empty %}
-                    <tr>
-                        <td colspan="9" style="text-align: center; color: #64748b; padding: 28px;">
-                            {% trans "Bemorlar tarixi hozircha yo‘q." %}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
+    serviceType.addEventListener("change", toggleAddress);
+    toggleAddress();
+});
+</script>
 
 {% endblock %}

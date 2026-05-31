@@ -1,13 +1,16 @@
 import os
 import tempfile
 import textwrap
+from datetime import timedelta
+from urllib.parse import quote_plus
 
 from django.utils import timezone
 from django.utils.translation import gettext as _
-from django.utils.dateparse import parse_datetime
+from django.utils.dateparse import parse_date, parse_datetime
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import redirect, render
 from django.http import HttpResponseForbidden
 
@@ -180,30 +183,203 @@ def patient_card(request, patient_id):
 # ADMINISTRATOR
 # =========================
 
+ADMIN_SERVICE_LABELS = {
+    "clinic": _("Klinikada davolash"),
+    "vet_call": _("Veterinar chaqirish"),
+    "danger": _("Xavfli holatlar"),
+}
+
+
+def get_application_service_type(patient):
+    note = patient.note or ""
+
+    if "Xavfli holat" in note:
+        return "danger"
+
+    if "Veterinar chaqirish" in note:
+        return "vet_call"
+
+    return "clinic"
+
+
+def get_application_note_value(note, label):
+    prefix = f"{label}:"
+
+    for line in (note or "").splitlines():
+        if line.strip().startswith(prefix):
+            return line.split(":", 1)[1].strip()
+
+    return ""
+
+
+def get_compact_status(patient):
+    status_map = {
+        "new": {"label": _("Yangi"), "icon": "🆕", "class": "status-new"},
+        "assigned_to_vet": {"label": _("Biriktirilgan"), "icon": "👨‍⚕️", "class": "status-assigned"},
+        "sent_to_lab": {"label": _("Jarayonda"), "icon": "🔄", "class": "status-pending"},
+        "sent_to_diagnostic": {"label": _("Jarayonda"), "icon": "🔄", "class": "status-pending"},
+        "returned_to_vet": {"label": _("Jarayonda"), "icon": "🔄", "class": "status-pending"},
+        "completed": {"label": _("Yakunlandi"), "icon": "✅", "class": "status-completed"},
+        "cancelled": {"label": _("Bekor"), "icon": "❌", "class": "status-cancelled"},
+        "accepted": {"label": _("Biriktirilgan"), "icon": "👨‍⚕️", "class": "status-assigned"},
+        "rejected": {"label": _("Bekor"), "icon": "❌", "class": "status-cancelled"},
+    }
+
+    return status_map.get(
+        patient.status,
+        {"label": patient.get_status_display(), "icon": "🔄", "class": "status-pending"},
+    )
+
+
+def enrich_admin_application(patient):
+    patient.service_type = get_application_service_type(patient)
+    patient.service_label = ADMIN_SERVICE_LABELS.get(patient.service_type, ADMIN_SERVICE_LABELS["clinic"])
+    patient.address_text = get_application_note_value(patient.note, "Manzil")
+    patient.problem_text = get_application_note_value(patient.note, "Muammo tavsifi / izoh")
+    patient.compact_status = get_compact_status(patient)
+    return patient
+
+
 @login_required
 def administrator_dashboard(request):
     if not user_in_group(request.user, "Administrator") and not request.user.is_superuser:
         return HttpResponseForbidden(_("Sizda Administrator dashboardiga kirish huquqi yo‘q."))
 
+    service_filter = request.GET.get("service", "")
     new_patients = NewPatient.objects.filter(
         status="new"
-    ).order_by("-created_at")
+    )
 
-    history_patients = NewPatient.objects.exclude(
-        status="new"
-    ).order_by("-updated_at")
+    service_filter_titles = {
+        **ADMIN_SERVICE_LABELS,
+        "call": ADMIN_SERVICE_LABELS["vet_call"],
+    }
+
+    if service_filter == "clinic":
+        new_patients = new_patients.exclude(
+            note__icontains="Veterinar chaqirish"
+        ).exclude(
+            note__icontains="Xavfli holat"
+        )
+    elif service_filter in ["call", "vet_call"]:
+        new_patients = new_patients.filter(
+            note__icontains="Veterinar chaqirish"
+        )
+    elif service_filter == "danger":
+        new_patients = new_patients.filter(
+            note__icontains="Xavfli holat"
+        )
+    else:
+        service_filter = ""
+
+    new_patients = [
+        enrich_admin_application(patient)
+        for patient in new_patients.order_by("-created_at")
+    ]
 
     doctors = DoctorProfile.objects.filter(
         is_active=True
     ).order_by("full_name")
 
+    delayed_call_threshold = timezone.now() - timedelta(minutes=30)
+    admin_stats = {
+        "today": NewPatient.objects.filter(created_at__date=timezone.localdate()).count(),
+        "new": NewPatient.objects.filter(status="new").count(),
+        "in_progress": NewPatient.objects.exclude(
+            status__in=["new", "completed", "cancelled"]
+        ).count(),
+        "completed": NewPatient.objects.filter(status="completed").count(),
+        "active_doctors": doctors.count(),
+        "delayed_calls": NewPatient.objects.filter(
+            note__icontains="Veterinar chaqirish",
+            created_at__lt=delayed_call_threshold,
+        ).exclude(
+            status__in=["completed", "cancelled"]
+        ).count(),
+    }
+
     context = {
         "new_patients": new_patients,
-        "history_patients": history_patients,
         "doctors": doctors,
+        "admin_stats": admin_stats,
+        "animal_types": NewPatient.ANIMAL_TYPES,
+        "active_service_filter": service_filter,
+        "active_service_filter_title": service_filter_titles.get(service_filter),
     }
 
     return render(request, "dashboard/administrator.html", context)
+
+
+def generate_manual_telegram_id():
+    last_manual_patient = NewPatient.objects.filter(
+        telegram_id__lt=0
+    ).order_by("telegram_id").first()
+
+    if not last_manual_patient:
+        return -1
+
+    return last_manual_patient.telegram_id - 1
+
+
+@login_required
+def create_quick_application(request):
+    if not user_in_group(request.user, "Administrator") and not request.user.is_superuser:
+        return HttpResponseForbidden(_("Sizda bu amalni bajarish huquqi yo‘q."))
+
+    if request.method != "POST":
+        return redirect("administrator_dashboard")
+
+    full_name = request.POST.get("full_name", "").strip()
+    phone = request.POST.get("phone", "").strip()
+    animal_type = request.POST.get("animal_type", "").strip()
+    animal_name = request.POST.get("animal_name", "").strip()
+    service_type = request.POST.get("service_type", "").strip()
+    address = request.POST.get("address", "").strip()
+    description = request.POST.get("description", "").strip()
+
+    service_labels = {
+        "clinic": _("Klinikada davolash"),
+        "call": _("Veterinar chaqirish"),
+        "danger": _("Xavfli holat"),
+    }
+
+    if not full_name or not phone or not animal_type or not animal_name or not service_type:
+        messages.error(request, _("Tezkor ariza uchun majburiy maydonlarni to‘ldiring."))
+        return redirect("administrator_dashboard")
+
+    if service_type in ["call", "danger"] and not address:
+        messages.error(request, _("Veterinar chaqirish yoki xavfli holat uchun manzil kiritilishi kerak."))
+        return redirect("administrator_dashboard")
+
+    if service_type not in service_labels:
+        messages.error(request, _("Xizmat turi noto‘g‘ri tanlangan."))
+        return redirect("administrator_dashboard")
+
+    note_parts = [
+        _("Telefon orqali kiritilgan ariza"),
+        _("Xizmat turi: %(service)s") % {"service": service_labels[service_type]},
+    ]
+
+    if address:
+        note_parts.append(_("Manzil: %(address)s") % {"address": address})
+
+    if description:
+        note_parts.append(_("Muammo tavsifi / izoh: %(description)s") % {"description": description})
+
+    NewPatient.objects.create(
+        full_name=full_name,
+        phone=phone,
+        telegram_id=generate_manual_telegram_id(),
+        telegram_username=None,
+        animal_name=animal_name,
+        animal_type=animal_type,
+        selected_doctor=None,
+        status="new",
+        note="\n".join(str(part) for part in note_parts),
+    )
+
+    messages.success(request, _("Tezkor ariza yangi arizalar ro‘yxatiga qo‘shildi."))
+    return redirect("administrator_dashboard")
 
 
 @login_required
@@ -294,66 +470,583 @@ def redirect_patient_to_vet(request, patient_id):
     return redirect("administrator_dashboard")
 
 
+def is_recent_for_reassign(patient):
+    return patient.created_at.date() >= timezone.localdate() - timedelta(days=1)
+
+
+def enrich_history_application(patient):
+    enrich_admin_application(patient)
+    patient.can_reassign = (
+        is_recent_for_reassign(patient)
+        and patient.status not in ["completed", "cancelled"]
+    )
+    patient.action_summary = _("Ariza yaratildi")
+
+    if patient.status == "assigned_to_vet" and patient.selected_doctor:
+        patient.action_summary = _("Veterinarga biriktirildi")
+    elif patient.status == "completed":
+        patient.action_summary = _("Ariza yakunlandi")
+    elif patient.status == "cancelled":
+        patient.action_summary = _("Ariza bekor qilindi")
+    elif patient.status in ["sent_to_lab", "sent_to_diagnostic", "returned_to_vet"]:
+        patient.action_summary = _("Jarayonda")
+
+    return patient
+
+
+@login_required
+def admin_history(request):
+    if not user_in_group(request.user, "Administrator") and not request.user.is_superuser:
+        return HttpResponseForbidden(_("Sizda Tarix sahifasiga kirish huquqi yo‘q."))
+
+    query = request.GET.get("q", "").strip()
+    date_filter = request.GET.get("date", "").strip()
+    parsed_date = parse_date(date_filter)
+
+    applications = NewPatient.objects.select_related("selected_doctor").all()
+
+    if parsed_date:
+        applications = applications.filter(created_at__date=parsed_date)
+    else:
+        date_filter = ""
+
+    if query:
+        applications = applications.filter(
+            Q(patient_code__icontains=query)
+            | Q(full_name__icontains=query)
+            | Q(phone__icontains=query)
+            | Q(animal_name__icontains=query)
+            | Q(note__icontains=query)
+            | Q(selected_doctor__full_name__icontains=query)
+        )
+
+    applications = [
+        enrich_history_application(patient)
+        for patient in applications.order_by("-updated_at")
+    ]
+
+    owners = Owner.objects.all().order_by("-created_at")[:12]
+    pets = Pet.objects.select_related("owner").order_by("-created_at")[:12]
+    doctors = DoctorProfile.objects.filter(is_active=True).order_by("full_name")
+
+    context = {
+        "applications": applications,
+        "owners": owners,
+        "pets": pets,
+        "doctors": doctors,
+        "query": query,
+        "date_filter": date_filter,
+        "all_count": NewPatient.objects.count(),
+        "owners_count": Owner.objects.count(),
+        "pets_count": Pet.objects.count(),
+        "completed_count": NewPatient.objects.filter(status="completed").count(),
+        "cancelled_count": NewPatient.objects.filter(status="cancelled").count(),
+    }
+
+    return render(request, "dashboard/admin_history.html", context)
+
+
+@login_required
+def admin_history_redirect_patient(request, patient_id):
+    if not user_in_group(request.user, "Administrator") and not request.user.is_superuser:
+        return HttpResponseForbidden(_("Sizda bu amalni bajarish huquqi yo‘q."))
+
+    if request.method == "POST":
+        doctor_id = request.POST.get("doctor_id")
+
+        try:
+            patient = NewPatient.objects.get(id=patient_id)
+
+            if not is_recent_for_reassign(patient):
+                messages.error(request, _("Eski arizalarni qayta biriktirib bo‘lmaydi."))
+                return redirect("admin_history")
+
+            if patient.status in ["completed", "cancelled"]:
+                messages.error(request, _("Yakunlangan yoki bekor qilingan arizani qayta biriktirib bo‘lmaydi."))
+                return redirect("admin_history")
+
+            doctor = DoctorProfile.objects.get(id=doctor_id, is_active=True)
+            patient.selected_doctor = doctor
+            patient.status = "assigned_to_vet"
+            patient.save()
+
+            messages.success(request, _("%(patient)s arizasi %(doctor)s veterinarga qayta biriktirildi.") % {
+                "patient": patient.full_name,
+                "doctor": doctor.full_name,
+            })
+
+        except NewPatient.DoesNotExist:
+            messages.error(request, _("Bemor topilmadi."))
+
+        except DoctorProfile.DoesNotExist:
+            messages.error(request, _("Veterinar topilmadi."))
+
+    return redirect("admin_history")
+
+
+def get_admin_doctor_status(doctor):
+    active_patients = NewPatient.objects.filter(
+        selected_doctor=doctor
+    ).exclude(
+        status__in=["new", "completed", "cancelled"]
+    )
+
+    if not active_patients.exists():
+        return {
+            "label": _("Bo‘sh"),
+            "class": "status-completed",
+            "icon": "fa-solid fa-circle",
+        }
+
+    if active_patients.filter(note__icontains="Xavfli holat").exists():
+        return {
+            "label": _("Band"),
+            "class": "status-cancelled",
+            "icon": "fa-solid fa-circle",
+        }
+
+    if active_patients.filter(note__icontains="Veterinar chaqirish").exists():
+        return {
+            "label": _("Xizmatda"),
+            "class": "status-pending",
+            "icon": "fa-solid fa-circle",
+        }
+
+    return {
+        "label": _("Mijoz qabulida"),
+        "class": "status-assigned",
+        "icon": "fa-solid fa-circle",
+    }
+
+
+@login_required
+def admin_staff_location(request):
+    if not user_in_group(request.user, "Administrator") and not request.user.is_superuser:
+        return HttpResponseForbidden(_("Sizda Administrator sahifasiga kirish huquqi yo‘q."))
+
+    doctors = []
+
+    for doctor in DoctorProfile.objects.filter(is_active=True).order_by("full_name"):
+        active_count = NewPatient.objects.filter(
+            selected_doctor=doctor
+        ).exclude(
+            status__in=["new", "completed", "cancelled"]
+        ).count()
+
+        doctors.append({
+            "profile": doctor,
+            "status": get_admin_doctor_status(doctor),
+            "active_count": active_count,
+        })
+
+    return render(request, "dashboard/admin_staff_location.html", {"doctors": doctors})
+
+
+@login_required
+def admin_settings(request):
+    if not user_in_group(request.user, "Administrator") and not request.user.is_superuser:
+        return HttpResponseForbidden(_("Sizda Administrator sahifasiga kirish huquqi yo‘q."))
+
+    return render(request, "dashboard/admin_settings.html")
+
+
+@login_required
+def admin_profile(request):
+    if not user_in_group(request.user, "Administrator") and not request.user.is_superuser:
+        return HttpResponseForbidden(_("Sizda Administrator sahifasiga kirish huquqi yo‘q."))
+
+    context = {
+        "new_count": NewPatient.objects.filter(status="new").count(),
+        "completed_count": NewPatient.objects.filter(status="completed").count(),
+    }
+
+    return render(request, "dashboard/admin_profile.html", context)
+
+
 # =========================
 # VETERINAR
 # =========================
 
-@login_required
-def veterinar_dashboard(request):
-    if not user_in_group(request.user, "Veterinar") and not request.user.is_superuser:
-        return HttpResponseForbidden(_("Sizda Veterinar dashboardiga kirish huquqi yo‘q."))
+SERVICE_LABELS = {
+    "clinic": _("Klinikada davolash"),
+    "vet_call": _("Veterinar chaqirish"),
+    "danger": _("Xavfli holatlar"),
+}
+
+IN_PROGRESS_MARKER = "[VET_STATUS:in_progress]"
+ACCEPTED_MARKER = "[VET_STATUS:accepted]"
+ON_WAY_MARKER = "[VET_STATUS:on_way]"
+ARRIVED_MARKER = "[VET_STATUS:arrived]"
+
+VET_STAGE_CONFIG = {
+    "accepted": {
+        "marker": ACCEPTED_MARKER,
+        "label": _("Qabul qildi"),
+        "status": "accepted",
+        "message": _("Ariza qabul qilindi."),
+    },
+    "in_progress": {
+        "marker": IN_PROGRESS_MARKER,
+        "label": _("Jarayonga oldi"),
+        "status": "accepted",
+        "message": _("Ariza jarayonga olindi."),
+    },
+    "on_way": {
+        "marker": ON_WAY_MARKER,
+        "label": _("Yo‘lga chiqdi"),
+        "status": "accepted",
+        "message": _("Yo‘lga chiqish belgilandi."),
+    },
+    "arrived": {
+        "marker": ARRIVED_MARKER,
+        "label": _("Yetib bordi"),
+        "status": "accepted",
+        "message": _("Yetib borish belgilandi."),
+    },
+}
+
+
+def get_patient_service_type(patient):
+    note = patient.note or ""
+
+    if "Xavfli holat" in note:
+        return "danger"
+
+    if "Veterinar chaqirish" in note:
+        return "vet_call"
+
+    return "clinic"
+
+
+def get_note_value(note, label):
+    prefix = f"{label}:"
+
+    for line in (note or "").splitlines():
+        if line.strip().startswith(prefix):
+            return line.split(":", 1)[1].strip()
+
+    return ""
+
+
+def is_patient_in_progress(patient):
+    return IN_PROGRESS_MARKER in (patient.note or "")
+
+
+def has_vet_marker(patient, marker):
+    return marker in (patient.note or "")
+
+
+def append_vet_stage(patient, stage):
+    config = VET_STAGE_CONFIG[stage]
+    note = patient.note or ""
+
+    if config["marker"] not in note:
+        note = f"{note}\n{config['marker']}\n{config['label']}: {timezone.now().strftime('%d.%m.%Y %H:%M')}".strip()
+
+    patient.note = note
+    patient.status = config["status"]
+    patient.save()
+
+
+def get_vet_status(active_patients):
+    in_progress = [
+        patient for patient in active_patients
+        if patient.is_in_progress or patient.is_on_way or patient.is_arrived or patient.is_accepted
+    ]
+
+    if not in_progress:
+        return _("Bo‘sh")
+
+    if any(patient.service_type == "danger" for patient in in_progress):
+        return _("Band")
+
+    if any(patient.service_type == "vet_call" for patient in in_progress):
+        return _("Chaqiruvda")
+
+    return _("Klinikada")
+
+
+def enrich_vet_patient(patient):
+    patient.service_type = get_patient_service_type(patient)
+    patient.service_label = SERVICE_LABELS.get(patient.service_type, _("Klinikada davolash"))
+    patient.address_text = get_note_value(patient.note, "Manzil")
+    patient.problem_text = (
+        get_note_value(patient.note, "Muammo tavsifi / izoh")
+        or get_note_value(patient.note, "Xizmat turi")
+        or patient.note
+        or "-"
+    )
+    patient.is_in_progress = is_patient_in_progress(patient)
+    patient.is_accepted = has_vet_marker(patient, ACCEPTED_MARKER) or patient.status == "accepted"
+    patient.is_on_way = has_vet_marker(patient, ON_WAY_MARKER)
+    patient.is_arrived = has_vet_marker(patient, ARRIVED_MARKER)
+    if patient.is_arrived:
+        patient.display_status = _("Yetib bordi")
+    elif patient.is_on_way:
+        patient.display_status = _("Yo‘lga chiqdi")
+    elif patient.is_in_progress:
+        patient.display_status = _("Jarayonda")
+    elif patient.is_accepted:
+        patient.display_status = _("Qabul qildi")
+    else:
+        patient.display_status = patient.get_status_display()
+    patient.map_url = (
+        f"https://www.google.com/maps/search/?api=1&query={quote_plus(patient.address_text)}"
+        if patient.address_text
+        else ""
+    )
+    patient.can_travel = patient.service_type in ["vet_call", "danger"]
+    return patient
+
+
+def get_vet_patient_or_403(request, patient_id):
+    patient = NewPatient.objects.select_related("selected_doctor").get(id=patient_id)
+
+    if request.user.is_superuser:
+        return patient
 
     doctor_profile = DoctorProfile.objects.filter(
         user=request.user,
         is_active=True
     ).first()
 
+    if not doctor_profile or patient.selected_doctor != doctor_profile:
+        return None
+
+    return patient
+
+
+def redirect_back_to_vet_dashboard(request):
+    return redirect(request.META.get("HTTP_REFERER") or "veterinar_dashboard")
+
+
+def get_vet_base_patients(request, include_new=False):
+    doctor_profile = DoctorProfile.objects.filter(
+        user=request.user,
+        is_active=True
+    ).first()
+
     if request.user.is_superuser:
-        active_patients = NewPatient.objects.filter(
-            status__in=["assigned_to_vet", "returned_to_vet"]
-        ).order_by("-created_at")
-
-        history_patients = NewPatient.objects.exclude(
-            status__in=["new", "assigned_to_vet", "returned_to_vet"]
-        ).order_by("-updated_at")
-
-        lab_requests = LabResult.objects.select_related(
-            "patient",
-            "veterinarian",
-        ).order_by("-updated_at")
-
+        qs = NewPatient.objects.all()
     elif doctor_profile:
-        active_patients = NewPatient.objects.filter(
-            selected_doctor=doctor_profile,
-            status__in=["assigned_to_vet", "returned_to_vet"]
-        ).order_by("-created_at")
-
-        history_patients = NewPatient.objects.filter(
-            selected_doctor=doctor_profile
-        ).exclude(
-            status__in=["assigned_to_vet", "returned_to_vet"]
-        ).order_by("-updated_at")
-
-        lab_requests = LabResult.objects.filter(
-            patient__selected_doctor=doctor_profile
-        ).select_related(
-            "patient",
-            "veterinarian",
-        ).order_by("-updated_at")
-
+        qs = NewPatient.objects.filter(selected_doctor=doctor_profile)
     else:
-        active_patients = NewPatient.objects.none()
-        history_patients = NewPatient.objects.none()
-        lab_requests = LabResult.objects.none()
+        qs = NewPatient.objects.none()
+
+    if not include_new:
+        qs = qs.exclude(status__in=["new", "cancelled"])
+
+    return doctor_profile, qs
+
+
+@login_required
+def veterinar_dashboard(request):
+    if not user_in_group(request.user, "Veterinar") and not request.user.is_superuser:
+        return HttpResponseForbidden(_("Sizda Veterinar dashboardiga kirish huquqi yo‘q."))
+
+    doctor_profile, base_patients = get_vet_base_patients(request)
+
+    service_filter = request.GET.get("service", "")
+
+    completed_total_count = base_patients.filter(status="completed").count()
+
+    active_patients = [
+        enrich_vet_patient(patient)
+        for patient in base_patients.exclude(status="completed").order_by("-created_at")
+    ]
+
+    if service_filter not in SERVICE_LABELS:
+        service_filter = ""
+
+    filtered_active_patients = [
+        patient for patient in active_patients
+        if not service_filter or patient.service_type == service_filter
+    ]
+
+    today_count = base_patients.filter(created_at__date=timezone.localdate()).count()
+    in_progress_count = sum(1 for patient in active_patients if patient.is_in_progress)
+    danger_count = sum(1 for patient in active_patients if patient.service_type == "danger")
+    vet_status = get_vet_status(active_patients)
+    location_status = _("O‘chirilgan")
 
     context = {
         "doctor_profile": doctor_profile,
-        "active_patients": active_patients,
-        "history_patients": history_patients,
-        "lab_requests": lab_requests,
+        "active_patients": filtered_active_patients,
+        "all_active_patients": active_patients,
+        "today_count": today_count,
+        "in_progress_count": in_progress_count,
+        "completed_count": completed_total_count,
+        "danger_count": danger_count,
+        "vet_status": vet_status,
+        "location_status": location_status,
+        "active_service_filter": service_filter,
+        "active_service_filter_title": SERVICE_LABELS.get(service_filter),
     }
 
     return render(request, "dashboard/veterinar.html", context)
+
+
+@login_required
+def vet_mark_in_progress(request, patient_id):
+    if not user_in_group(request.user, "Veterinar") and not request.user.is_superuser:
+        return HttpResponseForbidden(_("Sizda bu amalni bajarish huquqi yo‘q."))
+
+    if request.method == "POST":
+        try:
+            patient = get_vet_patient_or_403(request, patient_id)
+
+            if patient is None:
+                return HttpResponseForbidden(_("Bu ariza sizga biriktirilmagan."))
+
+            if patient.status != "completed" and IN_PROGRESS_MARKER not in (patient.note or ""):
+                patient.note = f"{patient.note or ''}\n{IN_PROGRESS_MARKER}\n{_('Veterinar jarayonga oldi')}: {timezone.now().strftime('%d.%m.%Y %H:%M')}".strip()
+                patient.save()
+                messages.success(request, _("Ariza jarayonga olindi."))
+
+        except NewPatient.DoesNotExist:
+            messages.error(request, _("Bemor topilmadi."))
+
+    return redirect_back_to_vet_dashboard(request)
+
+
+@login_required
+def vet_update_application_stage(request, patient_id, stage):
+    if not user_in_group(request.user, "Veterinar") and not request.user.is_superuser:
+        return HttpResponseForbidden(_("Sizda bu amalni bajarish huquqi yo‘q."))
+
+    if request.method == "POST" and stage in VET_STAGE_CONFIG:
+        try:
+            patient = get_vet_patient_or_403(request, patient_id)
+
+            if patient is None:
+                return HttpResponseForbidden(_("Bu ariza sizga biriktirilmagan."))
+
+            if patient.status != "completed":
+                append_vet_stage(patient, stage)
+                messages.success(request, VET_STAGE_CONFIG[stage]["message"])
+
+        except NewPatient.DoesNotExist:
+            messages.error(request, _("Bemor topilmadi."))
+
+    return redirect_back_to_vet_dashboard(request)
+
+
+@login_required
+def vet_complete_application(request, patient_id):
+    if not user_in_group(request.user, "Veterinar") and not request.user.is_superuser:
+        return HttpResponseForbidden(_("Sizda bu amalni bajarish huquqi yo‘q."))
+
+    if request.method == "POST":
+        vet_comment = request.POST.get("vet_comment", "").strip()
+
+        try:
+            patient = get_vet_patient_or_403(request, patient_id)
+
+            if patient is None:
+                return HttpResponseForbidden(_("Bu ariza sizga biriktirilmagan."))
+
+            note_parts = [patient.note or ""]
+
+            if vet_comment:
+                note_parts.append(_("Veterinar izohi: %(comment)s") % {"comment": vet_comment})
+
+            note_parts.append(_("Veterinar yakunladi: %(date)s") % {"date": timezone.now().strftime("%d.%m.%Y %H:%M")})
+
+            patient.note = "\n".join(part for part in note_parts if part).replace(IN_PROGRESS_MARKER, "").strip()
+            patient.status = "completed"
+            patient.save()
+            messages.success(request, _("Ariza yakunlandi."))
+
+        except NewPatient.DoesNotExist:
+            messages.error(request, _("Bemor topilmadi."))
+
+    return redirect_back_to_vet_dashboard(request)
+
+
+@login_required
+def vet_history(request):
+    if not user_in_group(request.user, "Veterinar") and not request.user.is_superuser:
+        return HttpResponseForbidden(_("Sizda Veterinar tarixiga kirish huquqi yo‘q."))
+
+    doctor_profile, base_patients = get_vet_base_patients(request)
+    history_date = request.GET.get("history_date", "").strip()
+    query = request.GET.get("q", "").strip()
+    history_qs = base_patients.filter(status="completed")
+    parsed_history_date = parse_date(history_date)
+
+    if parsed_history_date:
+        history_qs = history_qs.filter(updated_at__date=parsed_history_date)
+    else:
+        history_date = ""
+
+    if query:
+        history_qs = history_qs.filter(
+            Q(patient_code__icontains=query)
+            | Q(full_name__icontains=query)
+            | Q(phone__icontains=query)
+            | Q(animal_name__icontains=query)
+            | Q(note__icontains=query)
+        )
+
+    history_patients = [
+        enrich_vet_patient(patient)
+        for patient in history_qs.order_by("-updated_at")
+    ]
+
+    context = {
+        "doctor_profile": doctor_profile,
+        "history_patients": history_patients,
+        "history_date": history_date,
+        "query": query,
+    }
+
+    return render(request, "dashboard/vet_history.html", context)
+
+
+@login_required
+def vet_reopen_application(request, patient_id):
+    if not user_in_group(request.user, "Veterinar") and not request.user.is_superuser:
+        return HttpResponseForbidden(_("Sizda bu amalni bajarish huquqi yo‘q."))
+
+    if request.method == "POST":
+        try:
+            patient = get_vet_patient_or_403(request, patient_id)
+
+            if patient is None:
+                return HttpResponseForbidden(_("Bu ariza sizga biriktirilmagan."))
+
+            patient.status = "accepted"
+            patient.note = f"{patient.note or ''}\n{_('Veterinar qayta ko‘rik ochdi')}: {timezone.now().strftime('%d.%m.%Y %H:%M')}".strip()
+            patient.save()
+            messages.success(request, _("Ariza qayta ko‘rik uchun ochildi."))
+
+        except NewPatient.DoesNotExist:
+            messages.error(request, _("Bemor topilmadi."))
+
+    return redirect("vet_history")
+
+
+@login_required
+def vet_profile(request):
+    if not user_in_group(request.user, "Veterinar") and not request.user.is_superuser:
+        return HttpResponseForbidden(_("Sizda Veterinar profiliga kirish huquqi yo‘q."))
+
+    doctor_profile, base_patients = get_vet_base_patients(request)
+    active_patients = [
+        enrich_vet_patient(patient)
+        for patient in base_patients.exclude(status="completed")
+    ]
+
+    context = {
+        "doctor_profile": doctor_profile,
+        "vet_status": get_vet_status(active_patients),
+        "location_status": _("O‘chirilgan"),
+        "today_count": base_patients.filter(created_at__date=timezone.localdate()).count(),
+        "completed_count": base_patients.filter(status="completed").count(),
+        "active_count": len(active_patients),
+    }
+
+    return render(request, "dashboard/vet_profile.html", context)
 
 
 @login_required

@@ -35,6 +35,11 @@ urlpatterns = [
         name="administrator_dashboard",
     ),
     path(
+        "administrator/quick-application/",
+        views.create_quick_application,
+        name="create_quick_application",
+    ),
+    path(
         "administrator/assign/<int:patient_id>/",
         views.assign_patient_to_vet,
         name="assign_patient_to_vet",
@@ -49,12 +54,67 @@ urlpatterns = [
         views.redirect_patient_to_vet,
         name="redirect_patient_to_vet",
     ),
+    path(
+        "administrator/staff-location/",
+        views.admin_staff_location,
+        name="admin_staff_location",
+    ),
+    path(
+        "administrator/history/",
+        views.admin_history,
+        name="admin_history",
+    ),
+    path(
+        "administrator/history/redirect/<int:patient_id>/",
+        views.admin_history_redirect_patient,
+        name="admin_history_redirect_patient",
+    ),
+    path(
+        "administrator/settings/",
+        views.admin_settings,
+        name="admin_settings",
+    ),
+    path(
+        "administrator/profile/",
+        views.admin_profile,
+        name="admin_profile",
+    ),
 
     # Veterinar
     path(
         "veterinar/",
         views.veterinar_dashboard,
         name="veterinar_dashboard",
+    ),
+    path(
+        "veterinar/in-progress/<int:patient_id>/",
+        views.vet_mark_in_progress,
+        name="vet_mark_in_progress",
+    ),
+    path(
+        "veterinar/action/<int:patient_id>/<str:stage>/",
+        views.vet_update_application_stage,
+        name="vet_update_application_stage",
+    ),
+    path(
+        "veterinar/complete/<int:patient_id>/",
+        views.vet_complete_application,
+        name="vet_complete_application",
+    ),
+    path(
+        "veterinar/history/",
+        views.vet_history,
+        name="vet_history",
+    ),
+    path(
+        "veterinar/reopen/<int:patient_id>/",
+        views.vet_reopen_application,
+        name="vet_reopen_application",
+    ),
+    path(
+        "veterinar/profile/",
+        views.vet_profile,
+        name="vet_profile",
     ),
     path(
         "veterinar/send-to-lab/<int:patient_id>/",

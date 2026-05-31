@@ -1,0 +1,210 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Tarix" %}{% endblock %}
+{% block page_title %}{% trans "Tarix" %}{% endblock %}
+{% block page_subtitle %}
+{% trans "Arizalar, mijozlar, hayvonlar va bajarilgan ishlar tarixi" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="compact-stats-grid">
+    <div class="compact-stat-card">
+        <h3>{{ all_count }}</h3>
+        <p>{% trans "Barcha arizalar" %}</p>
+    </div>
+    <div class="compact-stat-card">
+        <h3>{{ owners_count }}</h3>
+        <p>{% trans "Eski mijozlar" %}</p>
+    </div>
+    <div class="compact-stat-card">
+        <h3>{{ pets_count }}</h3>
+        <p>{% trans "Hayvonlar" %}</p>
+    </div>
+    <div class="compact-stat-card">
+        <h3>{{ completed_count }}</h3>
+        <p>{% trans "Yakunlangan ishlar" %}</p>
+    </div>
+    <div class="compact-stat-card">
+        <h3>{{ cancelled_count }}</h3>
+        <p>{% trans "Bekor qilingan ishlar" %}</p>
+    </div>
+</div>
+
+<div class="panel" style="margin-bottom: 24px;">
+    <div class="panel-header">
+        <h2>
+            <i class="fa-solid fa-filter"></i>
+            {% trans "Filter" %}
+        </h2>
+    </div>
+
+    <div class="panel-body">
+        <form method="get" action="{% url 'admin_history' %}" class="history-search-form">
+            <input type="search" name="q" value="{{ query }}" placeholder="{% trans 'Mijoz, telefon, hayvon, kod yoki izoh bo‘yicha qidirish' %}">
+            <input type="date" name="date" value="{{ date_filter }}">
+            <button type="submit" class="btn btn-blue">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                {% trans "Qidirish" %}
+            </button>
+            {% if query or date_filter %}
+                <a href="{% url 'admin_history' %}" class="btn btn-light">
+                    <i class="fa-solid fa-xmark"></i>
+                    {% trans "Tozalash" %}
+                </a>
+            {% endif %}
+        </form>
+    </div>
+</div>
+
+<div class="panel" style="margin-bottom: 24px;">
+    <div class="panel-header">
+        <h2>
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            {% trans "Barcha arizalar" %}
+        </h2>
+    </div>
+
+    <div class="table-responsive">
+        <table class="dashboard-table history-applications-table">
+            <thead>
+                <tr>
+                    <th>{% trans "Kod" %}</th>
+                    <th>{% trans "Mijoz" %}</th>
+                    <th>{% trans "Telefon" %}</th>
+                    <th>{% trans "Hayvon" %}</th>
+                    <th>{% trans "Xizmat" %}</th>
+                    <th>{% trans "Veterinar" %}</th>
+                    <th>{% trans "Status" %}</th>
+                    <th>{% trans "Sana" %}</th>
+                    <th>{% trans "Amal" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in applications %}
+                    <tr>
+                        <td><strong>{{ patient.patient_code|default:"-" }}</strong></td>
+                        <td>{{ patient.full_name|default:"-" }}</td>
+                        <td>{{ patient.phone|default:"-" }}</td>
+                        <td>
+                            {{ patient.animal_name|default:"-" }}
+                            <small class="table-subtext">{{ patient.get_animal_type_display|default:patient.animal_type }}</small>
+                        </td>
+                        <td><span class="status-badge status-assigned">{{ patient.service_label }}</span></td>
+                        <td>{% if patient.selected_doctor %}{{ patient.selected_doctor.full_name }}{% else %}-{% endif %}</td>
+                        <td>
+                            <span class="history-status-badge {{ patient.compact_status.class }}">
+                                <span>
+                                    <span class="status-icon-text">{{ patient.compact_status.icon }}</span>
+                                    {{ patient.compact_status.label }}
+                                </span>
+                                <small>{{ patient.updated_at|date:"d.m.Y H:i" }}</small>
+                            </span>
+                        </td>
+                        <td>{{ patient.created_at|date:"d.m.Y H:i" }}</td>
+                        <td>
+                            <div class="history-action-row">
+                                <a href="{% url 'patient_card' patient.id %}" class="btn btn-light btn-sm">
+                                    <i class="fa-solid fa-id-card"></i>
+                                    {% trans "Bemor kartasi" %}
+                                </a>
+
+                                {% if patient.can_reassign %}
+                                    <form method="post" action="{% url 'admin_history_redirect_patient' patient.id %}">
+                                        {% csrf_token %}
+                                        <select name="doctor_id" required class="table-select">
+                                            <option value="">{% trans "Veterinar" %}</option>
+                                            {% for doctor in doctors %}
+                                                <option value="{{ doctor.id }}">{{ doctor.full_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <button type="submit" class="btn btn-orange btn-sm">
+                                            <i class="fa-solid fa-share"></i>
+                                            {% trans "Qayta biriktirish" %}
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <span class="status-badge status-inactive">{% trans "Eski ariza" %}</span>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="9" class="empty-text">{% trans "Tarix yozuvlari topilmadi." %}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="history-side-grid">
+    <div class="panel">
+        <div class="panel-header">
+            <h2>
+                <i class="fa-regular fa-user"></i>
+                {% trans "Eski mijozlar" %}
+            </h2>
+        </div>
+        <div class="table-responsive">
+            <table class="dashboard-table compact-history-table">
+                <thead>
+                    <tr>
+                        <th>{% trans "Mijoz" %}</th>
+                        <th>{% trans "Telefon" %}</th>
+                        <th>{% trans "Sana" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for owner in owners %}
+                        <tr>
+                            <td>{{ owner.full_name }}</td>
+                            <td>{{ owner.phone }}</td>
+                            <td>{{ owner.created_at|date:"d.m.Y" }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr><td colspan="3" class="empty-text">{% trans "Mijozlar yo‘q." %}</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-header">
+            <h2>
+                <i class="fa-solid fa-paw"></i>
+                {% trans "Hayvonlar" %}
+            </h2>
+        </div>
+        <div class="table-responsive">
+            <table class="dashboard-table compact-history-table">
+                <thead>
+                    <tr>
+                        <th>{% trans "Hayvon" %}</th>
+                        <th>{% trans "Egasi" %}</th>
+                        <th>{% trans "Sana" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pet in pets %}
+                        <tr>
+                            <td>
+                                {{ pet.name }}
+                                <small class="table-subtext">{{ pet.get_animal_type_display }}</small>
+                            </td>
+                            <td>{{ pet.owner.full_name }}</td>
+                            <td>{{ pet.created_at|date:"d.m.Y" }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr><td colspan="3" class="empty-text">{% trans "Hayvonlar yo‘q." %}</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

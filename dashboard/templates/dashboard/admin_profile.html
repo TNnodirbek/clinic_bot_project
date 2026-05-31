@@ -1,0 +1,51 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Profil" %}{% endblock %}
+{% block page_title %}{% trans "Profil" %}{% endblock %}
+{% block page_subtitle %}
+{% trans "Administrator akkaunti bo‘yicha asosiy ma’lumotlar" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="compact-panel">
+    <div class="compact-panel-header">
+        <h2>
+            <i class="fa-regular fa-user"></i>
+            {% trans "Profil" %}
+        </h2>
+    </div>
+    <div class="compact-info-grid">
+        <div class="compact-info-card">
+            <span>{% trans "F.I.Sh." %}</span>
+            <strong>{{ request.user.get_full_name|default:request.user.username }}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Username" %}</span>
+            <strong>{{ request.user.username }}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Role" %}</span>
+            <strong>{% if request.user.is_superuser %}{% trans "Superadmin" %}{% else %}{% trans "Administrator" %}{% endif %}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Email" %}</span>
+            <strong>{{ request.user.email|default:"-" }}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Oxirgi kirish" %}</span>
+            <strong>{{ request.user.last_login|date:"d.m.Y H:i"|default:"-" }}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Yangi arizalar" %}</span>
+            <strong>{{ new_count }}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Yakunlangan arizalar" %}</span>
+            <strong>{{ completed_count }}</strong>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

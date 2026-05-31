@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 340" role="img" aria-labelledby="title desc">
+  <title id="title">VET Farm and Pet Clinic</title>
+  <desc id="desc">Veterinary clinic logo with farm and pet silhouettes.</desc>
+  <rect width="400" height="340" fill="#ffffff"/>
+  <path d="M108 171c15-101 162-107 194-28" fill="none" stroke="#29357f" stroke-width="4" stroke-linecap="round"/>
+  <path d="M89 207c68-22 161-22 226 0" fill="none" stroke="#12b7c8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M296 69c7 2 12 7 14 14 7-5 16-2 21 5-10 0-17 6-20 15-5-8-12-14-23-17 0-7 3-12 8-17z" fill="#11b8c8"/>
+  <circle cx="238" cy="43" r="5" fill="#11b8c8"/>
+  <ellipse cx="219" cy="40" rx="10" ry="4" transform="rotate(17 219 40)" fill="#11b8c8"/>
+  <circle cx="286" cy="53" r="4" fill="#11b8c8"/>
+  <g fill="#29357f">
+    <path d="M138 91c28 0 58 0 89-5 32-5 59-6 78 5l10-12 5 14 19 6-13 8-8 32-14 2-8 62h-15l-4-60-77 2-12 58h-15l-4-58-22 4-12 54h-14l-5-63 12-49z"/>
+    <path d="M137 94c-18 8-28 25-29 46-1 15 3 30-5 45-3 6 5 11 10 4 11-14 12-30 10-49-1-17 6-28 21-36z"/>
+  </g>
+  <g fill="#12b7c8">
+    <path d="M207 127c18 0 32 15 32 33v42h-21v-27h-35v27h-21v-44c0-18 14-31 31-31z"/>
+    <circle cx="198" cy="110" r="21"/>
+    <path d="M218 101c13 4 23 12 29 24l-10 8c-7-10-16-16-27-18z"/>
+    <path d="M163 162c-18 9-31 24-36 42h31c3-11 8-20 16-27z"/>
+  </g>
+  <g fill="#29357f">
+    <path d="M262 158c22 0 39 18 39 39v7h-67v-7c0-21 12-39 28-39z"/>
+    <circle cx="264" cy="141" r="18"/>
+    <path d="M291 172c22 4 35 22 32 43-3 19-23 32-43 25 31-4 41-39 11-68z"/>
+  </g>
+  <text x="200" y="277" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="700" fill="#29357f" letter-spacing="6">VET</text>
+  <path d="M69 254h61M270 254h61" stroke="#29357f" stroke-width="4" stroke-linecap="round"/>
+  <text x="200" y="318" text-anchor="middle" font-family="'Brush Script MT', 'Segoe Script', cursive" font-size="34" font-weight="700" fill="#12b7c8">Farm &amp; Pet Clinic</text>
+</svg>

@@ -1,0 +1,39 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Sozlamalar" %}{% endblock %}
+{% block page_title %}{% trans "Sozlamalar" %}{% endblock %}
+{% block page_subtitle %}
+{% trans "Klinika sozlamalari keyingi bosqichda kengaytiriladi" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="compact-panel">
+    <div class="compact-panel-header">
+        <h2>
+            <i class="fa-solid fa-gear"></i>
+            {% trans "Asosiy sozlamalar" %}
+        </h2>
+    </div>
+    <div class="compact-info-grid">
+        <div class="compact-info-card">
+            <span>{% trans "Klinika koordinatasi" %}</span>
+            <strong>{% trans "Keyingi bosqichda qo‘shiladi" %}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Geolokatsiya nazorati" %}</span>
+            <strong>{% trans "Tayyorlanmoqda" %}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Laboratoriya" %}</span>
+            <strong>{% trans "Vaqtincha yashirilgan" %}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Diagnostika" %}</span>
+            <strong>{% trans "Vaqtincha yashirilgan" %}</strong>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

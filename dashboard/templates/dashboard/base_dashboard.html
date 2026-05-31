@@ -7,7 +7,7 @@
     <title>{% block title %}{% trans "Vet Clinic Dashboard" %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}?v=sidebar-fix-2">
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}?v=vet-workflow-1">
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -18,31 +18,105 @@
 
     <aside class="sidebar">
         <div class="sidebar-logo">
-            <div class="logo-icon">
-                <i class="fa-solid fa-paw"></i>
-            </div>
-            <div>
-                <h2>{% trans "Vet Clinic" %}</h2>
-                <p>{% trans "Boshqaruv paneli" %}</p>
-            </div>
+            <img
+                src="{% static 'dashboard/images/vet-logo.svg' %}"
+                alt="{% trans 'VET Farm & Pet Clinic' %}"
+                class="sidebar-logo-image"
+            >
         </div>
 
         <nav class="sidebar-menu dashboard-sidebar-menu">
 
-            <a href="/dashboard/" class="menu-item dashboard-menu-item">
-                <i class="fa-solid fa-chart-line"></i>
-                <span>{% trans "Dashboard" %}</span>
-            </a>
+            {% if dashboard_is_admin_user %}
+                <a href="/dashboard/administrator/" class="menu-item dashboard-menu-item">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>{% trans "Dashboard" %}</span>
+                </a>
 
-            <a href="/dashboard/patients-status/" class="menu-item dashboard-menu-item">
-                <i class="fa-solid fa-clock-rotate-left"></i>
-                <span>{% trans "Bemorlar holati" %}</span>
-            </a>
+                <a href="/dashboard/administrator/#quick-request" class="menu-item dashboard-menu-item">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>{% trans "Tezkor ariza" %}</span>
+                </a>
 
-            {% if request.user.is_superuser %}
-                <a href="/admin/" class="menu-item dashboard-menu-item">
-                    <i class="fa-solid fa-user-shield"></i>
-                    <span>{% trans "Admin panel" %}</span>
+                <div class="menu-item dashboard-menu-item menu-parent is-open" data-submenu-toggle>
+                    <i class="fa-regular fa-folder-open"></i>
+                    <span>{% trans "Yangi arizalar" %}</span>
+                    <i class="fa-solid fa-chevron-up menu-parent-chevron"></i>
+                </div>
+
+                <div class="sidebar-submenu is-open">
+                    <a href="/dashboard/administrator/?service=clinic#new-applications">
+                        {% trans "Klinikada davolash" %}
+                    </a>
+                    <a href="/dashboard/administrator/?service=vet_call#new-applications">
+                        {% trans "Veterinar chaqirish" %}
+                    </a>
+                    <a href="/dashboard/administrator/?service=danger#new-applications">
+                        {% trans "Xavfli holatlar" %}
+                    </a>
+                </div>
+
+                <a href="{% url 'admin_staff_location' %}" class="menu-item dashboard-menu-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>{% trans "Xodimlar joylashuvi" %}</span>
+                </a>
+
+                <a href="{% url 'admin_history' %}" class="menu-item dashboard-menu-item">
+                    <i class="fa-regular fa-calendar-days"></i>
+                    <span>{% trans "Tarix" %}</span>
+                </a>
+
+                <a href="{% url 'admin_settings' %}" class="menu-item dashboard-menu-item">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>{% trans "Sozlamalar" %}</span>
+                </a>
+
+                <a href="{% url 'admin_profile' %}" class="menu-item dashboard-menu-item">
+                    <i class="fa-regular fa-user"></i>
+                    <span>{% trans "Profil" %}</span>
+                </a>
+            {% elif dashboard_is_vet_user %}
+                <a href="/dashboard/veterinar/" class="menu-item dashboard-menu-item">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>{% trans "Dashboard" %}</span>
+                </a>
+
+                <div class="menu-item dashboard-menu-item menu-parent is-open" data-submenu-toggle>
+                    <i class="fa-regular fa-folder-open"></i>
+                    <span>{% trans "Mening arizalarim" %}</span>
+                    <i class="fa-solid fa-chevron-up menu-parent-chevron"></i>
+                </div>
+
+                <div class="sidebar-submenu is-open">
+                    <a href="/dashboard/veterinar/?service=clinic#my-applications">
+                        {% trans "Klinikada davolash" %}
+                    </a>
+                    <a href="/dashboard/veterinar/?service=vet_call#my-applications">
+                        {% trans "Chaqiruvlar" %}
+                    </a>
+                    <a href="/dashboard/veterinar/?service=danger#my-applications">
+                        {% trans "Xavfli holatlar" %}
+                    </a>
+                </div>
+
+                <a href="{% url 'vet_history' %}" class="menu-item dashboard-menu-item">
+                    <i class="fa-regular fa-calendar-days"></i>
+                    <span>{% trans "Tarix" %}</span>
+                </a>
+
+                <a href="{% url 'vet_profile' %}" class="menu-item dashboard-menu-item">
+                    <i class="fa-regular fa-user"></i>
+                    <span>{% trans "Profil" %}</span>
+                </a>
+            {% else %}
+                <a href="/dashboard/" class="menu-item dashboard-menu-item">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>{% trans "Dashboard" %}</span>
+                </a>
+
+                <a href="/dashboard/patients-status/" class="menu-item dashboard-menu-item">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>{% trans "Bemorlar holati" %}</span>
                 </a>
             {% endif %}
 
@@ -112,6 +186,7 @@
                                     <div class="notification-menu-text">
                                         <strong>{{ item.title }}</strong>
                                         <small>{{ item.message }}</small>
+                                        <em>{% trans "Ko‘rish" %}</em>
                                     </div>
 
                                     <b>{{ item.count }}</b>
@@ -167,6 +242,39 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("dashboardSearchInput");
+    const notificationDropdown = document.querySelector(".notification-dropdown");
+    const submenuToggles = document.querySelectorAll("[data-submenu-toggle]");
+
+    submenuToggles.forEach(function (toggle) {
+        const submenu = toggle.nextElementSibling;
+        const chevron = toggle.querySelector(".menu-parent-chevron");
+
+        if (!submenu || !submenu.classList.contains("sidebar-submenu")) return;
+
+        toggle.addEventListener("click", function () {
+            const isOpen = submenu.classList.toggle("is-open");
+            toggle.classList.toggle("is-open", isOpen);
+
+            if (chevron) {
+                chevron.classList.toggle("fa-chevron-up", isOpen);
+                chevron.classList.toggle("fa-chevron-down", !isOpen);
+            }
+        });
+    });
+
+    if (notificationDropdown) {
+        notificationDropdown.addEventListener("click", function (event) {
+            if (event.target.closest(".notification-menu")) return;
+            event.stopPropagation();
+            this.classList.toggle("open");
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!notificationDropdown.contains(event.target)) {
+                notificationDropdown.classList.remove("open");
+            }
+        });
+    }
 
     if (!searchInput) return;
 

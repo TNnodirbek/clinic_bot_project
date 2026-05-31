@@ -1,0 +1,54 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Veterinar profil" %}{% endblock %}
+{% block page_title %}{% trans "Profil" %}{% endblock %}
+{% block page_subtitle %}{% trans "Veterinar ma’lumotlari va joriy holat" %}{% endblock %}
+
+{% block content %}
+
+<div class="compact-panel">
+    <div class="compact-panel-header">
+        <h2><i class="fa-regular fa-user"></i>{% trans "Profil" %}</h2>
+    </div>
+    <div class="compact-info-grid">
+        <div class="compact-info-card">
+            <span>{% trans "F.I.Sh." %}</span>
+            <strong>{% if doctor_profile %}{{ doctor_profile.full_name }}{% else %}{{ request.user.get_full_name|default:request.user.username }}{% endif %}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Username" %}</span>
+            <strong>{{ request.user.username }}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Telefon" %}</span>
+            <strong>{% if doctor_profile %}{{ doctor_profile.phone|default:"-" }}{% else %}-{% endif %}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Mutaxassislik" %}</span>
+            <strong>{% if doctor_profile %}{{ doctor_profile.specialization|default:"-" }}{% else %}-{% endif %}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Joriy holat" %}</span>
+            <strong>{{ vet_status }}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Geolokatsiya" %}</span>
+            <strong>{{ location_status }}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Bugungi arizalar" %}</span>
+            <strong>{{ today_count }}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Faol ishlar" %}</span>
+            <strong>{{ active_count }}</strong>
+        </div>
+        <div class="compact-info-card">
+            <span>{% trans "Yakunlangan ishlar" %}</span>
+            <strong>{{ completed_count }}</strong>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
