@@ -97,6 +97,11 @@ urlpatterns = [
         name="vet_update_application_stage",
     ),
     path(
+        "veterinar/location/update/",
+        views.vet_update_location,
+        name="vet_update_location",
+    ),
+    path(
         "veterinar/complete/<int:patient_id>/",
         views.vet_complete_application,
         name="vet_complete_application",

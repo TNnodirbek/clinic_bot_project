@@ -142,6 +142,34 @@ class DoctorProfile(models.Model):
         default=True,
         verbose_name=_("Faolmi?")
     )
+    last_latitude = models.DecimalField(
+        max_digits=9,
+        decimal_places=6,
+        blank=True,
+        null=True,
+        verbose_name=_("Oxirgi kenglik")
+    )
+    last_longitude = models.DecimalField(
+        max_digits=9,
+        decimal_places=6,
+        blank=True,
+        null=True,
+        verbose_name=_("Oxirgi uzunlik")
+    )
+    last_location_accuracy = models.FloatField(
+        blank=True,
+        null=True,
+        verbose_name=_("Lokatsiya aniqligi")
+    )
+    last_location_updated_at = models.DateTimeField(
+        blank=True,
+        null=True,
+        verbose_name=_("Oxirgi lokatsiya vaqti")
+    )
+    location_tracking_enabled = models.BooleanField(
+        default=False,
+        verbose_name=_("Geolokatsiya tracking yoqilganmi?")
+    )
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name=_("Yaratilgan vaqt")

@@ -1,18 +1,17 @@
 {% extends "dashboard/base_dashboard.html" %}
-
 {% load i18n %}
+
 {% block title %}{% trans "Bemor kartasi" %}{% endblock %}
 
 {% block page_title %}{% trans "Bemor kartasi" %}{% endblock %}
 
 {% block page_subtitle %}
-{% trans "Bemorning to‘liq elektron kartotekasi: ariza va yakuniy ko‘riklar tarixi" %}
+{% trans "Bemorning to‘liq elektron kartotekasi, ariza ma’lumotlari va yakuniy ko‘riklar tarixi" %}
 {% endblock %}
 
 {% block content %}
 
 <div class="compact-stats-grid">
-
     <div class="compact-stat-card">
         <div class="compact-stat-icon stat-blue">
             <i class="fa-solid fa-id-card"></i>
@@ -33,6 +32,21 @@
         </div>
     </div>
 
+    <div class="compact-stat-card">
+        <div class="compact-stat-icon stat-green">
+            <i class="fa-solid fa-user-doctor"></i>
+        </div>
+        <div>
+            <h3>
+                {% if patient.selected_doctor %}
+                    {{ patient.selected_doctor.full_name|truncatechars:18 }}
+                {% else %}
+                    -
+                {% endif %}
+            </h3>
+            <p>{% trans "Biriktirilgan veterinar" %}</p>
+        </div>
+    </div>
 </div>
 
 
@@ -42,12 +56,15 @@
             <i class="fa-solid fa-paw"></i>
             {% trans "Bemor ma’lumotlari" %}
         </h2>
+
+        <span class="status-badge status-pending">
+            {{ patient.get_status_display|default:"-" }}
+        </span>
     </div>
 
     <div class="compact-info-grid">
-
         <div class="compact-info-card">
-            <span>{% trans "F.I.Sh" %}</span>
+            <span>{% trans "Mijoz F.I.Sh." %}</span>
             <strong>{{ patient.full_name|default:"-" }}</strong>
         </div>
 
@@ -62,6 +79,11 @@
         </div>
 
         <div class="compact-info-card">
+            <span>{% trans "Telegram ID" %}</span>
+            <strong>{{ patient.telegram_id|default:"-" }}</strong>
+        </div>
+
+        <div class="compact-info-card">
             <span>{% trans "Hayvon nomi" %}</span>
             <strong>{{ patient.animal_name|default:"-" }}</strong>
         </div>
@@ -69,11 +91,6 @@
         <div class="compact-info-card">
             <span>{% trans "Hayvon turi" %}</span>
             <strong>{{ patient.get_animal_type_display|default:patient.animal_type }}</strong>
-        </div>
-
-        <div class="compact-info-card">
-            <span>{% trans "Hozirgi holati" %}</span>
-            <strong>{{ patient.get_status_display|default:"-" }}</strong>
         </div>
 
         <div class="compact-info-card">
@@ -96,7 +113,6 @@
             <span>{% trans "Oxirgi yangilanish" %}</span>
             <strong>{{ patient.updated_at|date:"d.m.Y H:i" }}</strong>
         </div>
-
     </div>
 </div>
 
@@ -105,17 +121,87 @@
     <div class="compact-panel-header">
         <h2>
             <i class="fa-solid fa-note-sticky"></i>
-            {% trans "Telegram ariza / Izoh" %}
+            {% trans "Ariza izohi" %}
         </h2>
     </div>
 
     <div class="compact-text-grid">
         <div class="compact-text-card">
-            <h3>{% trans "Ariza izohi" %}</h3>
-            <p>{{ patient.note|default:"Izoh mavjud emas." }}</p>
+            <h3>{% trans "Telegram / telefon orqali kelgan ariza" %}</h3>
+            <p>{{ patient.note|default:"Izoh mavjud emas."|linebreaksbr }}</p>
         </div>
     </div>
 </div>
+
+
+{% if can_finish_visit %}
+<div class="panel final-exam-panel{% if finish_mode %} final-exam-active{% endif %}" id="final-exam">
+    <div class="panel-header">
+        <h2>
+            <i class="fa-solid fa-stethoscope"></i>
+            {% trans "Yakuniy ko‘rik xulosasi" %}
+        </h2>
+
+        <span class="status-badge status-assigned">
+            {% trans "Veterinar to‘ldiradi" %}
+        </span>
+    </div>
+
+    <div class="panel-body">
+        <form method="post" action="{% url 'vet_complete_application' patient.id %}" class="final-exam-form">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>
+                    {% trans "Umumiy xulosa" %}
+                    <span class="required">*</span>
+                </label>
+                <textarea
+                    name="final_conclusion"
+                    rows="4"
+                    required
+                    placeholder="{% trans 'Masalan: Hayvon umumiy ko‘rikdan o‘tkazildi, holati barqaror...' %}"
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>{% trans "Tavsiya" %}</label>
+                <textarea
+                    name="recommendation"
+                    rows="3"
+                    placeholder="{% trans 'Masalan: 3 kun dori berish, ovqatlanishni nazorat qilish...' %}"
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>{% trans "Qo‘shimcha izoh" %}</label>
+                <textarea
+                    name="extra_note"
+                    rows="3"
+                    placeholder="{% trans 'Qo‘shimcha ma’lumot...' %}"
+                ></textarea>
+            </div>
+
+            <div class="compact-action-row">
+                <button type="submit" name="final_action" value="save_only" class="btn btn-light">
+                    <i class="fa-regular fa-floppy-disk"></i>
+                    {% trans "Saqlash" %}
+                </button>
+
+                <button type="submit" name="final_action" value="complete" class="btn btn-green">
+                    <i class="fa-regular fa-circle-check"></i>
+                    {% trans "Yakunlash" %}
+                </button>
+
+                <button type="submit" name="final_action" value="complete_send" class="btn btn-blue">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    {% trans "Yakunlash va Telegramga yuborish" %}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endif %}
 
 
 <div class="panel">
@@ -132,8 +218,9 @@
                 <tr>
                     <th>{% trans "Ko‘rik kodi" %}</th>
                     <th>{% trans "Veterinar" %}</th>
-                    <th>{% trans "Tashxis" %}</th>
-                    <th>{% trans "Telegramga yuborilgan" %}</th>
+                    <th>{% trans "Xulosa" %}</th>
+                    <th>{% trans "Tavsiya / davolash" %}</th>
+                    <th>{% trans "Telegram" %}</th>
                     <th>{% trans "Ko‘rik vaqti" %}</th>
                 </tr>
             </thead>
@@ -141,9 +228,7 @@
             <tbody>
                 {% for visit in visits %}
                     <tr>
-                        <td>
-                            <strong>{{ visit.visit_code|default:"-" }}</strong>
-                        </td>
+                        <td><strong>{{ visit.visit_code|default:"-" }}</strong></td>
 
                         <td>
                             {% if visit.doctor %}
@@ -157,11 +242,19 @@
                             {{ visit.diagnosis|default:"-"|truncatechars:120 }}
                         </td>
 
+                        <td class="text-limit">
+                            {{ visit.treatment|default:"-"|truncatechars:120 }}
+                        </td>
+
                         <td>
                             {% if visit.is_sent %}
-                                <span class="status-badge status-completed">{% trans "Yuborilgan" %}</span>
+                                <span class="status-badge status-completed">
+                                    {% trans "Yuborilgan" %}
+                                </span>
                             {% else %}
-                                <span class="status-badge status-pending">{% trans "Yuborilmagan" %}</span>
+                                <span class="status-badge status-pending">
+                                    {% trans "Yuborilmagan" %}
+                                </span>
                             {% endif %}
                         </td>
 
@@ -169,7 +262,7 @@
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="5">
+                        <td colspan="6" style="text-align: center; color: #64748b; padding: 28px;">
                             {% trans "Yakuniy ko‘riklar mavjud emas." %}
                         </td>
                     </tr>
@@ -181,9 +274,9 @@
 
 
 <div class="compact-action-row" style="margin-top: 18px;">
-    <a href="/dashboard/" class="btn btn-light">
+    <a href="{{ back_url|default:'/dashboard/' }}" class="btn btn-light">
         <i class="fa-solid fa-arrow-left"></i>
-        {% trans "Dashboardga qaytish" %}
+        {% trans "Orqaga qaytish" %}
     </a>
 </div>
 

@@ -22,35 +22,71 @@
             <thead>
                 <tr>
                     <th>{% trans "Veterinar" %}</th>
-                    <th>{% trans "Telefon" %}</th>
-                    <th>{% trans "Mutaxassislik" %}</th>
-                    <th>{% trans "Joriy holat" %}</th>
-                    <th>{% trans "Faol arizalar" %}</th>
-                    <th>{% trans "Geolokatsiya" %}</th>
+                    <th>{% trans "Holati" %}</th>
+                    <th>{% trans "Joriy vazifa" %}</th>
+                    <th>{% trans "Oxirgi lokatsiya" %}</th>
+                    <th>{% trans "Klinikadan uzoqligi" %}</th>
+                    <th>{% trans "Mijozgacha masofa" %}</th>
+                    <th>{% trans "Status" %}</th>
+                    <th>{% trans "Amal" %}</th>
                 </tr>
             </thead>
             <tbody>
                 {% for item in doctors %}
                     <tr>
-                        <td><strong>{{ item.profile.full_name }}</strong></td>
-                        <td>{{ item.profile.phone|default:"-" }}</td>
-                        <td>{{ item.profile.specialization|default:"-" }}</td>
+                        <td>
+                            <strong>{{ item.profile.full_name }}</strong>
+                            <small class="table-subtext">{{ item.profile.phone|default:"-" }}</small>
+                        </td>
                         <td>
                             <span class="status-badge {{ item.status.class }}">
                                 <i class="{{ item.status.icon }}"></i>
                                 {{ item.status.label }}
                             </span>
                         </td>
-                        <td>{{ item.active_count }}</td>
                         <td>
-                            <span class="status-badge status-new">
-                                {% trans "Keyingi bosqichda" %}
+                            {% if item.current_task %}
+                                <strong>{{ item.current_task.patient_code }}</strong>
+                                <small class="table-subtext">
+                                    {{ item.current_task.service_label }} · {{ item.current_task.full_name }}
+                                </small>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if item.last_location_at %}
+                                {{ item.last_location_at|date:"d.m.Y H:i" }}
+                                {% if item.profile.last_location_accuracy %}
+                                    <small class="table-subtext">
+                                        {% blocktrans with accuracy=item.profile.last_location_accuracy|floatformat:0 %}Aniqlik: {{ accuracy }} m{% endblocktrans %}
+                                    </small>
+                                {% endif %}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        <td>{{ item.clinic_distance }}</td>
+                        <td>{{ item.customer_distance }}</td>
+                        <td>
+                            <span class="status-badge {{ item.movement_status.class }}">
+                                {{ item.movement_status.label }}
                             </span>
+                        </td>
+                        <td>
+                            {% if item.map_url %}
+                                <a href="{{ item.map_url }}" target="_blank" class="btn btn-light btn-sm">
+                                    <i class="fa-solid fa-map-location-dot"></i>
+                                    {% trans "Xaritada ko‘rish" %}
+                                </a>
+                            {% else %}
+                                <span class="status-badge status-pending">{% trans "Koordinata yo‘q" %}</span>
+                            {% endif %}
                         </td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="6" class="empty-text">
+                        <td colspan="8" class="empty-text">
                             {% trans "Faol veterinar xodimlar topilmadi." %}
                         </td>
                     </tr>

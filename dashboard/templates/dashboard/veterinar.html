@@ -14,7 +14,7 @@
     </div>
     <div>
         <span>{% trans "Geolokatsiya holati" %}</span>
-        <strong>{{ location_status }}</strong>
+        <strong id="vetLocationStatus">{{ location_status }}</strong>
     </div>
     <div>
         <span>{% trans "Veterinar" %}</span>
@@ -115,5 +115,65 @@
         {% endfor %}
     </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const statusElement = document.getElementById("vetLocationStatus");
+    const updateUrl = "{% url 'vet_update_location' %}";
+    const csrfToken = "{{ csrf_token }}";
+
+    function setStatus(text) {
+        if (statusElement && text) {
+            statusElement.textContent = text;
+        }
+    }
+
+    function sendPosition(position) {
+        fetch(updateUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken
+            },
+            body: JSON.stringify({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                accuracy: position.coords.accuracy
+            })
+        })
+            .then(function (response) { return response.json(); })
+            .then(function (data) {
+                if (data.ok) {
+                    setStatus(data.status_label || "🟢 Faol");
+                } else {
+                    setStatus("🔴 Aloqa yo‘q");
+                }
+            })
+            .catch(function () {
+                setStatus("🔴 Aloqa yo‘q");
+            });
+    }
+
+    function requestAndSendLocation() {
+        if (!navigator.geolocation) {
+            setStatus("🔴 Aloqa yo‘q");
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            sendPosition,
+            function () { setStatus("🔴 Aloqa yo‘q"); },
+            {
+                enableHighAccuracy: true,
+                timeout: 15000,
+                maximumAge: 30000
+            }
+        );
+    }
+
+    requestAndSendLocation();
+    window.setInterval(requestAndSendLocation, 60000);
+});
+</script>
 
 {% endblock %}

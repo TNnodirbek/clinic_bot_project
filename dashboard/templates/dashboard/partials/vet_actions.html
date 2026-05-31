@@ -1,27 +1,41 @@
 {% load i18n %}
 
-<div class="vet-card-actions">
+<div class="vet-card-actions vet-actions-simple">
     <a href="{% url 'patient_card' patient.id %}" class="btn btn-light btn-sm">
         <i class="fa-solid fa-id-card"></i>
         {% trans "Bemor kartasi" %}
     </a>
 
-    <form method="post" action="{% url 'vet_update_application_stage' patient.id 'accepted' %}">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-blue btn-sm">
-            <i class="fa-solid fa-check"></i>
-            {% trans "Qabul qildim" %}
-        </button>
-    </form>
-
-    {% if patient.can_travel %}
-        <form method="post" action="{% url 'vet_update_application_stage' patient.id 'on_way' %}">
+    {% if not patient.is_accepted %}
+        <form method="post" action="{% url 'vet_update_application_stage' patient.id 'accepted' %}">
             {% csrf_token %}
-            <button type="submit" class="btn btn-orange btn-sm">
-                <i class="fa-solid fa-route"></i>
-                {% trans "Yo‘lga chiqdim" %}
+            <button type="submit" class="btn btn-blue btn-sm">
+                <i class="fa-solid fa-check"></i>
+                {% trans "Qabul qildim" %}
             </button>
         </form>
+    {% else %}
+        <span class="status-badge status-assigned">
+            <i class="fa-solid fa-check"></i>
+            {% trans "Qabul qildi" %}
+        </span>
+    {% endif %}
+
+    {% if patient.can_travel %}
+        {% if not patient.is_on_way %}
+            <form method="post" action="{% url 'vet_update_application_stage' patient.id 'on_way' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-orange btn-sm">
+                    <i class="fa-solid fa-route"></i>
+                    {% trans "Yo‘lga chiqdim" %}
+                </button>
+            </form>
+        {% else %}
+            <span class="status-badge status-pending">
+                <i class="fa-solid fa-route"></i>
+                {% trans "Yo‘lda" %}
+            </span>
+        {% endif %}
 
         {% if patient.map_url %}
             <a href="{{ patient.map_url }}" target="_blank" class="btn btn-light btn-sm">
@@ -30,29 +44,41 @@
             </a>
         {% endif %}
 
-        <form method="post" action="{% url 'vet_update_application_stage' patient.id 'arrived' %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-purple btn-sm">
+        {% if not patient.is_arrived %}
+            <form method="post" action="{% url 'vet_update_application_stage' patient.id 'arrived' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-green btn-sm">
+                    <i class="fa-solid fa-location-dot"></i>
+                    {% trans "Yetib bordim" %}
+                </button>
+            </form>
+        {% else %}
+            <span class="status-badge status-completed">
                 <i class="fa-solid fa-location-dot"></i>
-                {% trans "Yetib bordim" %}
-            </button>
-        </form>
+                {% trans "Yetib bordi" %}
+            </span>
+        {% endif %}
     {% else %}
-        <form method="post" action="{% url 'vet_update_application_stage' patient.id 'in_progress' %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-orange btn-sm">
-                <i class="fa-regular fa-hourglass-half"></i>
+        {% if not patient.is_in_progress %}
+            <form method="post" action="{% url 'vet_update_application_stage' patient.id 'in_progress' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-orange btn-sm">
+                    <i class="fa-solid fa-spinner"></i>
+                    {% trans "Jarayonda" %}
+                </button>
+            </form>
+        {% else %}
+            <span class="status-badge status-pending">
+                <i class="fa-solid fa-spinner"></i>
                 {% trans "Jarayonda" %}
-            </button>
-        </form>
+            </span>
+        {% endif %}
     {% endif %}
 
-    <form method="post" action="{% url 'vet_complete_application' patient.id %}" class="vet-complete-form">
-        {% csrf_token %}
-        <input type="text" name="vet_comment" placeholder="{% trans 'Izoh...' %}">
-        <button type="submit" class="btn btn-green btn-sm">
-            <i class="fa-regular fa-circle-check"></i>
-            {% trans "Yakunlash" %}
-        </button>
-    </form>
+    <a href="{% url 'patient_card' patient.id %}?finish=1#final-exam"
+       class="btn btn-green btn-sm">
+        <i class="fa-regular fa-circle-check"></i>
+        {% trans "Yakunlash" %}
+    </a>
+
 </div>
