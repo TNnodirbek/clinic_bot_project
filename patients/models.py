@@ -106,6 +106,13 @@ class Pet(models.Model):
 
 
 class DoctorProfile(models.Model):
+    STATUS_CHOICES = [
+        ("free", _("Bo‘sh")),
+        ("clinic", _("Klinikada")),
+        ("on_call", _("Chaqiruvda")),
+        ("busy", _("Band")),
+    ]
+
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
@@ -141,6 +148,13 @@ class DoctorProfile(models.Model):
     is_active = models.BooleanField(
         default=True,
         verbose_name=_("Faolmi?")
+    )
+    current_status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="free",
+        db_index=True,
+        verbose_name=_("Joriy holat")
     )
     last_latitude = models.DecimalField(
         max_digits=9,
@@ -187,6 +201,8 @@ class NewPatient(models.Model):
     STATUS_CHOICES = [
         ("new", _("Yangi ariza")),
         ("assigned_to_vet", _("Veterinarga yuborildi")),
+        ("en_route", _("Yo‘lda")),
+        ("arrived", _("Yetib bordi")),
         ("sent_to_lab", _("Laboratoriyaga yuborildi")),
         ("sent_to_diagnostic", _("Diagnostikaga yuborildi")),
         ("returned_to_vet", _("Veterinarga qaytdi")),
@@ -199,6 +215,11 @@ class NewPatient(models.Model):
     ]
 
     ANIMAL_TYPES = Pet.ANIMAL_TYPES
+    SERVICE_TYPES = [
+        ("clinic", _("Klinikada davolash")),
+        ("vet_call", _("Veterinar chaqirish")),
+        ("danger", _("Xavfli holat")),
+    ]
 
     patient_code = models.CharField(
         max_length=20,
@@ -237,6 +258,33 @@ class NewPatient(models.Model):
         blank=True,
         null=True,
         verbose_name=_("Hayvon turi")
+    )
+    service_type = models.CharField(
+        max_length=20,
+        choices=SERVICE_TYPES,
+        default="clinic",
+        db_index=True,
+        verbose_name=_("Xizmat turi")
+    )
+    address_text = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        verbose_name=_("Manzil")
+    )
+    latitude = models.DecimalField(
+        max_digits=9,
+        decimal_places=6,
+        blank=True,
+        null=True,
+        verbose_name=_("Kenglik")
+    )
+    longitude = models.DecimalField(
+        max_digits=9,
+        decimal_places=6,
+        blank=True,
+        null=True,
+        verbose_name=_("Uzunlik")
     )
 
     selected_doctor = models.ForeignKey(

@@ -21,7 +21,7 @@
         </label>
 
         <a href="{% url 'website:home' %}" class="logo" aria-label="VetClinic">
-            <span class="logo-icon">♡</span>
+            <img src="{% static 'website/images/vet-logo.png' %}" alt="VetClinic" class="site-logo-image">
             <span class="brand-text">Vet<span>Clinic</span></span>
         </a>
 
@@ -68,7 +68,7 @@
     <div class="container footer-grid">
         <div class="footer-brand">
             <a href="{% url 'website:home' %}" class="footer-logo">
-                <span class="logo-icon">♡</span>
+                <img src="{% static 'website/images/vet-logo.png' %}" alt="VetClinic" class="site-logo-image">
                 <span>Vet<span>Clinic</span></span>
             </a>
             <p>{% trans "Hayvonlar sog‘lig‘i uchun zamonaviy veterinariya xizmatlari va elektron kartoteka tizimi." %}</p>

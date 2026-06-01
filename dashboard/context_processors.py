@@ -1,5 +1,7 @@
 from django.utils.translation import gettext as _
-from patients.models import NewPatient
+from django.utils import timezone
+from django.db.models import Q
+from patients.models import NewPatient, DoctorProfile
 
 
 def user_in_group(user, group_name):
@@ -22,16 +24,16 @@ def dashboard_notifications(request):
     if user.is_superuser or user_in_group(user, "Administrator"):
         new_patients = NewPatient.objects.filter(status="new")
 
-        clinic_count = new_patients.exclude(
-            note__icontains="Veterinar chaqirish"
+        clinic_count = new_patients.filter(
+            service_type="clinic"
         ).exclude(
-            note__icontains="Xavfli holat"
+            Q(note__icontains="Veterinar chaqirish") | Q(note__icontains="Xavfli holat")
         ).count()
         call_count = new_patients.filter(
-            note__icontains="Veterinar chaqirish"
+            Q(service_type="vet_call") | Q(note__icontains="Veterinar chaqirish")
         ).count()
         danger_count = new_patients.filter(
-            note__icontains="Xavfli holat"
+            Q(service_type="danger") | Q(note__icontains="Xavfli holat")
         ).count()
 
         notification_items = [
@@ -54,6 +56,47 @@ def dashboard_notifications(request):
                 "message": _("%(count)s ta yangi xabar") % {"count": danger_count},
                 "icon": "fa-solid fa-triangle-exclamation",
                 "url": "/dashboard/administrator/?service=danger#new-applications",
+                "count": danger_count,
+            },
+        ]
+
+        notifications.extend(
+            item for item in notification_items if item["count"] > 0
+        )
+
+    elif user_in_group(user, "Veterinar"):
+        doctor = DoctorProfile.objects.filter(user=user, is_active=True).first()
+        assigned_patients = NewPatient.objects.filter(selected_doctor=doctor) if doctor else NewPatient.objects.none()
+        active_patients = assigned_patients.exclude(status__in=["new", "completed", "cancelled"])
+
+        today_count = assigned_patients.filter(
+            created_at__date=timezone.localdate()
+        ).exclude(status="cancelled").count()
+        assigned_count = active_patients.filter(status="assigned_to_vet").count()
+        danger_count = active_patients.filter(
+            Q(service_type="danger") | Q(note__icontains="Xavfli holat")
+        ).count()
+
+        notification_items = [
+            {
+                "title": _("Bugungi arizalarim"),
+                "message": _("%(count)s ta bugungi ariza") % {"count": today_count},
+                "icon": "fa-regular fa-clipboard",
+                "url": "/dashboard/veterinar/?scope=today#my-applications",
+                "count": today_count,
+            },
+            {
+                "title": _("Yangi biriktirilgan"),
+                "message": _("%(count)s ta qabul qilinmagan ariza") % {"count": assigned_count},
+                "icon": "fa-solid fa-user-doctor",
+                "url": "/dashboard/veterinar/#my-applications",
+                "count": assigned_count,
+            },
+            {
+                "title": _("Xavfli holatlar"),
+                "message": _("%(count)s ta xavfli holat") % {"count": danger_count},
+                "icon": "fa-solid fa-triangle-exclamation",
+                "url": "/dashboard/veterinar/?service=danger#my-applications",
                 "count": danger_count,
             },
         ]

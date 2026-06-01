@@ -7,19 +7,19 @@
     <title>{% block title %}{% trans "Vet Clinic Dashboard" %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}?v=vet-workflow-1">
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}?v=help-1">
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body>
+<body class="{% if dashboard_is_vet_user %}is-vet-dashboard{% elif dashboard_is_admin_user %}is-admin-dashboard{% endif %}">
 
 <div class="dashboard-layout">
 
     <aside class="sidebar">
         <div class="sidebar-logo">
             <img
-                src="{% static 'dashboard/images/vet-logo.svg' %}"
+                src="{% static 'dashboard/images/vet-logo.png' %}"
                 alt="{% trans 'VET Farm & Pet Clinic' %}"
                 class="sidebar-logo-image"
             >
@@ -135,6 +135,39 @@
 
     <main class="main-content">
 
+        {% if dashboard_is_vet_user %}
+            <header class="mobile-vet-global-header">
+                <button type="button" data-mobile-sidebar-open aria-label="{% trans 'Menyu' %}">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <strong>
+                    {% if request.resolver_match.url_name == "vet_profile" %}
+                        {% trans "Profil" %}
+                    {% elif request.resolver_match.url_name == "vet_history" %}
+                        {% trans "Tarix" %}
+                    {% elif request.resolver_match.url_name == "vet_route_page" %}
+                        {% trans "Marshrut" %}
+                    {% elif request.resolver_match.url_name == "vet_application_detail" %}
+                        {% trans "Ariza tafsilotlari" %}
+                    {% else %}
+                        {% trans "Veterinar dashboard" %}
+                    {% endif %}
+                </strong>
+                <div class="mobile-vet-topbar-actions">
+                    <button type="button" class="mobile-help-button" data-help-open aria-label="{% trans 'Yordam' %}">
+                        <i class="fa-solid fa-question"></i>
+                    </button>
+                    <button type="button" class="mobile-bell" data-mobile-notification-open aria-label="{% trans 'Bildirishnomalar' %}">
+                        <i class="fa-regular fa-bell"></i>
+                        {% if dashboard_notification_count > 0 %}<b>{{ dashboard_notification_count }}</b>{% endif %}
+                    </button>
+                    <a href="{% url 'vet_profile' %}" class="mobile-avatar" aria-label="{% trans 'Profil' %}">
+                        {{ request.user.username|slice:":1"|upper }}
+                    </a>
+                </div>
+            </header>
+        {% endif %}
+
         <header class="top-navbar">
             <div class="navbar-left">
                 <h1>{% block page_title %}{% trans "Dashboard" %}{% endblock %}</h1>
@@ -201,6 +234,12 @@
                     </div>
                 </div>
 
+                {% if dashboard_is_admin_user or dashboard_is_vet_user %}
+                    <button type="button" class="dashboard-help-button" data-help-open aria-label="{% trans 'Yordam' %}">
+                        <i class="fa-solid fa-question"></i>
+                    </button>
+                {% endif %}
+
                 <div class="user-box">
                     <div class="user-avatar">
                         {{ request.user.username|slice:":1"|upper }}
@@ -239,11 +278,130 @@
     </main>
 </div>
 
+{% if dashboard_is_admin_user or dashboard_is_vet_user %}
+    <button type="button" class="floating-help-button" data-help-open aria-label="{% trans 'Yordam' %}">
+        <i class="fa-solid fa-question"></i>
+    </button>
+
+    <div class="help-modal-backdrop" data-help-close></div>
+    <section class="help-modal" role="dialog" aria-modal="true" aria-label="{% trans 'Yordam va aloqa' %}">
+        <div class="help-modal-header">
+            <div>
+                <span>{% trans "Yordam markazi" %}</span>
+                <h2>{% trans "Savol, taklif yoki shikoyat" %}</h2>
+            </div>
+            <button type="button" data-help-close aria-label="{% trans 'Yopish' %}">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="help-contact-grid">
+            <a href="tel:+998952738015" class="help-contact-card">
+                <i class="fa-solid fa-phone"></i>
+                <span>
+                    <strong>{% trans "Qo‘ng‘iroq qilish" %}</strong>
+                    <small>+998-95-273-80-15</small>
+                </span>
+            </a>
+            <a href="https://t.me/nnodirbek" target="_blank" class="help-contact-card">
+                <i class="fa-brands fa-telegram"></i>
+                <span>
+                    <strong>Telegram</strong>
+                    <small>@nnodirbek</small>
+                </span>
+            </a>
+        </div>
+
+        <label class="help-message-box">
+            <span>{% trans "Tushunmovchilik, taklif yoki shikoyatingizni yozing" %}</span>
+            <textarea id="helpMessageInput" rows="5" placeholder="{% trans 'Masalan: Veterinar dashboardda ariza statusini topa olmadim...' %}"></textarea>
+        </label>
+
+        <div class="help-modal-actions">
+            <button type="button" class="btn btn-light" data-help-copy>
+                <i class="fa-regular fa-copy"></i>
+                {% trans "Matnni nusxalash" %}
+            </button>
+            <button type="button" class="btn btn-blue" data-help-telegram>
+                <i class="fa-brands fa-telegram"></i>
+                {% trans "Telegramga yozish" %}
+            </button>
+        </div>
+
+        <p class="help-copy-status" id="helpCopyStatus"></p>
+    </section>
+{% endif %}
+
+{% if dashboard_is_vet_user %}
+    <div class="mobile-sidebar-backdrop" data-mobile-sidebar-close></div>
+
+    <div class="mobile-notification-backdrop" data-mobile-notification-close></div>
+    <section class="mobile-notification-sheet" aria-label="{% trans 'Bildirishnomalar' %}">
+        <div class="mobile-notification-sheet-header">
+            <strong>{% trans "Bildirishnomalar" %}</strong>
+            <button type="button" data-mobile-notification-close aria-label="{% trans 'Yopish' %}">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        {% if dashboard_notifications %}
+            {% for item in dashboard_notifications %}
+                <a href="{{ item.url }}" class="mobile-notification-item">
+                    <span><i class="{{ item.icon }}"></i></span>
+                    <div>
+                        <strong>{{ item.title }}</strong>
+                        <small>{{ item.message }}</small>
+                    </div>
+                    <b>{{ item.count }}</b>
+                </a>
+            {% endfor %}
+        {% else %}
+            <div class="mobile-notification-empty">
+                <i class="fa-regular fa-circle-check"></i>
+                <p>{% trans "Yangi bildirishnoma yo‘q" %}</p>
+            </div>
+        {% endif %}
+    </section>
+
+    <nav class="vet-bottom-nav" aria-label="{% trans 'Veterinar mobil menyu' %}">
+        <a href="{% url 'veterinar_dashboard' %}"
+           class="{% if request.resolver_match.url_name == 'veterinar_dashboard' and not request.GET.service and not request.GET.scope %}active{% endif %}">
+            <i class="fa-solid fa-house"></i>
+            <span>{% trans "Dashboard" %}</span>
+        </a>
+        <a href="{% url 'veterinar_dashboard' %}#my-applications"
+           class="{% if request.resolver_match.url_name == 'vet_application_detail' or request.resolver_match.url_name == 'vet_route_page' or request.resolver_match.url_name == 'veterinar_dashboard' and request.GET.scope or request.resolver_match.url_name == 'veterinar_dashboard' and request.GET.service and request.GET.service != 'vet_call' %}active{% endif %}">
+            <i class="fa-solid fa-list-check"></i>
+            <span>{% trans "Arizalarim" %}</span>
+        </a>
+        <a href="{% url 'veterinar_dashboard' %}?service=vet_call#my-applications"
+           class="{% if request.resolver_match.url_name == 'veterinar_dashboard' and request.GET.service == 'vet_call' %}active{% endif %}">
+            <i class="fa-solid fa-phone"></i>
+            <span>{% trans "Chaqiruvlar" %}</span>
+        </a>
+        <a href="{% url 'vet_profile' %}"
+           class="{% if request.resolver_match.url_name == 'vet_profile' %}active{% endif %}">
+            <i class="fa-regular fa-user"></i>
+            <span>{% trans "Profil" %}</span>
+        </a>
+    </nav>
+{% endif %}
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("dashboardSearchInput");
     const notificationDropdown = document.querySelector(".notification-dropdown");
     const submenuToggles = document.querySelectorAll("[data-submenu-toggle]");
+    const sidebarOpenButton = document.querySelector("[data-mobile-sidebar-open]");
+    const sidebarCloseTargets = document.querySelectorAll("[data-mobile-sidebar-close], .sidebar a");
+    const mobileNotificationOpen = document.querySelector("[data-mobile-notification-open]");
+    const mobileNotificationCloseTargets = document.querySelectorAll("[data-mobile-notification-close], .mobile-notification-backdrop");
+    const helpOpenButtons = document.querySelectorAll("[data-help-open]");
+    const helpCloseTargets = document.querySelectorAll("[data-help-close], .help-modal-backdrop");
+    const helpCopyButton = document.querySelector("[data-help-copy]");
+    const helpTelegramButton = document.querySelector("[data-help-telegram]");
+    const helpMessageInput = document.getElementById("helpMessageInput");
+    const helpCopyStatus = document.getElementById("helpCopyStatus");
 
     submenuToggles.forEach(function (toggle) {
         const submenu = toggle.nextElementSibling;
@@ -273,6 +431,81 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!notificationDropdown.contains(event.target)) {
                 notificationDropdown.classList.remove("open");
             }
+        });
+    }
+
+    if (sidebarOpenButton) {
+        sidebarOpenButton.addEventListener("click", function () {
+            document.body.classList.add("mobile-sidebar-open");
+            document.body.classList.remove("mobile-notification-open");
+        });
+    }
+
+    sidebarCloseTargets.forEach(function (target) {
+        target.addEventListener("click", function () {
+            document.body.classList.remove("mobile-sidebar-open");
+        });
+    });
+
+    if (mobileNotificationOpen) {
+        mobileNotificationOpen.addEventListener("click", function () {
+            document.body.classList.toggle("mobile-notification-open");
+            document.body.classList.remove("mobile-sidebar-open");
+        });
+    }
+
+    mobileNotificationCloseTargets.forEach(function (target) {
+        target.addEventListener("click", function () {
+            document.body.classList.remove("mobile-notification-open");
+        });
+    });
+
+    helpOpenButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            document.body.classList.add("help-modal-open");
+            document.body.classList.remove("mobile-sidebar-open", "mobile-notification-open");
+        });
+    });
+
+    helpCloseTargets.forEach(function (target) {
+        target.addEventListener("click", function () {
+            document.body.classList.remove("help-modal-open");
+        });
+    });
+
+    function getHelpText() {
+        const message = helpMessageInput ? helpMessageInput.value.trim() : "";
+        return [
+            "Dashboard yordam so‘rovi",
+            "Foydalanuvchi: {{ request.user.get_full_name|default:request.user.username|escapejs }}",
+            "Sahifa: {{ request.get_full_path|escapejs }}",
+            "",
+            message || "Savol/taklif/shikoyat matni yozilmadi."
+        ].join("\\n");
+    }
+
+    function copyHelpText() {
+        const text = getHelpText();
+
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).then(function () {
+                if (helpCopyStatus) helpCopyStatus.textContent = "{% trans 'Matn nusxalandi. Telegramga joylab yuborishingiz mumkin.' %}";
+            }).catch(function () {
+                if (helpCopyStatus) helpCopyStatus.textContent = "{% trans 'Matnni nusxalash imkoni bo‘lmadi.' %}";
+            });
+        } else if (helpCopyStatus) {
+            helpCopyStatus.textContent = "{% trans 'Brauzer nusxalashni qo‘llab-quvvatlamadi.' %}";
+        }
+    }
+
+    if (helpCopyButton) {
+        helpCopyButton.addEventListener("click", copyHelpText);
+    }
+
+    if (helpTelegramButton) {
+        helpTelegramButton.addEventListener("click", function () {
+            copyHelpText();
+            window.open("https://t.me/nnodirbek", "_blank", "noopener");
         });
     }
 

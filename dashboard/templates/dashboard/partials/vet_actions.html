@@ -1,11 +1,22 @@
 {% load i18n %}
 
 <div class="vet-card-actions vet-actions-simple">
-    <a href="{% url 'patient_card' patient.id %}" class="btn btn-light btn-sm">
-        <i class="fa-solid fa-id-card"></i>
-        {% trans "Bemor kartasi" %}
+    <a href="{% url 'vet_application_detail' patient.id %}" class="btn btn-light btn-sm">
+        <i class="fa-solid fa-file-medical"></i>
+        {% trans "Ariza tafsiloti" %}
     </a>
 
+    {% if patient.status == "completed" %}
+        <a href="{% url 'patient_card' patient.id %}" class="btn btn-light btn-sm">
+            <i class="fa-solid fa-id-card"></i>
+            {% trans "Bemor kartasi" %}
+        </a>
+    {% elif patient.status == "cancelled" %}
+        <span class="status-badge status-cancelled">
+            <i class="fa-solid fa-xmark"></i>
+            {% trans "Bekor qilingan" %}
+        </span>
+    {% else %}
     {% if not patient.is_accepted %}
         <form method="post" action="{% url 'vet_update_application_stage' patient.id 'accepted' %}">
             {% csrf_token %}
@@ -27,7 +38,7 @@
                 {% csrf_token %}
                 <button type="submit" class="btn btn-orange btn-sm">
                     <i class="fa-solid fa-route"></i>
-                    {% trans "Yo‘lga chiqdim" %}
+                    {% trans "Yo‘lni boshlash" %}
                 </button>
             </form>
         {% else %}
@@ -37,25 +48,15 @@
             </span>
         {% endif %}
 
-        {% if patient.map_url %}
-            <a href="{{ patient.map_url }}" target="_blank" class="btn btn-light btn-sm">
-                <i class="fa-solid fa-map-location-dot"></i>
-                {% trans "Xaritada ko‘rish" %}
-            </a>
-        {% endif %}
+        <a href="{% url 'vet_route_page' patient.id %}" class="btn btn-light btn-sm">
+            <i class="fa-solid fa-map-location-dot"></i>
+            {% trans "Marshrutni ko‘rish" %}
+        </a>
 
-        {% if not patient.is_arrived %}
-            <form method="post" action="{% url 'vet_update_application_stage' patient.id 'arrived' %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-green btn-sm">
-                    <i class="fa-solid fa-location-dot"></i>
-                    {% trans "Yetib bordim" %}
-                </button>
-            </form>
-        {% else %}
+        {% if patient.is_arrived %}
             <span class="status-badge status-completed">
-                <i class="fa-solid fa-location-dot"></i>
-                {% trans "Yetib bordi" %}
+                <i class="fa-solid fa-map-location-dot"></i>
+                {% trans "Avtomatik yetib bordi" %}
             </span>
         {% endif %}
     {% else %}
@@ -80,5 +81,6 @@
         <i class="fa-regular fa-circle-check"></i>
         {% trans "Yakunlash" %}
     </a>
+    {% endif %}
 
 </div>

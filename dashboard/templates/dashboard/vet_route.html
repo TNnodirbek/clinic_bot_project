@@ -1,0 +1,115 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% load i18n %}
+{% block title %}{{ patient.patient_code|default:"-" }} — {% trans "Marshrut" %}{% endblock %}
+{% block page_title %}{{ patient.patient_code|default:"-" }}{% endblock %}
+{% block page_subtitle %}{% trans "Mijoz manziligacha marshrut va ish holati" %}{% endblock %}
+
+{% block content %}
+
+<div class="mobile-page-shell route-page-shell">
+    <div class="mobile-page-header">
+        <a href="{% url 'veterinar_dashboard' %}#my-applications" aria-label="{% trans 'Orqaga' %}">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <strong>{{ patient.patient_code|default:"-" }}</strong>
+        <span></span>
+    </div>
+
+    <div class="route-summary-grid">
+        <div>
+            <i class="fa-solid fa-location-dot"></i>
+            <strong>{{ patient.route_distance_text|default:"-" }}</strong>
+            <span>{% trans "Masofa" %}</span>
+        </div>
+        <div>
+            <i class="fa-regular fa-clock"></i>
+            <strong>{{ patient.estimated_minutes_text|default:"-" }}</strong>
+            <span>{% trans "Taxminiy vaqt" %}</span>
+        </div>
+        <div>
+            <i class="fa-solid fa-flag"></i>
+            <strong>{{ patient.estimated_arrival_time|default:"-" }}</strong>
+            <span>{% trans "Yetib borish" %}</span>
+        </div>
+    </div>
+
+    <section class="route-map-card">
+        {% if patient.map_embed_url %}
+            <iframe src="{{ patient.map_embed_url }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        {% else %}
+            <div class="route-map-placeholder">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <p>{% trans "Koordinata topilmadi. Manzil Google Maps orqali ochiladi." %}</p>
+            </div>
+        {% endif %}
+
+        <div class="route-point route-point-vet">
+            <i class="fa-solid fa-user-doctor"></i>
+            <span>{% trans "Veterinar joyi" %}</span>
+        </div>
+        <div class="route-point route-point-client">
+            <i class="fa-solid fa-paw"></i>
+            <span>{% trans "Bemor manzili" %}</span>
+        </div>
+    </section>
+
+    <section class="route-steps-card">
+        <a href="{% if patient.directions_url %}{{ patient.directions_url }}{% else %}{{ patient.map_url }}{% endif %}"
+           target="_blank"
+           class="route-step">
+            <i class="fa-solid fa-circle-dot"></i>
+            <span>
+                <strong>{% trans "Boshlanish nuqtasi" %}</strong>
+                <small>{% trans "Sizning joriy manzilingiz" %}</small>
+            </span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </a>
+
+        <a href="{% if patient.map_url %}{{ patient.map_url }}{% else %}#{% endif %}"
+           target="_blank"
+           class="route-step">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>
+                <strong>{{ patient.full_name|default:"-" }}</strong>
+                <small>{{ patient.address_text|default:"-" }}</small>
+            </span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </a>
+
+        <div class="route-step">
+            <i class="fa-solid fa-flag"></i>
+            <span>
+                <strong>{{ patient.estimated_arrival_time|default:"-" }}</strong>
+                <small>{% trans "Yetib borish taxmini" %}</small>
+            </span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+    </section>
+
+    <div class="mobile-sticky-actions">
+        {% if not patient.is_accepted %}
+            <form method="post" action="{% url 'vet_update_application_stage' patient.id 'accepted' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-blue">{% trans "Qabul qilish" %}</button>
+            </form>
+        {% elif not patient.is_on_way %}
+            <form method="post" action="{% url 'vet_update_application_stage' patient.id 'on_way' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-green">{% trans "Yo‘l boshlandi" %}</button>
+            </form>
+        {% elif patient.is_arrived %}
+            <a href="{% url 'patient_card' patient.id %}?finish=1#final-exam" class="btn btn-green">
+                {% trans "Yakunlash" %}
+            </a>
+        {% else %}
+            <a href="{% if patient.directions_url %}{{ patient.directions_url }}{% else %}{{ patient.map_url }}{% endif %}"
+               target="_blank"
+               class="btn btn-green">
+                {% trans "Marshrutni ochish" %}
+            </a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

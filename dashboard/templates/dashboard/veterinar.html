@@ -7,6 +7,30 @@
 
 {% block content %}
 
+<section class="mobile-vet-hero">
+    <div class="mobile-vet-hero-head">
+        <div>
+            <span>{% trans "Joriy holatim" %}</span>
+            <h2>{{ vet_status }}</h2>
+        </div>
+        <b class="mobile-status-pill {% if vet_status == 'Bo‘sh' %}is-free{% elif vet_status == 'Chaqiruvda' %}is-route{% else %}is-busy{% endif %}">
+            {{ vet_status }}
+        </b>
+    </div>
+    <div class="mobile-vet-hero-grid">
+        <div>
+            <i class="fa-solid fa-location-dot"></i>
+            <span>{% trans "Geolokatsiya" %}</span>
+            <strong id="mobileVetLocationStatus">{{ location_status }}</strong>
+        </div>
+        <div>
+            <span>{% trans "Bugungi topshiriqlar" %}</span>
+            <strong>{{ today_count }} {% trans "ta" %}</strong>
+            <small>{{ in_progress_count }} {% trans "tasi qabul qilingan" %}</small>
+        </div>
+    </div>
+</section>
+
 <div class="vet-status-strip">
     <div>
         <span>{% trans "Joriy holatim" %}</span>
@@ -23,22 +47,22 @@
 </div>
 
 <div class="stats-grid vet-stats-grid">
-    <div class="stat-card">
+    <a href="{% url 'veterinar_dashboard' %}?scope=today#my-applications" class="stat-card">
         <div class="stat-icon stat-blue"><i class="fa-regular fa-clipboard"></i></div>
         <div><h3>{{ today_count }}</h3><p>{% trans "Bugungi arizalarim" %}</p></div>
-    </div>
-    <div class="stat-card">
+    </a>
+    <a href="{% url 'veterinar_dashboard' %}?scope=in_progress#my-applications" class="stat-card">
         <div class="stat-icon stat-orange"><i class="fa-regular fa-hourglass-half"></i></div>
         <div><h3>{{ in_progress_count }}</h3><p>{% trans "Jarayondagi ishlarim" %}</p></div>
-    </div>
-    <div class="stat-card">
+    </a>
+    <a href="{% url 'vet_history' %}" class="stat-card">
         <div class="stat-icon stat-green"><i class="fa-regular fa-circle-check"></i></div>
         <div><h3>{{ completed_count }}</h3><p>{% trans "Yakunlangan ishlarim" %}</p></div>
-    </div>
-    <div class="stat-card">
+    </a>
+    <a href="{% url 'veterinar_dashboard' %}?service=danger#my-applications" class="stat-card">
         <div class="stat-icon stat-red"><i class="fa-solid fa-triangle-exclamation"></i></div>
         <div><h3>{{ danger_count }}</h3><p>{% trans "Xavfli holatlarim" %}</p></div>
-    </div>
+    </a>
 </div>
 
 <div class="panel" id="my-applications" style="margin-bottom: 24px;">
@@ -64,7 +88,7 @@
                     <th>{% trans "Telefon" %}</th>
                     <th>{% trans "Hayvon" %}</th>
                     <th>{% trans "Xizmat" %}</th>
-                    <th>{% trans "Manzil" %}</th>
+                    <th>{% trans "Manzil / masofa" %}</th>
                     <th>{% trans "Holat" %}</th>
                     <th>{% trans "Amal" %}</th>
                 </tr>
@@ -77,7 +101,12 @@
                         <td>{{ patient.phone|default:"-" }}</td>
                         <td>{{ patient.animal_name|default:"-" }}<small class="table-subtext">{{ patient.get_animal_type_display|default:patient.animal_type }}</small></td>
                         <td><span class="status-badge status-assigned">{{ patient.service_label }}</span></td>
-                        <td class="text-limit">{{ patient.address_text|default:"-"|truncatechars:38 }}</td>
+                        <td class="text-limit">
+                            {{ patient.address_text|default:"-"|truncatechars:32 }}
+                            {% if patient.can_travel %}
+                                <small class="table-subtext">{% trans "Masofa" %}: {{ patient.route_distance_text|default:"-" }}</small>
+                            {% endif %}
+                        </td>
                         <td><span class="status-badge status-pending">{{ patient.display_status }}</span></td>
                         <td>{% include "dashboard/partials/vet_actions.html" with patient=patient %}</td>
                     </tr>
@@ -98,11 +127,30 @@
                     </div>
                     <b class="status-badge status-pending">{{ patient.display_status }}</b>
                 </div>
-                <div class="vet-card-body">
-                    <p><i class="fa-solid fa-phone"></i> {{ patient.phone|default:"-" }}</p>
-                    <p><i class="fa-solid fa-paw"></i> {{ patient.animal_name|default:"-" }} / {{ patient.get_animal_type_display|default:patient.animal_type }}</p>
-                    <p><i class="fa-solid fa-briefcase-medical"></i> {{ patient.service_label }}</p>
-                    {% if patient.address_text %}<p><i class="fa-solid fa-location-dot"></i> {{ patient.address_text }}</p>{% endif %}
+                <div class="vet-card-body mobile-vet-card-body">
+                    <div class="mobile-vet-row">
+                        <span><i class="fa-solid fa-phone"></i> {{ patient.phone|default:"-" }}</span>
+                        {% if patient.phone %}
+                            <a href="tel:{{ patient.phone }}"><i class="fa-solid fa-phone"></i></a>
+                        {% endif %}
+                    </div>
+                    <div class="mobile-vet-pet">
+                        <i class="fa-solid fa-paw"></i>
+                        <div>
+                            <strong>{{ patient.animal_name|default:"-" }}</strong>
+                            <small>{{ patient.get_animal_type_display|default:patient.animal_type }}</small>
+                        </div>
+                    </div>
+                    <span class="mobile-service-chip">{{ patient.service_label }}</span>
+                    {% if patient.address_text %}
+                        <p><i class="fa-solid fa-location-dot"></i> {{ patient.address_text }}</p>
+                    {% endif %}
+                    {% if patient.can_travel %}
+                        <div class="mobile-route-metrics">
+                            <span><i class="fa-solid fa-location-dot"></i> {{ patient.route_distance_text|default:"-" }}<small>{% trans "Masofa" %}</small></span>
+                            <span><i class="fa-regular fa-clock"></i> {{ patient.estimated_minutes_text|default:"-" }}<small>{% trans "Taxminiy vaqt" %}</small></span>
+                        </div>
+                    {% endif %}
                     <p>{{ patient.problem_text|truncatechars:120 }}</p>
                 </div>
                 {% include "dashboard/partials/vet_actions.html" with patient=patient %}
@@ -119,12 +167,17 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const statusElement = document.getElementById("vetLocationStatus");
+    const mobileStatusElement = document.getElementById("mobileVetLocationStatus");
     const updateUrl = "{% url 'vet_update_location' %}";
     const csrfToken = "{{ csrf_token }}";
+    let lastSentAt = 0;
 
     function setStatus(text) {
         if (statusElement && text) {
             statusElement.textContent = text;
+        }
+        if (mobileStatusElement && text) {
+            mobileStatusElement.textContent = text;
         }
     }
 
@@ -145,6 +198,11 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(function (data) {
                 if (data.ok) {
                     setStatus(data.status_label || "🟢 Faol");
+                    if (data.arrived_codes && data.arrived_codes.length) {
+                        window.setTimeout(function () {
+                            window.location.reload();
+                        }, 900);
+                    }
                 } else {
                     setStatus("🔴 Aloqa yo‘q");
                 }
@@ -154,25 +212,38 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    function requestAndSendLocation() {
-        if (!navigator.geolocation) {
-            setStatus("🔴 Aloqa yo‘q");
-            return;
-        }
-
-        navigator.geolocation.getCurrentPosition(
-            sendPosition,
-            function () { setStatus("🔴 Aloqa yo‘q"); },
-            {
-                enableHighAccuracy: true,
-                timeout: 15000,
-                maximumAge: 30000
-            }
-        );
+    if (!navigator.geolocation) {
+        setStatus("🔴 Aloqa yo‘q");
+        return;
     }
 
-    requestAndSendLocation();
-    window.setInterval(requestAndSendLocation, 60000);
+    navigator.geolocation.watchPosition(
+        function (position) {
+            const now = Date.now();
+
+            if (now - lastSentAt < 60000) {
+                return;
+            }
+
+            lastSentAt = now;
+            sendPosition(position);
+        },
+        function () { setStatus("🔴 Aloqa yo‘q"); },
+        {
+            enableHighAccuracy: true,
+            timeout: 20000,
+            maximumAge: 30000
+        }
+    );
+
+    navigator.geolocation.getCurrentPosition(
+        function (position) {
+            lastSentAt = Date.now();
+            sendPosition(position);
+        },
+        function () { setStatus("🔴 Aloqa yo‘q"); },
+        { enableHighAccuracy: true, timeout: 15000, maximumAge: 30000 }
+    );
 });
 </script>
 

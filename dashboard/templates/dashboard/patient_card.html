@@ -125,10 +125,31 @@
         </h2>
     </div>
 
-    <div class="compact-text-grid">
-        <div class="compact-text-card">
-            <h3>{% trans "Telegram / telefon orqali kelgan ariza" %}</h3>
-            <p>{{ patient.note|default:"Izoh mavjud emas."|linebreaksbr }}</p>
+    <div class="application-receipt-wrap">
+        <details class="application-receipt">
+            <summary>
+                <span>
+                    <i class="fa-solid fa-receipt"></i>
+                    {% trans "Ariza chekini ko‘rish" %}
+                </span>
+                <small>{{ patient.created_at|date:"d.m.Y H:i" }}</small>
+            </summary>
+
+            <div class="receipt-paper">
+                <div class="receipt-header">
+                    <strong>VET Farm & Pet Clinic</strong>
+                    <span>{{ patient.patient_code|default:"-" }}</span>
+                </div>
+
+                <div class="receipt-lines">
+                    <p>{{ patient.note|default:"Izoh mavjud emas."|linebreaksbr }}</p>
+                </div>
+            </div>
+        </details>
+
+        <div class="receipt-hint">
+            <i class="fa-regular fa-hand-pointer"></i>
+            {% trans "Izoh matnini ochish uchun chek ustiga bosing." %}
         </div>
     </div>
 </div>

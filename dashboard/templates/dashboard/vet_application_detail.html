@@ -1,0 +1,110 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% load i18n %}
+{% block title %}{{ patient.patient_code|default:"-" }} — {% trans "Ariza tafsilotlari" %}{% endblock %}
+{% block page_title %}{% trans "Ariza tafsilotlari" %}{% endblock %}
+{% block page_subtitle %}{{ patient.patient_code|default:"-" }}{% endblock %}
+
+{% block content %}
+
+<div class="mobile-page-shell detail-page-shell">
+    <div class="mobile-page-header">
+        <a href="{% url 'veterinar_dashboard' %}#my-applications" aria-label="{% trans 'Orqaga' %}">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <strong>{% trans "Ariza tafsilotlari" %}</strong>
+        <span></span>
+    </div>
+
+    <section class="application-detail-card">
+        <div class="application-detail-title">
+            <h2>{{ patient.patient_code|default:"-" }}</h2>
+            <span class="status-badge status-assigned">{{ patient.display_status }}</span>
+        </div>
+
+        <dl class="application-detail-list">
+            <div>
+                <dt><i class="fa-regular fa-user"></i>{% trans "Egasi" %}</dt>
+                <dd>{{ patient.full_name|default:"-" }}</dd>
+            </div>
+            <div>
+                <dt><i class="fa-solid fa-phone"></i>{% trans "Telefon" %}</dt>
+                <dd>
+                    {{ patient.phone|default:"-" }}
+                    {% if patient.phone %}<a href="tel:{{ patient.phone }}"><i class="fa-solid fa-phone"></i></a>{% endif %}
+                </dd>
+            </div>
+            <div>
+                <dt><i class="fa-solid fa-paw"></i>{% trans "Bemor" %}</dt>
+                <dd>{{ patient.animal_name|default:"-" }} — {{ patient.get_animal_type_display|default:patient.animal_type }}</dd>
+            </div>
+            <div>
+                <dt><i class="fa-regular fa-clipboard"></i>{% trans "Xizmat turi" %}</dt>
+                <dd><span class="mobile-service-chip">{{ patient.service_label }}</span></dd>
+            </div>
+            <div>
+                <dt><i class="fa-solid fa-location-dot"></i>{% trans "Manzil" %}</dt>
+                <dd>{{ patient.address_text|default:"-" }}</dd>
+            </div>
+            <div>
+                <dt><i class="fa-regular fa-note-sticky"></i>{% trans "Izoh" %}</dt>
+                <dd>{{ patient.problem_text|default:"-" }}</dd>
+            </div>
+        </dl>
+    </section>
+
+    <section class="application-detail-card">
+        <div class="application-detail-title">
+            <h2>{% trans "Veterinar holati" %}</h2>
+            <span class="mobile-status-pill is-route">{{ vet_status }}</span>
+        </div>
+        <p class="detail-location-line">
+            <i class="fa-solid fa-location-dot"></i>
+            {% trans "Geolokatsiya" %}: {{ location_status }}
+        </p>
+    </section>
+
+    <section class="application-detail-card">
+        <div class="application-detail-title">
+            <h2>{% trans "Ish jarayoni" %}</h2>
+        </div>
+        <div class="timeline-list">
+            {% for step in timeline %}
+                <div class="timeline-item {% if step.is_done %}is-done{% endif %}">
+                    <span></span>
+                    <div>
+                        <strong>{{ step.label }}</strong>
+                        {% if step.time %}
+                            <small>{{ step.time|date:"H:i" }} · {{ step.time|date:"d.m.Y" }}</small>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <div class="mobile-sticky-actions two-actions">
+        <a href="{% url 'patient_card' patient.id %}" class="btn btn-light">
+            <i class="fa-solid fa-id-card"></i>
+            {% trans "Bemor kartasi" %}
+        </a>
+        {% if patient.can_travel %}
+            <a href="{% url 'vet_route_page' patient.id %}" class="btn btn-blue">
+                <i class="fa-solid fa-map-location-dot"></i>
+                {% trans "Marshrut" %}
+            </a>
+        {% elif patient.phone %}
+            <a href="tel:{{ patient.phone }}" class="btn btn-blue">
+                <i class="fa-solid fa-phone"></i>
+                {% trans "Qo‘ng‘iroq qilish" %}
+            </a>
+        {% else %}
+            <a href="{% url 'patient_card' patient.id %}?finish=1#final-exam" class="btn btn-blue">
+                <i class="fa-regular fa-circle-check"></i>
+                {% trans "Yakunlash" %}
+            </a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

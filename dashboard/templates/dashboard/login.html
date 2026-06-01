@@ -81,15 +81,21 @@
         }
 
         .brand-icon {
-            width: 62px;
+            width: 78px;
             height: 62px;
-            border-radius: 18px;
-            background: linear-gradient(135deg, #38bdf8, #2563eb);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.94);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 27px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
+            overflow: hidden;
+        }
+
+        .brand-icon img {
+            width: 72px;
+            height: 54px;
+            object-fit: contain;
         }
 
         .brand h1 {
@@ -236,13 +242,44 @@
             position: relative;
         }
 
-        .input-box i {
+        .input-box > i {
             position: absolute;
             left: 18px;
             top: 50%;
             transform: translateY(-50%);
             color: #64748b;
             font-size: 18px;
+        }
+
+        .input-box .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 12px;
+            background: transparent;
+            color: #64748b;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+
+        .input-box .password-toggle i {
+            position: static;
+            transform: none;
+            color: inherit;
+            font-size: 16px;
+        }
+
+        .input-box .password-toggle:hover {
+            background: #eef2ff;
+            color: #4f46e5;
         }
 
         .input-box input {
@@ -255,6 +292,10 @@
             font-size: 16px;
             transition: 0.2s;
             background: #f8fafc;
+        }
+
+        .input-box input.has-toggle {
+            padding-right: 58px;
         }
 
         .input-box input:focus {
@@ -322,7 +363,7 @@
     <div class="login-left">
         <div class="brand">
             <div class="brand-icon">
-                <i class="fa-solid fa-paw"></i>
+                <img src="{% static 'dashboard/images/vet-logo.png' %}" alt="VET Farm & Pet Clinic">
             </div>
             <div>
                 <h1>VetClinic</h1>
@@ -423,9 +464,13 @@
                             type="password"
                             name="password"
                             id="id_password"
+                            class="has-toggle"
                             placeholder="{% trans 'Parolni kiriting' %}"
                             required
                         >
+                        <button type="button" class="password-toggle" id="passwordToggle" aria-label="{% trans 'Parolni ko‘rsatish' %}">
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -437,12 +482,33 @@
 
             <div class="login-footer">
                 <p>{% trans "VetClinic elektron kartoteka tizimi" %}</p>
-                <strong>{% trans "Administrator / Veterinar / Laboratoriya / Diagnostika" %}</strong>
+                <strong>{% trans "Administrator / Veterinar " %}</strong>
             </div>
         </div>
     </div>
 
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const passwordInput = document.getElementById("id_password");
+    const toggleButton = document.getElementById("passwordToggle");
+
+    if (!passwordInput || !toggleButton) return;
+
+    toggleButton.addEventListener("click", function () {
+        const isHidden = passwordInput.type === "password";
+        passwordInput.type = isHidden ? "text" : "password";
+        this.innerHTML = isHidden
+            ? '<i class="fa-regular fa-eye-slash"></i>'
+            : '<i class="fa-regular fa-eye"></i>';
+        this.setAttribute(
+            "aria-label",
+            isHidden ? "{% trans 'Parolni yashirish' %}" : "{% trans 'Parolni ko‘rsatish' %}"
+        );
+    });
+});
+</script>
 
 </body>
 </html>

@@ -103,6 +103,18 @@ img {
     line-height: 1;
 }
 
+.site-logo-image {
+    width: 46px;
+    height: 34px;
+    object-fit: contain;
+    flex: 0 0 auto;
+}
+
+.footer-logo .site-logo-image {
+    width: 50px;
+    height: 38px;
+}
+
 .nav-toggle,
 .hamburger {
     display: none;
@@ -1391,4 +1403,3 @@ img {
         padding: 22px;
     }
 }
-

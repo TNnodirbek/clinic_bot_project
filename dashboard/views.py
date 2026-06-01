@@ -3,6 +3,9 @@ import math
 import os
 import tempfile
 import textwrap
+
+import asyncio
+
 from datetime import timedelta
 from decimal import Decimal, InvalidOperation
 from html import escape
@@ -72,6 +75,7 @@ CLINIC_LATITUDE = float(os.getenv("CLINIC_LATITUDE", "41.5500"))
 CLINIC_LONGITUDE = float(os.getenv("CLINIC_LONGITUDE", "60.6333"))
 CLINIC_RADIUS_METERS = 120
 CUSTOMER_NEAR_RADIUS_METERS = 300
+ARRIVAL_RADIUS_METERS = 100
 
 IN_PROGRESS_MARKER = "[VET_STATUS:in_progress]"
 ACCEPTED_MARKER = "[VET_STATUS:accepted]"
@@ -100,13 +104,13 @@ VET_STAGE_CONFIG = {
     "on_way": {
         "marker": ON_WAY_MARKER,
         "label": _("Yo‘lga chiqdi"),
-        "status": "accepted",
+        "status": "en_route",
         "message": _("Yo‘lga chiqish belgilandi."),
     },
     "arrived": {
         "marker": ARRIVED_MARKER,
         "label": _("Yetib bordi"),
-        "status": "accepted",
+        "status": "arrived",
         "message": _("Yetib borish belgilandi."),
     },
 }
@@ -129,13 +133,16 @@ def get_application_note_value(note, label):
 def get_patient_service_type(patient):
     note = patient.note or ""
 
+    if getattr(patient, "service_type", "") in ["vet_call", "danger"]:
+        return patient.service_type
+
     if "Xavfli holat" in note:
         return "danger"
 
     if "Veterinar chaqirish" in note:
         return "vet_call"
 
-    return "clinic"
+    return getattr(patient, "service_type", "") or "clinic"
 
 
 def get_application_service_type(patient):
@@ -156,6 +163,24 @@ def build_coordinate_map_url(latitude, longitude):
     return f"https://www.google.com/maps?q={latitude},{longitude}"
 
 
+def build_coordinate_embed_url(latitude, longitude):
+    if latitude is None or longitude is None:
+        return ""
+
+    return f"https://www.google.com/maps?q={latitude},{longitude}&output=embed"
+
+
+def build_directions_url(origin_latitude, origin_longitude, destination_latitude, destination_longitude):
+    if None in [origin_latitude, origin_longitude, destination_latitude, destination_longitude]:
+        return ""
+
+    return (
+        "https://www.google.com/maps/dir/?api=1"
+        f"&origin={origin_latitude},{origin_longitude}"
+        f"&destination={destination_latitude},{destination_longitude}"
+    )
+
+
 def parse_decimal_coordinate(value):
     if value in [None, ""]:
         return None
@@ -169,6 +194,18 @@ def parse_decimal_coordinate(value):
 def parse_note_coordinate(note, label):
     raw_value = get_note_value(note, label)
     return parse_decimal_coordinate(raw_value)
+
+
+def get_patient_latitude(patient):
+    return patient.latitude or parse_note_coordinate(patient.note, "Latitude")
+
+
+def get_patient_longitude(patient):
+    return patient.longitude or parse_note_coordinate(patient.note, "Longitude")
+
+
+def get_patient_address_text(patient):
+    return patient.address_text or get_note_value(patient.note, "Manzil")
 
 
 def haversine_distance_meters(lat1, lon1, lat2, lon2):
@@ -196,6 +233,21 @@ def format_distance(distance_meters):
         return _("%(meters)d m") % {"meters": int(round(distance_meters))}
 
     return _("%(kilometers).1f km") % {"kilometers": distance_meters / 1000}
+
+
+def estimate_travel_minutes(distance_meters):
+    if distance_meters is None:
+        return None
+
+    # City-speed fallback for UI estimates when Google Maps API is not used.
+    return max(1, int(math.ceil(distance_meters / 350)))
+
+
+def format_travel_minutes(minutes):
+    if minutes is None:
+        return "-"
+
+    return _("%(minutes)d daqiqa") % {"minutes": minutes}
 
 
 def get_doctor_location_status(doctor):
@@ -247,11 +299,42 @@ def get_note_datetime(note, label):
         return None
 
 
+def get_vet_timeline(patient):
+    steps = [
+        ("assigned", _("Biriktirilgan"), patient.created_at),
+        ("accepted", _("Qabul qilingan"), get_note_datetime(patient.note, VET_STAGE_CONFIG["accepted"]["label"])),
+    ]
+
+    if patient.can_travel:
+        steps.extend([
+            ("on_way", _("Yo‘lda"), get_note_datetime(patient.note, VET_STAGE_CONFIG["on_way"]["label"])),
+            ("arrived", _("Yetib bordi"), get_note_datetime(patient.note, VET_STAGE_CONFIG["arrived"]["label"])),
+        ])
+    else:
+        steps.append(
+            ("in_progress", _("Jarayonda"), get_note_datetime(patient.note, VET_STAGE_CONFIG["in_progress"]["label"]))
+        )
+
+    steps.append(("completed", _("Yakunlandi"), patient.updated_at if patient.status == "completed" else None))
+
+    return [
+        {
+            "key": key,
+            "label": label,
+            "time": event_time,
+            "is_done": bool(event_time),
+        }
+        for key, label, event_time in steps
+    ]
+
+
 def get_compact_status(patient):
     status_map = {
         "new": {"label": _("Yangi"), "icon": "🆕", "class": "status-new"},
         "assigned_to_vet": {"label": _("Biriktirilgan"), "icon": "👨‍⚕️", "class": "status-assigned"},
         "accepted": {"label": _("Qabul qildi"), "icon": "✅", "class": "status-assigned"},
+        "en_route": {"label": _("Yo‘lda"), "icon": "📍", "class": "status-new"},
+        "arrived": {"label": _("Yetib bordi"), "icon": "📌", "class": "status-completed"},
         "sent_to_lab": {"label": _("Jarayonda"), "icon": "🔄", "class": "status-pending"},
         "sent_to_diagnostic": {"label": _("Jarayonda"), "icon": "🔄", "class": "status-pending"},
         "returned_to_vet": {"label": _("Jarayonda"), "icon": "🔄", "class": "status-pending"},
@@ -269,10 +352,15 @@ def get_compact_status(patient):
 def enrich_admin_application(patient):
     patient.service_type = get_application_service_type(patient)
     patient.service_label = ADMIN_SERVICE_LABELS.get(patient.service_type, ADMIN_SERVICE_LABELS["clinic"])
-    patient.address_text = get_application_note_value(patient.note, "Manzil")
+    patient.address_text = get_patient_address_text(patient)
+    patient.latitude_value = get_patient_latitude(patient)
+    patient.longitude_value = get_patient_longitude(patient)
     patient.problem_text = get_application_note_value(patient.note, "Muammo tavsifi / izoh")
     patient.compact_status = get_compact_status(patient)
-    patient.map_url = build_map_url(patient.address_text)
+    patient.map_url = (
+        build_coordinate_map_url(patient.latitude_value, patient.longitude_value)
+        or build_map_url(patient.address_text)
+    )
     return patient
 
 
@@ -299,6 +387,7 @@ def append_vet_stage(patient, stage):
     patient.note = note
     patient.status = VET_STAGE_CONFIG[stage]["status"]
     patient.save()
+    update_doctor_dynamic_status(patient.selected_doctor)
 
 
 def remove_vet_stage_markers(note):
@@ -310,22 +399,90 @@ def remove_vet_stage_markers(note):
     return cleaned_note.strip()
 
 
+def mark_arrived_if_near_patient(doctor_profile):
+    if not doctor_profile or doctor_profile.last_latitude is None or doctor_profile.last_longitude is None:
+        return []
+
+    arrived_codes = []
+    active_patients = NewPatient.objects.filter(
+        selected_doctor=doctor_profile,
+    ).exclude(
+        status__in=["new", "completed", "cancelled", "arrived"]
+    )
+
+    for patient in active_patients:
+        enriched_patient = enrich_vet_patient(patient)
+
+        if not enriched_patient.can_travel or not enriched_patient.is_on_way:
+            continue
+
+        distance = haversine_distance_meters(
+            doctor_profile.last_latitude,
+            doctor_profile.last_longitude,
+            enriched_patient.latitude_value,
+            enriched_patient.longitude_value,
+        )
+
+        if distance is not None and distance <= ARRIVAL_RADIUS_METERS:
+            append_vet_stage(patient, "arrived")
+            arrived_codes.append(patient.patient_code)
+
+    return arrived_codes
+
+
 def enrich_vet_patient(patient):
     patient.service_type = get_patient_service_type(patient)
     patient.service_label = SERVICE_LABELS.get(patient.service_type, SERVICE_LABELS["clinic"])
-    patient.address_text = get_note_value(patient.note, "Manzil")
+    patient.address_text = get_patient_address_text(patient)
+    patient.latitude_value = get_patient_latitude(patient)
+    patient.longitude_value = get_patient_longitude(patient)
     patient.problem_text = (
         get_note_value(patient.note, "Muammo tavsifi / izoh")
         or get_note_value(patient.note, "Xizmat turi")
         or patient.note
         or "-"
     )
-    patient.map_url = build_map_url(patient.address_text)
+    patient.map_url = (
+        build_coordinate_map_url(patient.latitude_value, patient.longitude_value)
+        or build_map_url(patient.address_text)
+    )
+    patient.map_embed_url = build_coordinate_embed_url(patient.latitude_value, patient.longitude_value)
+    patient.route_distance = None
+    patient.route_distance_text = "-"
+    patient.directions_url = ""
+
+    if patient.selected_doctor:
+        doctor_latitude = patient.selected_doctor.last_latitude
+        doctor_longitude = patient.selected_doctor.last_longitude
+        patient.route_distance = haversine_distance_meters(
+            doctor_latitude,
+            doctor_longitude,
+            patient.latitude_value,
+            patient.longitude_value,
+        )
+        patient.route_distance_text = format_distance(patient.route_distance)
+        patient.directions_url = build_directions_url(
+            doctor_latitude,
+            doctor_longitude,
+            patient.latitude_value,
+            patient.longitude_value,
+        )
+
     patient.can_travel = patient.service_type in ["vet_call", "danger"]
-    patient.is_accepted = has_vet_marker(patient, ACCEPTED_MARKER) or patient.status == "accepted"
+    patient.estimated_minutes = estimate_travel_minutes(patient.route_distance)
+    patient.estimated_minutes_text = format_travel_minutes(patient.estimated_minutes)
+    patient.estimated_arrival_time = (
+        timezone.localtime(timezone.now() + timedelta(minutes=patient.estimated_minutes)).strftime("%H:%M")
+        if patient.estimated_minutes is not None
+        else "-"
+    )
+    patient.is_accepted = (
+        has_vet_marker(patient, ACCEPTED_MARKER)
+        or patient.status in ["accepted", "en_route", "arrived"]
+    )
     patient.is_in_progress = has_vet_marker(patient, IN_PROGRESS_MARKER)
-    patient.is_on_way = has_vet_marker(patient, ON_WAY_MARKER)
-    patient.is_arrived = has_vet_marker(patient, ARRIVED_MARKER)
+    patient.is_on_way = has_vet_marker(patient, ON_WAY_MARKER) or patient.status == "en_route"
+    patient.is_arrived = has_vet_marker(patient, ARRIVED_MARKER) or patient.status == "arrived"
 
     if patient.status == "completed":
         patient.display_status = _("Yakunlandi")
@@ -363,6 +520,39 @@ def get_vet_status(active_patients):
         return _("Chaqiruvda")
 
     return _("Klinikada")
+
+
+def get_doctor_status_code(active_patients):
+    active = [
+        patient for patient in active_patients
+        if patient.status not in ["completed", "cancelled"]
+    ]
+
+    if not active:
+        return "free"
+
+    if any(patient.service_type == "danger" for patient in active):
+        return "busy"
+
+    if any(patient.service_type == "vet_call" for patient in active):
+        return "on_call"
+
+    return "clinic"
+
+
+def update_doctor_dynamic_status(doctor):
+    if not doctor:
+        return
+
+    active_patients = [
+        enrich_vet_patient(patient)
+        for patient in NewPatient.objects.filter(selected_doctor=doctor).exclude(status__in=["new", "completed", "cancelled"])
+    ]
+    status_code = get_doctor_status_code(active_patients)
+
+    if getattr(doctor, "current_status", None) != status_code:
+        doctor.current_status = status_code
+        doctor.save(update_fields=["current_status"])
 
 
 def get_vet_patient_or_403(request, patient_id):
@@ -421,14 +611,14 @@ def get_admin_doctor_status(doctor):
             "icon": "fa-solid fa-circle",
         }
 
-    if active_patients.filter(note__icontains="Xavfli holat").exists():
+    if active_patients.filter(Q(service_type="danger") | Q(note__icontains="Xavfli holat")).exists():
         return {
             "label": _("Band"),
             "class": "status-cancelled",
             "icon": "fa-solid fa-circle",
         }
 
-    if active_patients.filter(note__icontains="Veterinar chaqirish").exists():
+    if active_patients.filter(Q(service_type="vet_call") | Q(note__icontains="Veterinar chaqirish")).exists():
         return {
             "label": _("Xizmatda"),
             "class": "status-pending",
@@ -440,6 +630,66 @@ def get_admin_doctor_status(doctor):
         "class": "status-assigned",
         "icon": "fa-solid fa-circle",
     }
+
+
+def get_admin_doctor_select_status(doctor):
+    active_patients = [
+        enrich_vet_patient(patient)
+        for patient in NewPatient.objects.filter(selected_doctor=doctor)
+        .exclude(status__in=["new", "completed", "cancelled"])
+        .order_by("-updated_at")
+    ]
+    travel_task = next(
+        (patient for patient in active_patients if patient.service_type in ["vet_call", "danger"]),
+        None,
+    )
+
+    if travel_task:
+        return {
+            "label": _("Safarda / %(code)s") % {"code": travel_task.patient_code},
+            "class": "status-pending",
+            "risk": "busy",
+            "warning": _("Tanlangan veterinar hozir safarda yoki band."),
+        }
+
+    if active_patients:
+        return {
+            "label": _("Klinikada / band"),
+            "class": "status-assigned",
+            "risk": "clinic_busy",
+            "warning": _("Tanlangan veterinar klinikada boshqa ariza bilan band."),
+        }
+
+    location_status = get_doctor_location_status(doctor)
+
+    if location_status["state"] == "offline":
+        return {
+            "label": _("Aloqa yo‘q"),
+            "class": "status-cancelled",
+            "risk": "offline",
+            "warning": _("Tanlangan veterinarning geolokatsiya aloqasi yo‘q."),
+        }
+
+    return {
+        "label": _("Klinikada / bo‘sh"),
+        "class": "status-completed",
+        "risk": "",
+        "warning": "",
+    }
+
+
+def get_admin_doctor_options():
+    options = []
+
+    for doctor in DoctorProfile.objects.filter(is_active=True).order_by("full_name"):
+        status = get_admin_doctor_select_status(doctor)
+        options.append({
+            "profile": doctor,
+            "status": status,
+            "label": f"{doctor.full_name} — {status['label']}",
+        })
+
+    return options
 
 
 def generate_manual_telegram_id():
@@ -592,19 +842,24 @@ def administrator_dashboard(request):
     if not user_in_group(request.user, "Administrator") and not request.user.is_superuser:
         return HttpResponseForbidden(_("Sizda Administrator dashboardiga kirish huquqi yo‘q."))
 
-    service_filter = normalize_service_type(request.GET.get("service", ""))
+    raw_service_filter = request.GET.get("service", "").strip()
+    service_filter = normalize_service_type(raw_service_filter) if raw_service_filter else ""
     new_patients = NewPatient.objects.filter(status="new")
 
     if service_filter == "clinic":
-        new_patients = new_patients.exclude(
-            note__icontains="Veterinar chaqirish"
+        new_patients = new_patients.filter(
+            service_type="clinic"
         ).exclude(
-            note__icontains="Xavfli holat"
+            Q(note__icontains="Veterinar chaqirish") | Q(note__icontains="Xavfli holat")
         )
     elif service_filter == "vet_call":
-        new_patients = new_patients.filter(note__icontains="Veterinar chaqirish")
+        new_patients = new_patients.filter(
+            Q(service_type="vet_call") | Q(note__icontains="Veterinar chaqirish")
+        )
     elif service_filter == "danger":
-        new_patients = new_patients.filter(note__icontains="Xavfli holat")
+        new_patients = new_patients.filter(
+            Q(service_type="danger") | Q(note__icontains="Xavfli holat")
+        )
     else:
         service_filter = ""
 
@@ -614,6 +869,7 @@ def administrator_dashboard(request):
     ]
 
     doctors = DoctorProfile.objects.filter(is_active=True).order_by("full_name")
+    doctor_options = get_admin_doctor_options()
     delayed_call_threshold = timezone.now() - timedelta(minutes=30)
 
     admin_stats = {
@@ -623,7 +879,7 @@ def administrator_dashboard(request):
         "completed": NewPatient.objects.filter(status="completed").count(),
         "active_doctors": doctors.count(),
         "delayed_calls": NewPatient.objects.filter(
-            note__icontains="Veterinar chaqirish",
+            Q(service_type="vet_call") | Q(service_type="danger") | Q(note__icontains="Veterinar chaqirish") | Q(note__icontains="Xavfli holat"),
             created_at__lt=delayed_call_threshold,
         ).exclude(status__in=["completed", "cancelled"]).count(),
     }
@@ -631,10 +887,12 @@ def administrator_dashboard(request):
     context = {
         "new_patients": new_patients,
         "doctors": doctors,
+        "doctor_options": doctor_options,
         "admin_stats": admin_stats,
         "animal_types": NewPatient.ANIMAL_TYPES,
         "active_service_filter": service_filter,
         "active_service_filter_title": ADMIN_SERVICE_LABELS.get(service_filter),
+        "today_date": timezone.localdate().isoformat(),
     }
 
     return render(request, "dashboard/administrator.html", context)
@@ -682,6 +940,8 @@ def create_quick_application(request):
         telegram_username=None,
         animal_name=animal_name,
         animal_type=animal_type,
+        service_type=service_type,
+        address_text=address or ("Klinika ichida" if service_type == "clinic" else ""),
         selected_doctor=None,
         status="new",
         note="\n".join(str(part) for part in note_parts),
@@ -706,6 +966,12 @@ def assign_patient_to_vet(request, patient_id):
             patient.selected_doctor = doctor
             patient.status = "assigned_to_vet"
             patient.save()
+            update_doctor_dynamic_status(doctor)
+
+            doctor_status = get_admin_doctor_select_status(doctor)
+
+            if doctor_status.get("warning"):
+                messages.warning(request, doctor_status["warning"])
 
             messages.success(
                 request,
@@ -732,6 +998,7 @@ def cancel_patient(request, patient_id):
     if request.method == "POST":
         try:
             patient = NewPatient.objects.get(id=patient_id)
+            doctor = patient.selected_doctor
 
             if patient.status == "completed":
                 messages.error(request, _("Yakunlangan bemorni bekor qilib bo‘lmaydi."))
@@ -739,6 +1006,7 @@ def cancel_patient(request, patient_id):
 
             patient.status = "cancelled"
             patient.save()
+            update_doctor_dynamic_status(doctor)
 
             messages.success(request, _("%(patient)s bemori bekor qilindi.") % {"patient": patient.full_name})
 
@@ -759,6 +1027,7 @@ def redirect_patient_to_vet(request, patient_id):
         try:
             patient = NewPatient.objects.get(id=patient_id)
             doctor = DoctorProfile.objects.get(id=doctor_id, is_active=True)
+            old_doctor = patient.selected_doctor
 
             if patient.status == "completed":
                 messages.error(request, _("Yakunlangan bemorni qayta yo‘naltirib bo‘lmaydi."))
@@ -767,6 +1036,8 @@ def redirect_patient_to_vet(request, patient_id):
             patient.selected_doctor = doctor
             patient.status = "assigned_to_vet"
             patient.save()
+            update_doctor_dynamic_status(old_doctor)
+            update_doctor_dynamic_status(doctor)
 
             messages.success(
                 request,
@@ -873,9 +1144,12 @@ def admin_history_redirect_patient(request, patient_id):
                 return redirect("admin_history")
 
             doctor = DoctorProfile.objects.get(id=doctor_id, is_active=True)
+            old_doctor = patient.selected_doctor
             patient.selected_doctor = doctor
             patient.status = "assigned_to_vet"
             patient.save()
+            update_doctor_dynamic_status(old_doctor)
+            update_doctor_dynamic_status(doctor)
 
             messages.success(
                 request,
@@ -918,8 +1192,8 @@ def admin_staff_location(request):
             CLINIC_LONGITUDE,
         )
 
-        customer_latitude = parse_note_coordinate(current_task.note, "Latitude") if current_task else None
-        customer_longitude = parse_note_coordinate(current_task.note, "Longitude") if current_task else None
+        customer_latitude = get_patient_latitude(current_task) if current_task else None
+        customer_longitude = get_patient_longitude(current_task) if current_task else None
         customer_distance = haversine_distance_meters(
             doctor_latitude,
             doctor_longitude,
@@ -1013,12 +1287,24 @@ def veterinar_dashboard(request):
         return HttpResponseForbidden(_("Sizda Veterinar dashboardiga kirish huquqi yo‘q."))
 
     doctor_profile, base_patients = get_vet_base_patients(request)
-    service_filter = normalize_service_type(request.GET.get("service", ""))
+    raw_service_filter = request.GET.get("service", "").strip()
+    service_filter = normalize_service_type(raw_service_filter) if raw_service_filter else ""
+    scope_filter = request.GET.get("scope", "").strip()
 
     completed_total_count = base_patients.filter(status="completed").count()
 
     active_qs = base_patients.exclude(status="completed").order_by("-created_at")
+
+    if scope_filter == "today":
+        active_qs = base_patients.filter(
+            created_at__date=timezone.localdate()
+        ).exclude(status="cancelled").order_by("-created_at")
+    elif scope_filter == "in_progress":
+        active_qs = base_patients.exclude(
+            status__in=["new", "assigned_to_vet", "completed", "cancelled"]
+        ).order_by("-updated_at")
     active_patients = [enrich_vet_patient(patient) for patient in active_qs]
+    update_doctor_dynamic_status(doctor_profile)
 
     if service_filter not in SERVICE_LABELS:
         service_filter = ""
@@ -1043,7 +1329,14 @@ def veterinar_dashboard(request):
         "vet_status": get_vet_status(active_patients),
         "location_status": get_doctor_location_status(doctor_profile)["label"],
         "active_service_filter": service_filter,
-        "active_service_filter_title": SERVICE_LABELS.get(service_filter),
+        "active_scope_filter": scope_filter,
+        "active_service_filter_title": (
+            _("Bugungi arizalarim")
+            if scope_filter == "today"
+            else _("Jarayondagi ishlarim")
+            if scope_filter == "in_progress"
+            else SERVICE_LABELS.get(service_filter)
+        ),
     }
 
     return render(request, "dashboard/veterinar.html", context)
@@ -1096,13 +1389,70 @@ def vet_update_location(request):
     ])
 
     location_status = get_doctor_location_status(doctor_profile)
+    arrived_codes = mark_arrived_if_near_patient(doctor_profile)
 
     return JsonResponse({
         "ok": True,
         "status": location_status["short_label"],
         "status_label": location_status["label"],
         "updated_at": doctor_profile.last_location_updated_at.strftime("%d.%m.%Y %H:%M"),
+        "arrived_codes": arrived_codes,
     })
+
+
+@login_required
+def vet_route_page(request, patient_id):
+    if not user_in_group(request.user, "Veterinar") and not request.user.is_superuser:
+        return HttpResponseForbidden(_("Sizda bu sahifani ko‘rish huquqi yo‘q."))
+
+    try:
+        patient = get_vet_patient_or_403(request, patient_id)
+    except NewPatient.DoesNotExist:
+        messages.error(request, _("Bemor topilmadi."))
+        return redirect("veterinar_dashboard")
+
+    if patient is None:
+        return HttpResponseForbidden(_("Bu ariza sizga biriktirilmagan."))
+
+    patient = enrich_vet_patient(patient)
+    doctor_profile = patient.selected_doctor
+
+    context = {
+        "patient": patient,
+        "doctor_profile": doctor_profile,
+        "location_status": get_doctor_location_status(doctor_profile)["label"],
+        "vet_status": get_vet_status([patient]),
+    }
+
+    return render(request, "dashboard/vet_route.html", context)
+
+
+@login_required
+def vet_application_detail(request, patient_id):
+    if not user_in_group(request.user, "Veterinar") and not request.user.is_superuser:
+        return HttpResponseForbidden(_("Sizda bu sahifani ko‘rish huquqi yo‘q."))
+
+    try:
+        patient = get_vet_patient_or_403(request, patient_id)
+    except NewPatient.DoesNotExist:
+        messages.error(request, _("Bemor topilmadi."))
+        return redirect("veterinar_dashboard")
+
+    if patient is None:
+        return HttpResponseForbidden(_("Bu ariza sizga biriktirilmagan."))
+
+    patient = enrich_vet_patient(patient)
+    doctor_profile = patient.selected_doctor
+
+    context = {
+        "patient": patient,
+        "doctor_profile": doctor_profile,
+        "timeline": get_vet_timeline(patient),
+        "location_status": get_doctor_location_status(doctor_profile)["label"],
+        "vet_status": get_vet_status([patient]),
+    }
+
+    return render(request, "dashboard/vet_application_detail.html", context)
 
 
 @login_required
@@ -1226,6 +1576,7 @@ def vet_complete_application(request, patient_id):
         ]).strip()
         patient.status = "completed"
         patient.save(update_fields=["note", "status", "updated_at"])
+        update_doctor_dynamic_status(patient.selected_doctor)
 
         if final_action == "complete":
             messages.success(request, _("Ko‘rik yakunlandi."))
@@ -1337,6 +1688,7 @@ def vet_profile(request):
 
     doctor_profile, base_patients = get_vet_base_patients(request)
     active_patients = [enrich_vet_patient(patient) for patient in base_patients.exclude(status="completed")]
+    update_doctor_dynamic_status(doctor_profile)
 
     context = {
         "doctor_profile": doctor_profile,
