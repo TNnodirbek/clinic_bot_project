@@ -1,4 +1,5 @@
 import os
+from html import escape
 from pathlib import Path
 from decimal import Decimal
 
@@ -26,7 +27,7 @@ from telegram.ext import (
     filters,
 )
 
-from patients.models import NewPatient, Owner, Pet
+from patients.models import NewPatient, Owner, Pet, TelegramUser, TelegramUser
 
 
 BASE_DIR = Path(__file__).resolve().parents[4]
@@ -70,6 +71,15 @@ SERVICE_VET_CALL = "vet_call"
 SERVICE_DANGER = "danger"
 
 CLINIC_PHONE = "+998 (70) 123-45-67"
+
+
+ADMIN_TELEGRAM_IDS = {
+    7766394243,
+    1002958883,
+    1939475841,
+}
+
+
 
 
 # =========================
@@ -595,6 +605,143 @@ def danger_keyboard(lang):
 # DATABASE FUNCTIONS
 # =========================
 
+
+@sync_to_async
+def save_telegram_user(user):
+    if not user:
+        return None
+
+    full_name = " ".join(
+        part for part in [user.first_name, user.last_name] if part
+    ).strip()
+
+    telegram_user, created = TelegramUser.objects.get_or_create(
+        telegram_id=user.id,
+        defaults={
+            "username": user.username,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "full_name": full_name,
+            "language_code": user.language_code,
+            "is_bot": user.is_bot,
+            "start_count": 1,
+        },
+    )
+
+    if not created:
+        telegram_user.username = user.username or telegram_user.username
+        telegram_user.first_name = user.first_name or telegram_user.first_name
+        telegram_user.last_name = user.last_name or telegram_user.last_name
+        telegram_user.full_name = full_name or telegram_user.full_name
+        telegram_user.language_code = user.language_code or telegram_user.language_code
+        telegram_user.is_bot = user.is_bot
+        telegram_user.start_count = (telegram_user.start_count or 0) + 1
+        telegram_user.save()
+
+    return telegram_user
+
+
+def sync_telegram_user_record(
+    telegram_id,
+    username=None,
+    first_name=None,
+    last_name=None,
+    full_name=None,
+    phone=None,
+    language_code=None,
+    is_bot=False,
+):
+    if not telegram_id:
+        return None
+
+    telegram_user, _ = TelegramUser.objects.get_or_create(
+        telegram_id=telegram_id,
+        defaults={
+            "username": username,
+            "first_name": first_name,
+            "last_name": last_name,
+            "full_name": full_name,
+            "phone": phone,
+            "language_code": language_code,
+            "is_bot": is_bot,
+        },
+    )
+
+    changed = False
+
+    updates = {
+        "username": username,
+        "first_name": first_name,
+        "last_name": last_name,
+        "full_name": full_name,
+        "phone": phone,
+        "language_code": language_code,
+        "is_bot": is_bot,
+    }
+
+    for field, value in updates.items():
+        if value not in [None, ""] and getattr(telegram_user, field, None) != value:
+            setattr(telegram_user, field, value)
+            changed = True
+
+    if changed:
+        telegram_user.save()
+
+    return telegram_user
+
+
+def backfill_telegram_users_from_database():
+    # Owner jadvalidan olish
+    owners = Owner.objects.exclude(telegram_id__isnull=True).exclude(telegram_id=0)
+
+    for owner in owners:
+        username = getattr(owner, "telegram_username", None)
+        language = getattr(owner, "language", None)
+
+        sync_telegram_user_record(
+            telegram_id=owner.telegram_id,
+            username=username,
+            full_name=getattr(owner, "full_name", None),
+            phone=getattr(owner, "phone", None),
+            language_code=language,
+        )
+
+    # NewPatient jadvalidan olish
+    patients = (
+        NewPatient.objects
+        .exclude(telegram_id__isnull=True)
+        .exclude(telegram_id=0)
+        .order_by("-created_at")
+    )
+
+    seen_ids = set()
+
+    for patient in patients:
+        if patient.telegram_id in seen_ids:
+            continue
+
+        seen_ids.add(patient.telegram_id)
+
+        sync_telegram_user_record(
+            telegram_id=patient.telegram_id,
+            username=getattr(patient, "telegram_username", None),
+            full_name=getattr(patient, "full_name", None),
+            phone=getattr(patient, "phone", None),
+            language_code=getattr(patient, "language", None),
+        )
+
+
+@sync_to_async
+def get_telegram_admin_report(limit=20):
+    backfill_telegram_users_from_database()
+
+    total_users = TelegramUser.objects.count()
+    users = list(TelegramUser.objects.order_by("-last_seen_at")[:limit])
+    return total_users, users
+
+
+
+
 @sync_to_async
 def get_or_create_owner(user, lang):
     owner = Owner.objects.filter(telegram_id=user.id).first()
@@ -637,6 +784,14 @@ def update_owner_name(owner_id, full_name):
     owner = Owner.objects.get(id=owner_id)
     owner.full_name = full_name.strip()
     owner.save()
+
+    sync_telegram_user_record(
+        telegram_id=owner.telegram_id,
+        full_name=owner.full_name,
+        phone=getattr(owner, "phone", None),
+        language_code=getattr(owner, "language", None),
+    )
+
     return owner
 
 
@@ -645,6 +800,14 @@ def update_owner_phone(owner_id, phone):
     owner = Owner.objects.get(id=owner_id)
     owner.phone = normalize_phone(phone)
     owner.save()
+
+    sync_telegram_user_record(
+        telegram_id=owner.telegram_id,
+        full_name=getattr(owner, "full_name", None),
+        phone=owner.phone,
+        language_code=getattr(owner, "language", None),
+    )
+
     return owner
 
 
@@ -886,6 +1049,7 @@ async def show_location_choice(query_or_message, context):
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data.clear()
+    await save_telegram_user(update.effective_user)
 
     await update.message.reply_text(
         "🔄 Bot ishga tushdi.",
@@ -1393,6 +1557,51 @@ async def cancel_flow(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return MAIN_MENU
 
 
+
+async def admin_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    current_user = update.effective_user
+    await save_telegram_user(current_user)
+
+    if current_user.id not in ADMIN_TELEGRAM_IDS:
+        await update.message.reply_text(
+            "⛔ Sizda admin bo‘limiga kirish huquqi yo‘q."
+        )
+        return
+
+    total_users, users = await get_telegram_admin_report(limit=20)
+
+    message = "👨‍💻 <b>ADMIN PANEL</b>\n"
+    message += "━━━━━━━━━━━━━━━━━━━━\n\n"
+    message += f"👥 <b>Jami foydalanuvchilar:</b> {total_users} ta\n"
+    message += f"📋 <b>Oxirgi foydalanuvchilar:</b> {len(users)} ta\n\n"
+
+    if not users:
+        message += "📭 Hozircha botdan foydalangan foydalanuvchilar yo‘q."
+    else:
+        for index, user in enumerate(users, start=1):
+            full_name = escape(user.full_name or "Ism kiritilmagan")
+            username = f"@{escape(user.username)}" if user.username else "Username yo‘q"
+            language = escape(user.language_code or "-")
+            start_count = user.start_count or 0
+            last_seen = user.last_seen_at.strftime("%d.%m.%Y %H:%M") if user.last_seen_at else "-"
+
+            message += f"👤 <b>{index}. {full_name}</b>\n"
+            message += f"🆔 <code>{user.telegram_id}</code>\n"
+            phone = escape(user.phone or "Telefon yo‘q")
+
+            message += f"🔗 {username}\n"
+            message += f"📞 {phone}\n"
+            message += f"🌐 Til: {language}\n"
+            message += f"🔁 /start: {start_count} marta\n"
+            message += f"🕒 Oxirgi faollik: {last_seen}\n"
+            message += "━━━━━━━━━━━━━━━━━━━━\n"
+
+    await update.message.reply_text(
+        message,
+        parse_mode="HTML",
+    )
+
+
 # =========================
 # COMMAND
 # =========================
@@ -1462,6 +1671,7 @@ class Command(BaseCommand):
             allow_reentry=True,
         )
 
+        app.add_handler(CommandHandler("admin", admin_command))
         app.add_handler(conversation)
 
         self.stdout.write(

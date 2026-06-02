@@ -52,6 +52,76 @@ class Owner(models.Model):
         return f"{self.owner_code} | {self.full_name} | {self.phone}"
 
 
+
+class TelegramUser(models.Model):
+    telegram_id = models.BigIntegerField(
+        unique=True,
+        db_index=True,
+        verbose_name=_("Telegram ID")
+    )
+    username = models.CharField(
+        max_length=150,
+        blank=True,
+        null=True,
+        verbose_name=_("Username")
+    )
+    first_name = models.CharField(
+        max_length=150,
+        blank=True,
+        null=True,
+        verbose_name=_("Ism")
+    )
+    last_name = models.CharField(
+        max_length=150,
+        blank=True,
+        null=True,
+        verbose_name=_("Familiya")
+    )
+    full_name = models.CharField(
+        max_length=300,
+        blank=True,
+        null=True,
+        verbose_name=_("To‘liq ism")
+    )
+    phone = models.CharField(
+        max_length=30,
+        blank=True,
+        null=True,
+        verbose_name=_("Telefon raqam")
+    )
+    language_code = models.CharField(
+        max_length=20,
+        blank=True,
+        null=True,
+        verbose_name=_("Telegram tili")
+    )
+    is_bot = models.BooleanField(
+        default=False,
+        verbose_name=_("Botmi?")
+    )
+    start_count = models.PositiveIntegerField(
+        default=0,
+        verbose_name=_("/start bosgan soni")
+    )
+    last_seen_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_("Oxirgi faollik")
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_("Birinchi kirgan vaqt")
+    )
+
+    class Meta:
+        verbose_name = _("Telegram foydalanuvchi")
+        verbose_name_plural = _("Telegram foydalanuvchilar")
+        ordering = ["-last_seen_at"]
+
+    def __str__(self):
+        name = self.full_name or self.username or str(self.telegram_id)
+        return f"{name} | {self.telegram_id}"
+
+
 class Pet(models.Model):
     ANIMAL_TYPES = [
         ("dog", _("It")),
