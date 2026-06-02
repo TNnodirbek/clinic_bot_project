@@ -14,7 +14,7 @@
     <div class="container header-inner">
         <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
 
-        <label for="navToggle" class="hamburger" aria-label="Menu">
+        <label for="navToggle" class="hamburger" aria-label="{% trans 'Menyu' %}">
             <span></span>
             <span></span>
             <span></span>
@@ -34,7 +34,7 @@
             <a href="{% url 'website:contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">{% trans "Aloqa" %}</a>
         </nav>
 
-        <div class="site-language-switcher" aria-label="Language switcher">
+        <div class="site-language-switcher" aria-label="{% trans 'Til tanlash' %}">
             <span class="language-icon">🌐</span>
             <form action="{% url 'set_language' %}" method="post">
                 {% csrf_token %}

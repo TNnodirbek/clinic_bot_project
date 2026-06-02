@@ -244,9 +244,7 @@
                 </div>
 
                 {% if dashboard_is_admin_user or dashboard_is_vet_user %}
-                    <button type="button" class="dashboard-help-button" data-help-open aria-label="{% trans 'Yordam' %}">
-                        <i class="fa-solid fa-question"></i>
-                    </button>
+
                 {% endif %}
 
                 <div class="user-box">
@@ -515,12 +513,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function getHelpText() {
         const message = helpMessageInput ? helpMessageInput.value.trim() : "";
+        const helpTitle = "{% trans 'Dashboard yordam so‘rovi' %}";
+        const helpUserLabel = "{% trans 'Foydalanuvchi' %}";
+        const helpPageLabel = "{% trans 'Sahifa' %}";
+        const helpEmptyMessage = "{% trans 'Savol/taklif/shikoyat matni yozilmadi.' %}";
+
         return [
-            "Dashboard yordam so‘rovi",
-            "Foydalanuvchi: {{ request.user.get_full_name|default:request.user.username|escapejs }}",
-            "Sahifa: {{ request.get_full_path|escapejs }}",
+            helpTitle,
+            helpUserLabel + ": {{ request.user.get_full_name|default:request.user.username|escapejs }}",
+            helpPageLabel + ": {{ request.get_full_path|escapejs }}",
             "",
-            message || "Savol/taklif/shikoyat matni yozilmadi."
+            message || helpEmptyMessage
         ].join("\\n");
     }
 

@@ -3,2802 +3,4445 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VetClinic\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:00+0500\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: auto
+#: .\config\settings.py:124
 msgid "O‘zbek"
 msgstr "Uzbek"
 
-#: auto
+#: .\config\settings.py:125
 msgid "Русский"
 msgstr "Russian"
 
-#: auto
+#: .\config\settings.py:126
 msgid "English"
 msgstr "English"
 
-#: auto
-msgid "Administrator dashboard"
-msgstr "Administrator dashboard"
-
-#: auto
-msgid "Yangi arizalarni ko‘rish, veterinarga biriktirish va bemorlar holatini boshqarish"
-msgstr "View new applications, assign veterinarians, and manage patient statuses"
-
-#: auto
-msgid "Yangi bemorlar"
-msgstr "New patients"
-
-#: auto
-msgid "Bemorlar"
-msgstr "Patients"
-
-#: auto
-msgid "Veterinar doktorlar"
-msgstr "Veterinarians"
-
-#: auto
-msgid "Karta"
-msgstr "Card"
-
-#: auto
-msgid "Elektron kartoteka"
-msgstr "Electronic card index"
-
-#: auto
-msgid "Bemor kodi"
-msgstr "Patient code"
-
-#: auto
-msgid "F.I.Sh"
-msgstr "Full name"
-
-#: auto
-msgid "Telefon"
-msgstr "Phone"
-
-#: auto
-msgid "Hayvon nomi"
-msgstr "Animal name"
-
-#: auto
-msgid "Hayvon turi"
-msgstr "Animal type"
-
-#: auto
-msgid "Izoh"
-msgstr "Note"
-
-#: auto
-msgid "Ko‘rik vaqti"
-msgstr "Visit time"
-
-#: auto
-msgid "Amal"
-msgstr "Action"
-
-#: auto
-msgid "Biriktirish"
-msgstr "Assign"
-
-#: auto
-msgid "Bu arizani bekor qilmoqchimisiz?"
-msgstr "Do you want to cancel this application?"
-
-#: auto
-msgid "Bekor qilish"
-msgstr "Cancel"
-
-#: auto
-msgid "Hozircha yangi arizalar yo‘q."
-msgstr "There are no new applications yet."
-
-#: auto
-msgid "Veterinar doktor"
-msgstr "Veterinarian doctor"
-
-#: auto
-msgid "Status"
-msgstr "Status"
-
-#: auto
-msgid "Oxirgi yangilanish"
-msgstr "Last update"
-
-#: auto
-msgid "Laboratoriyada"
-msgstr "In laboratory"
-
-#: auto
-msgid "Diagnostikada"
-msgstr "In diagnostics"
-
-#: auto
-msgid "Yangilangan vaqt"
-msgstr "Updated time"
-
-#: auto
-msgid "Bekor qilingan"
-msgstr "Cancelled"
-
-#: auto
-msgid "Qayta yo‘naltirish"
-msgstr "Redirect"
-
-#: auto
-msgid "Bu bemorni bekor qilmoqchimisiz?"
-msgstr "Do you want to cancel this patient?"
-
-#: auto
-msgid "Bemorlar tarixi hozircha yo‘q."
-msgstr "There is no patient history yet."
-
-#: auto
-msgid "Vet Clinic Dashboard"
-msgstr "Vet Clinic Dashboard"
-
-#: auto
-msgid "Vet Clinic"
-msgstr "Vet Clinic"
-
-#: auto
-msgid "Boshqaruv paneli"
-msgstr "Control panel"
-
-#: auto
-msgid "Dashboard"
-msgstr "Dashboard"
-
-#: auto
-msgid "Admin panel"
-msgstr "Admin panel"
-
-#: auto
-msgid "Chiqish"
-msgstr "Logout"
-
-#: auto
-msgid "Veterinariya klinikasi"
-msgstr "Veterinary clinic"
-
-#: auto
-msgid "Elektron kartoteka tizimi"
-msgstr "Electronic card index system"
-
-#: auto
-msgid "Klinika jarayonlarini boshqarish paneli"
-msgstr "Clinic process management panel"
-
-#: auto
-msgid "Qidirish..."
-msgstr "Search..."
-
-#: auto
-msgid "Bildirishnomalar"
-msgstr "Notifications"
-
-#: auto
-msgid "%(dashboard_notification_count)s ta"
-msgstr "%(dashboard_notification_count)s"
-
-#: auto
-msgid "Yangi bildirishnoma yo‘q"
-msgstr "No new notifications"
-
-#: auto
-msgid "Superadmin"
-msgstr "Superadmin"
-
-#: auto
-msgid "Foydalanuvchi"
-msgstr "User"
-
-#: auto
-msgid "Diagnostika dashboard"
-msgstr "Diagnostics dashboard"
-
-#: auto
-msgid "Laboratoriya natijalarini ko‘rish, diagnostik xulosa yozish va bemorni veterinarga qaytarish"
-msgstr "View laboratory results, write diagnostic conclusions, and return the patient to the veterinarian"
-
-#: auto
-msgid "Faol diagnostika"
-msgstr "Active diagnostics"
-
-#: auto
-msgid "Diagnostika tarixi"
-msgstr "Diagnostics history"
-
-#: auto
-msgid "Lab"
-msgstr "Lab"
-
-#: auto
-msgid "Analiz natijalari"
-msgstr "Analysis results"
-
-#: auto
-msgid "Vet"
-msgstr "Vet"
-
-#: auto
-msgid "Faol diagnostika ishlari"
-msgstr "Active diagnostics work"
-
-#: auto
-msgid "Analiz turi"
-msgstr "Analysis type"
-
-#: auto
-msgid "Ko‘rik"
-msgstr "Visit"
-
-#: auto
-msgid "Diagnostik xulosa"
-msgstr "Diagnostic conclusion"
-
-#: auto
-msgid "Laboratoriya natijasi tahrirlangan"
-msgstr "Laboratory result was edited"
-
-#: auto
-msgid "Diagnostik xulosa yozing..."
-msgstr "Write the diagnostic conclusion..."
-
-#: auto
-msgid "required"
-msgstr "required"
-
-#: auto
-msgid "Tavsiya..."
-msgstr "Recommendation..."
-
-#: auto
-msgid "Diagnostikaga yuborilgan faol bemorlar yo‘q."
-msgstr "There are no active patients sent to diagnostics."
-
-#: auto
-msgid "Diagnostika statusi"
-msgstr "Diagnostics status"
-
-#: auto
-msgid "Bildirishnoma"
-msgstr "Notification"
-
-#: auto
-msgid "Kutilmoqda"
-msgstr "Waiting"
-
-#: auto
-msgid "Tayyor"
-msgstr "Ready"
-
-#: auto
-msgid "Lab natija tahrirlangan"
-msgstr "Lab result edited"
-
-#: auto
-msgid "Tahrirlash"
-msgstr "Edit"
-
-#: auto
-msgid "Diagnostika tarixida yozuvlar yo‘q."
-msgstr "There are no records in the diagnostics history."
-
-#: auto
-msgid "Diagnostika xulosasini tahrirlash"
-msgstr "Edit diagnostic conclusion"
-
-#: auto
-msgid "Diagnostik xulosa va tavsiyani qayta ko‘rib chiqish oynasi"
-msgstr "Window for reviewing the diagnostic conclusion and recommendation"
-
-#: auto
-msgid "Ogohlantirish"
-msgstr "Warning"
-
-#: auto
-msgid "Laboratoriya natijasi o‘zgartirilgan. Xulosani qayta tekshiring."
-msgstr "The laboratory result has been changed. Please recheck the conclusion."
-
-#: auto
-msgid "Tahrirlagan xodim"
-msgstr "Edited by"
-
-#: auto
-msgid "Bemor ma’lumotlari"
-msgstr "Patient information"
-
-#: auto
-msgid "Vaqt ma’lumotlari"
-msgstr "Time information"
-
-#: auto
-msgid "Analiz natijasi"
-msgstr "Analysis result"
-
-#: auto
-msgid "Laboratoriya izohi"
-msgstr "Laboratory comment"
-
-#: auto
-msgid "Tavsiya"
-msgstr "Recommendation"
-
-#: auto
-msgid "Davolash"
-msgstr "Treatment"
-
-#: auto
-msgid "Orqaga"
-msgstr "Back"
-
-#: auto
-msgid "Laboratoriya natijasini tahrirlash"
-msgstr "Edit laboratory result"
-
-#: auto
-msgid "Analiz natijasi va laboratoriya izohini tahrirlash oynasi"
-msgstr "Window for editing the analysis result and laboratory comment"
-
-#: auto
-msgid "Hayvon ma’lumotlari"
-msgstr "Animal information"
-
-#: auto
-msgid "Laboratoriya tahlili natijasini to‘liq kiriting."
-msgstr "Enter the laboratory analysis result in full."
-
-#: auto
-msgid "Qo‘shimcha izoh yoki tavsiyalar bo‘lsa yozing."
-msgstr "Write any additional comments or recommendations."
-
-#: auto
-msgid "Analiz so‘rovini tahrirlash"
-msgstr "Edit analysis request"
-
-#: auto
-msgid "Veterinar yuborgan analiz turi va izohini tahrirlash oynasi"
-msgstr "Window for editing the analysis type and comment sent by the veterinarian"
-
-#: auto
-msgid "Muhim eslatma"
-msgstr "Important note"
-
-#: auto
-msgid "Tahrirlash qoidasi"
-msgstr "Editing rule"
-
-#: auto
-msgid "Bu yerda faqat analiz turi va veterinar izohi tahrirlanadi."
-msgstr "Only the analysis type and veterinarian comment are edited here."
-
-#: auto
-msgid "Laboratoriya natija kiritganidan keyin bu so‘rovni o‘zgartirib bo‘lmaydi."
-msgstr "After the laboratory enters a result, this request cannot be changed."
-
-#: auto
-msgid "Analiz so‘rovi"
-msgstr "Analysis request"
-
-#: auto
-msgid "Analiz turini tanlang"
-msgstr "Select analysis type"
-
-#: auto
-msgid "Umumiy qon tahlili"
-msgstr "Complete blood count"
-
-#: auto
-msgid "Biokimyoviy qon tahlili"
-msgstr "Biochemical blood test"
-
-#: auto
-msgid "Siydik tahlili"
-msgstr "Urine analysis"
-
-#: auto
-msgid "Najas tahlili"
-msgstr "Stool analysis"
-
-#: auto
-msgid "Parazitologik tekshiruv"
-msgstr "Parasitological examination"
-
-#: auto
-msgid "Bakteriologik tekshiruv"
-msgstr "Bacteriological examination"
-
-#: auto
-msgid "Allergiya testi"
-msgstr "Allergy test"
-
-#: auto
-msgid "Gormon tahlili"
-msgstr "Hormone analysis"
-
-#: auto
-msgid "Boshqa"
-msgstr "Other"
-
-#: auto
-msgid "Yakuniy ko‘rik / PDF yuborish"
-msgstr "Final examination / Send PDF"
-
-#: auto
-msgid "Yakuniy tashxis, davolash va PDF ko‘rik varaqasini Telegramga yuborish oynasi"
-msgstr "Window for sending the final diagnosis, treatment, and PDF examination sheet to Telegram"
-
-#: auto
-msgid "Doktor tanlanmagan"
-msgstr "Doctor not selected"
-
-#: auto
-msgid "Eslatma"
-msgstr "Note"
-
-#: auto
-msgid "Bu bemor yakunlangan. Siz bu yerda ko‘rikni qayta yozib,"
-msgstr "This patient is completed. Here you can rewrite the examination and"
-
-#: auto
-msgid "Telegramga yangi PDF yuborishingiz mumkin."
-msgstr "send a new PDF to Telegram."
-
-#: auto
-msgid "Laboratoriya natijasi"
-msgstr "Laboratory result"
-
-#: auto
-msgid "Diagnostika xulosasi"
-msgstr "Diagnostics conclusion"
-
-#: auto
-msgid "Xulosa"
-msgstr "Conclusion"
-
-#: auto
-msgid "uchun ko‘rik ma’lumotlari"
-msgstr "examination details for"
-
-#: auto
-msgid "Shikoyat"
-msgstr "Complaint"
-
-#: auto
-msgid "Yakuniy tashxis"
-msgstr "Final diagnosis"
-
-#: auto
-msgid "Qayta kelish sanasi"
-msgstr "Next visit date"
-
-#: auto
-msgid "Majburiy emas. Kerak bo‘lsa keyingi kelish sanasini tanlang."
-msgstr "Optional. Select the next visit date if needed."
-
-#: auto
-msgid "PDFni Telegramga yuborish"
-msgstr "Send PDF to Telegram"
-
-#: auto
-msgid "Laboratoriya dashboard"
-msgstr "Laboratory dashboard"
-
-#: auto
-msgid "Veterinardan kelgan analiz so‘rovlarini ko‘rish, natija kiritish va diagnostikaga yuborish"
-msgstr "View analysis requests from veterinarians, enter results, and send to diagnostics"
-
-#: auto
-msgid "Faol analizlar"
-msgstr "Active analyses"
-
-#: auto
-msgid "Laboratoriya tarixi"
-msgstr "Laboratory history"
-
-#: auto
-msgid "Natija"
-msgstr "Result"
-
-#: auto
-msgid "Diag"
-msgstr "Diag"
-
-#: auto
-msgid "Diagnostikaga yuborish"
-msgstr "Send to diagnostics"
-
-#: auto
-msgid "Faol laboratoriya ishlari"
-msgstr "Active laboratory work"
-
-#: auto
-msgid "Natija kiritish"
-msgstr "Enter result"
-
-#: auto
-msgid "Analiz natijasini yozing..."
-msgstr "Write the analysis result..."
-
-#: auto
-msgid "Laboratoriya izohi..."
-msgstr "Laboratory comment..."
-
-#: auto
-msgid "Laboratoriyaga yuborilgan faol bemorlar yo‘q."
-msgstr "There are no active patients sent to the laboratory."
-
-#: auto
-msgid "Laboratoriya statusi"
-msgstr "Laboratory status"
-
-#: auto
-msgid "Diagnostikaga yuborilgan"
-msgstr "Sent to diagnostics"
-
-#: auto
-msgid "Laboratoriya tarixida yozuvlar yo‘q."
-msgstr "There are no records in the laboratory history."
-
-#: auto
-msgid "Tizimga kirish"
-msgstr "Sign in"
-
-#: auto
-msgid "Tizimga xush kelibsiz"
-msgstr "Welcome to the system"
-
-#: auto
-msgid "Klinika xodimlari uchun mo‘ljallangan boshqaruv paneli. Bu yerda arizalar, bemorlar holati, laboratoriya natijalari, diagnostika xulosalari va yakuniy ko‘riklar boshqariladi."
-msgstr "A management panel for clinic staff. Applications, patient statuses, laboratory results, diagnostic conclusions, and final visits are managed here."
-
-#: auto
-msgid "Bemorlar jarayoni va yakuniy ko‘riklar nazorati."
-msgstr "Supervision of patient process and final visits."
-
-#: auto
-msgid "Laboratoriya va diagnostika"
-msgstr "Laboratory and diagnostics"
-
-#: auto
-msgid "Analiz natijalari va diagnostik xulosalarni yuritish."
-msgstr "Managing analysis results and diagnostic conclusions."
-
-#: auto
-msgid "Bemor kartalari va ko‘rik tarixini bir joyda saqlash."
-msgstr "Storing patient cards and examination history in one place."
-
-#: auto
-msgid "Login va parolingizni kiriting"
-msgstr "Enter your login and password"
-
-#: auto
-msgid "Login yoki parol noto‘g‘ri. Qayta urinib ko‘ring."
-msgstr "Login or password is incorrect. Try again."
-
-#: auto
-msgid "Login"
-msgstr "Login"
-
-#: auto
-msgid "Loginni kiriting"
-msgstr "Enter login"
-
-#: auto
-msgid "Parol"
-msgstr "Password"
-
-#: auto
-msgid "Parolni kiriting"
-msgstr "Enter password"
-
-#: auto
-msgid "Kirish"
-msgstr "Sign in"
-
-#: auto
-msgid "VetClinic elektron kartoteka tizimi"
-msgstr "VetClinic electronic card index system"
-
-#: auto
-msgid "Administrator / Veterinar / Laboratoriya / Diagnostika"
-msgstr "Administrator / Veterinarian / Laboratory / Diagnostics"
-
-#: auto
-msgid "Bemorning to‘liq elektron kartotekasi: ariza, laboratoriya, diagnostika va yakuniy ko‘riklar tarixi"
-msgstr "Full electronic patient record: application, laboratory, diagnostics, and final examination history"
-
-#: auto
-msgid "Laboratoriya yozuvlari"
-msgstr "Laboratory records"
-
-#: auto
-msgid "Diagnostika yozuvlari"
-msgstr "Diagnostics records"
-
-#: auto
-msgid "Ko‘riklar"
-msgstr "Visits"
-
-#: auto
-msgid "Telegram username"
-msgstr "Telegram username"
-
-#: auto
-msgid "Holati"
-msgstr "Status"
-
-#: auto
-msgid "Biriktirilgan veterinar"
-msgstr "Assigned veterinarian"
-
-#: auto
-msgid "Telegram xabar"
-msgstr "Telegram message"
-
-#: auto
-msgid "Ariza izohi"
-msgstr "Application note"
-
-#: auto
-msgid "Laboratoriya natijalari"
-msgstr "Laboratory results"
-
-#: auto
-msgid "Laboratoriya xodimi"
-msgstr "Laboratory employee"
-
-#: auto
-msgid "Laboratoriya yozuvlari mavjud emas."
-msgstr "No laboratory records available."
-
-#: auto
-msgid "Diagnostika xulosalari"
-msgstr "Diagnostic conclusions"
-
-#: auto
-msgid "Diagnostika xodimi"
-msgstr "Diagnostics employee"
-
-#: auto
-msgid "Diagnostika yozuvlari mavjud emas."
-msgstr "No diagnostics records available."
-
-#: auto
-msgid "Yakuniy ko‘riklar / PDF tarixi"
-msgstr "Final examinations / PDF history"
-
-#: auto
-msgid "Tashxis"
-msgstr "Diagnosis"
-
-#: auto
-msgid "Yuborildimi?"
-msgstr "Sent?"
-
-#: auto
-msgid "Kiritilmagan"
-msgstr "Not entered"
-
-#: auto
-msgid "Yakuniy ko‘riklar mavjud emas."
-msgstr "No final examinations available."
-
-#: auto
-msgid "Dashboardga qaytish"
-msgstr "Return to dashboard"
-
-#: auto
-msgid "Bemorlarning hozirgi jarayon holati, mas’ul veterinar va oxirgi yangilanishlarini ko‘rish"
-msgstr "View current patient process status, responsible veterinarian, and latest updates"
-
-#: auto
-msgid "Laboratoriya jarayoni"
-msgstr "Laboratory process"
-
-#: auto
-msgid "Diagnostika jarayoni"
-msgstr "Diagnostics process"
-
-#: auto
-msgid "Yangi"
-msgstr "New"
-
-#: auto
-msgid "Laboratoriyaga yuborilgan"
-msgstr "Sent to laboratory"
-
-#: auto
-msgid "Qabul qilindi"
-msgstr "Accepted"
-
-#: auto
-msgid "Rad etildi"
-msgstr "Rejected"
-
-#: auto
-msgid "Hozircha bemorlar mavjud emas."
-msgstr "There are no patients yet."
-
-#: auto
-msgid "Bemorlarni ko‘rish, laboratoriyaga yuborish va yakuniy ko‘rik/PDF jarayonlarini boshqarish"
-msgstr "View patients, send them to the laboratory, and manage final examination/PDF processes"
-
-#: auto
-msgid "Mutaxassisligi"
-msgstr "Specialization"
-
-#: auto
-msgid "Analiz so‘rovlari"
-msgstr "Analysis requests"
-
-#: auto
-msgid "PDF"
-msgstr "PDF"
-
-#: auto
-msgid "Yakuniy ko‘rik"
-msgstr "Final examination"
-
-#: auto
-msgid "Laboratoriyaga yuborish"
-msgstr "Send to laboratory"
-
-#: auto
-msgid "Faol bemorlar hozircha yo‘q."
-msgstr "There are no active patients yet."
-
-#: auto
-msgid "Mening bemorlarim"
-msgstr "My patients"
-
-#: auto
-msgid "Qayta PDF yuborish"
-msgstr "Resend PDF"
-
-#: auto
-msgid "Barcha bemorlar"
-msgstr "All patients"
-
-#: auto
-msgid "Analiz so‘rovlari tarixi"
-msgstr "Analysis request history"
-
-#: auto
-msgid "Hozircha analiz so‘rovlari yo‘q."
-msgstr "There are no analysis requests yet."
-
-#: auto
-msgid "Diagnostika natijasini ko‘rish"
-msgstr "View diagnostics result"
-
-#: auto
-msgid "Diagnostika natijasi"
-msgstr "Diagnostic result"
-
-#: auto
-msgid "Bemorning laboratoriya va diagnostika ma’lumotlarini ixcham ko‘rish oynasi"
-msgstr "Compact view of the patient’s laboratory and diagnostics information"
-
-#: auto
-msgid "Doktor va holat"
-msgstr "Doctor and status"
-
-#: auto
-msgid "Laboratoriya natijasi diagnostika xulosasidan keyin o‘zgartirilgan."
-msgstr "The laboratory result was changed after the diagnostic conclusion."
-
-#: auto
-msgid "Orqaga qaytish"
-msgstr "Go back"
-
-#: auto
-msgid "Laboratoriya natijasini ko‘rish"
-msgstr "View laboratory result"
-
-#: auto
-msgid "Bemor laboratoriya natijasi va izohlarini ixcham ko‘rish oynasi"
-msgstr "Compact view of the patient’s laboratory result and comments"
-
-#: auto
-msgid "Hurmatli mijoz"
-msgstr "Dear client"
-
-#: auto
-msgid "hayvoningiz"
-msgstr "your pet"
-
-#: auto
-msgid "Assalomu alaykum"
-msgstr "Hello"
-
-#: auto
-msgid "Qo‘shimcha xabar"
-msgstr "Additional message"
-
-#: auto
-msgid "Ko‘rik varaqasi PDF shaklida ham yuborildi."
-msgstr "The examination sheet was also sent as a PDF."
-
-#: auto
-msgid "Aniqlanmagan"
-msgstr "Not specified"
-
-#: auto
-msgid "Ko‘rik varaqasi"
-msgstr "Examination sheet"
-
-#: auto
-msgid "Ko‘rik raqami"
-msgstr "Examination number"
-
-#: auto
-msgid "Egasi F.I.Sh"
-msgstr "Owner full name"
-
-#: auto
-msgid "Mas’ul doktor"
-msgstr "Responsible doctor"
-
-#: auto
-msgid "Ko‘rik sanasi"
-msgstr "Examination date"
-
-#: auto
-msgid "Ushbu varaqa elektron kartoteka tizimi orqali shakllantirildi."
-msgstr "This sheet was generated through the electronic record system."
-
-#: auto
-msgid "Ko‘rik ma’lumotlari"
-msgstr "Examination information"
-
-#: auto
-msgid "Tibbiy ma’lumotlar"
-msgstr "Medical information"
-
-#: auto
-msgid "Egasi aniqlanmagan"
-msgstr "Owner not specified"
-
-#: auto
-msgid "Egasi"
-msgstr "Owner"
-
-#: auto
-msgid "Noma’lum hayvon"
-msgstr "Unknown animal"
-
-#: auto
-msgid "{} sizga tegishli emas."
-msgstr "{} does not belong to you."
-
-#: auto
-msgid "{} uchun hayvon egasi topilmadi."
-msgstr "Owner was not found for {}."
-
-#: auto
-msgid "{} uchun Telegram ID yo‘q."
-msgstr "There is no Telegram ID for {}."
-
-#: auto
-msgid "{} uchun xabar matni shakllanmadi."
-msgstr "Message text was not generated for {}."
-
-#: auto
-msgid "Xatolik: {}"
-msgstr "Error: {}"
-
-#: auto
-msgid "Ko‘rik varaqasi PDF"
-msgstr "Visit sheet PDF"
-
-#: auto
-msgid "PDF yuborishda xatolik: {}"
-msgstr "Error sending PDF: {}"
-
-#: auto
-msgid "Yuborildi: {} ta. Xato: {} ta."
-msgstr "Sent: {}. Errors: {}."
-
-#: auto
-msgid "Tanlangan ko‘riklar bo‘yicha Telegram xabar yuborish"
-msgstr "Send Telegram messages for selected examinations"
-
-#: auto
-msgid "Tanlangan bemorlarga Telegram xabar yuborish"
-msgstr "Send Telegram messages to selected patients"
-
-#: auto
-msgid "Doktor akkaunti"
-msgstr "Doctor account"
-
-#: auto
-msgid "Shaxsiy ma’lumotlar"
-msgstr "Personal information"
-
-#: auto
-msgid "Rezyume"
-msgstr "Resume"
-
-#: auto
-msgid "Egasi kodi"
-msgstr "Owner code"
-
-#: auto
-msgid "Telegram ID"
-msgstr "Telegram ID"
-
-#: auto
-msgid "Manzil"
-msgstr "Address"
-
-#: auto
-msgid "Ro‘yxatga olingan vaqt"
-msgstr "Registration time"
-
-#: auto
-msgid "Hayvon egasi"
-msgstr "Animal owner"
-
-#: auto
-msgid "Hayvon egalari"
-msgstr "Animal owners"
-
-#: auto
-msgid "It"
-msgstr "Dog"
-
-#: auto
-msgid "Mushuk"
-msgstr "Cat"
-
-#: auto
-msgid "Sigir"
-msgstr "Cow"
-
-#: auto
-msgid "Ot"
-msgstr "Horse"
-
-#: auto
-msgid "Qo‘y"
-msgstr "Sheep"
-
-#: auto
-msgid "Echki"
-msgstr "Goat"
-
-#: auto
-msgid "Qush"
-msgstr "Bird"
-
-#: auto
-msgid "Hayvon kodi"
-msgstr "Animal code"
-
-#: auto
-msgid "Hayvon"
-msgstr "Animal"
-
-#: auto
-msgid "Hayvonlar"
-msgstr "Animals"
-
-#: auto
-msgid "Ish tajribasi"
-msgstr "Work experience"
-
-#: auto
-msgid "Faolmi?"
-msgstr "Active?"
-
-#: auto
-msgid "Yaratilgan vaqt"
-msgstr "Created time"
-
-#: auto
-msgid "Laboratoriyaga yuborildi"
-msgstr "Sent to laboratory"
-
-#: auto
-msgid "Diagnostikaga yuborildi"
-msgstr "Sent to diagnostics"
-
-#: auto
-msgid "Yakunlandi"
-msgstr "Completed"
-
-#: auto
-msgid "Tanlangan doktor"
-msgstr "Selected doctor"
-
-#: auto
-msgid "Kelgan vaqti"
-msgstr "Arrival time"
-
-#: auto
-msgid "Yangi bemor"
-msgstr "New patient"
-
-#: auto
-msgid "Hayvon yozilmagan"
-msgstr "Animal not entered"
-
-#: auto
-msgid "Xabar matni"
-msgstr "Message text"
-
-#: auto
-msgid "Hayvon tanlanmagan"
-msgstr "Animal not selected"
-
-#: auto
-msgid "Yuborgan veterinar"
-msgstr "Sending veterinarian"
-
-#: auto
-msgid "Analiz nomi"
-msgstr "Analysis name"
-
-#: auto
-msgid "Laboratoriya natijasi tahrirlanganmi?"
-msgstr "Was the laboratory result edited?"
-
-#: auto
-msgid "Laboratoriya tahrirlagan xodim"
-msgstr "Laboratory employee who edited"
-
-#: auto
-msgid "Diagnostika natijalari"
-msgstr "Diagnostic results"
-
-#: auto
-msgid "Mening bemorim"
-msgstr "My patient"
-
-#: auto
-msgid "Messages"
-msgstr "Messages"
-
-#: auto
-msgid "Site Maps"
-msgstr "Site Maps"
-
-#: auto
-msgid "Static Files"
-msgstr "Static Files"
-
-#: auto
-msgid "Syndication"
-msgstr "Syndication"
-
-#: auto
-msgid "…"
-msgstr "…"
-
-#: auto
-msgid "That page number is not an integer"
-msgstr "That page number is not an integer"
-
-#: auto
-msgid "That page number is less than 1"
-msgstr "That page number is less than 1"
-
-#: auto
-msgid "That page contains no results"
-msgstr "That page contains no results"
-
-#: auto
-msgid "Enter a valid value."
-msgstr "Enter a valid value."
-
-#: auto
-msgid "Enter a valid domain name."
-msgstr "Enter a valid domain name."
-
-#: auto
-msgid "Enter a valid URL."
-msgstr "Enter a valid URL."
-
-#: auto
-msgid "Enter a valid integer."
-msgstr "Enter a valid integer."
-
-#: auto
-msgid "Enter a valid email address."
-msgstr "Enter a valid email address."
-
-#: auto
-msgid "Enter a valid %(protocol)s address."
-msgstr "Enter a valid %(protocol)s address."
-
-#: auto
-msgid "IPv4"
-msgstr "IPv4"
-
-#: auto
-msgid "IPv6"
-msgstr "IPv6"
-
-#: auto
-msgid "IPv4 or IPv6"
-msgstr "IPv4 or IPv6"
-
-#: auto
-msgid "Enter only digits separated by commas."
-msgstr "Enter only digits separated by commas."
-
-#: auto
-msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
-msgstr "Ensure this value is %(limit_value)s (it is %(show_value)s)."
-
-#: auto
-msgid "Ensure this value is less than or equal to %(limit_value)s."
-msgstr "Ensure this value is less than or equal to %(limit_value)s."
-
-#: auto
-msgid "Ensure this value is greater than or equal to %(limit_value)s."
-msgstr "Ensure this value is greater than or equal to %(limit_value)s."
-
-#: auto
-msgid "Ensure this value is a multiple of step size %(limit_value)s."
-msgstr "Ensure this value is a multiple of step size %(limit_value)s."
-
-#: auto
-msgid "Enter a number."
-msgstr "Enter a number."
-
-#: auto
-msgid "Ensure that there are no more than %(max)s digit in total."
-msgstr ""
-
-#: auto
-msgid "Ensure that there are no more than %(max)s decimal place."
-msgstr ""
-
-#: auto
-msgid "Null characters are not allowed."
-msgstr "Null characters are not allowed."
-
-#: auto
-msgid "and"
-msgstr "and"
-
-#: auto
-msgid "%(model_name)s with this %(field_labels)s already exists."
-msgstr "%(model_name)s with this %(field_labels)s already exists."
-
-#: auto
-msgid "Constraint “%(name)s” is violated."
-msgstr "Constraint “%(name)s” is violated."
-
-#: auto
-msgid "Value %(value)r is not a valid choice."
-msgstr "Value %(value)r is not a valid choice."
-
-#: auto
-msgid "This field cannot be null."
-msgstr "This field cannot be null."
-
-#: auto
-msgid "This field cannot be blank."
-msgstr "This field cannot be blank."
-
-#: auto
-msgid "%(model_name)s with this %(field_label)s already exists."
-msgstr "%(model_name)s with this %(field_label)s already exists."
-
-#: auto
-msgid "Field of type: %(field_type)s"
-msgstr "Field of type: %(field_type)s"
-
-#: auto
-msgid "“%(value)s” value must be either True or False."
-msgstr "“%(value)s” value must be either True or False."
-
-#: auto
-msgid "“%(value)s” value must be either True, False, or None."
-msgstr "“%(value)s” value must be either True, False, or None."
-
-#: auto
-msgid "Boolean (Either True or False)"
-msgstr "Boolean (Either True or False)"
-
-#: auto
-msgid "String (up to %(max_length)s)"
-msgstr "String (up to %(max_length)s)"
-
-#: auto
-msgid "String (unlimited)"
-msgstr "String (unlimited)"
-
-#: auto
-msgid "Comma-separated integers"
-msgstr "Comma-separated integers"
-
-#: auto
-msgid "Date (without time)"
-msgstr "Date (without time)"
-
-#: auto
-msgid "Date (with time)"
-msgstr "Date (with time)"
-
-#: auto
-msgid "“%(value)s” value must be a decimal number."
-msgstr "“%(value)s” value must be a decimal number."
-
-#: auto
-msgid "Decimal number"
-msgstr "Decimal number"
-
-#: auto
-msgid "Duration"
-msgstr "Duration"
-
-#: auto
-msgid "Email address"
-msgstr "Email address"
-
-#: auto
-msgid "File path"
-msgstr "File path"
-
-#: auto
-msgid "“%(value)s” value must be a float."
-msgstr "“%(value)s” value must be a float."
-
-#: auto
-msgid "Floating point number"
-msgstr "Floating point number"
-
-#: auto
-msgid "“%(value)s” value must be an integer."
-msgstr "“%(value)s” value must be an integer."
-
-#: auto
-msgid "Integer"
-msgstr "Integer"
-
-#: auto
-msgid "Big (8 byte) integer"
-msgstr "Big (8 byte) integer"
-
-#: auto
-msgid "Small integer"
-msgstr "Small integer"
-
-#: auto
-msgid "IPv4 address"
-msgstr "IPv4 address"
-
-#: auto
-msgid "IP address"
-msgstr "IP address"
-
-#: auto
-msgid "“%(value)s” value must be either None, True or False."
-msgstr "“%(value)s” value must be either None, True or False."
-
-#: auto
-msgid "Boolean (Either True, False or None)"
-msgstr "Boolean (Either True, False or None)"
-
-#: auto
-msgid "Positive big integer"
-msgstr "Positive big integer"
-
-#: auto
-msgid "Positive integer"
-msgstr "Positive integer"
-
-#: auto
-msgid "Positive small integer"
-msgstr "Positive small integer"
-
-#: auto
-msgid "Slug (up to %(max_length)s)"
-msgstr "Slug (up to %(max_length)s)"
-
-#: auto
-msgid "Text"
-msgstr "Text"
-
-#: auto
-msgid "Time"
-msgstr "Time"
-
-#: auto
-msgid "URL"
-msgstr "URL"
-
-#: auto
-msgid "Raw binary data"
-msgstr "Raw binary data"
-
-#: auto
-msgid "“%(value)s” is not a valid UUID."
-msgstr "“%(value)s” is not a valid UUID."
-
-#: auto
-msgid "Universally unique identifier"
-msgstr "Universally unique identifier"
-
-#: auto
-msgid "File"
-msgstr "File"
-
-#: auto
-msgid "Image"
-msgstr "Image"
-
-#: auto
-msgid "A JSON object"
-msgstr "A JSON object"
-
-#: auto
-msgid "Value must be valid JSON."
-msgstr "Value must be valid JSON."
-
-#: auto
-msgid "%(model)s instance with %(field)s %(value)r is not a valid choice."
-msgstr "%(model)s instance with %(field)s %(value)r is not a valid choice."
-
-#: auto
-msgid "Foreign Key (type determined by related field)"
-msgstr "Foreign Key (type determined by related field)"
-
-#: auto
-msgid "One-to-one relationship"
-msgstr "One-to-one relationship"
-
-#: auto
-msgid "%(from)s-%(to)s relationship"
-msgstr "%(from)s-%(to)s relationship"
-
-#: auto
-msgid "%(from)s-%(to)s relationships"
-msgstr "%(from)s-%(to)s relationships"
-
-#: auto
-msgid "Many-to-many relationship"
-msgstr "Many-to-many relationship"
-
-#: auto
-msgid ":?.!"
-msgstr ":?.!"
-
-#: auto
-msgid "This field is required."
-msgstr "This field is required."
-
-#: auto
-msgid "Enter a whole number."
-msgstr "Enter a whole number."
-
-#: auto
-msgid "Enter a valid date."
-msgstr "Enter a valid date."
-
-#: auto
-msgid "Enter a valid time."
-msgstr "Enter a valid time."
-
-#: auto
-msgid "Enter a valid date/time."
-msgstr "Enter a valid date/time."
-
-#: auto
-msgid "Enter a valid duration."
-msgstr "Enter a valid duration."
-
-#: auto
-msgid "The number of days must be between {min_days} and {max_days}."
-msgstr "The number of days must be between {min_days} and {max_days}."
-
-#: auto
-msgid "No file was submitted. Check the encoding type on the form."
-msgstr "No file was submitted. Check the encoding type on the form."
-
-#: auto
-msgid "No file was submitted."
-msgstr "No file was submitted."
-
-#: auto
-msgid "The submitted file is empty."
-msgstr "The submitted file is empty."
-
-#: auto
-msgid "Please either submit a file or check the clear checkbox, not both."
-msgstr "Please either submit a file or check the clear checkbox, not both."
-
-#: auto
-msgid "Enter a list of values."
-msgstr "Enter a list of values."
-
-#: auto
-msgid "Enter a complete value."
-msgstr "Enter a complete value."
-
-#: auto
-msgid "Enter a valid UUID."
-msgstr "Enter a valid UUID."
-
-#: auto
-msgid "Enter a valid JSON."
-msgstr "Enter a valid JSON."
-
-#: auto
-msgid ":"
-msgstr ":"
-
-#: auto
-msgid "(Hidden field %(name)s) %(error)s"
-msgstr "(Hidden field %(name)s) %(error)s"
-
-#: auto
-msgid "Please submit at most %(num)d form."
-msgstr ""
-
-#: auto
-msgid "Please submit at least %(num)d form."
-msgstr ""
-
-#: auto
-msgid "Order"
-msgstr "Order"
-
-#: auto
-msgid "Delete"
-msgstr "Delete"
-
-#: auto
-msgid "Please correct the duplicate data for %(field)s."
-msgstr "Please correct the duplicate data for %(field)s."
-
-#: auto
-msgid "Please correct the duplicate values below."
-msgstr "Please correct the duplicate values below."
-
-#: auto
-msgid "The inline value did not match the parent instance."
-msgstr "The inline value did not match the parent instance."
-
-#: auto
-msgid "“%(pk)s” is not a valid value."
-msgstr "“%(pk)s” is not a valid value."
-
-#: auto
-msgid "Clear"
-msgstr "Clear"
-
-#: auto
-msgid "Currently"
-msgstr "Currently"
-
-#: auto
-msgid "Change"
-msgstr "Change"
-
-#: auto
-msgid "Unknown"
-msgstr "Unknown"
-
-#: auto
-msgid "Yes"
-msgstr "Yes"
-
-#: auto
-msgid "No"
-msgstr "No"
-
-#: auto
-msgid "Ready"
-msgstr "Ready"
-
-#: auto
-msgid "Running"
-msgstr "Running"
-
-#: auto
-msgid "Failed"
-msgstr "Failed"
-
-#: auto
-msgid "Successful"
-msgstr "Successful"
-
-#: auto
-msgid "yes,no,maybe"
-msgstr "yes,no,maybe"
-
-#: auto
-msgid "%(size)d byte"
-msgstr ""
-
-#: auto
-msgid "%s KB"
-msgstr "%s KB"
-
-#: auto
-msgid "%s MB"
-msgstr "%s MB"
-
-#: auto
-msgid "%s GB"
-msgstr "%s GB"
-
-#: auto
-msgid "%s TB"
-msgstr "%s TB"
-
-#: auto
-msgid "%s PB"
-msgstr "%s PB"
-
-#: auto
-msgid "p.m."
-msgstr "p.m."
-
-#: auto
-msgid "a.m."
-msgstr "a.m."
-
-#: auto
-msgid "PM"
-msgstr "PM"
-
-#: auto
-msgid "AM"
-msgstr "AM"
-
-#: auto
-msgid "midnight"
-msgstr "midnight"
-
-#: auto
-msgid "noon"
-msgstr "noon"
-
-#: auto
-msgid "Monday"
-msgstr "Monday"
-
-#: auto
-msgid "Tuesday"
-msgstr "Tuesday"
-
-#: auto
-msgid "Wednesday"
-msgstr "Wednesday"
-
-#: auto
-msgid "Thursday"
-msgstr "Thursday"
-
-#: auto
-msgid "Friday"
-msgstr "Friday"
-
-#: auto
-msgid "Saturday"
-msgstr "Saturday"
-
-#: auto
-msgid "Sunday"
-msgstr "Sunday"
-
-#: auto
-msgid "Mon"
-msgstr "Mon"
-
-#: auto
-msgid "Tue"
-msgstr "Tue"
-
-#: auto
-msgid "Wed"
-msgstr "Wed"
-
-#: auto
-msgid "Thu"
-msgstr "Thu"
-
-#: auto
-msgid "Fri"
-msgstr "Fri"
-
-#: auto
-msgid "Sat"
-msgstr "Sat"
-
-#: auto
-msgid "Sun"
-msgstr "Sun"
-
-#: auto
-msgid "January"
-msgstr "January"
-
-#: auto
-msgid "February"
-msgstr "February"
-
-#: auto
-msgid "March"
-msgstr "March"
-
-#: auto
-msgid "April"
-msgstr "April"
-
-#: auto
-msgid "May"
-msgstr "May"
-
-#: auto
-msgid "June"
-msgstr "June"
-
-#: auto
-msgid "July"
-msgstr "July"
-
-#: auto
-msgid "August"
-msgstr "August"
-
-#: auto
-msgid "September"
-msgstr "September"
-
-#: auto
-msgid "October"
-msgstr "October"
-
-#: auto
-msgid "November"
-msgstr "November"
-
-#: auto
-msgid "December"
-msgstr "December"
-
-#: auto
-msgid "jan"
-msgstr "jan"
-
-#: auto
-msgid "feb"
-msgstr "feb"
-
-#: auto
-msgid "mar"
-msgstr "mar"
-
-#: auto
-msgid "apr"
-msgstr "apr"
-
-#: auto
-msgid "may"
-msgstr "may"
-
-#: auto
-msgid "jun"
-msgstr "jun"
-
-#: auto
-msgid "jul"
-msgstr "jul"
-
-#: auto
-msgid "aug"
-msgstr "aug"
-
-#: auto
-msgid "sep"
-msgstr "sep"
-
-#: auto
-msgid "oct"
-msgstr "oct"
-
-#: auto
-msgid "nov"
-msgstr "nov"
-
-#: auto
-msgid "dec"
-msgstr "dec"
-
-#: auto
-msgid "Jan."
-msgstr "Jan."
-
-#: auto
-msgid "Feb."
-msgstr "Feb."
-
-#: auto
-msgid "Aug."
-msgstr "Aug."
-
-#: auto
-msgid "Sept."
-msgstr "Sept."
-
-#: auto
-msgid "Oct."
-msgstr "Oct."
-
-#: auto
-msgid "Nov."
-msgstr "Nov."
-
-#: auto
-msgid "Dec."
-msgstr "Dec."
-
-#: auto
-msgid "This is not a valid IPv6 address."
-msgstr "This is not a valid IPv6 address."
-
-#: auto
-msgid "%(truncated_text)s…"
-msgstr "%(truncated_text)s…"
-
-#: auto
-msgid "or"
-msgstr "or"
-
-#: auto
-msgid ", "
-msgstr ", "
-
-#: auto
-msgid "%(num)d year"
-msgstr ""
-
-#: auto
-msgid "%(num)d month"
-msgstr ""
-
-#: auto
-msgid "%(num)d week"
-msgstr ""
-
-#: auto
-msgid "%(num)d day"
-msgstr ""
-
-#: auto
-msgid "%(num)d hour"
-msgstr ""
-
-#: auto
-msgid "%(num)d minute"
-msgstr ""
-
-#: auto
-msgid "Forbidden"
-msgstr "Forbidden"
-
-#: auto
-msgid "CSRF verification failed. Request aborted."
-msgstr "CSRF verification failed. Request aborted."
-
-#: auto
-msgid "More information is available with DEBUG=True."
-msgstr "More information is available with DEBUG=True."
-
-#: auto
-msgid "No year specified"
-msgstr "No year specified"
-
-#: auto
-msgid "Date out of range"
-msgstr "Date out of range"
-
-#: auto
-msgid "No month specified"
-msgstr "No month specified"
-
-#: auto
-msgid "No day specified"
-msgstr "No day specified"
-
-#: auto
-msgid "No week specified"
-msgstr "No week specified"
-
-#: auto
-msgid "No %(verbose_name_plural)s available"
-msgstr "No %(verbose_name_plural)s available"
-
-#: auto
-msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
-msgstr "Invalid date string “%(datestr)s” given format “%(format)s”"
-
-#: auto
-msgid "No %(verbose_name)s found matching the query"
-msgstr "No %(verbose_name)s found matching the query"
-
-#: auto
-msgid "Page is not “last”, nor can it be converted to an int."
-msgstr "Page is not “last”, nor can it be converted to an int."
-
-#: auto
-msgid "Invalid page (%(page_number)s): %(message)s"
-msgstr "Invalid page (%(page_number)s): %(message)s"
-
-#: auto
-msgid "Empty list and “%(class_name)s.allow_empty” is False."
-msgstr "Empty list and “%(class_name)s.allow_empty” is False."
-
-#: auto
-msgid "Directory indexes are not allowed here."
-msgstr "Directory indexes are not allowed here."
-
-#: auto
-msgid "“%(path)s” does not exist"
-msgstr "“%(path)s” does not exist"
-
-#: auto
-msgid "Index of %(directory)s"
-msgstr "Index of %(directory)s"
-
-#: auto
-msgid "The install worked successfully! Congratulations!"
-msgstr "The install worked successfully! Congratulations!"
-
-#: auto
-msgid "Django Documentation"
-msgstr "Django Documentation"
-
-#: auto
-msgid "Topics, references, &amp; how-to’s"
-msgstr "Topics, references, &amp; how-to’s"
-
-#: auto
-msgid "Tutorial: A Polling App"
-msgstr "Tutorial: A Polling App"
-
-#: auto
-msgid "Get started with Django"
-msgstr "Get started with Django"
-
-#: auto
-msgid "Django Community"
-msgstr "Django Community"
-
-#: auto
-msgid "Connect, get help, or contribute"
-msgstr "Connect, get help, or contribute"
-
-#: auto
-msgid "%(count)s ta analiz natija kutmoqda"
-msgstr "%(count)s analyses are waiting for results"
-
-#: auto
-msgid "%(count)s ta faol bemor bor"
-msgstr "%(count)s active patients"
-
-#: auto
-msgid "%(count)s ta xulosa kutmoqda"
-msgstr "%(count)s conclusions are waiting"
-
-#: auto
-msgid "%(count)s ta yangi ariza kelgan"
-msgstr "%(count)s new applications received"
-
-#: auto
-msgid "Admin panelda faol doctor profile qo‘shilgandan keyin bu yerda avtomatik chiqadi."
-msgstr "After an active doctor profile is added in the admin panel, it will appear here automatically."
-
-#: auto
-msgid "Administrator, veterinar, laboratoriya va diagnostika xodimlari o‘rtasidagi ish jarayonini yagona tizimda boshqarish."
-msgstr "Managing the workflow between administrator, veterinarian, laboratory, and diagnostics staff in one system."
-
-#: auto
-msgid "Aloqa"
-msgstr "Contact"
-
-#: auto
-msgid "Aloqa ma’lumotlari"
-msgstr "Contact information"
-
-#: auto
-msgid "Analiz ma’lumotlari"
-msgstr "Analysis information"
-
-#: auto
-msgid "Ariza vaqti"
-msgstr "Application time"
-
-#: auto
-msgid "Ariza yuborish tartibi"
-msgstr "Application submission process"
-
-#: auto
-msgid "Ariza yuborish uchun Telegram botdan foydalaning yoki quyidagi aloqa ma’lumotlari orqali murojaat qiling."
-msgstr "Use the Telegram bot to submit an application or contact us using the information below."
-
-#: auto
-msgid "Asosiy imkoniyatlar"
-msgstr "Main features"
-
-#: auto
-msgid "Asosiy xizmatlar"
-msgstr "Main services"
-
-#: auto
-msgid "Barcha huquqlar himoyalangan."
-msgstr "All rights reserved."
-
-#: auto
-msgid "Batafsil"
-msgstr "Read more"
-
-#: auto
-msgid "Batafsil ma’lumot"
-msgstr "More information"
-
-#: auto
-msgid "Bekor qilindi"
-msgstr "Cancelled"
-
-#: auto
-msgid "Bemor"
-msgstr "Patient"
-
-#: auto
-msgid "Bemor holati"
-msgstr "Patient status"
-
-#: auto
-msgid "Bemor kartasi"
-msgstr "Patient card"
-
-#: auto
-msgid "Bemor statusi"
-msgstr "Patient status"
-
-#: auto
-msgid "Bemor yakunlangan"
-msgstr "Patient completed"
-
-#: auto
-msgid "Bemorlar holati"
-msgstr "Patient statuses"
-
-#: auto
-msgid "Bemorlar tarixi"
-msgstr "Patient history"
-
-#: auto
-msgid "Biz bilan bog‘laning"
-msgstr "Contact us"
-
-#: auto
-msgid "Biz haqimizda"
-msgstr "About us"
-
-#: auto
-msgid "Bizning shifokorlar"
-msgstr "Our doctors"
-
-#: auto
-msgid "Bosh sahifa"
-msgstr "Home"
-
-#: auto
-msgid "Botga o‘tish"
-msgstr "Go to bot"
-
-#: auto
-msgid "Bo‘limlar"
-msgstr "Sections"
-
-#: auto
-msgid "Bu bo‘limdagi xodimlar admin paneldagi faol DoctorProfile ma’lumotlaridan avtomatik chiqadi."
-msgstr "Employees in this section are automatically shown from active DoctorProfile records in the admin panel."
-
-#: auto
-msgid "Bu sahifada klinika yangiliklari, foydali eslatmalar va parvarish bo‘yicha tavsiyalar joylashtiriladi."
-msgstr "Clinic news, useful reminders, and care recommendations are posted on this page."
-
-#: auto
-msgid "Bu xodim haqida qo‘shimcha ma’lumot keyin kiritiladi."
-msgstr "Additional information about this employee will be added later."
-
-#: auto
-msgid "Davolash xizmati"
-msgstr "Treatment service"
-
-#: auto
-msgid "Diagnostika"
-msgstr "Diagnostics"
-
-#: auto
-msgid "Diagnostika holati"
-msgstr "Diagnostic status"
-
-#: auto
-msgid "Diagnostika ma’lumotlari"
-msgstr "Diagnostic information"
-
-#: auto
-msgid "Elektron nazorat"
-msgstr "Electronic control"
-
-#: auto
-msgid "Emlash va profilaktika"
-msgstr "Vaccination and prevention"
-
-#: auto
-msgid "Faol bemorlar"
-msgstr "Faol bemorlar"
-
-#: auto
-msgid "Faol veterinarlar"
-msgstr "Active veterinarians"
-
-#: auto
-msgid "Foydali maqolalar"
-msgstr "Useful articles"
-
-#: auto
-msgid "Har bir ariza holati aniq bosqichlarda kuzatib boriladi."
-msgstr "Each application status is tracked through clear stages."
-
-#: auto
-msgid "Har bir xodim faqat o‘ziga tegishli ma’lumotlarni ko‘radi va tahrirlaydi."
-msgstr "Each employee sees and edits only their own data."
-
-#: auto
-msgid "Har kuni 09:00 - 18:00"
-msgstr "Every day 09:00 - 18:00"
-
-#: auto
-msgid "Hayvoningiz sog‘lig‘iga doimiy e’tibor berish uchun foydali tavsiyalar."
-msgstr "Useful tips for paying regular attention to your animal's health."
-
-#: auto
-msgid "Hayvoningiz uchun ariza yubormoqchimisiz?"
-msgstr "Want to submit an application for your pet?"
-
-#: auto
-msgid "Hayvonlar sog‘lig‘i uchun zamonaviy elektron kartoteka tizimi"
-msgstr "Modern electronic card index system for animal health"
-
-#: auto
-msgid "Hayvonlar sog‘lig‘i uchun zamonaviy veterinariya xizmatlari va elektron kartoteka tizimi."
-msgstr "Modern veterinary services and an electronic card index system for animal health."
-
-#: auto
-msgid "Hayvonlar uchun sifatli va ishonchli veterinariya xizmatlari"
-msgstr "Quality and reliable veterinary services for animals"
-
-#: auto
-msgid "Hayvonlarni ko‘rikdan o‘tkazish, tashxislash va parvarish qilish uchun kerakli xizmatlar bir joyda jamlangan."
-msgstr "Services needed for examination, diagnosis, and care of animals are collected in one place."
-
-#: auto
-msgid "Hayvonning holatiga mos ravishda davolash ishlari olib boriladi."
-msgstr "Treatment is carried out according to the animal's condition."
-
-#: auto
-msgid "Hayvonning umumiy holati tekshiriladi va kerakli tavsiyalar beriladi."
-msgstr "The animal's general condition is checked and necessary recommendations are given."
-
-#: auto
-msgid "Hozircha shifokorlar kiritilmagan"
-msgstr "No doctors have been added yet"
-
-#: auto
-msgid "Hozirgi holati"
-msgstr "Current status"
-
-#: auto
-msgid "Jami bemorlar"
-msgstr "Total patients"
-
-#: auto
-msgid "Kasalliklarning oldini olish uchun emlash va profilaktik nazorat tavsiya etiladi."
-msgstr "Vaccination and preventive monitoring are recommended to prevent diseases."
-
-#: auto
-msgid "Kasallikni erta aniqlash davolash jarayonini yengillashtiradi."
-msgstr "Early detection of disease makes treatment easier."
-
-#: auto
-msgid "Klinika haqida rasm keyin qo‘shiladi"
-msgstr "Clinic image will be added later"
-
-#: auto
-msgid "Klinika ish jarayonlari bosqichma-bosqich va tartibli nazorat qilinadi."
-msgstr "Clinic workflows are monitored step by step in an organized way."
-
-#: auto
-msgid "Klinika rasmi keyin qo‘shiladi"
-msgstr "Clinic photo will be added later"
-
-#: auto
-msgid "Klinikamizda mavjud xizmatlar"
-msgstr "Services available at our clinic"
-
-#: auto
-msgid "Ko‘p tillilik"
-msgstr "Multilingual support"
-
-#: auto
-msgid "Ko‘rik kodi"
-msgstr "Visit code"
-
-#: auto
-msgid "Ko‘riklar tarixi"
-msgstr "Visit history"
-
-#: auto
-msgid "Ko‘rish"
-msgstr "Ko‘rish"
-
-#: auto
-msgid "Laboratoriya"
-msgstr "Laboratory"
-
-#: auto
-msgid "Laboratoriya ma’lumotlari"
-msgstr "Laboratory information"
-
-#: auto
-msgid "Laboratoriya tahlillari"
-msgstr "Laboratory tests"
-
-#: auto
-msgid "Laboratoriya tahrirlagan vaqt"
-msgstr "Laboratory edit time"
-
-#: auto
-msgid "Loyiha klinika xodimlari ishini yengillashtirish, bemor hayvonlar tarixini saqlash va xizmat jarayonini tartibga solish uchun ishlab chiqilgan."
-msgstr "The project was developed to simplify clinic staff work, store animal patient history, and organize the service process."
-
-#: auto
-msgid "Loyihaning asosiy maqsadi"
-msgstr "Main goal of the project"
-
-#: auto
-msgid "Maqsad"
-msgstr "Goal"
-
-#: auto
-msgid "Maslahat xizmati"
-msgstr "Consultation service"
-
-#: auto
-msgid "Ma’lumot yo‘q"
-msgstr "No data"
-
-#: auto
-msgid "Mening bemorlarim tarixi"
-msgstr "My patient history"
-
-#: auto
-msgid "Mijozlar Telegram bot orqali ariza yuboradi, administrator esa ularni ko‘rib chiqadi."
-msgstr "Clients submit applications through the Telegram bot, and the administrator reviews them."
-
-#: auto
-msgid "Muntazam ko‘rikning ahamiyati"
-msgstr "Importance of regular examination"
-
-#: auto
-msgid "Mutaxassislarimiz"
-msgstr "Our specialists"
-
-#: auto
-msgid "Mutaxassislarimiz bilan tanishing"
-msgstr "Meet our specialists"
-
-#: auto
-msgid "Mutaxassislik"
-msgstr "Specialization"
-
-#: auto
-msgid "Mutaxassislik kiritilmagan"
-msgstr "Specialization not entered"
-
-#: auto
-msgid "Parvarish"
-msgstr "Care"
-
-#: auto
-msgid "Parvarish, ovqatlantirish va sog‘lom saqlash bo‘yicha maslahatlar beriladi."
-msgstr "Advice is provided on care, feeding, and keeping animals healthy."
-
-#: auto
-msgid "Profilaktika"
-msgstr "Prevention"
-
-#: auto
-msgid "Qabul qilingan"
-msgstr "Accepted"
-
-#: auto
-msgid "Qabul qilish imkoniyati"
-msgstr "Application availability"
-
-#: auto
-msgid "Qanday ishlaydi?"
-msgstr "How does it work?"
-
-#: auto
-msgid "Rad etilgan"
-msgstr "Rejected"
-
-#: auto
-msgid "Rollar bo‘yicha kirish"
-msgstr "Role-based access"
-
-#: auto
-msgid "Saqlash"
-msgstr "Save"
-
-#: auto
-msgid "Shifokorlar"
-msgstr "Doctors"
-
-#: auto
-msgid "Shifokorlar jamoasi rasmi keyin qo‘shiladi"
-msgstr "Doctors team image will be added later"
-
-#: auto
-msgid "So‘nggi ma’lumotlar"
-msgstr "Latest information"
-
-#: auto
-msgid "Tahlil va ko‘rik natijalariga ko‘ra tashxis qo‘yish va davolash yo‘nalishi belgilanadi."
-msgstr "A diagnosis and treatment direction are determined based on tests and examination results."
-
-#: auto
-msgid "Tahrirlagan"
-msgstr "Edited by"
-
-#: auto
-msgid "Tahrirlangan vaqt"
-msgstr "Edited time"
-
-#: auto
-msgid "Tajribali veterinariya mutaxassislari jamoasi"
-msgstr "A team of experienced veterinary specialists"
-
-#: auto
-msgid "Tarixda bemorlar yo‘q."
-msgstr "No patients in history."
-
-#: auto
-msgid "Tartibli jarayon"
-msgstr "Organized process"
-
-#: auto
-msgid "Tashxis yo‘q"
-msgstr "No diagnosis"
-
-#: auto
-msgid "Telegram ariza / Izoh"
-msgstr "Telegram application / Note"
-
-#: auto
-msgid "Telegram arizalar"
-msgstr "Telegram applications"
-
-#: auto
-msgid "Telegram bot"
-msgstr "Telegram bot"
-
-#: auto
-msgid "Telegram bot orqali ariza yuborish"
-msgstr "Submit an application via Telegram bot"
-
-#: auto
-msgid "Telegram bot orqali tez va qulay ariza qoldiring."
-msgstr "Submit an application quickly and conveniently through the Telegram bot."
-
-#: auto
-msgid "Telegram botda telefon raqamingiz, ism-familiyangiz, hayvon nomi va hayvon turi kiritiladi. So‘ng administrator arizani ko‘rib chiqadi."
-msgstr "In the Telegram bot, your phone number, full name, animal name, and animal type are entered. Then the administrator reviews the application."
-
-#: auto
-msgid "Telegram orqali ariza yuborish"
-msgstr "Submit an application via Telegram"
-
-#: auto
-msgid "Telegramga yuborilgan"
-msgstr "Sent to Telegram"
-
-#: auto
-msgid "Til qo‘llab-quvvatlanadi"
-msgstr "Languages supported"
-
-#: auto
-msgid "Tizim nimalarni boshqaradi?"
-msgstr "What does the system manage?"
-
-#: auto
-msgid "Tizim o‘zbek, rus va ingliz tillarida ishlaydi."
-msgstr "The system works in Uzbek, Russian, and English."
-
-#: auto
-msgid "To‘g‘ri ovqatlantirish, toza muhit va muntazam ko‘rik hayvonlar salomatligi uchun muhim."
-msgstr "Proper feeding, a clean environment, and regular examination are important for animal health."
-
-#: auto
-msgid "Uy hayvonlarini to‘g‘ri parvarish qilish"
-msgstr "Proper pet care"
-
-#: auto
-msgid "VetClinic Admin"
-msgstr "VetClinic Admin"
-
-#: auto
-msgid "VetClinic hayvonlar ko‘rigi, laboratoriya natijalari, diagnostika xulosalari va yakuniy ko‘rik tarixini yagona tizimda yuritishga yordam beradi."
-msgstr "VetClinic helps manage animal examinations, laboratory results, diagnostic conclusions, and final visit history in one system."
-
-#: auto
-msgid "VetClinic jamoasi hayvonlar salomatligi uchun mehr, tajriba va mas’uliyat bilan xizmat qiladi."
-msgstr "The VetClinic team serves animal health with care, experience, and responsibility."
-
-#: auto
-msgid "VetClinic — veterinariya klinikasi uchun elektron kartoteka tizimi"
-msgstr "VetClinic — electronic card index system for a veterinary clinic"
-
-#: auto
-msgid "VetClinic’da ko‘rik, laboratoriya, diagnostika, davolash va profilaktika bo‘yicha xizmatlar ko‘rsatiladi."
-msgstr "VetClinic provides examination, laboratory, diagnostics, treatment, and prevention services."
-
-#: auto
-msgid "Veterinar"
-msgstr "Veterinarian"
-
-#: auto
-msgid "Veterinar bemorlari"
-msgstr "Veterinarian patients"
-
-#: auto
-msgid "Veterinar bemorni laboratoriya va diagnostika bosqichlaridan o‘tkazadi."
-msgstr "The veterinarian moves the patient through laboratory and diagnostics stages."
-
-#: auto
-msgid "Veterinar dashboard"
-msgstr "Veterinar dashboard"
-
-#: auto
-msgid "Veterinar izohi"
-msgstr "Veterinar izohi"
-
-#: auto
-msgid "Veterinar izohi..."
-msgstr "Veterinarian comment..."
-
-#: auto
-msgid "Veterinar ko‘rigi"
-msgstr "Veterinary examination"
-
-#: auto
-msgid "Veterinar ma’lumoti"
-msgstr "Veterinarian information"
-
-#: auto
-msgid "Veterinar nazorati"
-msgstr "Veterinarian supervision"
-
-#: auto
-msgid "Veterinar tanlang"
-msgstr "Select veterinarian"
-
-#: auto
-msgid "Veterinar yuborgan ma’lumot"
-msgstr "Information sent by veterinarian"
-
-#: auto
-msgid "Veterinarga biriktirilgan"
-msgstr "Assigned to veterinarian"
-
-#: auto
-msgid "Veterinarga qaytarildi"
-msgstr "Returned to veterinarian"
-
-#: auto
-msgid "Veterinarga qaytarilgan"
-msgstr "Returned to veterinarian"
-
-#: auto
-msgid "Veterinarga qaytarish"
-msgstr "Return to veterinarian"
-
-#: auto
-msgid "Veterinarga qaytdi"
-msgstr "Returned to veterinarian"
-
-#: auto
-msgid "Veterinarga qaytgan"
-msgstr "Returned to veterinarian"
-
-#: auto
-msgid "Veterinarga yuborildi"
-msgstr "Sent to veterinarian"
-
-#: auto
-msgid "Veterinariya klinikasi boshqaruv paneli"
-msgstr "Veterinary clinic control panel"
-
-#: auto
-msgid "Veterinariya klinikasi boshqaruv paneliga xush kelibsiz"
-msgstr "Welcome to the veterinary clinic control panel"
-
-#: auto
+#: .\config\settings.py:156
 msgid "Veterinariya tizimi"
 msgstr "Veterinary system"
 
-#: auto
-msgid "Veterinariya va hayvonlar parvarishi bo‘yicha foydali ma’lumotlar"
-msgstr "Useful information about veterinary care and animal care"
+#: .\config\settings.py:157
+#: .\dashboard\templates\dashboard\base_dashboard.html:131
+#: .\patients\admin.py:148
+msgid "Veterinariya klinikasi"
+msgstr "Veterinary clinic"
 
-#: auto
-msgid "Xizmatlar"
-msgstr "Services"
+#: .\config\settings.py:158
+msgid "VetClinic Admin"
+msgstr "VetClinic Admin"
 
-#: auto
-msgid "Xizmatlar bilan tanishish"
-msgstr "View services"
+#: .\config\settings.py:159
+msgid "Veterinariya klinikasi boshqaruv paneliga xush kelibsiz"
+msgstr "Welcome to the veterinary clinic control panel"
 
-#: auto
-msgid "Xizmatlar sahifasi rasmi keyin qo‘shiladi"
-msgstr "Service page image will be added later"
+#: .\dashboard\context_processors.py:26
+#| msgid "Hozirgi holati"
+msgid "hozirgina"
+msgstr "Current status"
 
-#: auto
-msgid "Xizmatlarimiz"
-msgstr "Our services"
+#: .\dashboard\context_processors.py:28
+#, python-format
+#| msgid "%(count)s ta yangi ariza kelgan"
+msgid "%(count)s daqiqa oldin"
+msgstr "%(count)s new applications received"
 
-#: auto
-msgid "Xorazm viloyati, Urganch shahri"
-msgstr "Khorezm region, Urgench city"
+#: .\dashboard\context_processors.py:30
+#, python-format
+#| msgid "%(count)s ta xulosa kutmoqda"
+msgid "%(count)s soat oldin"
+msgstr "%(count)s conclusions are waiting"
 
-#: auto
-msgid "Yakuniy PDF"
-msgstr "Final PDF"
+#: .\dashboard\context_processors.py:32
+msgid "bir kun oldin"
+msgstr "one day ago"
 
-#: auto
-msgid "Yakuniy ko‘rik ma’lumotlari"
-msgstr "Final visit information"
+#: .\dashboard\context_processors.py:34
+#, python-format
+msgid "%(count)s kun oldin"
+msgstr "%(count)s days ago"
 
-#: auto
-msgid "Yakuniy ko‘rik natijasi PDF ko‘rinishida mijozga Telegram orqali yuboriladi."
-msgstr "The final visit result is sent to the client as a PDF via Telegram."
+#: .\dashboard\context_processors.py:37
+#, python-format
+#| msgid "%(count)s ta faol bemor bor"
+msgid "%(count)s hafta oldin"
+msgstr "%(count)s active patients"
 
-#: auto
-msgid "Yakunlangan"
+#: .\dashboard\context_processors.py:83
+#: .\dashboard\templates\dashboard\administrator.html:126
+#: .\dashboard\templates\dashboard\base_dashboard.html:49
+#: .\dashboard\templates\dashboard\base_dashboard.html:92
+#: .\dashboard\views.py:67 .\patients\models.py:219
+msgid "Klinikada davolash"
+msgstr "Clinic treatment"
+
+#: .\dashboard\context_processors.py:84 .\dashboard\context_processors.py:93
+#, python-format
+#| msgid "%(count)s ta yangi ariza kelgan"
+msgid "%(count)s ta yangi ariza"
+msgstr "%(count)s new applications received"
+
+#: .\dashboard\context_processors.py:92
+#: .\dashboard\templates\dashboard\administrator.html:127
+#: .\dashboard\templates\dashboard\base_dashboard.html:52
+#: .\dashboard\views.py:68 .\patients\models.py:220
+#| msgid "Veterinarga qaytarish"
+msgid "Veterinar chaqirish"
+msgstr "Return to veterinarian"
+
+#: .\dashboard\context_processors.py:101 .\dashboard\context_processors.py:157
+#: .\dashboard\templates\dashboard\base_dashboard.html:55
+#: .\dashboard\templates\dashboard\base_dashboard.html:98
+#: .\dashboard\views.py:69
+msgid "Xavfli holatlar"
+msgstr "Danger cases"
+
+#: .\dashboard\context_processors.py:102
+#, python-format
+#| msgid "%(count)s ta yangi ariza kelgan"
+msgid "%(count)s ta yangi xabar"
+msgstr "%(count)s new applications received"
+
+#: .\dashboard\context_processors.py:139
+#: .\dashboard\templates\dashboard\veterinar.html:52 .\dashboard\views.py:1349
+#| msgid "Yangi arizalar"
+msgid "Bugungi arizalarim"
+msgstr "New applications"
+
+#: .\dashboard\context_processors.py:140
+#, python-format
+#| msgid "%(count)s ta yangi ariza kelgan"
+msgid "%(count)s ta bugungi ariza"
+msgstr "%(count)s new applications received"
+
+#: .\dashboard\context_processors.py:148
+#| msgid "Veterinarga biriktirilgan"
+msgid "Yangi biriktirilgan"
+msgstr "Assigned to veterinarian"
+
+#: .\dashboard\context_processors.py:149
+#, python-format
+#| msgid "%(count)s ta yangi ariza kelgan"
+msgid "%(count)s ta qabul qilinmagan ariza"
+msgstr "%(count)s new applications received"
+
+#: .\dashboard\context_processors.py:158
+#, python-format
+#| msgid "%(count)s ta xulosa kutmoqda"
+msgid "%(count)s ta xavfli holat"
+msgstr "%(count)s conclusions are waiting"
+
+#: .\dashboard\templates\dashboard\admin_history.html:4
+#: .\dashboard\templates\dashboard\admin_history.html:5
+#: .\dashboard\templates\dashboard\base_dashboard.html:66
+#: .\dashboard\templates\dashboard\base_dashboard.html:104
+#: .\dashboard\templates\dashboard\base_dashboard.html:148
+#: .\dashboard\templates\dashboard\base_dashboard.html:157
+#: .\dashboard\templates\dashboard\vet_history.html:5
+msgid "Tarix"
+msgstr "History"
+
+#: .\dashboard\templates\dashboard\admin_history.html:7
+msgid "Arizalar, mijozlar, hayvonlar va bajarilgan ishlar tarixi"
+msgstr "History of applications, clients, animals, and completed work"
+
+#: .\dashboard\templates\dashboard\admin_history.html:15
+#: .\dashboard\templates\dashboard\admin_history.html:65
+#| msgid "Barcha bemorlar"
+msgid "Barcha arizalar"
+msgstr "All patients"
+
+#: .\dashboard\templates\dashboard\admin_history.html:19
+#: .\dashboard\templates\dashboard\admin_history.html:148
+#| msgid "Mamnun mijozlar"
+msgid "Eski mijozlar"
+msgstr "Satisfied clients"
+
+#: .\dashboard\templates\dashboard\admin_history.html:23
+#: .\dashboard\templates\dashboard\admin_history.html:179
+#: .\patients\models.py:94
+msgid "Hayvonlar"
+msgstr "Animals"
+
+#: .\dashboard\templates\dashboard\admin_history.html:27
+#: .\dashboard\templates\dashboard\vet_profile.html:48
+#| msgid "Yakunlangan"
+msgid "Yakunlangan ishlar"
 msgstr "Completed"
 
-#: auto
-msgid "Yangi ariza"
+#: .\dashboard\templates\dashboard\admin_history.html:31
+#| msgid "Bekor qilingan"
+msgid "Bekor qilingan ishlar"
+msgstr "Cancelled"
+
+#: .\dashboard\templates\dashboard\admin_history.html:39
+#: .\dashboard\templates\dashboard\vet_history.html:12
+msgid "Filter"
+msgstr "Filter"
+
+#: .\dashboard\templates\dashboard\admin_history.html:45
+msgid "Mijoz, telefon, hayvon, kod yoki izoh bo‘yicha qidirish"
+msgstr "Search by client, phone, animal, code, or note"
+
+#: .\dashboard\templates\dashboard\admin_history.html:49
+#: .\dashboard\templates\dashboard\vet_history.html:20
+#| msgid "Qidirish..."
+msgid "Qidirish"
+msgstr "Search..."
+
+#: .\dashboard\templates\dashboard\admin_history.html:54
+#: .\dashboard\templates\dashboard\vet_history.html:25
+#| msgid "Tahrirlash"
+msgid "Tozalash"
+msgstr "Edit"
+
+#: .\dashboard\templates\dashboard\admin_history.html:73
+msgid "Kod"
+msgstr "Code"
+
+#: .\dashboard\templates\dashboard\admin_history.html:74
+#: .\dashboard\templates\dashboard\admin_history.html:155
+#: .\dashboard\templates\dashboard\administrator.html:182
+#: .\dashboard\templates\dashboard\vet_history.html:41
+#: .\dashboard\templates\dashboard\veterinar.html:87
+msgid "Mijoz"
+msgstr "Client"
+
+#: .\dashboard\templates\dashboard\admin_history.html:75
+#: .\dashboard\templates\dashboard\admin_history.html:156
+#: .\dashboard\templates\dashboard\administrator.html:183
+#: .\dashboard\templates\dashboard\diagnostika.html:79
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:78
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:35
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:35
+#: .\dashboard\templates\dashboard\edit\final_visit.html:57
+#: .\dashboard\templates\dashboard\laboratoriya.html:79
+#: .\dashboard\templates\dashboard\patient_card.html:72
+#: .\dashboard\templates\dashboard\patients_status.html:79
+#: .\dashboard\templates\dashboard\vet_application_detail.html:31
+#: .\dashboard\templates\dashboard\vet_history.html:42
+#: .\dashboard\templates\dashboard\vet_profile.html:24
+#: .\dashboard\templates\dashboard\veterinar.html:88
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:75
+#: .\dashboard\templates\dashboard\view_lab_result.html:75
+#: .\patients\admin.py:160 .\patients\models.py:20 .\patients\models.py:129
+#: .\patients\models.py:236 .\website\templates\website\contact.html:45
+msgid "Telefon"
+msgstr "Phone"
+
+#: .\dashboard\templates\dashboard\admin_history.html:76
+#: .\dashboard\templates\dashboard\admin_history.html:186
+#: .\dashboard\templates\dashboard\administrator.html:184
+#: .\dashboard\templates\dashboard\vet_history.html:43
+#: .\dashboard\templates\dashboard\veterinar.html:89 .\patients\models.py:93
+#: .\patients\models.py:369
+msgid "Hayvon"
+msgstr "Animal"
+
+#: .\dashboard\templates\dashboard\admin_history.html:77
+#: .\dashboard\templates\dashboard\veterinar.html:90
+#| msgid "Xizmatlar"
+msgid "Xizmat"
+msgstr "Services"
+
+#: .\dashboard\templates\dashboard\admin_history.html:78
+#: .\dashboard\templates\dashboard\admin_history.html:117
+#: .\dashboard\templates\dashboard\admin_staff_location.html:24
+#: .\dashboard\templates\dashboard\laboratoriya.html:82
+#: .\dashboard\templates\dashboard\patient_card.html:241
+#: .\dashboard\templates\dashboard\patients_status.html:82
+#: .\dashboard\templates\dashboard\veterinar.html:44
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:90
+#: .\dashboard\templates\dashboard\view_lab_result.html:90
+msgid "Veterinar"
+msgstr "Veterinarian"
+
+#: .\dashboard\templates\dashboard\admin_history.html:79
+#: .\dashboard\templates\dashboard\admin_staff_location.html:30
+#: .\dashboard\templates\dashboard\administrator.html:187
+msgid "Status"
+msgstr "Status"
+
+#: .\dashboard\templates\dashboard\admin_history.html:80
+#: .\dashboard\templates\dashboard\admin_history.html:157
+#: .\dashboard\templates\dashboard\admin_history.html:188
+msgid "Sana"
+msgstr "Date"
+
+#: .\dashboard\templates\dashboard\admin_history.html:81
+#: .\dashboard\templates\dashboard\admin_staff_location.html:31
+#: .\dashboard\templates\dashboard\diagnostika.html:190
+#: .\dashboard\templates\dashboard\laboratoriya.html:182
+#: .\dashboard\templates\dashboard\patients_status.html:85
+#: .\dashboard\templates\dashboard\vet_history.html:46
+#: .\dashboard\templates\dashboard\veterinar.html:93
+msgid "Amal"
+msgstr "Action"
+
+#: .\dashboard\templates\dashboard\admin_history.html:110
+#: .\dashboard\templates\dashboard\administrator.html:275
+#: .\dashboard\templates\dashboard\administrator.html:353
+#: .\dashboard\templates\dashboard\diagnostika.html:84
+#: .\dashboard\templates\dashboard\diagnostika.html:118
+#: .\dashboard\templates\dashboard\diagnostika.html:255
+#: .\dashboard\templates\dashboard\laboratoriya.html:146
+#: .\dashboard\templates\dashboard\laboratoriya.html:233
+#: .\dashboard\templates\dashboard\partials\vet_actions.html:12
+#: .\dashboard\templates\dashboard\patient_card.html:4
+#: .\dashboard\templates\dashboard\patient_card.html:6
+#: .\dashboard\templates\dashboard\patients_status.html:135
+#: .\dashboard\templates\dashboard\vet_application_detail.html:89
+#: .\dashboard\templates\dashboard\vet_history.html:62
+msgid "Bemor kartasi"
+msgstr "Patient card"
+
+#: .\dashboard\templates\dashboard\admin_history.html:124
+#| msgid "Biriktirish"
+msgid "Qayta biriktirish"
+msgstr "Assign"
+
+#: .\dashboard\templates\dashboard\admin_history.html:128
+#| msgid "Yangi ariza"
+msgid "Eski ariza"
 msgstr "New application"
 
-#: auto
+#: .\dashboard\templates\dashboard\admin_history.html:135
+#| msgid "Laboratoriya yozuvi topilmadi."
+msgid "Tarix yozuvlari topilmadi."
+msgstr "Laboratory record not found."
+
+#: .\dashboard\templates\dashboard\admin_history.html:168
+#| msgid "Tarixda bemorlar yo‘q."
+msgid "Mijozlar yo‘q."
+msgstr "No patients in history."
+
+#: .\dashboard\templates\dashboard\admin_history.html:187
+#: .\dashboard\templates\dashboard\vet_application_detail.html:27
+#: .\patients\admin.py:452 .\patients\admin.py:687 .\patients\models.py:76
+msgid "Egasi"
+msgstr "Owner"
+
+#: .\dashboard\templates\dashboard\admin_history.html:202
+#| msgid "Hayvonlar"
+msgid "Hayvonlar yo‘q."
+msgstr "Animals"
+
+#: .\dashboard\templates\dashboard\admin_profile.html:4
+#: .\dashboard\templates\dashboard\admin_profile.html:5
+#: .\dashboard\templates\dashboard\admin_profile.html:16
+#: .\dashboard\templates\dashboard\base_dashboard.html:76
+#: .\dashboard\templates\dashboard\base_dashboard.html:109
+#: .\dashboard\templates\dashboard\base_dashboard.html:146
+#: .\dashboard\templates\dashboard\base_dashboard.html:155
+#: .\dashboard\templates\dashboard\base_dashboard.html:174
+#: .\dashboard\templates\dashboard\base_dashboard.html:400
+#: .\dashboard\templates\dashboard\vet_profile.html:5
+#: .\dashboard\templates\dashboard\vet_profile.html:12
+#| msgid "Profilaktika"
+msgid "Profil"
+msgstr "Prevention"
+
+#: .\dashboard\templates\dashboard\admin_profile.html:7
+#| msgid "Veterinariya va hayvonlar parvarishi bo‘yicha foydali ma’lumotlar"
+msgid "Administrator akkaunti bo‘yicha asosiy ma’lumotlar"
+msgstr "Useful information about veterinary care and animal care"
+
+#: .\dashboard\templates\dashboard\admin_profile.html:21
+#: .\dashboard\templates\dashboard\vet_profile.html:16
+#| msgid "F.I.Sh"
+msgid "F.I.Sh."
+msgstr "Full name"
+
+#: .\dashboard\templates\dashboard\admin_profile.html:25
+#: .\dashboard\templates\dashboard\vet_profile.html:20
+msgid "Username"
+msgstr "Username"
+
+#: .\dashboard\templates\dashboard\admin_profile.html:29
+msgid "Role"
+msgstr "Role"
+
+#: .\dashboard\templates\dashboard\admin_profile.html:30
+#: .\dashboard\templates\dashboard\base_dashboard.html:262
+msgid "Superadmin"
+msgstr "Superadmin"
+
+#: .\dashboard\templates\dashboard\admin_profile.html:30
+#| msgid "Administrator dashboard"
+msgid "Administrator"
+msgstr "Administrator dashboard"
+
+#: .\dashboard\templates\dashboard\admin_profile.html:33
+msgid "Email"
+msgstr "Email"
+
+#: .\dashboard\templates\dashboard\admin_profile.html:37
+#| msgid "Biriktirish"
+msgid "Oxirgi kirish"
+msgstr "Assign"
+
+#: .\dashboard\templates\dashboard\admin_profile.html:41
+#: .\dashboard\templates\dashboard\administrator.html:39
+#: .\dashboard\templates\dashboard\administrator.html:166
+#: .\dashboard\templates\dashboard\base_dashboard.html:43
 msgid "Yangi arizalar"
 msgstr "New applications"
 
-#: auto
-msgid "Yangiliklar"
-msgstr "News"
+#: .\dashboard\templates\dashboard\admin_profile.html:45
+#: .\dashboard\templates\dashboard\administrator.html:59
+#| msgid "Yangi arizalar"
+msgid "Yakunlangan arizalar"
+msgstr "New applications"
 
-#: auto
-msgid "Yangiliklar rasmi keyin qo‘shiladi"
-msgstr "News image will be added later"
+#: .\dashboard\templates\dashboard\admin_settings.html:4
+#: .\dashboard\templates\dashboard\admin_settings.html:5
+#: .\dashboard\templates\dashboard\base_dashboard.html:71
+#: .\dashboard\templates\dashboard\base_dashboard.html:425
+msgid "Sozlamalar"
+msgstr "Settings"
 
-#: auto
+#: .\dashboard\templates\dashboard\admin_settings.html:7
+#| msgid "Klinika rasmi keyin qo‘shiladi"
+msgid "Klinika sozlamalari keyingi bosqichda kengaytiriladi"
+msgstr "Clinic photo will be added later"
+
+#: .\dashboard\templates\dashboard\admin_settings.html:16
+#| msgid "Asosiy xizmatlar"
+msgid "Asosiy sozlamalar"
+msgstr "Main services"
+
+#: .\dashboard\templates\dashboard\admin_settings.html:21
+#| msgid "Klinikamiz xizmatlari"
+msgid "Klinika koordinatasi"
+msgstr "Our clinic services"
+
+#: .\dashboard\templates\dashboard\admin_settings.html:22
+#| msgid "Klinika haqida rasm keyin qo‘shiladi"
+msgid "Keyingi bosqichda qo‘shiladi"
+msgstr "Clinic image will be added later"
+
+#: .\dashboard\templates\dashboard\admin_settings.html:25
+#| msgid "Veterinar nazorati"
+msgid "Geolokatsiya nazorati"
+msgstr "Veterinarian supervision"
+
+#: .\dashboard\templates\dashboard\admin_settings.html:26
+#| msgid "Tayyor"
+msgid "Tayyorlanmoqda"
+msgstr "Ready"
+
+#: .\dashboard\templates\dashboard\admin_settings.html:29
+#: .\website\templates\website\home.html:136
+msgid "Laboratoriya"
+msgstr "Laboratory"
+
+#: .\dashboard\templates\dashboard\admin_settings.html:30
+#: .\dashboard\templates\dashboard\admin_settings.html:34
+#| msgid "Veterinarga qaytarilgan"
+msgid "Vaqtincha yashirilgan"
+msgstr "Returned to veterinarian"
+
+#: .\dashboard\templates\dashboard\admin_settings.html:33
+#: .\website\templates\website\base.html:97
+#: .\website\templates\website\home.html:173
+#: .\website\templates\website\services.html:67
+msgid "Diagnostika"
+msgstr "Diagnostics"
+
+#: .\dashboard\templates\dashboard\admin_staff_location.html:4
+#: .\dashboard\templates\dashboard\admin_staff_location.html:5
+#: .\dashboard\templates\dashboard\base_dashboard.html:61
+#: .\dashboard\templates\dashboard\base_dashboard.html:150
+msgid "Xodimlar joylashuvi"
+msgstr "Staff locations"
+
+#: .\dashboard\templates\dashboard\admin_staff_location.html:7
+msgid "Veterinar xodimlarning joriy ish holatini nazorat qilish"
+msgstr "Monitor current work status of veterinary staff"
+
+#: .\dashboard\templates\dashboard\admin_staff_location.html:16
+#| msgid "Bemorlar holati"
+msgid "Xodimlar holati"
+msgstr "Patient statuses"
+
+#: .\dashboard\templates\dashboard\admin_staff_location.html:25
+#: .\patients\models.py:305 .\patients\models.py:481 .\patients\models.py:561
+msgid "Holati"
+msgstr "Status"
+
+#: .\dashboard\templates\dashboard\admin_staff_location.html:26
+msgid "Joriy vazifa"
+msgstr "Current task"
+
+#: .\dashboard\templates\dashboard\admin_staff_location.html:27
+#| msgid "Hozirgi holati"
+msgid "Oxirgi lokatsiya"
+msgstr "Current status"
+
+#: .\dashboard\templates\dashboard\admin_staff_location.html:28
+msgid "Klinikadan uzoqligi"
+msgstr "Distance from clinic"
+
+#: .\dashboard\templates\dashboard\admin_staff_location.html:29
+msgid "Mijozgacha masofa"
+msgstr "Distance to client"
+
+#: .\dashboard\templates\dashboard\admin_staff_location.html:62
+#, python-format
+msgid "Aniqlik: %(accuracy)s m"
+msgstr "Accuracy: %(accuracy)s m"
+
+#: .\dashboard\templates\dashboard\admin_staff_location.html:80
+#| msgid "Xizmatlarni ko‘rish"
+msgid "Xaritada ko‘rish"
+msgstr "View services"
+
+#: .\dashboard\templates\dashboard\admin_staff_location.html:83
+msgid "Koordinata yo‘q"
+msgstr "No coordinates"
+
+#: .\dashboard\templates\dashboard\admin_staff_location.html:90
+#| msgid "Veterinar topilmadi."
+msgid "Faol veterinar xodimlar topilmadi."
+msgstr "Veterinarian not found."
+
+#: .\dashboard\templates\dashboard\administrator.html:4
+#: .\dashboard\templates\dashboard\administrator.html:6
+#: .\dashboard\templates\dashboard\base_dashboard.html:152
+msgid "Administrator dashboard"
+msgstr "Administrator dashboard"
+
+#: .\dashboard\templates\dashboard\administrator.html:9
+msgid ""
+"Yangi arizalarni ko‘rish, veterinarga biriktirish va bemorlar holatini "
+"boshqarish"
+msgstr ""
+"View new applications, assign veterinarians, and manage patient statuses"
+
+#: .\dashboard\templates\dashboard\administrator.html:20
+msgid "Bu arizani bekor qilmoqchimisiz?"
+msgstr "Do you want to cancel this application?"
+
+#: .\dashboard\templates\dashboard\administrator.html:29
+#: .\dashboard\templates\dashboard\vet_profile.html:40
+#| msgid "Yangi arizalar"
+msgid "Bugungi arizalar"
+msgstr "New applications"
+
+#: .\dashboard\templates\dashboard\administrator.html:49
+#| msgid "Yangi arizalar"
+msgid "Jarayondagi arizalar"
+msgstr "New applications"
+
+#: .\dashboard\templates\dashboard\administrator.html:69
+msgid "Faol veterinarlar"
+msgstr "Active veterinarians"
+
+#: .\dashboard\templates\dashboard\administrator.html:79
+msgid "Kechikayotgan chaqiruvlar"
+msgstr "Delayed calls"
+
+#: .\dashboard\templates\dashboard\administrator.html:88
+#: .\dashboard\templates\dashboard\base_dashboard.html:38
+#| msgid "Telegram arizalar"
+msgid "Tezkor ariza"
+msgstr "Telegram applications"
+
+#: .\dashboard\templates\dashboard\administrator.html:98
+#: .\dashboard\templates\dashboard\patient_card.html:67
+#| msgid "Egasi F.I.Sh"
+msgid "Mijoz F.I.Sh."
+msgstr "Owner full name"
+
+#: .\dashboard\templates\dashboard\administrator.html:99
+msgid "Mijoz ism-familiyasi"
+msgstr "Client full name"
+
+#: .\dashboard\templates\dashboard\administrator.html:103
+#| msgid "Telefon"
+msgid "Telefon raqami"
+msgstr "Phone"
+
+#: .\dashboard\templates\dashboard\administrator.html:108
+#: .\dashboard\templates\dashboard\diagnostika.html:81
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:88
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:45
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:45
+#: .\dashboard\templates\dashboard\edit\final_visit.html:67
+#: .\dashboard\templates\dashboard\laboratoriya.html:81
+#: .\dashboard\templates\dashboard\patient_card.html:92
+#: .\dashboard\templates\dashboard\patients_status.html:81
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:85
+#: .\dashboard\templates\dashboard\view_lab_result.html:85
+#: .\patients\admin.py:162 .\patients\models.py:85 .\patients\models.py:264
+msgid "Hayvon turi"
+msgstr "Animal type"
+
+#: .\dashboard\templates\dashboard\administrator.html:110
+#| msgid "Analiz turini tanlang"
+msgid "Hayvon turini tanlang"
+msgstr "Select analysis type"
+
+#: .\dashboard\templates\dashboard\administrator.html:118
+#: .\dashboard\templates\dashboard\diagnostika.html:80
+#: .\dashboard\templates\dashboard\diagnostika.html:184
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:83
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:40
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:40
+#: .\dashboard\templates\dashboard\edit\final_visit.html:62
+#: .\dashboard\templates\dashboard\laboratoriya.html:80
+#: .\dashboard\templates\dashboard\laboratoriya.html:177
+#: .\dashboard\templates\dashboard\patient_card.html:87
+#: .\dashboard\templates\dashboard\patients_status.html:80
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:80
+#: .\dashboard\templates\dashboard\view_lab_result.html:80
+#: .\patients\admin.py:161 .\patients\models.py:80 .\patients\models.py:257
+msgid "Hayvon nomi"
+msgstr "Animal name"
+
+#: .\dashboard\templates\dashboard\administrator.html:119
+msgid "Masalan: Rex"
+msgstr "Example: Rex"
+
+#: .\dashboard\templates\dashboard\administrator.html:123
+#: .\dashboard\templates\dashboard\administrator.html:185
+#: .\dashboard\templates\dashboard\vet_application_detail.html:42
+#: .\dashboard\templates\dashboard\vet_history.html:44 .\patients\models.py:271
+#| msgid "Xizmatlar"
+msgid "Xizmat turi"
+msgstr "Services"
+
+#: .\dashboard\templates\dashboard\administrator.html:125
+#| msgid "Analiz turini tanlang"
+msgid "Xizmat turini tanlang"
+msgstr "Select analysis type"
+
+#: .\dashboard\templates\dashboard\administrator.html:128
+#: .\patients\models.py:221
+msgid "Xavfli holat"
+msgstr "Danger case"
+
+#: .\dashboard\templates\dashboard\administrator.html:134
+#: .\dashboard\templates\dashboard\administrator.html:186
+#: .\dashboard\templates\dashboard\vet_application_detail.html:46
+#: .\patients\models.py:32 .\patients\models.py:277
+#: .\website\templates\website\contact.html:38
+#: .\website\templates\website\contact.html:44
+msgid "Manzil"
+msgstr "Address"
+
+#: .\dashboard\templates\dashboard\administrator.html:137
+msgid "Mijoz manzili yoki klinikaga kelgan bo‘lsa qisqa izoh"
+msgstr "Client address or short note if they came to the clinic"
+
+#: .\dashboard\templates\dashboard\administrator.html:139
+msgid "Veterinar chaqirish yoki xavfli holat uchun majburiy."
+msgstr "Required for vet calls or danger cases."
+
+#: .\dashboard\templates\dashboard\administrator.html:144
+msgid "Muammo tavsifi / izoh"
+msgstr "Problem description / note"
+
+#: .\dashboard\templates\dashboard\administrator.html:145
+msgid "Murojaat sababi, hayvon holati yoki qo‘shimcha izoh..."
+msgstr "Reason for request, animal condition, or additional note..."
+
+#: .\dashboard\templates\dashboard\administrator.html:152
+#| msgid "Yangiliklarni ko‘rish"
+msgid "Yangi ariza qo‘shish"
+msgstr "View news"
+
+#: .\dashboard\templates\dashboard\administrator.html:173
+#| msgid "Yangi arizalar"
+msgid "Barcha yangi arizalar"
+msgstr "New applications"
+
+#: .\dashboard\templates\dashboard\administrator.html:188
+#: .\dashboard\templates\dashboard\administrator.html:244
+#: .\dashboard\templates\dashboard\vet_application_detail.html:50
+#: .\patients\models.py:310
+msgid "Izoh"
+msgstr "Note"
+
+#: .\dashboard\templates\dashboard\administrator.html:189
+#| msgid "Boshqa"
+msgid "Boshqarish"
+msgstr "Other"
+
+#: .\dashboard\templates\dashboard\administrator.html:215
+#| msgid "Telegram bot"
+msgid "Telegram lokatsiya"
+msgstr "Telegram bot"
+
+#: .\dashboard\templates\dashboard\administrator.html:222
+msgid "Google Mapsda ochish"
+msgstr "Open in Google Maps"
+
+#: .\dashboard\templates\dashboard\administrator.html:256
+#: .\dashboard\templates\dashboard\administrator.html:334
+msgid "Veterinar tanlang"
+msgstr "Select veterinarian"
+
+#: .\dashboard\templates\dashboard\administrator.html:268
+#: .\dashboard\templates\dashboard\administrator.html:346
+msgid "Biriktirish"
+msgstr "Assign"
+
+#: .\dashboard\templates\dashboard\administrator.html:284
+#: .\dashboard\templates\dashboard\administrator.html:362
+#: .\dashboard\views.py:357 .\dashboard\views.py:358 .\dashboard\views.py:505
+msgid "Bekor"
+msgstr "Cancel"
+
+#: .\dashboard\templates\dashboard\administrator.html:293
+#: .\dashboard\templates\dashboard\administrator.html:370
+msgid "Hozircha yangi arizalar yo‘q."
+msgstr "There are no new applications yet."
+
+#: .\dashboard\templates\dashboard\administrator.html:399
+msgid "Baribir biriktirasizmi?"
+msgstr "Assign anyway?"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:7
+msgid "Vet Clinic Dashboard"
+msgstr "Vet Clinic Dashboard"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:23
+#| msgid "Vet Clinic"
+msgid "VET Farm & Pet Clinic"
+msgstr "Vet Clinic"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:33
+#: .\dashboard\templates\dashboard\base_dashboard.html:81
+#: .\dashboard\templates\dashboard\base_dashboard.html:114
+#: .\dashboard\templates\dashboard\base_dashboard.html:183
+#: .\dashboard\templates\dashboard\base_dashboard.html:385
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:86
+#: .\dashboard\templates\dashboard\veterinar.html:72
+#| msgid "Mening bemorlarim"
+msgid "Mening arizalarim"
+msgstr "My patients"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:95
+#: .\dashboard\templates\dashboard\base_dashboard.html:395
+msgid "Chaqiruvlar"
+msgstr "Calls"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:119
+#: .\dashboard\templates\dashboard\patients_status.html:4
+#: .\dashboard\templates\dashboard\patients_status.html:6
+#: .\dashboard\templates\dashboard\patients_status.html:69
+msgid "Bemorlar holati"
+msgstr "Patient statuses"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:125
+msgid "Chiqish"
+msgstr "Logout"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:132
+msgid "Elektron kartoteka tizimi"
+msgstr "Electronic card index system"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:140
+#: .\website\templates\website\base.html:17
+msgid "Menyu"
+msgstr "Menu"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:159
+#: .\dashboard\templates\dashboard\vet_application_detail.html:94
+#: .\dashboard\templates\dashboard\vet_route.html:4
+msgid "Marshrut"
+msgstr "Route"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:161
+#: .\dashboard\templates\dashboard\vet_application_detail.html:4
+#: .\dashboard\templates\dashboard\vet_application_detail.html:5
+#: .\dashboard\templates\dashboard\vet_application_detail.html:15
+#| msgid "Ariza izohi"
+msgid "Ariza tafsilotlari"
+msgstr "Application note"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:163
+#: .\dashboard\templates\dashboard\veterinar.html:4
+#: .\dashboard\templates\dashboard\veterinar.html:5
+msgid "Veterinar dashboard"
+msgstr "Veterinar dashboard"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:167
+#: .\dashboard\templates\dashboard\base_dashboard.html:247
+#: .\dashboard\templates\dashboard\base_dashboard.html:291
+msgid "Yordam"
+msgstr "Help"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:170
+#: .\dashboard\templates\dashboard\base_dashboard.html:218
+#: .\dashboard\templates\dashboard\base_dashboard.html:348
+#: .\dashboard\templates\dashboard\base_dashboard.html:350
+msgid "Bildirishnomalar"
+msgstr "Notifications"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:184
+msgid "Klinika jarayonlarini boshqarish paneli"
+msgstr "Clinic process management panel"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:204
+msgid "Qidirish..."
+msgstr "Search..."
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:219
+#, python-format
+msgid "%(dashboard_notification_count)s ta"
+msgstr "%(dashboard_notification_count)s"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:240
+#: .\dashboard\templates\dashboard\base_dashboard.html:374
+msgid "Yangi bildirishnoma yo‘q"
+msgstr "No new notifications"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:264
+#: .\dashboard\templates\dashboard\base_dashboard.html:519
+msgid "Foydalanuvchi"
+msgstr "User"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:296
+msgid "Yordam va aloqa"
+msgstr "Help and contact"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:299
+msgid "Yordam markazi"
+msgstr "Help center"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:300
+msgid "Savol, taklif yoki shikoyat"
+msgstr "Question, suggestion, or complaint"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:302
+#: .\dashboard\templates\dashboard\base_dashboard.html:351
+msgid "Yopish"
+msgstr "Close"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:311
+#: .\dashboard\templates\dashboard\vet_application_detail.html:99
+msgid "Qo‘ng‘iroq qilish"
+msgstr "Call"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:325
+msgid "Tushunmovchilik, taklif yoki shikoyatingizni yozing"
+msgstr "Write your question, suggestion, or complaint"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:326
+msgid "Masalan: Veterinar dashboardda ariza statusini topa olmadim..."
+msgstr "Example: I could not find the application status in the veterinarian dashboard..."
+"Example: I could not find the application status in the veterinarian "
+"dashboard..."
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:332
+msgid "Matnni nusxalash"
+msgstr "Copy text"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:336
+#| msgid "PDFni Telegramga yuborish"
+msgid "Telegramga yozish"
+msgstr "Send PDF to Telegram"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:381
+#| msgid "Veterinar topilmadi."
+msgid "Veterinar mobil menyu"
+msgstr "Veterinarian not found."
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:390
+#| msgid "Xizmatlarimiz"
+msgid "Arizalarim"
+msgstr "Our services"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:406
+#| msgid "Administrator dashboard"
+msgid "Administrator mobil menyu"
+msgstr "Administrator dashboard"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:409
+#: .\website\templates\website\base.html:29
+#: .\website\templates\website\base.html:85
+#: .\website\templates\website\home.html:4
+msgid "Bosh sahifa"
+msgstr "Home"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:413
+#| msgid "Yangi arizalar"
+msgid "Arizalar"
+msgstr "New applications"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:417
+#: .\patients\admin.py:227
+msgid "Bemorlar"
+msgstr "Patients"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:421
+msgid "Hisobotlar"
+msgstr "Reports"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:518
+msgid "Dashboard yordam so‘rovi"
+msgstr "Dashboard help request"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:520
+msgid "Sahifa"
+msgstr "Page"
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:521
+msgid "Savol/taklif/shikoyat matni yozilmadi."
+msgstr "Question, suggestion, or complaint text was not written."
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:537
+#| msgid "Telegramga yangi PDF yuborishingiz mumkin."
+msgid "Matn nusxalandi. Telegramga joylab yuborishingiz mumkin."
+msgstr "send a new PDF to Telegram."
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:539
+msgid "Matnni nusxalash imkoni bo‘lmadi."
+msgstr "Could not copy the text."
+
+#: .\dashboard\templates\dashboard\base_dashboard.html:542
+#| msgid "Til qo‘llab-quvvatlanadi"
+msgid "Brauzer nusxalashni qo‘llab-quvvatlamadi."
+msgstr "Languages supported"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:4
+#: .\dashboard\templates\dashboard\diagnostika.html:6
+msgid "Diagnostika dashboard"
+msgstr "Diagnostics dashboard"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:9
+msgid ""
+"Laboratoriya natijalarini ko‘rish, diagnostik xulosa yozish va bemorni "
+"veterinarga qaytarish"
+msgstr ""
+"View laboratory results, write diagnostic conclusions, and return the "
+"patient to the veterinarian"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:28
+msgid "Faol diagnostika"
+msgstr "Active diagnostics"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:38
+#: .\dashboard\templates\dashboard\diagnostika.html:174
+msgid "Diagnostika tarixi"
+msgstr "Diagnostics history"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:47
+#: .\dashboard\templates\dashboard\patients_status.html:47
+msgid "Lab"
+msgstr "Lab"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:48
+#: .\dashboard\templates\dashboard\laboratoriya.html:48
+msgid "Analiz natijalari"
+msgstr "Analysis results"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:57
+msgid "Vet"
+msgstr "Vet"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:58
+#: .\dashboard\templates\dashboard\diagnostika.html:152
+msgid "Veterinarga qaytarish"
+msgstr "Return to veterinarian"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:69
+msgid "Faol diagnostika ishlari"
+msgstr "Active diagnostics work"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:77
+#: .\dashboard\templates\dashboard\diagnostika.html:182
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:73
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:30
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:30
+#: .\dashboard\templates\dashboard\edit\final_visit.html:52
+#: .\dashboard\templates\dashboard\laboratoriya.html:77
+#: .\dashboard\templates\dashboard\laboratoriya.html:175
+#: .\dashboard\templates\dashboard\patient_card.html:21
+#: .\dashboard\templates\dashboard\patients_status.html:77
+#: .\dashboard\templates\dashboard\vet_history.html:40
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:22
+#: .\dashboard\templates\dashboard\view_lab_result.html:22
+#: .\patients\models.py:228
+msgid "Bemor kodi"
+msgstr "Patient code"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:78
+#: .\dashboard\templates\dashboard\diagnostika.html:183
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:68
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:25
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:25
+#: .\dashboard\templates\dashboard\edit\final_visit.html:47
+#: .\dashboard\templates\dashboard\laboratoriya.html:78
+#: .\dashboard\templates\dashboard\laboratoriya.html:176
+#: .\dashboard\templates\dashboard\patients_status.html:78
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:70
+#: .\dashboard\templates\dashboard\view_lab_result.html:70
+#: .\patients\models.py:123 .\patients\models.py:232
+msgid "F.I.Sh"
+msgstr "Full name"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:82
+#: .\dashboard\templates\dashboard\diagnostika.html:185
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:113
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:69
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:91
+#: .\dashboard\templates\dashboard\edit\final_visit.html:92
+#: .\dashboard\templates\dashboard\laboratoriya.html:83
+#: .\dashboard\templates\dashboard\laboratoriya.html:178
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:32
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:165
+#: .\dashboard\templates\dashboard\view_lab_result.html:32
+#: .\dashboard\templates\dashboard\view_lab_result.html:120
+msgid "Analiz turi"
+msgstr "Analysis type"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:83
+#: .\dashboard\templates\dashboard\diagnostika.html:111
+#: .\dashboard\templates\dashboard\diagnostika.html:260
+#: .\dashboard\templates\dashboard\laboratoriya.html:238
+msgid "Ko‘rish"
+msgstr "Ko‘rish"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:85
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:150
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:199
+#: .\patients\models.py:530
+msgid "Diagnostik xulosa"
+msgstr "Diagnostic conclusion"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:126
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:19
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:114
+msgid "Laboratoriya natijasi tahrirlangan"
+msgstr "Laboratory result was edited"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:138
+msgid "Diagnostik xulosa yozing..."
+msgstr "Write the diagnostic conclusion..."
+
+#: .\dashboard\templates\dashboard\diagnostika.html:139
+#: .\dashboard\templates\dashboard\laboratoriya.html:125
+msgid "required"
+msgstr "required"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:146
+msgid "Tavsiya..."
+msgstr "Recommendation..."
+
+#: .\dashboard\templates\dashboard\diagnostika.html:160
+msgid "Diagnostikaga yuborilgan faol bemorlar yo‘q."
+msgstr "There are no active patients sent to diagnostics."
+
+#: .\dashboard\templates\dashboard\diagnostika.html:186
+#: .\dashboard\templates\dashboard\laboratoriya.html:179
+msgid "Bemor statusi"
+msgstr "Patient status"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:187
+msgid "Diagnostika statusi"
+msgstr "Diagnostics status"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:188
+msgid "Bildirishnoma"
+msgstr "Notification"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:189
+#: .\dashboard\templates\dashboard\laboratoriya.html:181
+#: .\dashboard\templates\dashboard\patient_card.html:113
+#: .\dashboard\templates\dashboard\patients_status.html:84
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:52
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:214
+#: .\dashboard\templates\dashboard\view_lab_result.html:42
+#: .\dashboard\templates\dashboard\view_lab_result.html:145
+msgid "Oxirgi yangilanish"
+msgstr "Last update"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:213
+#: .\dashboard\templates\dashboard\laboratoriya.html:203
+msgid "Diagnostikada"
+msgstr "In diagnostics"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:215
+#: .\dashboard\templates\dashboard\laboratoriya.html:205
+#: .\dashboard\templates\dashboard\patients_status.html:116
+msgid "Veterinarga qaytgan"
+msgstr "Returned to veterinarian"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:217
+#: .\dashboard\templates\dashboard\laboratoriya.html:207
+#: .\dashboard\templates\dashboard\patients_status.html:118
+msgid "Yakunlangan"
+msgstr "Completed"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:219
+#: .\dashboard\templates\dashboard\laboratoriya.html:209
+#: .\dashboard\templates\dashboard\partials\vet_actions.html:17
+#: .\dashboard\templates\dashboard\patients_status.html:120
+msgid "Bekor qilingan"
+msgstr "Cancelled"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:221
+#: .\dashboard\templates\dashboard\laboratoriya.html:201
+msgid "Laboratoriyada"
+msgstr "In laboratory"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:229
+#: .\dashboard\templates\dashboard\laboratoriya.html:217
+#: .\patients\models.py:430 .\patients\models.py:502
+msgid "Kutilmoqda"
+msgstr "Waiting"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:231
+msgid "Veterinarga qaytarilgan"
+msgstr "Returned to veterinarian"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:233
+#: .\dashboard\templates\dashboard\laboratoriya.html:221
+#: .\patients\models.py:431 .\patients\models.py:503
+msgid "Tayyor"
+msgstr "Ready"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:242
+msgid "Lab natija tahrirlangan"
+msgstr "Lab result edited"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:266
+#: .\dashboard\templates\dashboard\laboratoriya.html:244
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:232
+#: .\dashboard\templates\dashboard\view_lab_result.html:163
+msgid "Tahrirlash"
+msgstr "Edit"
+
+#: .\dashboard\templates\dashboard\diagnostika.html:275
+msgid "Diagnostika tarixida yozuvlar yo‘q."
+msgstr "There are no records in the diagnostics history."
+
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:4
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:6
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:141
+msgid "Diagnostika xulosasini tahrirlash"
+msgstr "Edit diagnostic conclusion"
+
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:9
+msgid "Diagnostik xulosa va tavsiyani qayta ko‘rib chiqish oynasi"
+msgstr "Window for reviewing the diagnostic conclusion and recommendation"
+
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:25
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:121
+msgid "Ogohlantirish"
+msgstr "Warning"
+
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:27
+msgid "Laboratoriya natijasi o‘zgartirilgan. Xulosani qayta tekshiring."
+msgstr "The laboratory result has been changed. Please recheck the conclusion."
+
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:32
+msgid "Tahrirlagan xodim"
+msgstr "Edited by"
+
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:43
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:139
+msgid "Tahrirlangan vaqt"
+msgstr "Edited time"
+
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:61
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:18
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:18
+#: .\dashboard\templates\dashboard\edit\final_visit.html:40
+#: .\dashboard\templates\dashboard\patient_card.html:57
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:63
+#: .\dashboard\templates\dashboard\view_lab_result.html:63
+#: .\patients\admin.py:902
+msgid "Bemor ma’lumotlari"
+msgstr "Patient information"
+
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:93
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:50
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:50
+#: .\dashboard\templates\dashboard\edit\final_visit.html:72
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:101
+#: .\dashboard\templates\dashboard\view_lab_result.html:101
+msgid "Bemor holati"
+msgstr "Patient status"
+
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:106
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:158
+msgid "Laboratoriya ma’lumotlari"
+msgstr "Laboratory information"
+
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:118
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:95
+#: .\dashboard\templates\dashboard\edit\final_visit.html:97
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:175
+#: .\dashboard\templates\dashboard\view_lab_result.html:130
+#: .\patients\models.py:464
+msgid "Analiz natijasi"
+msgstr "Analysis result"
+
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:123
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:74
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:135
+#: .\dashboard\templates\dashboard\edit\final_visit.html:102
+#: .\dashboard\templates\dashboard\laboratoriya.html:84
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:170
+#: .\dashboard\templates\dashboard\view_lab_result.html:125
+#: .\patients\models.py:469
+msgid "Veterinar izohi"
+msgstr "Veterinar izohi"
+
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:128
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:101
+#: .\dashboard\templates\dashboard\edit\final_visit.html:107
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:180
+#: .\dashboard\templates\dashboard\view_lab_result.html:135
+#: .\patients\models.py:475
+msgid "Laboratoriya izohi"
+msgstr "Laboratory comment"
+
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:155
+#: .\dashboard\templates\dashboard\edit\final_visit.html:133
+#: .\dashboard\templates\dashboard\patient_card.html:189
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:204
+#: .\patients\models.py:535
+msgid "Tavsiya"
+msgstr "Recommendation"
+
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:162
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:109
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:142
+#: .\dashboard\templates\dashboard\patient_card.html:209
+msgid "Saqlash"
+msgstr "Save"
+
+#: .\dashboard\templates\dashboard\edit\edit_diagnostic_result.html:167
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:114
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:147
+#: .\dashboard\templates\dashboard\edit\final_visit.html:183
+#: .\dashboard\templates\dashboard\vet_application_detail.html:12
+#: .\dashboard\templates\dashboard\vet_route.html:12
+msgid "Orqaga"
+msgstr "Back"
+
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:4
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:6
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:86
+msgid "Laboratoriya natijasini tahrirlash"
+msgstr "Edit laboratory result"
+
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:9
+msgid "Analiz natijasi va laboratoriya izohini tahrirlash oynasi"
+msgstr "Window for editing the analysis result and laboratory comment"
+
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:62
+msgid "Veterinar yuborgan ma’lumot"
+msgstr "Information sent by veterinarian"
+
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:97
+msgid "Laboratoriya tahlili natijasini to‘liq kiriting."
+msgstr "Enter the laboratory analysis result in full."
+
+#: .\dashboard\templates\dashboard\edit\edit_lab_result.html:103
+msgid "Qo‘shimcha izoh yoki tavsiyalar bo‘lsa yozing."
+msgstr "Write any additional comments or recommendations."
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:4
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:6
+msgid "Analiz so‘rovini tahrirlash"
+msgstr "Edit analysis request"
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:9
+msgid "Veterinar yuborgan analiz turi va izohini tahrirlash oynasi"
+msgstr "Edit window for analysis type and note sent by the veterinarian"
+"Edit window for analysis type and note sent by the veterinarianWindow for "
+"editing the analysis type and comment sent by the veterinarian"
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:62
+msgid "Muhim eslatma"
+msgstr "Important note"
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:68
+msgid "Tahrirlash qoidasi"
+msgstr "Editing rule"
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:70
+msgid "Bu yerda faqat analiz turi va veterinar izohi tahrirlanadi."
+msgstr "Only the analysis type and veterinarian comment are edited here."
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:71
+msgid ""
+"Laboratoriya natija kiritganidan keyin bu so‘rovni o‘zgartirib bo‘lmaydi."
+msgstr "After the laboratory enters a result, this request cannot be changed."
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:82
+msgid "Analiz so‘rovi"
+msgstr "Analysis request"
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:94
+msgid "Analiz turini tanlang"
+msgstr "Select analysis type"
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:97
+msgid "Umumiy qon tahlili"
+msgstr "Complete blood count"
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:101
+msgid "Biokimyoviy qon tahlili"
+msgstr "Biochemical blood test"
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:105
+msgid "Siydik tahlili"
+msgstr "Urine analysis"
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:109
+msgid "Najas tahlili"
+msgstr "Stool analysis"
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:113
+msgid "Parazitologik tekshiruv"
+msgstr "Parasitological examination"
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:117
+msgid "Bakteriologik tekshiruv"
+msgstr "Bacteriological examination"
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:121
+msgid "Allergiya testi"
+msgstr "Allergy test"
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:125
+msgid "Gormon tahlili"
+msgstr "Hormone analysis"
+
+#: .\dashboard\templates\dashboard\edit\edit_vet_lab_request.html:129
+#: .\patients\models.py:64
+msgid "Boshqa"
+msgstr "Other"
+
+#: .\dashboard\templates\dashboard\edit\final_visit.html:4
+#: .\dashboard\templates\dashboard\edit\final_visit.html:6
+msgid "Yakuniy ko‘rik / PDF yuborish"
+msgstr "Final examination / Send PDF"
+
+#: .\dashboard\templates\dashboard\edit\final_visit.html:9
+msgid ""
+"Yakuniy tashxis, davolash va PDF ko‘rik varaqasini Telegramga yuborish oynasi"
+msgstr ""
+"Window for sending the final diagnosis, treatment, and PDF examination sheet "
+"to Telegram"
+
+#: .\dashboard\templates\dashboard\edit\final_visit.html:19
+msgid "Bemor yakunlangan"
+msgstr "Patient completed"
+
+#: .\dashboard\templates\dashboard\edit\final_visit.html:25
+msgid "Eslatma"
+msgstr "Note"
+
+#: .\dashboard\templates\dashboard\edit\final_visit.html:27
+msgid "Bu bemor yakunlangan. Siz bu yerda ko‘rikni qayta yozib,"
+msgstr "This patient is completed. Here you can rewrite the examination and"
+
+#: .\dashboard\templates\dashboard\edit\final_visit.html:28
+msgid "Telegramga yangi PDF yuborishingiz mumkin."
+msgstr "send a new PDF to Telegram."
+
+#: .\dashboard\templates\dashboard\edit\final_visit.html:85
+#: .\dashboard\templates\dashboard\view_lab_result.html:6
+#: .\patients\models.py:493 .\patients\models.py:519
+msgid "Laboratoriya natijasi"
+msgstr "Laboratory result"
+
+#: .\dashboard\templates\dashboard\edit\final_visit.html:121
+msgid "Diagnostika xulosasi"
+msgstr "Diagnostics conclusion"
+
+#: .\dashboard\templates\dashboard\edit\final_visit.html:128
+#: .\dashboard\templates\dashboard\patient_card.html:242
+msgid "Xulosa"
+msgstr "Conclusion"
+
+#: .\dashboard\templates\dashboard\edit\final_visit.html:146
+msgid "Yakuniy ko‘rik ma’lumotlari"
+msgstr "Final visit information"
+
+#: .\dashboard\templates\dashboard\edit\final_visit.html:155
+#: .\patients\admin.py:71 .\patients\admin.py:181 .\patients\models.py:375
+msgid "Shikoyat"
+msgstr "Complaint"
+
+#: .\dashboard\templates\dashboard\edit\final_visit.html:160
+msgid "Yakuniy tashxis"
+msgstr "Final diagnosis"
+
+#: .\dashboard\templates\dashboard\edit\final_visit.html:165
+#: .\patients\admin.py:77 .\patients\admin.py:195 .\patients\models.py:383
+#: .\website\templates\website\base.html:98
+#: .\website\templates\website\services.html:72
+msgid "Davolash"
+msgstr "Treatment"
+
+#: .\dashboard\templates\dashboard\edit\final_visit.html:170
+#: .\patients\admin.py:81 .\patients\admin.py:169 .\patients\models.py:388
+msgid "Qayta kelish sanasi"
+msgstr "Next visit date"
+
+#: .\dashboard\templates\dashboard\edit\final_visit.html:172
+msgid "Majburiy emas. Kerak bo‘lsa keyingi kelish sanasini tanlang."
+msgstr "Optional. Select the next visit date if needed."
+
+#: .\dashboard\templates\dashboard\edit\final_visit.html:178
+msgid "PDFni Telegramga yuborish"
+msgstr "Send PDF to Telegram"
+
+#: .\dashboard\templates\dashboard\laboratoriya.html:4
+#: .\dashboard\templates\dashboard\laboratoriya.html:6
+msgid "Laboratoriya dashboard"
+msgstr "Laboratory dashboard"
+
+#: .\dashboard\templates\dashboard\laboratoriya.html:9
+msgid ""
+"Veterinardan kelgan analiz so‘rovlarini ko‘rish, natija kiritish va "
+"diagnostikaga yuborish"
+msgstr ""
+"View analysis requests from veterinarians, enter results, and send to "
+"diagnostics"
+
+#: .\dashboard\templates\dashboard\laboratoriya.html:28
+msgid "Faol analizlar"
+msgstr "Active analyses"
+
+#: .\dashboard\templates\dashboard\laboratoriya.html:38
+#: .\dashboard\templates\dashboard\laboratoriya.html:167
+msgid "Laboratoriya tarixi"
+msgstr "Laboratory history"
+
+#: .\dashboard\templates\dashboard\laboratoriya.html:47
+msgid "Natija"
+msgstr "Result"
+
+#: .\dashboard\templates\dashboard\laboratoriya.html:57
+#: .\dashboard\templates\dashboard\patients_status.html:57
+msgid "Diag"
+msgstr "Diag"
+
+#: .\dashboard\templates\dashboard\laboratoriya.html:58
+#: .\dashboard\templates\dashboard\laboratoriya.html:138
+msgid "Diagnostikaga yuborish"
+msgstr "Send to diagnostics"
+
+#: .\dashboard\templates\dashboard\laboratoriya.html:69
+msgid "Faol laboratoriya ishlari"
+msgstr "Active laboratory work"
+
+#: .\dashboard\templates\dashboard\laboratoriya.html:85
+msgid "Natija kiritish"
+msgstr "Enter result"
+
+#: .\dashboard\templates\dashboard\laboratoriya.html:86
+#: .\dashboard\templates\dashboard\patients_status.html:37
+msgid "Karta"
+msgstr "Card"
+
+#: .\dashboard\templates\dashboard\laboratoriya.html:124
+msgid "Analiz natijasini yozing..."
+msgstr "Write the analysis result..."
+
+#: .\dashboard\templates\dashboard\laboratoriya.html:132
+msgid "Laboratoriya izohi..."
+msgstr "Laboratory comment..."
+
+#: .\dashboard\templates\dashboard\laboratoriya.html:153
+msgid "Laboratoriyaga yuborilgan faol bemorlar yo‘q."
+msgstr "There are no active patients sent to the laboratory."
+
+#: .\dashboard\templates\dashboard\laboratoriya.html:180
+#: .\dashboard\templates\dashboard\view_lab_result.html:52
+msgid "Laboratoriya statusi"
+msgstr "Laboratory status"
+
+#: .\dashboard\templates\dashboard\laboratoriya.html:219
+#: .\dashboard\templates\dashboard\patients_status.html:114
+msgid "Diagnostikaga yuborilgan"
+msgstr "Sent to diagnostics"
+
+#: .\dashboard\templates\dashboard\laboratoriya.html:253
+msgid "Laboratoriya tarixida yozuvlar yo‘q."
+msgstr "There are no records in the laboratory history."
+
+#: .\dashboard\templates\dashboard\login.html:8
+#: .\dashboard\templates\dashboard\login.html:437
+msgid "Tizimga kirish"
+msgstr "Sign in"
+
+#: .\dashboard\templates\dashboard\login.html:375
+msgid "Veterinariya klinikasi boshqaruv paneli"
+msgstr "Veterinary clinic control panel"
+
+#: .\dashboard\templates\dashboard\login.html:380
+msgid "Tizimga xush kelibsiz"
+msgstr "Welcome to the system"
+
+#: .\dashboard\templates\dashboard\login.html:382
+msgid ""
+"Klinika xodimlari uchun mo‘ljallangan boshqaruv paneli. Bu yerda arizalar, "
+"bemorlar holati, laboratoriya natijalari, diagnostika xulosalari va yakuniy "
+"ko‘riklar boshqariladi."
+msgstr ""
+"A management panel for clinic staff. Applications, patient statuses, "
+"laboratory results, diagnostic conclusions, and final visits are managed "
+"here."
+
+#: .\dashboard\templates\dashboard\login.html:388
+msgid "Veterinar nazorati"
+msgstr "Veterinarian supervision"
+
+#: .\dashboard\templates\dashboard\login.html:389
+msgid "Bemorlar jarayoni va yakuniy ko‘riklar nazorati."
+msgstr "Supervision of patient process and final visits."
+
+#: .\dashboard\templates\dashboard\login.html:396
+msgid "Laboratoriya va diagnostika"
+msgstr "Laboratory and diagnostics"
+
+#: .\dashboard\templates\dashboard\login.html:397
+msgid "Analiz natijalari va diagnostik xulosalarni yuritish."
+msgstr "Managing analysis results and diagnostic conclusions."
+
+#: .\dashboard\templates\dashboard\login.html:404
+#: .\dashboard\templates\dashboard\patients_status.html:38
+msgid "Elektron kartoteka"
+msgstr "Electronic card index"
+
+#: .\dashboard\templates\dashboard\login.html:405
+msgid "Bemor kartalari va ko‘rik tarixini bir joyda saqlash."
+msgstr "Storing patient cards and examination history in one place."
+
+#: .\dashboard\templates\dashboard\login.html:438
+msgid "Login va parolingizni kiriting"
+msgstr "Enter your login and password"
+
+#: .\dashboard\templates\dashboard\login.html:442
+msgid "Login yoki parol noto‘g‘ri. Qayta urinib ko‘ring."
+msgstr "Login or password is incorrect. Try again."
+
+#: .\dashboard\templates\dashboard\login.html:450
+msgid "Login"
+msgstr "Login"
+
+#: .\dashboard\templates\dashboard\login.html:457
+msgid "Loginni kiriting"
+msgstr "Enter login"
+
+#: .\dashboard\templates\dashboard\login.html:465
+msgid "Parol"
+msgstr "Password"
+
+#: .\dashboard\templates\dashboard\login.html:473
+msgid "Parolni kiriting"
+msgstr "Enter password"
+
+#: .\dashboard\templates\dashboard\login.html:476
+#: .\dashboard\templates\dashboard\login.html:512
+#| msgid "Xizmatlarni ko‘rish"
+msgid "Parolni ko‘rsatish"
+msgstr "View services"
+
+#: .\dashboard\templates\dashboard\login.html:484
+msgid "Kirish"
+msgstr "Sign in"
+
+#: .\dashboard\templates\dashboard\login.html:489
+msgid "VetClinic elektron kartoteka tizimi"
+msgstr "VetClinic electronic card index system"
+
+#: .\dashboard\templates\dashboard\login.html:490
+#| msgid "Administrator dashboard"
+msgid "Administrator / Veterinar "
+msgstr "Administrator dashboard"
+
+#: .\dashboard\templates\dashboard\login.html:512
+#| msgid "Parolni kiriting"
+msgid "Parolni yashirish"
+msgstr "Enter password"
+
+#: .\dashboard\templates\dashboard\partials\vet_actions.html:6
+#| msgid "Ariza izohi"
+msgid "Ariza tafsiloti"
+msgstr "Application note"
+
+#: .\dashboard\templates\dashboard\partials\vet_actions.html:25
+#| msgid "Qabul qilindi"
+msgid "Qabul qildim"
+msgstr "Accepted"
+
+#: .\dashboard\templates\dashboard\partials\vet_actions.html:31
+#: .\dashboard\views.py:96 .\dashboard\views.py:350 .\dashboard\views.py:513
+#| msgid "Qabul qilindi"
+msgid "Qabul qildi"
+msgstr "Accepted"
+
+#: .\dashboard\templates\dashboard\partials\vet_actions.html:41
+msgid "Yo‘lni boshlash"
+msgstr "Start route"
+
+#: .\dashboard\templates\dashboard\partials\vet_actions.html:47
+#: .\dashboard\views.py:325 .\dashboard\views.py:351 .\dashboard\views.py:509
+#: .\dashboard\views.py:1253 .\patients\models.py:204
+msgid "Yo‘lda"
+msgstr "On the way"
+
+#: .\dashboard\templates\dashboard\partials\vet_actions.html:53
+#| msgid "Xizmatlarni ko‘rish"
+msgid "Marshrutni ko‘rish"
+msgstr "View services"
+
+#: .\dashboard\templates\dashboard\partials\vet_actions.html:59
+msgid "Avtomatik yetib bordi"
+msgstr "Automatically arrived"
+
+#: .\dashboard\templates\dashboard\partials\vet_actions.html:68
+#: .\dashboard\templates\dashboard\partials\vet_actions.html:74
+#: .\dashboard\views.py:330 .\dashboard\views.py:353 .\dashboard\views.py:354
+#: .\dashboard\views.py:355 .\dashboard\views.py:511 .\dashboard\views.py:1089
+msgid "Jarayonda"
+msgstr "In progress"
+
+#: .\dashboard\templates\dashboard\partials\vet_actions.html:82
+#: .\dashboard\templates\dashboard\patient_card.html:214
+#: .\dashboard\templates\dashboard\vet_application_detail.html:104
+#: .\dashboard\templates\dashboard\vet_route.html:103
+#| msgid "Yakunlandi"
+msgid "Yakunlash"
+msgstr "Completed"
+
+#: .\dashboard\templates\dashboard\patient_card.html:9
+#| msgid ""
+#| "Bemorning to‘liq elektron kartotekasi: ariza, laboratoriya, diagnostika "
+#| "va yakuniy ko‘riklar tarixi"
+msgid ""
+"Bemorning to‘liq elektron kartotekasi, ariza ma’lumotlari va yakuniy "
+"ko‘riklar tarixi"
+msgstr ""
+"Full electronic patient record: application, laboratory, diagnostics, and "
+"final examination history"
+
+#: .\dashboard\templates\dashboard\patient_card.html:31
+msgid "Ko‘riklar tarixi"
+msgstr "Visit history"
+
+#: .\dashboard\templates\dashboard\patient_card.html:47
+#: .\dashboard\templates\dashboard\patient_card.html:97
+msgid "Biriktirilgan veterinar"
+msgstr "Assigned veterinarian"
+
+#: .\dashboard\templates\dashboard\patient_card.html:77
+#: .\patients\models.py:246
+msgid "Telegram username"
+msgstr "Telegram username"
+
+#: .\dashboard\templates\dashboard\patient_card.html:82 .\patients\models.py:26
+#: .\patients\models.py:240
+msgid "Telegram ID"
+msgstr "Telegram ID"
+
+#: .\dashboard\templates\dashboard\patient_card.html:108
+msgid "Ariza vaqti"
+msgstr "Application time"
+
+#: .\dashboard\templates\dashboard\patient_card.html:124
+msgid "Ariza izohi"
+msgstr "Application note"
+
+#: .\dashboard\templates\dashboard\patient_card.html:133
+#| msgid "Xizmatlarni ko‘rish"
+msgid "Ariza chekini ko‘rish"
+msgstr "View services"
+
+#: .\dashboard\templates\dashboard\patient_card.html:152
+msgid "Izoh matnini ochish uchun chek ustiga bosing."
+msgstr "Click the receipt to open the note text."
+
+#: .\dashboard\templates\dashboard\patient_card.html:163
+#| msgid "Yakuniy ko‘rik"
+msgid "Yakuniy ko‘rik xulosasi"
+msgstr "Final examination"
+
+#: .\dashboard\templates\dashboard\patient_card.html:167
+#| msgid "Veterinar ko‘rigi"
+msgid "Veterinar to‘ldiradi"
+msgstr "Veterinary examination"
+
+#: .\dashboard\templates\dashboard\patient_card.html:177
+msgid "Umumiy xulosa"
+msgstr "General conclusion"
+
+#: .\dashboard\templates\dashboard\patient_card.html:184
+msgid "Masalan: Hayvon umumiy ko‘rikdan o‘tkazildi, holati barqaror..."
+msgstr "Example: the animal had a general checkup and is stable..."
+
+#: .\dashboard\templates\dashboard\patient_card.html:193
+msgid "Masalan: 3 kun dori berish, ovqatlanishni nazorat qilish..."
+msgstr "Example: give medicine for 3 days and monitor feeding..."
+
+#: .\dashboard\templates\dashboard\patient_card.html:198
+#| msgid "Qo‘shimcha xabar"
+msgid "Qo‘shimcha izoh"
+msgstr "Additional message"
+
+#: .\dashboard\templates\dashboard\patient_card.html:202
+#| msgid "Ko‘rik ma’lumotlari"
+msgid "Qo‘shimcha ma’lumot..."
+msgstr "Examination information"
+
+#: .\dashboard\templates\dashboard\patient_card.html:219
+#| msgid "PDFni Telegramga yuborish"
+msgid "Yakunlash va Telegramga yuborish"
+msgstr "Send PDF to Telegram"
+
+#: .\dashboard\templates\dashboard\patient_card.html:232
+msgid "Yakuniy ko‘riklar / PDF tarixi"
+msgstr "Final examinations / PDF history"
+
+#: .\dashboard\templates\dashboard\patient_card.html:240
+msgid "Ko‘rik kodi"
+msgstr "Visit code"
+
+#: .\dashboard\templates\dashboard\patient_card.html:243
+msgid "Tavsiya / davolash"
+msgstr "Recommendation / treatment"
+
+#: .\dashboard\templates\dashboard\patient_card.html:244
+#| msgid "Telegram ID"
+msgid "Telegram"
+msgstr "Telegram ID"
+
+#: .\dashboard\templates\dashboard\patient_card.html:245
+#: .\patients\models.py:403
+msgid "Ko‘rik vaqti"
+msgstr "Visit time"
+
+#: .\dashboard\templates\dashboard\patient_card.html:273
 msgid "Yuborilgan"
 msgstr "Sent"
 
-#: auto
+#: .\dashboard\templates\dashboard\patient_card.html:277
 msgid "Yuborilmagan"
 msgstr "Not sent"
 
-#: auto
-msgid "Zarur tahlillar o‘tkazilib, natijalar asosida aniqroq ma’lumot olinadi."
-msgstr "Necessary tests are performed and more accurate information is obtained from the results."
+#: .\dashboard\templates\dashboard\patient_card.html:287
+msgid "Yakuniy ko‘riklar mavjud emas."
+msgstr "No final examinations available."
 
-#: auto
-msgid "{{ dashboard_notification_count }} ta"
-msgstr "{{ dashboard_notification_count }} items"
+#: .\dashboard\templates\dashboard\patient_card.html:300
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:226
+#: .\dashboard\templates\dashboard\view_lab_result.html:157
+msgid "Orqaga qaytish"
+msgstr "Go back"
 
-#: auto
-msgid "%(patient)s bemori %(doctor)s veterinarga qayta yo‘naltirildi."
-msgstr "Patient %(patient)s was redirected to veterinarian %(doctor)s."
+#: .\dashboard\templates\dashboard\patients_status.html:9
+msgid ""
+"Bemorlarning hozirgi jarayon holati, mas’ul veterinar va oxirgi "
+"yangilanishlarini ko‘rish"
+msgstr ""
+"View current patient process status, responsible veterinarian, and latest "
+"updates"
 
-#: auto
-msgid "%(patient)s bemori %(doctor)s veterinarga yuborildi."
-msgstr "Patient %(patient)s was sent to veterinarian %(doctor)s."
+#: .\dashboard\templates\dashboard\patients_status.html:28
+msgid "Jami bemorlar"
+msgstr "Total patients"
 
-#: auto
-msgid "%(patient)s bemori bekor qilindi."
-msgstr "Patient %(patient)s was cancelled."
+#: .\dashboard\templates\dashboard\patients_status.html:48
+msgid "Laboratoriya jarayoni"
+msgstr "Laboratory process"
 
-#: auto
-msgid "%(patient)s bemori laboratoriyaga yuborildi."
-msgstr "Patient %(patient)s was sent to laboratory."
+#: .\dashboard\templates\dashboard\patients_status.html:58
+msgid "Diagnostika jarayoni"
+msgstr "Diagnostics process"
 
-#: auto
-msgid "%(patient)s bemori veterinarga qaytarildi."
-msgstr "Patient %(patient)s was returned to the veterinarian."
+#: .\dashboard\templates\dashboard\patients_status.html:83
+msgid "Hozirgi holati"
+msgstr "Current status"
 
-#: auto
-msgid "%(patient)s bemorining analiz natijasi diagnostikaga yuborildi."
-msgstr "The analysis result of patient %(patient)s was sent to diagnostics."
+#: .\dashboard\templates\dashboard\patients_status.html:108
+#: .\dashboard\views.py:348
+msgid "Yangi"
+msgstr "New"
 
-#: auto
-msgid "Bemor topilmadi."
-msgstr "Patient not found."
+#: .\dashboard\templates\dashboard\patients_status.html:110
+msgid "Veterinarga biriktirilgan"
+msgstr "Assigned to veterinarian"
 
-#: auto
-msgid "Bu bemor hali yakuniy ko‘rik uchun tayyor emas."
-msgstr "This patient is not ready for the final visit yet."
+#: .\dashboard\templates\dashboard\patients_status.html:112
+msgid "Laboratoriyaga yuborilgan"
+msgstr "Sent to laboratory"
 
-#: auto
-msgid "Bu bemor sizga biriktirilmagan."
-msgstr "This patient is not assigned to you."
+#: .\dashboard\templates\dashboard\patients_status.html:122
+#: .\dashboard\views.py:320
+msgid "Qabul qilingan"
+msgstr "Accepted"
 
-#: auto
-msgid "Diagnostika natijasi topilmadi."
-msgstr "Diagnostic result not found."
+#: .\dashboard\templates\dashboard\patients_status.html:124
+msgid "Rad etilgan"
+msgstr "Rejected"
 
-#: auto
-msgid "Diagnostika xulosasi tahrirlandi."
-msgstr "Diagnostic conclusion was edited."
+#: .\dashboard\templates\dashboard\patients_status.html:142
+msgid "Hozircha bemorlar mavjud emas."
+msgstr "There are no patients yet."
 
-#: auto
-msgid "Diagnostika yozuvi topilmadi."
-msgstr "Diagnostic record not found."
+#: .\dashboard\templates\dashboard\vet_application_detail.html:38
+#: .\dashboard\templates\dashboard\veterinar.html:86 .\patients\models.py:439
+#: .\patients\models.py:511
+msgid "Bemor"
+msgstr "Patient"
 
-#: auto
-msgid "Ko‘rik saqlandi, lekin PDF yuborilmadi: %(error)s"
-msgstr "Visit saved, but PDF was not sent: %(error)s"
+#: .\dashboard\templates\dashboard\vet_application_detail.html:58
+#| msgid "Veterinar nazorati"
+msgid "Veterinar holati"
+msgstr "Veterinarian supervision"
 
-#: auto
-msgid "Ko‘rik saqlandi, lekin Telegram xabar yuborilmadi: %(error)s"
-msgstr "Visit saved, but Telegram message was not sent: %(error)s"
+#: .\dashboard\templates\dashboard\vet_application_detail.html:63
+#: .\dashboard\templates\dashboard\vet_profile.html:36
+#: .\dashboard\templates\dashboard\veterinar.html:23
+msgid "Geolokatsiya"
+msgstr "Geolocation"
 
-#: auto
-msgid "Ko‘rik saqlandi, lekin Telegramga yuborishda xatolik bo‘ldi: %(error)s"
-msgstr "Visit saved, but an error occurred while sending to Telegram: %(error)s"
+#: .\dashboard\templates\dashboard\vet_application_detail.html:69
+#| msgid "Ish tajribasi"
+msgid "Ish jarayoni"
+msgstr "Work experience"
 
-#: auto
-msgid "Ko‘rik/PDF Telegram orqali yuborildi."
-msgstr "Visit/PDF was sent via Telegram."
+#: .\dashboard\templates\dashboard\vet_history.html:4
+#| msgid "Veterinarga qaytarildi"
+msgid "Veterinar tarixi"
+msgstr "Returned to veterinarian"
 
-#: auto
-msgid "Laboratoriya allaqachon natija kiritgan. Endi analiz turini o‘zgartirib bo‘lmaydi."
-msgstr "The laboratory has already entered a result. The analysis type can no longer be changed."
+#: .\dashboard\templates\dashboard\vet_history.html:6
+msgid "Faqat mening yakunlangan ishlarim"
+msgstr "Only my completed work"
 
-#: auto
-msgid "Laboratoriya natijasi tahrirlandi. Diagnostika xodimiga ogohlantirish chiqariladi."
-msgstr "Laboratory result was edited. A warning will be shown to the diagnostics employee."
+#: .\dashboard\templates\dashboard\vet_history.html:16
+msgid "Mijoz, telefon, hayvon yoki izoh bo‘yicha qidirish"
+msgstr "Search by client, phone, animal, or note"
 
-#: auto
-msgid "Laboratoriya natijasi topilmadi."
-msgstr "Laboratory result not found."
+#: .\dashboard\templates\dashboard\vet_history.html:34
+#: .\dashboard\templates\dashboard\veterinar.html:60
+#| msgid "Yakunlangan"
+msgid "Yakunlangan ishlarim"
+msgstr "Completed"
 
-#: auto
-msgid "Laboratoriya so‘rovi topilmadi."
-msgstr "Laboratory request not found."
+#: .\dashboard\templates\dashboard\vet_history.html:45
+#| msgid "Yangilangan vaqt"
+msgid "Yakunlangan vaqt"
+msgstr "Updated time"
 
-#: auto
-msgid "Laboratoriya yozuvi topilmadi."
-msgstr "Laboratory record not found."
+#: .\dashboard\templates\dashboard\vet_history.html:68
+#| msgid "Yakuniy ko‘rik"
+msgid "Qayta ko‘rik"
+msgstr "Final examination"
 
-#: auto
-msgid "Laboratoriyaga yuborilgan analiz so‘rovi tahrirlandi."
-msgstr "The analysis request sent to laboratory was edited."
+#: .\dashboard\templates\dashboard\vet_history.html:75
+#| msgid "Yakunlangan bemorni tahrirlab bo‘lmaydi."
+msgid "Yakunlangan ishlar tarixi yo‘q."
+msgstr "A completed patient cannot be edited."
 
-#: auto
-msgid "Natija qaytmadi"
-msgstr "No result returned"
+#: .\dashboard\templates\dashboard\vet_profile.html:4
+#| msgid "Veterinar izohi"
+msgid "Veterinar profil"
+msgstr "Veterinar izohi"
 
-#: auto
-msgid "Sizda Administrator dashboardiga kirish huquqi yo‘q."
-msgstr "You do not have access to the administrator dashboard."
+#: .\dashboard\templates\dashboard\vet_profile.html:6
+#| msgid "Veterinar ma’lumoti"
+msgid "Veterinar ma’lumotlari va joriy holat"
+msgstr "Veterinarian information"
 
-#: auto
-msgid "Sizda Diagnostika dashboardiga kirish huquqi yo‘q."
-msgstr "You do not have access to the diagnostics dashboard."
+#: .\dashboard\templates\dashboard\vet_profile.html:28
+msgid "Mutaxassislik"
+msgstr "Specialization"
 
-#: auto
-msgid "Sizda Laboratoriya dashboardiga kirish huquqi yo‘q."
-msgstr "You do not have access to the laboratory dashboard."
+#: .\dashboard\templates\dashboard\vet_profile.html:32 .\patients\models.py:157
+#| msgid "Hozirgi holati"
+msgid "Joriy holat"
+msgstr "Current status"
 
-#: auto
-msgid "Sizda Veterinar dashboardiga kirish huquqi yo‘q."
-msgstr "You do not have access to the veterinarian dashboard."
+#: .\dashboard\templates\dashboard\vet_profile.html:44
+#| msgid "Faol analizlar"
+msgid "Faol ishlar"
+msgstr "Active analyses"
 
-#: auto
-msgid "Sizda bemorlar holatini ko‘rish huquqi yo‘q."
-msgstr "You do not have permission to view patient statuses."
+#: .\dashboard\templates\dashboard\vet_route.html:6
+msgid "Mijoz manziligacha marshrut va ish holati"
+msgstr "Route to client address and work status"
 
-#: auto
-msgid "Sizda bu amalni bajarish huquqi yo‘q."
-msgstr "You do not have permission to perform this action."
+#: .\dashboard\templates\dashboard\vet_route.html:23
+#: .\dashboard\templates\dashboard\veterinar.html:113
+#: .\dashboard\templates\dashboard\veterinar.html:161
+msgid "Masofa"
+msgstr "Distance"
 
-#: auto
-msgid "Sizda bu bemor kartasini ko‘rish huquqi yo‘q."
-msgstr "You do not have permission to view this patient card."
+#: .\dashboard\templates\dashboard\vet_route.html:28
+#: .\dashboard\templates\dashboard\veterinar.html:162
+#| msgid "Tahrirlangan vaqt"
+msgid "Taxminiy vaqt"
+msgstr "Edited time"
 
-#: auto
-msgid "Sizda bu sahifaga kirish huquqi yo‘q."
-msgstr "You do not have access to this page."
+#: .\dashboard\templates\dashboard\vet_route.html:33
+msgid "Yetib borish"
+msgstr "Arrival"
 
-#: auto
+#: .\dashboard\templates\dashboard\vet_route.html:43
+msgid "Koordinata topilmadi. Manzil Google Maps orqali ochiladi."
+msgstr "Coordinates were not found. The address will open in Google Maps."
+
+#: .\dashboard\templates\dashboard\vet_route.html:49
+#| msgid "Veterinar izohi"
+msgid "Veterinar joyi"
+msgstr "Veterinar izohi"
+
+#: .\dashboard\templates\dashboard\vet_route.html:53
+#| msgid "Bemor hayvonlar"
+msgid "Bemor manzili"
+msgstr "Animal patients"
+
+#: .\dashboard\templates\dashboard\vet_route.html:63
+msgid "Boshlanish nuqtasi"
+msgstr "Starting point"
+
+#: .\dashboard\templates\dashboard\vet_route.html:64
+msgid "Sizning joriy manzilingiz"
+msgstr "Your current location"
+
+#: .\dashboard\templates\dashboard\vet_route.html:84
+#| msgid "Ariza yuborish tartibi"
+msgid "Yetib borish taxmini"
+msgstr "Application submission process"
+
+#: .\dashboard\templates\dashboard\vet_route.html:94
+#| msgid "Qabul qilindi"
+msgid "Qabul qilish"
+msgstr "Accepted"
+
+#: .\dashboard\templates\dashboard\vet_route.html:99
+msgid "Yo‘l boshlandi"
+msgstr "Route started"
+
+#: .\dashboard\templates\dashboard\vet_route.html:109
+msgid "Marshrutni ochish"
+msgstr "Open route"
+
+#: .\dashboard\templates\dashboard\veterinar.html:6
+msgid "Menga biriktirilgan arizalar va ish holatim"
+msgstr "Applications assigned to me and my work status"
+
+#: .\dashboard\templates\dashboard\veterinar.html:13
+#: .\dashboard\templates\dashboard\veterinar.html:36
+#| msgid "Hozirgi holati"
+msgid "Joriy holatim"
+msgstr "Current status"
+
+#: .\dashboard\templates\dashboard\veterinar.html:27
+msgid "Bugungi topshiriqlar"
+msgstr "Today's tasks"
+
+#: .\dashboard\templates\dashboard\veterinar.html:28
+msgid "ta"
+msgstr "pcs"
+
+#: .\dashboard\templates\dashboard\veterinar.html:29
+#| msgid "Qabul qilingan"
+msgid "tasi qabul qilingan"
+msgstr "Accepted"
+
+#: .\dashboard\templates\dashboard\veterinar.html:40
+#| msgid "Bemorlar holati"
+msgid "Geolokatsiya holati"
+msgstr "Patient statuses"
+
+#: .\dashboard\templates\dashboard\veterinar.html:56 .\dashboard\views.py:1351
+#| msgid "Faol diagnostika ishlari"
+msgid "Jarayondagi ishlarim"
+msgstr "Active diagnostics work"
+
+#: .\dashboard\templates\dashboard\veterinar.html:64
+#| msgid "Xizmatlarimiz"
+msgid "Xavfli holatlarim"
+msgstr "Our services"
+
+#: .\dashboard\templates\dashboard\veterinar.html:77
+#| msgid "March"
+msgid "Barchasi"
+msgstr "March"
+
+#: .\dashboard\templates\dashboard\veterinar.html:91
+msgid "Manzil / masofa"
+msgstr "Address / distance"
+
+#: .\dashboard\templates\dashboard\veterinar.html:92
+#| msgid "Holati"
+msgid "Holat"
+msgstr "Status"
+
+#: .\dashboard\templates\dashboard\veterinar.html:120
+#: .\dashboard\templates\dashboard\veterinar.html:172
+#| msgid "Diagnostikaga yuborilgan faol bemorlar yo‘q."
+msgid "Sizga biriktirilgan faol arizalar yo‘q."
+msgstr "There are no active patients sent to diagnostics."
+
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:4
+msgid "Diagnostika natijasini ko‘rish"
+msgstr "View diagnostics result"
+
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:6
+#: .\patients\models.py:573
+msgid "Diagnostika natijasi"
+msgstr "Diagnostic result"
+
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:9
+msgid ""
+"Bemorning laboratoriya va diagnostika ma’lumotlarini ixcham ko‘rish oynasi"
+msgstr "Compact view of the patient’s laboratory and diagnostics information"
+
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:42
+msgid "Diagnostika holati"
+msgstr "Diagnostic status"
+
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:123
+msgid "Laboratoriya natijasi diagnostika xulosasidan keyin o‘zgartirilgan."
+msgstr "The laboratory result was changed after the diagnostic conclusion."
+
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:128
+msgid "Tahrirlagan"
+msgstr "Edited by"
+
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:192
+msgid "Diagnostika ma’lumotlari"
+msgstr "Diagnostic information"
+
+#: .\dashboard\templates\dashboard\view_diagnostic_result.html:209
+#: .\patients\models.py:527
+msgid "Diagnostika xodimi"
+msgstr "Diagnostics employee"
+
+#: .\dashboard\templates\dashboard\view_lab_result.html:4
+msgid "Laboratoriya natijasini ko‘rish"
+msgstr "View laboratory result"
+
+#: .\dashboard\templates\dashboard\view_lab_result.html:9
+msgid "Bemor laboratoriya natijasi va izohlarini ixcham ko‘rish oynasi"
+msgstr "Compact view of patient laboratory result and notes"
+
+#: .\dashboard\templates\dashboard\view_lab_result.html:113
+msgid "Analiz ma’lumotlari"
+msgstr "Analysis information"
+
+#: .\dashboard\templates\dashboard\view_lab_result.html:140
+#: .\patients\models.py:455
+msgid "Laboratoriya xodimi"
+msgstr "Laboratory employee"
+
+#: .\dashboard\views.py:98
+#| msgid "Qabul qilindi"
+msgid "Ariza qabul qilindi."
+msgstr "Accepted"
+
+#: .\dashboard\views.py:102
+msgid "Jarayonga oldi"
+msgstr "Took into progress"
+
+#: .\dashboard\views.py:104
+msgid "Ariza jarayonga olindi."
+msgstr "Application was taken into progress."
+
+#: .\dashboard\views.py:108
+msgid "Yo‘lga chiqdi"
+msgstr "Departed"
+
+#: .\dashboard\views.py:110
+msgid "Yo‘lga chiqish belgilandi."
+msgstr "Departure was marked."
+
+#: .\dashboard\views.py:114 .\dashboard\views.py:326 .\dashboard\views.py:352
+#: .\dashboard\views.py:507 .\patients\models.py:205
+msgid "Yetib bordi"
+msgstr "Arrived"
+
+#: .\dashboard\views.py:116
+msgid "Yetib borish belgilandi."
+msgstr "Arrival was marked."
+
+#: .\dashboard\views.py:248
+#, python-format
+msgid "%(meters)d m"
+msgstr "%(meters)d m"
+
+#: .\dashboard\views.py:250
+#, python-format
+msgid "%(kilometers).1f km"
+msgstr "%(kilometers).1f km"
+
+#: .\dashboard\views.py:265
+#, python-format
+msgid "%(minutes)d daqiqa"
+msgstr "%(minutes)d minutes"
+
+#: .\dashboard\views.py:271 .\dashboard\views.py:296
+msgid "🔴 Aloqa yo‘q"
+msgstr "🔴 No connection"
+
+#: .\dashboard\views.py:272 .\dashboard\views.py:297 .\dashboard\views.py:682
+#| msgid "Ma’lumot yo‘q"
+msgid "Aloqa yo‘q"
+msgstr "No data"
+
+#: .\dashboard\views.py:281
+msgid "🟢 Faol"
+msgstr "🟢 Active"
+
+#: .\dashboard\views.py:282
+#| msgid "Faolmi?"
+msgid "Faol"
+msgstr "Active?"
+
+#: .\dashboard\views.py:289
+msgid "🟡 Eskirgan"
+msgstr "🟡 Stale"
+
+#: .\dashboard\views.py:290
+msgid "Eskirgan"
+msgstr "Stale"
+
+#: .\dashboard\views.py:319 .\dashboard\views.py:349 .\dashboard\views.py:515
+#| msgid "Biriktirish"
+msgid "Biriktirilgan"
+msgstr "Assign"
+
+#: .\dashboard\views.py:333 .\dashboard\views.py:356 .\dashboard\views.py:503
+#: .\patients\models.py:209
+msgid "Yakunlandi"
+msgstr "Completed"
+
+#: .\dashboard\views.py:529 .\dashboard\views.py:624 .\patients\models.py:110
+msgid "Bo‘sh"
+msgstr "Free"
+
+#: .\dashboard\views.py:532 .\dashboard\views.py:631 .\patients\models.py:113
+msgid "Band"
+msgstr "Busy"
+
+#: .\dashboard\views.py:535 .\patients\models.py:112
+msgid "Chaqiruvda"
+msgstr "On call"
+
+#: .\dashboard\views.py:537 .\patients\models.py:111
+#| msgid "Diagnostikada"
+msgid "Klinikada"
+msgstr "In diagnostics"
+
+#: .\dashboard\views.py:638
+#| msgid "Xizmatlar"
+msgid "Xizmatda"
+msgstr "Services"
+
+#: .\dashboard\views.py:644
+msgid "Mijoz qabulida"
+msgstr "With client"
+
+#: .\dashboard\views.py:664
+#, python-format
+msgid "Safarda / %(code)s"
+msgstr "On route / %(code)s"
+
+#: .\dashboard\views.py:667
+msgid "Tanlangan veterinar hozir safarda yoki band."
+msgstr "The selected veterinarian is currently on route or busy."
+
+#: .\dashboard\views.py:672
+msgid "Klinikada / band"
+msgstr "In clinic / busy"
+
+#: .\dashboard\views.py:675
+msgid "Tanlangan veterinar klinikada boshqa ariza bilan band."
+msgstr "The selected veterinarian is busy with another application in the clinic."
+"The selected veterinarian is busy with another application in the clinic."
+
+#: .\dashboard\views.py:685
+msgid "Tanlangan veterinarning geolokatsiya aloqasi yo‘q."
+msgstr "The selected veterinarian has no geolocation connection."
+
+#: .\dashboard\views.py:689
+#| msgid "Klinika rasmi keyin qo‘shiladi"
+msgid "Klinikada / bo‘sh"
+msgstr "Clinic photo will be added later"
+
+#: .\dashboard\views.py:745
 msgid "Sizga dashboard uchun rol biriktirilmagan. Superadmin bilan bog‘laning."
 msgstr "No dashboard role is assigned to you. Contact the superadmin."
 
-#: auto
+#: .\dashboard\views.py:760
 msgid "Sizga veterinar profili biriktirilmagan."
 msgstr "No veterinarian profile is assigned to you."
 
-#: auto
+#: .\dashboard\views.py:771
+msgid "Sizda bemorlar holatini ko‘rish huquqi yo‘q."
+msgstr "You do not have permission to view patient statuses."
+
+#: .\dashboard\views.py:781 .\dashboard\views.py:1000 .\dashboard\views.py:1029
+#: .\dashboard\views.py:1066 .\dashboard\views.py:1178
+#: .\dashboard\views.py:1426 .\dashboard\views.py:1453
+#: .\dashboard\views.py:1499 .\dashboard\views.py:1660
+#: .\dashboard\views.py:1721 .\dashboard\views.py:1780
+#: .\dashboard\views.py:2139
+msgid "Bemor topilmadi."
+msgstr "Patient not found."
+
+#: .\dashboard\views.py:794 .\dashboard\views.py:798 .\dashboard\views.py:802
+msgid "Sizda bu bemor kartasini ko‘rish huquqi yo‘q."
+msgstr "You do not have permission to view this patient card."
+
+#: .\dashboard\views.py:805
+msgid "Sizda bu sahifaga kirish huquqi yo‘q."
+msgstr "You do not have access to this page."
+
+#: .\dashboard\views.py:858
+msgid "Sizda Administrator dashboardiga kirish huquqi yo‘q."
+msgstr "You do not have access to the administrator dashboard."
+
+#: .\dashboard\views.py:919 .\dashboard\views.py:972 .\dashboard\views.py:1011
+#: .\dashboard\views.py:1037 .\dashboard\views.py:1145
+#: .\dashboard\views.py:1476 .\dashboard\views.py:1512
+#: .\dashboard\views.py:1706 .\dashboard\views.py:1788
+#: .\dashboard\views.py:1834 .\dashboard\views.py:1874
+#: .\dashboard\views.py:1950 .\dashboard\views.py:1979
+#: .\dashboard\views.py:2123
+msgid "Sizda bu amalni bajarish huquqi yo‘q."
+msgstr "You do not have permission to perform this action."
+
+#: .\dashboard\views.py:933
+msgid "Tezkor ariza uchun majburiy maydonlarni to‘ldiring."
+msgstr "Fill in the required fields for the quick application."
+
+#: .\dashboard\views.py:937
+msgid "Veterinar chaqirish yoki xavfli holat uchun manzil kiritilishi kerak."
+msgstr "Address is required for a vet call or danger case."
+
+#: .\dashboard\views.py:941
+msgid "Telefon orqali kiritilgan ariza"
+msgstr "Application entered by phone"
+
+#: .\dashboard\views.py:942
+#, python-format
+msgid "Xizmat turi: %(service)s"
+msgstr "Service type: %(service)s"
+
+#: .\dashboard\views.py:946
+#, python-format
+#| msgid "Email address"
+msgid "Manzil: %(address)s"
+msgstr "Address: %(address)s"
+
+#: .\dashboard\views.py:949
+#, python-format
+msgid "Muammo tavsifi / izoh: %(description)s"
+msgstr "Problem description / note: %(description)s"
+
+#: .\dashboard\views.py:965
+msgid "Tezkor ariza yangi arizalar ro‘yxatiga qo‘shildi."
+msgstr "Quick application was added to the new applications list."
+
+#: .\dashboard\views.py:993
+#, python-format
+msgid "%(patient)s bemori %(doctor)s veterinarga yuborildi."
+msgstr "Patient %(patient)s was sent to veterinarian %(doctor)s."
+
+#: .\dashboard\views.py:1003 .\dashboard\views.py:1069
+#: .\dashboard\views.py:1181
 msgid "Veterinar topilmadi."
 msgstr "Veterinarian not found."
 
-#: auto
+#: .\dashboard\views.py:1019
 msgid "Yakunlangan bemorni bekor qilib bo‘lmaydi."
 msgstr "A completed patient cannot be cancelled."
 
-#: auto
+#: .\dashboard\views.py:1026
+#, python-format
+msgid "%(patient)s bemori bekor qilindi."
+msgstr "Patient %(patient)s was cancelled."
+
+#: .\dashboard\views.py:1048
 msgid "Yakunlangan bemorni qayta yo‘naltirib bo‘lmaydi."
 msgstr "A completed patient cannot be redirected."
 
-#: auto
-msgid "Yakunlangan bemorni tahrirlab bo‘lmaydi."
-msgstr "A completed patient cannot be edited."
+#: .\dashboard\views.py:1059
+#, python-format
+msgid "%(patient)s bemori %(doctor)s veterinarga qayta yo‘naltirildi."
+msgstr "Patient %(patient)s was redirected to veterinarian %(doctor)s."
 
-#: auto
-msgid "Yakunlangan bemorning analiz so‘rovini tahrirlab bo‘lmaydi."
-msgstr "The analysis request of a completed patient cannot be edited."
+#: .\dashboard\views.py:1080
+#| msgid "Ariza vaqti"
+msgid "Ariza yaratildi"
+msgstr "Application time"
 
+#: .\dashboard\views.py:1083
+#| msgid "Veterinarga biriktirilgan"
+msgid "Veterinarga biriktirildi"
+msgstr "Assigned to veterinarian"
+
+#: .\dashboard\views.py:1085
+#| msgid "Yakunlandi"
+msgid "Ariza yakunlandi"
+msgstr "Completed"
+
+#: .\dashboard\views.py:1087
+#| msgid "Bekor qilindi"
+msgid "Ariza bekor qilindi"
+msgstr "Cancelled"
+
+#: .\dashboard\views.py:1097
+#| msgid "Sizda bu sahifaga kirish huquqi yo‘q."
+msgid "Sizda Tarix sahifasiga kirish huquqi yo‘q."
+msgstr "You do not have access to this page."
+
+#: .\dashboard\views.py:1154
+#| msgid "Yakunlangan bemorni qayta yo‘naltirib bo‘lmaydi."
+msgid "Eski arizalarni qayta biriktirib bo‘lmaydi."
+msgstr "A completed patient cannot be redirected."
+
+#: .\dashboard\views.py:1158
+#| msgid "Yakunlangan bemorni qayta yo‘naltirib bo‘lmaydi."
+msgid "Yakunlangan yoki bekor qilingan arizani qayta biriktirib bo‘lmaydi."
+msgstr "A completed patient cannot be redirected."
+
+#: .\dashboard\views.py:1171
+#, python-format
+#| msgid "%(patient)s bemori %(doctor)s veterinarga qayta yo‘naltirildi."
+msgid "%(patient)s arizasi %(doctor)s veterinarga qayta biriktirildi."
+msgstr "Patient %(patient)s was redirected to veterinarian %(doctor)s."
+
+#: .\dashboard\views.py:1189 .\dashboard\views.py:1277
+#: .\dashboard\views.py:1285
+#| msgid "Sizda Administrator dashboardiga kirish huquqi yo‘q."
+msgid "Sizda Administrator sahifasiga kirish huquqi yo‘q."
+msgstr "You do not have access to the administrator dashboard."
+
+#: .\dashboard\views.py:1234
+msgid "🟢 Manzilga yaqin"
+msgstr "🟢 Near address"
+
+#: .\dashboard\views.py:1235
+#| msgid "Manzil"
+msgid "Manzilga yaqin"
+msgstr "Address"
+
+#: .\dashboard\views.py:1245
+msgid "🟡 Hali klinikada, kechikmoqda"
+msgstr "🟡 Still at clinic, delayed"
+
+#: .\dashboard\views.py:1246
+msgid "Hali klinikada"
+msgstr "Still at clinic"
+
+#: .\dashboard\views.py:1252
+msgid "🔵 Yo‘lda"
+msgstr "🔵 On the way"
+
+#: .\dashboard\views.py:1302
+msgid "Sizda Veterinar dashboardiga kirish huquqi yo‘q."
+msgstr "You do not have access to the veterinarian dashboard."
+
+#: .\dashboard\views.py:1363
+#| msgid "Tashxis yo‘q"
+msgid "Ruxsat yo‘q."
+msgstr "No diagnosis"
+
+#: .\dashboard\views.py:1366
+msgid "Faqat POST so‘rov qabul qilinadi."
+msgstr "Only POST requests are accepted."
+
+#: .\dashboard\views.py:1371
+#| msgid "Veterinar topilmadi."
+msgid "Veterinar profili topilmadi."
+msgstr "Veterinarian not found."
+
+#: .\dashboard\views.py:1383
+msgid "Lokatsiya koordinatalari noto‘g‘ri."
+msgstr "Location coordinates are invalid."
+
+#: .\dashboard\views.py:1386
+msgid "Lokatsiya chegaradan tashqarida."
+msgstr "Location is out of bounds."
+
+#: .\dashboard\views.py:1421 .\dashboard\views.py:1448
+#| msgid "Sizda bu sahifaga kirish huquqi yo‘q."
+msgid "Sizda bu sahifani ko‘rish huquqi yo‘q."
+msgstr "You do not have access to this page."
+
+#: .\dashboard\views.py:1430 .\dashboard\views.py:1457
+#: .\dashboard\views.py:1489 .\dashboard\views.py:1533
+#: .\dashboard\views.py:1712 .\dashboard\views.py:1761
+#| msgid "Bu bemor sizga biriktirilmagan."
+msgid "Bu ariza sizga biriktirilmagan."
+msgstr "This patient is not assigned to you."
+
+#: .\dashboard\views.py:1482
+msgid "Noto‘g‘ri amal tanlandi."
+msgstr "Invalid action selected."
+
+#: .\dashboard\views.py:1492
+#| msgid "Bemor yakunlangan"
+msgid "Bu ariza avval yakunlangan."
+msgstr "Patient completed"
+
+#: .\dashboard\views.py:1526
+msgid "Umumiy xulosa yozilishi kerak."
+msgstr "General conclusion is required."
+
+#: .\dashboard\views.py:1536
+msgid "Bu arizaga qo‘shimcha ko‘rik yozish muddati tugagan."
+msgstr "The period for adding an extra checkup to this application has expired."
+"The period for adding an extra checkup to this application has expired."
+
+#: .\dashboard\views.py:1557
+#, python-format
+msgid "Veterinar xulosasi saqlandi: %(date)s"
+msgstr "Veterinarian conclusion saved: %(date)s"
+
+#: .\dashboard\views.py:1559
+#, python-format
+#| msgid "Veterinar ko‘rigi"
+msgid "Veterinar ko‘rigi yakunlandi: %(date)s"
+msgstr "Veterinary examination completed: %(date)s"
+
+#: .\dashboard\views.py:1561
+#, python-format
+msgid "Umumiy xulosa: %(text)s"
+msgstr "General conclusion: %(text)s"
+
+#: .\dashboard\views.py:1565
+#, python-format
+msgid "Tavsiya: %(text)s"
+msgstr "Recommendation: %(text)s"
+
+#: .\dashboard\views.py:1568
+#, python-format
+#| msgid "Qo‘shimcha xabar"
+msgid "Qo‘shimcha izoh: %(text)s"
+msgstr "Additional note: %(text)s"
+
+#: .\dashboard\views.py:1574
+#| msgid "Diagnostika xulosasi tahrirlandi."
+msgid "Ko‘rik xulosasi saqlandi."
+msgstr "Diagnostic conclusion was edited."
+
+#: .\dashboard\views.py:1590
+#, python-format
+#| msgid "Ko‘rik kodi"
+msgid "Ko‘rik kodi: %(code)s"
+msgstr "Visit code: %(code)s"
+
+#: .\dashboard\views.py:1597
+#| msgid "Ko‘rik sanasi"
+msgid "Ko‘rik yakunlandi."
+msgstr "Examination date"
+
+#: .\dashboard\views.py:1642
+#| msgid "Ko‘rik/PDF Telegram orqali yuborildi."
+msgid "Ko‘rik yakunlandi va PDF mijozga Telegram orqali yuborildi."
+msgstr "Visit/PDF was sent via Telegram."
+
+#: .\dashboard\views.py:1647
+#, python-format
+#| msgid "Ko‘rik saqlandi, lekin Telegram xabar yuborilmadi: %(error)s"
+msgid "Ko‘rik yakunlandi, lekin PDF Telegramga yuborilmadi: %(error)s"
+msgstr "Visit saved, but Telegram message was not sent: %(error)s"
+
+#: .\dashboard\views.py:1648 .\dashboard\views.py:2169
+#| msgid "Noma’lum hayvon"
+msgid "Noma’lum xato"
+msgstr "Unknown animal"
+
+#: .\dashboard\views.py:1654 .\dashboard\views.py:2143
+#| msgid "Telegramga yuborilgan"
+msgid "Mijoz Telegram orqali ulanmagan."
+msgstr "Sent to Telegram"
+
+#: .\dashboard\views.py:1668
+#| msgid "Sizda Veterinar dashboardiga kirish huquqi yo‘q."
+msgid "Sizda Veterinar tarixiga kirish huquqi yo‘q."
+msgstr "You do not have access to the veterinarian dashboard."
+
+#: .\dashboard\views.py:1715
+msgid "Faqat 2-3 kun ichidagi arizaga qo‘shimcha ko‘rik yozish mumkin."
+msgstr "An extra checkup can only be added to applications from the last 2-3 days."
+"An extra checkup can only be added to applications from the last 2-3 days."
+
+#: .\dashboard\views.py:1729
+#| msgid "Sizda Veterinar dashboardiga kirish huquqi yo‘q."
+msgid "Sizda Veterinar profiliga kirish huquqi yo‘q."
+msgstr "You do not have access to the veterinarian dashboard."
+
+#: .\dashboard\views.py:1754
+#| msgid "Sizda Laboratoriya dashboardiga kirish huquqi yo‘q."
+msgid "Sizda laboratoriyaga yuborish huquqi yo‘q."
+msgstr "You do not have access to the laboratory dashboard."
+
+#: .\dashboard\views.py:1763
+#| msgid "Umumiy qon tahlili"
+msgid "Umumiy analiz"
+msgstr "Complete blood count"
+
+#: .\dashboard\views.py:1777
+#| msgid "Laboratoriyaga yuborildi"
+msgid "Bemor laboratoriyaga yuborildi."
+msgstr "Sent to laboratory"
+
+#: .\dashboard\views.py:1793
+msgid "Laboratoriya so‘rovi topilmadi."
+msgstr "Laboratory request not found."
+
+#: .\dashboard\views.py:1800
+#| msgid "Laboratoriya so‘rovi topilmadi."
+msgid "Laboratoriya so‘rovi yangilandi."
+msgstr "Laboratory request not found."
+
+#: .\dashboard\views.py:1861
+#, python-format
+msgid "%(patient)s bemorining analiz natijasi diagnostikaga yuborildi."
+msgstr "The analysis result of patient %(patient)s was sent to diagnostics."
+
+#: .\dashboard\views.py:1866 .\dashboard\views.py:1907
+msgid "Laboratoriya natijasi topilmadi."
+msgstr "Laboratory result not found."
+
+#: .\dashboard\views.py:1879
+msgid "Laboratoriya yozuvi topilmadi."
+msgstr "Laboratory record not found."
+
+#: .\dashboard\views.py:1896
+#| msgid "Laboratoriya natijasi tahrirlangan"
+msgid "Laboratoriya natijasi tahrirlandi."
+msgstr "Laboratory result was edited"
+
+#: .\dashboard\views.py:1968
+#, python-format
+msgid "%(patient)s bemori veterinarga qaytarildi."
+msgstr "Patient %(patient)s was returned to the veterinarian."
+
+#: .\dashboard\views.py:1971 .\dashboard\views.py:1984
+msgid "Diagnostika yozuvi topilmadi."
+msgstr "Diagnostic record not found."
+
+#: .\dashboard\views.py:1996
+msgid "Diagnostika xulosasi tahrirlandi."
+msgstr "Diagnostic conclusion was edited."
+
+#: .\dashboard\views.py:2007
+msgid "Diagnostika natijasi topilmadi."
+msgstr "Diagnostic result not found."
+
+#: .\dashboard\views.py:2133
+#| msgid "Ko‘rik kodi"
+msgid "Ko‘rik topilmadi."
+msgstr "Visit code"
+
+#: .\dashboard\views.py:2153
+#| msgid "Yakuniy ko‘rik / PDF yuborish"
+msgid "Yakuniy ko‘rik PDF xulosasi"
+msgstr "Final examination / Send PDF"
+
+#: .\dashboard\views.py:2164
+#| msgid "Ko‘rik/PDF Telegram orqali yuborildi."
+msgid "PDF Telegram orqali yuborildi."
+msgstr "Visit/PDF was sent via Telegram."
+
+#: .\dashboard\views.py:2168
+#, python-format
+#| msgid "Ko‘rik saqlandi, lekin PDF yuborilmadi: %(error)s"
+msgid "PDF yuborilmadi: %(error)s"
+msgstr "Visit saved, but PDF was not sent: %(error)s"
+
+#: .\patients\admin.py:64
+msgid "Hurmatli mijoz"
+msgstr "Dear client"
+
+#: .\patients\admin.py:65
+msgid "hayvoningiz"
+msgstr "your pet"
+
+#: .\patients\admin.py:67
+msgid "Assalomu alaykum"
+msgstr "Hello"
+
+#: .\patients\admin.py:68
+msgid "uchun ko‘rik ma’lumotlari"
+msgstr "examination details for"
+
+#: .\patients\admin.py:74 .\patients\admin.py:188 .\patients\models.py:378
+msgid "Tashxis"
+msgstr "Diagnosis"
+
+#: .\patients\admin.py:84 .\patients\admin.py:203
+msgid "Qo‘shimcha xabar"
+msgstr "Additional message"
+
+#: .\patients\admin.py:86
+msgid "Ko‘rik varaqasi PDF shaklida ham yuborildi."
+msgstr "The examination sheet was also sent as a PDF."
+
+#: .\patients\admin.py:132 .\patients\admin.py:133 .\patients\admin.py:134
+#: .\patients\admin.py:135 .\patients\admin.py:137
+msgid "Aniqlanmagan"
+msgstr "Not specified"
+
+#: .\patients\admin.py:152
+msgid "Ko‘rik varaqasi"
+msgstr "Examination sheet"
+
+#: .\patients\admin.py:158 .\patients\models.py:348
+msgid "Ko‘rik raqami"
+msgstr "Examination number"
+
+#: .\patients\admin.py:159 .\patients\models.py:15
+msgid "Egasi F.I.Sh"
+msgstr "Owner full name"
+
+#: .\patients\admin.py:163 .\patients\models.py:355
+msgid "Mas’ul doktor"
+msgstr "Responsible doctor"
+
+#: .\patients\admin.py:164
+msgid "Ko‘rik sanasi"
+msgstr "Examination date"
+
+#: .\patients\admin.py:184 .\patients\admin.py:191 .\patients\admin.py:198
+msgid "Kiritilmagan"
+msgstr "Not entered"
+
+#: .\patients\admin.py:218
+msgid "Ushbu varaqa elektron kartoteka tizimi orqali shakllantirildi."
+msgstr "This sheet was generated through the electronic record system."
+
+#: .\patients\admin.py:232 .\patients\models.py:584
+msgid "Mening bemorlarim"
+msgstr "My patients"
+
+#: .\patients\admin.py:233
+msgid "Barcha bemorlar"
+msgstr "All patients"
+
+#: .\patients\admin.py:354 .\patients\admin.py:401 .\patients\admin.py:636
+msgid "Ko‘rik ma’lumotlari"
+msgstr "Examination information"
+
+#: .\patients\admin.py:362 .\patients\admin.py:407 .\patients\admin.py:644
+msgid "Tibbiy ma’lumotlar"
+msgstr "Medical information"
+
+#: .\patients\admin.py:370 .\patients\admin.py:415 .\patients\admin.py:652
+msgid "Telegram xabar"
+msgstr "Telegram message"
+
+#: .\patients\admin.py:376 .\patients\admin.py:421 .\patients\admin.py:658
+#: .\patients\admin.py:849 .\patients\admin.py:924
+msgid "Vaqt ma’lumotlari"
+msgstr "Time information"
+
+#: .\patients\admin.py:450 .\patients\admin.py:685
+msgid "Egasi aniqlanmagan"
+msgstr "Owner not specified"
+
+#: .\patients\admin.py:478
+msgid "Noma’lum hayvon"
+msgstr "Unknown animal"
+
+#: .\patients\admin.py:506 .\patients\admin.py:713
+#, python-brace-format
+msgid "{} sizga tegishli emas."
+msgstr "{} does not belong to you."
+
+#: .\patients\admin.py:515 .\patients\admin.py:722
+#, python-brace-format
+msgid "{} uchun hayvon egasi topilmadi."
+msgstr "Owner was not found for {}."
+
+#: .\patients\admin.py:526 .\patients\admin.py:733
+#, python-brace-format
+msgid "{} uchun Telegram ID yo‘q."
+msgstr "There is no Telegram ID for {}."
+
+#: .\patients\admin.py:537 .\patients\admin.py:744
+#, python-brace-format
+msgid "{} uchun xabar matni shakllanmadi."
+msgstr "Message text was not generated for {}."
+
+#: .\patients\admin.py:551 .\patients\admin.py:758
+#, python-brace-format
+msgid "Xatolik: {}"
+msgstr "Error: {}"
+
+#: .\patients\admin.py:561 .\patients\admin.py:768
+msgid "Ko‘rik varaqasi PDF"
+msgstr "Visit sheet PDF"
+
+#: .\patients\admin.py:572 .\patients\admin.py:779
+#, python-brace-format
+msgid "PDF yuborishda xatolik: {}"
+msgstr "Error sending PDF: {}"
+
+#: .\patients\admin.py:584 .\patients\admin.py:791
+#, python-brace-format
+msgid "Yuborildi: {} ta. Xato: {} ta."
+msgstr "Sent: {}. Errors: {}."
+
+#: .\patients\admin.py:588
+msgid "Tanlangan ko‘riklar bo‘yicha Telegram xabar yuborish"
+msgstr "Send Telegram messages for selected examinations"
+
+#: .\patients\admin.py:795
+msgid "Tanlangan bemorlarga Telegram xabar yuborish"
+msgstr "Send Telegram messages to selected patients"
+
+#: .\patients\admin.py:830 .\patients\models.py:119
+msgid "Doktor akkaunti"
+msgstr "Doctor account"
+
+#: .\patients\admin.py:836
+msgid "Shaxsiy ma’lumotlar"
+msgstr "Personal information"
+
+#: .\patients\admin.py:844 .\patients\models.py:146
+msgid "Rezyume"
+msgstr "Resume"
+
+#: .\patients\admin.py:911
+msgid "Hayvon ma’lumotlari"
+msgstr "Animal information"
+
+#: .\patients\admin.py:917
+msgid "Doktor va holat"
+msgstr "Doctor and status"
+
+#: .\patients\models.py:11
+msgid "Egasi kodi"
+msgstr "Owner code"
+
+#: .\patients\models.py:36 .\patients\models.py:89
+msgid "Ro‘yxatga olingan vaqt"
+msgstr "Registration time"
+
+#: .\patients\models.py:40
+msgid "Hayvon egasi"
+msgstr "Animal owner"
+
+#: .\patients\models.py:41
+msgid "Hayvon egalari"
+msgstr "Animal owners"
+
+#: .\patients\models.py:57
+msgid "It"
+msgstr "Dog"
+
+#: .\patients\models.py:58
+msgid "Mushuk"
+msgstr "Cat"
+
+#: .\patients\models.py:59
+msgid "Sigir"
+msgstr "Cow"
+
+#: .\patients\models.py:60
+msgid "Ot"
+msgstr "Horse"
+
+#: .\patients\models.py:61
+msgid "Qo‘y"
+msgstr "Sheep"
+
+#: .\patients\models.py:62
+msgid "Echki"
+msgstr "Goat"
+
+#: .\patients\models.py:63
+msgid "Qush"
+msgstr "Bird"
+
+#: .\patients\models.py:71
+msgid "Hayvon kodi"
+msgstr "Animal code"
+
+#: .\patients\models.py:135
+msgid "Mutaxassisligi"
+msgstr "Specialization"
+
+#: .\patients\models.py:141
+msgid "Ish tajribasi"
+msgstr "Work experience"
+
+#: .\patients\models.py:150
+msgid "Faolmi?"
+msgstr "Active?"
+
+#: .\patients\models.py:164
+#| msgid "Oxirgi yangilanish"
+msgid "Oxirgi kenglik"
+msgstr "Last update"
+
+#: .\patients\models.py:171
+#| msgid "Oxirgi yangilanish"
+msgid "Oxirgi uzunlik"
+msgstr "Last update"
+
+#: .\patients\models.py:176
+msgid "Lokatsiya aniqligi"
+msgstr "Location accuracy"
+
+#: .\patients\models.py:181
+msgid "Oxirgi lokatsiya vaqti"
+msgstr "Last location time"
+
+#: .\patients\models.py:185
+msgid "Geolokatsiya tracking yoqilganmi?"
+msgstr "Is geolocation tracking enabled?"
+
+#: .\patients\models.py:189 .\patients\models.py:485 .\patients\models.py:565
+msgid "Yaratilgan vaqt"
+msgstr "Created time"
+
+#: .\patients\models.py:193 .\website\templates\website\doctors.html:54
+msgid "Veterinar doktor"
+msgstr "Veterinarian doctor"
+
+#: .\patients\models.py:194
+msgid "Veterinar doktorlar"
+msgstr "Veterinarians"
+
+#: .\patients\models.py:202
+msgid "Yangi ariza"
+msgstr "New application"
+
+#: .\patients\models.py:203
+msgid "Veterinarga yuborildi"
+msgstr "Sent to veterinarian"
+
+#: .\patients\models.py:206
+msgid "Laboratoriyaga yuborildi"
+msgstr "Sent to laboratory"
+
+#: .\patients\models.py:207 .\patients\models.py:432
+msgid "Diagnostikaga yuborildi"
+msgstr "Sent to diagnostics"
+
+#: .\patients\models.py:208
+msgid "Veterinarga qaytdi"
+msgstr "Returned to veterinarian"
+
+#: .\patients\models.py:210
+msgid "Bekor qilindi"
+msgstr "Cancelled"
+
+#: .\patients\models.py:213
+msgid "Qabul qilindi"
+msgstr "Accepted"
+
+#: .\patients\models.py:214
+msgid "Rad etildi"
+msgstr "Rejected"
+
+#: .\patients\models.py:251
+#| msgid "Foydalanuvchi"
+msgid "Foydalanuvchi tili"
+msgstr "User"
+
+#: .\patients\models.py:284
+msgid "Kenglik"
+msgstr "Latitude"
+
+#: .\patients\models.py:291
+msgid "Uzunlik"
+msgstr "Longitude"
+
+#: .\patients\models.py:299
+msgid "Tanlangan doktor"
+msgstr "Selected doctor"
+
+#: .\patients\models.py:314
+msgid "Kelgan vaqti"
+msgstr "Arrival time"
+
+#: .\patients\models.py:318 .\patients\models.py:407 .\patients\models.py:489
+#: .\patients\models.py:569
+msgid "Yangilangan vaqt"
+msgstr "Updated time"
+
+#: .\patients\models.py:322 .\patients\models.py:362
+msgid "Yangi bemor"
+msgstr "New patient"
+
+#: .\patients\models.py:323
+msgid "Yangi bemorlar"
+msgstr "New patients"
+
+#: .\patients\models.py:337
+msgid "Doktor tanlanmagan"
+msgstr "Doctor not selected"
+
+#: .\patients\models.py:339
+msgid "Hayvon yozilmagan"
+msgstr "Animal not entered"
+
+#: .\patients\models.py:394
+msgid "Xabar matni"
+msgstr "Message text"
+
+#: .\patients\models.py:398
+msgid "Yuborildimi?"
+msgstr "Sent?"
+
+#: .\patients\models.py:411
+msgid "Ko‘rik"
+msgstr "Visit"
+
+#: .\patients\models.py:412
+msgid "Ko‘riklar"
+msgstr "Visits"
+
+#: .\patients\models.py:423
+msgid "Hayvon tanlanmagan"
+msgstr "Animal not selected"
+
+#: .\patients\models.py:424
+msgid "Tashxis yo‘q"
+msgstr "No diagnosis"
+
+#: .\patients\models.py:447
+msgid "Yuborgan veterinar"
+msgstr "Sending veterinarian"
+
+#: .\patients\models.py:459
+msgid "Analiz nomi"
+msgstr "Analysis name"
+
+#: .\patients\models.py:494
+msgid "Laboratoriya natijalari"
+msgstr "Laboratory results"
+
+#: .\patients\models.py:504
+msgid "Veterinarga qaytarildi"
+msgstr "Returned to veterinarian"
+
+#: .\patients\models.py:540
+msgid "Laboratoriya natijasi tahrirlanganmi?"
+msgstr "Was the laboratory result edited?"
+
+#: .\patients\models.py:546
+msgid "Laboratoriya tahrirlagan vaqt"
+msgstr "Laboratory edit time"
+
+#: .\patients\models.py:555
+msgid "Laboratoriya tahrirlagan xodim"
+msgstr "Laboratory employee who edited"
+
+#: .\patients\models.py:574
+msgid "Diagnostika natijalari"
+msgstr "Diagnostic results"
+
+#: .\patients\models.py:583
+msgid "Mening bemorim"
+msgstr "My patient"
+
+#: .\website\templates\website\about.html:4
+#: .\website\templates\website\about.html:12
+#: .\website\templates\website\base.html:30
+#: .\website\templates\website\base.html:86
+msgid "Biz haqimizda"
+msgstr "About us"
+
+#: .\website\templates\website\about.html:14
+msgid "VetClinic — veterinariya klinikasi uchun elektron kartoteka tizimi"
+msgstr "VetClinic — electronic card index system for a veterinary clinic"
+
+#: .\website\templates\website\about.html:16
+msgid ""
+"Loyiha klinika xodimlari ishini yengillashtirish, bemor hayvonlar tarixini "
+"saqlash va xizmat jarayonini tartibga solish uchun ishlab chiqilgan."
+msgstr ""
+"The project was developed to simplify clinic staff work, store animal "
+"patient history, and organize the service process."
+
+#: .\website\templates\website\about.html:19
+#: .\website\templates\website\base.html:34
+#: .\website\templates\website\base.html:90
+#: .\website\templates\website\contact.html:4
+#: .\website\templates\website\contact.html:10
+msgid "Aloqa"
+msgstr "Contact"
+
+#: .\website\templates\website\about.html:34
+#: .\website\templates\website\home.html:57
+msgid "Klinika rasmi keyin qo‘shiladi"
+msgstr "Clinic photo will be added later"
+
+#: .\website\templates\website\about.html:48
+msgid "Maqsad"
+msgstr "Goal"
+
+#: .\website\templates\website\about.html:49
+msgid "Loyihaning asosiy maqsadi"
+msgstr "Main goal of the project"
+
+#: .\website\templates\website\about.html:56
+msgid "Tartibli jarayon"
+msgstr "Organized process"
+
+#: .\website\templates\website\about.html:61
+msgid "Rollar bo‘yicha kirish"
+msgstr "Role-based access"
+
+#: .\website\templates\website\about.html:66
+msgid "Ko‘p tillilik"
+msgstr "Multilingual support"
+
+#: .\website\templates\website\base.html:31
+#: .\website\templates\website\base.html:87
+#: .\website\templates\website\home.html:102
+#: .\website\templates\website\services.html:4
+msgid "Xizmatlar"
+msgstr "Services"
+
+#: .\website\templates\website\base.html:32
+#: .\website\templates\website\base.html:88
+#: .\website\templates\website\doctors.html:4
+msgid "Shifokorlar"
+msgstr "Doctors"
+
+#: .\website\templates\website\base.html:33
+#: .\website\templates\website\base.html:89
+#: .\website\templates\website\home.html:258
+#: .\website\templates\website\news.html:4
+#: .\website\templates\website\news.html:12
+msgid "Yangiliklar"
+msgstr "News"
+
+#: .\website\templates\website\base.html:37
+msgid "Til tanlash"
+msgstr "Language selection"
+
+#: .\website\templates\website\base.html:59
+msgid "Telegram bot"
+msgstr "Telegram bot"
+
+#: .\website\templates\website\base.html:74
+msgid ""
+"Hayvonlar sog‘lig‘i uchun zamonaviy veterinariya xizmatlari va elektron "
+"kartoteka tizimi."
+msgstr ""
+"Modern veterinary services and an electronic card index system for animal "
+"health."
+
+#: .\website\templates\website\base.html:84
+msgid "Bo‘limlar"
+msgstr "Sections"
+
+#: .\website\templates\website\base.html:94
+#: .\website\templates\website\services.html:12
+msgid "Xizmatlarimiz"
+msgstr "Our services"
+
+#: .\website\templates\website\base.html:95
+#: .\website\templates\website\services.html:57
+msgid "Veterinar ko‘rigi"
+msgstr "Veterinary examination"
+
+#: .\website\templates\website\base.html:96
+#: .\website\templates\website\services.html:62
+msgid "Laboratoriya tahlillari"
+msgstr "Laboratory tests"
+
+#: .\website\templates\website\base.html:99
+#: .\website\templates\website\news.html:52
+msgid "Profilaktika"
+msgstr "Prevention"
+
+#: .\website\templates\website\base.html:103
+#: .\website\templates\website\doctors.html:17
+msgid "Aloqa ma’lumotlari"
+msgstr "Contact information"
+
+#: .\website\templates\website\base.html:105
+#: .\website\templates\website\contact.html:44
+msgid "Xorazm viloyati, Urganch shahri"
+msgstr "Khorezm region, Urgench city"
+
+#: .\website\templates\website\base.html:106
+#: .\website\templates\website\contact.html:46
+msgid "Har kuni 09:00 - 18:00"
+msgstr "Every day 09:00 - 18:00"
+
+#: .\website\templates\website\base.html:107
+msgid "Telegram bot orqali ariza yuborish"
+msgstr "Submit an application via Telegram bot"
+
+#: .\website\templates\website\base.html:112
+msgid "Barcha huquqlar himoyalangan."
+msgstr "All rights reserved."
+
+#: .\website\templates\website\contact.html:11
+msgid "Biz bilan bog‘laning"
+msgstr "Contact us"
+
+#: .\website\templates\website\contact.html:12
+msgid ""
+"Ariza yuborish uchun Telegram botdan foydalaning yoki quyidagi aloqa "
+"ma’lumotlari orqali murojaat qiling."
+msgstr ""
+"Use the Telegram bot to submit an application or contact us using the "
+"information below."
+
+#: .\website\templates\website\contact.html:14
+#: .\website\templates\website\doctors.html:18
+#: .\website\templates\website\services.html:20
+msgid "Telegram orqali ariza yuborish"
+msgstr "Submit an application via Telegram"
+
+#: .\website\templates\website\contact.html:15
+#| msgid "Xizmatlarni ko‘rish"
+msgid "Xaritani ko‘rish"
+msgstr "View services"
+
+#: .\website\templates\website\contact.html:27
+#| msgid "Xizmatlar sahifasi rasmi keyin qo‘shiladi"
+msgid "Aloqa sahifasi rasmi keyin qo‘shiladi"
+msgstr "Service page image will be added later"
+
+#: .\website\templates\website\contact.html:39
+msgid "Klinika joylashuvi"
+msgstr "Clinic location"
+
+#: .\website\templates\website\contact.html:40
+msgid ""
+"Quyidagi xarita orqali klinika joylashuvini ko‘rishingiz mumkin. Manzilni "
+"keyin o‘zingizning haqiqiy klinika manzilingizga almashtirasiz."
+msgstr ""
+
+#: .\website\templates\website\contact.html:46
+#| msgid "Ariza vaqti"
+msgid "Ish vaqti"
+msgstr "Application time"
+
+#: .\website\templates\website\contact.html:65
+msgid "Qanday ishlaydi?"
+msgstr "How does it work?"
+
+#: .\website\templates\website\contact.html:66
+msgid "Ariza yuborish tartibi"
+msgstr "Application submission process"
+
+#: .\website\templates\website\contact.html:67
+msgid ""
+"Telegram botda telefon raqamingiz, ism-familiyangiz, hayvon nomi va hayvon "
+"turi kiritiladi. So‘ng administrator arizani ko‘rib chiqadi."
+msgstr ""
+"In the Telegram bot, your phone number, full name, animal name, and animal "
+"type are entered. Then the administrator reviews the application."
+
+#: .\website\templates\website\doctors.html:12
+msgid "Mutaxassislarimiz"
+msgstr "Our specialists"
+
+#: .\website\templates\website\doctors.html:13
+msgid "Tajribali veterinariya mutaxassislari jamoasi"
+msgstr "A team of experienced veterinary specialists"
+
+#: .\website\templates\website\doctors.html:14
+msgid ""
+"VetClinic jamoasi hayvonlar salomatligi uchun mehr, tajriba va mas’uliyat "
+"bilan xizmat qiladi."
+msgstr ""
+"The VetClinic team serves animal health with care, experience, and "
+"responsibility."
+
+#: .\website\templates\website\doctors.html:30
+msgid "Bizning shifokorlar"
+msgstr "Our doctors"
+
+#: .\website\templates\website\doctors.html:31
+msgid "Mutaxassislarimiz bilan tanishing"
+msgstr "Meet our specialists"
+
+#: .\website\templates\website\doctors.html:61
+msgid "Mutaxassislik kiritilmagan"
+msgstr "Specialization not entered"
+
+#: .\website\templates\website\doctors.html:69
+#| msgid "Ma’lumot yo‘q"
+msgid "Qo‘shimcha ma’lumot yo‘q"
+msgstr "No data"
+
+#: .\website\templates\website\doctors.html:77
+#| msgid "Hozircha yangi arizalar yo‘q."
+msgid "Hozircha shifokorlar yo‘q"
+msgstr "There are no new applications yet."
+
+#: .\website\templates\website\home.html:12
 msgid "Zamonaviy veterinariya klinikasi"
 msgstr "Modern veterinary clinic"
 
-msgid "Hayvoningiz sog‘lig‘i biz uchun muhim"
-msgstr "Your pet’s health matters to us"
+#: .\website\templates\website\home.html:14
+msgid "Biz ularning sog‘lig‘i uchun, sizning xotirjamligingiz uchun."
+msgstr "For their health and your peace of mind."
 
-msgid "VetClinic — hayvonlar sog‘lig‘i uchun zamonaviy veterinariya xizmatlarini taqdim etuvchi klinika. Arizalar Telegram bot orqali qabul qilinadi va mutaxassislarimiz siz bilan bog‘lanadi."
-msgstr "VetClinic is a clinic providing modern veterinary services for animal health. Applications are accepted through the Telegram bot, and our specialists will contact you."
+#: .\website\templates\website\home.html:17
+msgid ""
+"VetClinic — uy hayvonlari va xo‘jalik hayvonlari uchun zamonaviy ko‘rik, "
+"davolash, emlash va diagnostika xizmatlarini bir joyda taqdim etuvchi "
+"klinika."
+msgstr ""
 
-msgid "Xizmatlarni ko‘rish"
+#: .\website\templates\website\home.html:22
+#| msgid "Qabul qilindi"
+msgid "Qabulga yozilish"
+msgstr "Accepted"
+
+#: .\website\templates\website\home.html:26
+msgid "Xizmatlar bilan tanishish"
 msgstr "View services"
 
+#: .\website\templates\website\home.html:33
 msgid "Bemor hayvonlar"
 msgstr "Animal patients"
 
+#: .\website\templates\website\home.html:38
 msgid "Mutaxassislar"
 msgstr "Specialists"
 
+#: .\website\templates\website\home.html:43
 msgid "Mamnun mijozlar"
 msgstr "Satisfied clients"
 
+#: .\website\templates\website\home.html:67
 msgid "Ariza yuborish qanday ishlaydi?"
 msgstr "How does application submission work?"
 
+#: .\website\templates\website\home.html:68
 msgid "Oddiy va qulay jarayon"
 msgstr "A simple and convenient process"
 
+#: .\website\templates\website\home.html:75
 msgid "Telegram botga o‘ting va kerakli ma’lumotlarni yuboring"
 msgstr "Go to the Telegram bot and send the required information"
 
+#: .\website\templates\website\home.html:80
 msgid "Klinika xodimlari arizangizni ko‘rib chiqadi"
 msgstr "Clinic staff will review your application"
 
+#: .\website\templates\website\home.html:85
 msgid "Siz bilan bog‘lanib, qulay vaqt kelishiladi"
 msgstr "You will be contacted to agree on a convenient time"
 
+#: .\website\templates\website\home.html:90
 msgid "Hayvoningiz klinikada ko‘rikdan o‘tkaziladi"
 msgstr "Your pet will be examined at the clinic"
 
+#: .\website\templates\website\home.html:103
 msgid "Klinikamiz xizmatlari"
 msgstr "Our clinic services"
 
-msgid "Hayvonlar salomatligi uchun zarur bo‘lgan asosiy veterinariya, laboratoriya va diagnostika xizmatlari."
-msgstr "Core veterinary, laboratory, and diagnostic services needed for animal health."
+#: .\website\templates\website\home.html:105
+msgid ""
+"Hayvonlar salomatligi uchun zarur bo‘lgan asosiy veterinariya, laboratoriya "
+"va diagnostika xizmatlari."
+msgstr ""
+"Core veterinary, laboratory, and diagnostic services needed for animal "
+"health."
 
-msgid "Hayvonning umumiy holati tekshiriladi va davolash yo‘nalishi belgilanadi."
-msgstr "The animal’s general condition is checked and the treatment direction is determined."
+#: .\website\templates\website\home.html:112
+#| msgid "Yakuniy ko‘rik"
+msgid "Umumiy ko‘rik"
+msgstr "Final examination"
 
-msgid "Tahlil so‘rovlari laboratoriya xodimlari tomonidan qayta ishlanadi."
-msgstr "Analysis requests are processed by laboratory staff."
+#: .\website\templates\website\home.html:113
+msgid ""
+"Hayvonning umumiy holati tekshiriladi va davolash yo‘nalishi belgilanadi."
+msgstr ""
+"The animal’s general condition is checked and the treatment direction is "
+"determined."
 
-msgid "Natijalar asosida diagnostik xulosa va tavsiyalar tayyorlanadi."
-msgstr "Diagnostic conclusions and recommendations are prepared based on results."
+#: .\website\templates\website\home.html:118
+#| msgid "Saqlash"
+msgid "Emlash"
+msgstr "Save"
 
+#: .\website\templates\website\home.html:119
+#| msgid "Profilaktik emlashlar ko‘plab xavfli kasalliklarning oldini oladi."
+msgid "Profilaktik emlashlar orqali xavfli kasalliklarning oldi olinadi."
+msgstr "Preventive vaccinations help prevent many dangerous diseases."
+
+#: .\website\templates\website\home.html:124
+msgid "Stomatologiya"
+msgstr "Dentistry"
+
+#: .\website\templates\website\home.html:125
+msgid "Tish va og‘iz bo‘shlig‘i muammolari bo‘yicha maslahat va davolash."
+msgstr "Consultation and treatment for dental and oral problems."
+
+#: .\website\templates\website\home.html:130
+msgid "Jarrohlik amaliyotlar"
+msgstr "Surgical procedures"
+
+#: .\website\templates\website\home.html:131
+msgid "Zarur hollarda xavfsiz va nazoratli jarrohlik xizmatlari."
+msgstr "Safe and controlled surgical services when needed."
+
+#: .\website\templates\website\home.html:137
+#| msgid ""
+#| "Tahlillar kasallikni aniqlash va davolash yo‘nalishini tanlashda yordam "
+#| "beradi."
+msgid ""
+"Tahlillar kasallikni aniqlash va davolash rejasini tuzishga yordam beradi."
+msgstr "Tests help identify diseases and choose a treatment direction."
+
+#: .\website\templates\website\home.html:142
+msgid "Grooming"
+msgstr "Grooming"
+
+#: .\website\templates\website\home.html:143
+msgid "Tozalik, parvarish va chiroyli ko‘rinish uchun qulay xizmatlar."
+msgstr "Convenient services for hygiene, care, and a neat appearance."
+
+#: .\website\templates\website\home.html:149
 msgid "Barcha xizmatlarni ko‘rish"
 msgstr "View all services"
 
+#: .\website\templates\website\home.html:158
+#| msgid "Veterinar"
+msgid "Veterinarlar"
+msgstr "Veterinarian"
+
+#: .\website\templates\website\home.html:159
+msgid "Hayvoningiz ishonchli qo‘llarda"
+msgstr "Your pet is in trusted hands"
+
+#: .\website\templates\website\home.html:160
+msgid ""
+"Klinikamiz mutaxassislari murojaatlarni diqqat bilan ko‘rib chiqadi va har "
+"bir bemorga individual yondashadi."
+msgstr ""
+
+#: .\website\templates\website\home.html:166
+msgid "Terapiya"
+msgstr "Therapy"
+
+#: .\website\templates\website\home.html:168
+#| msgid ""
+#| "VetClinic’da ko‘rik, laboratoriya, diagnostika, davolash va profilaktika "
+#| "bo‘yicha xizmatlar ko‘rsatiladi."
+msgid "Klinik ko‘rik, davolash va profilaktika bo‘yicha veterinar."
+msgstr "Veterinarian for clinical checkups, treatment, and prevention."
+"Veterinarian for clinical checkups, treatment, and prevention.VetClinic "
+"provides examination, laboratory, diagnostics, treatment, and prevention "
+"services."
+
+#: .\website\templates\website\home.html:175
+msgid "Uyga chaqiruvlar va xavfli holatlar bo‘yicha mas’ul mutaxassis."
+msgstr "Specialist responsible for home calls and danger cases."
+
+#: .\website\templates\website\home.html:180
+msgid "Jarrohlik"
+msgstr "Surgery"
+
+#: .\website\templates\website\home.html:182
+msgid "Murakkab holatlar, jarrohlik va reabilitatsiya bo‘yicha maslahat."
+msgstr "Consultation for complex cases, surgery, and rehabilitation."
+
+#: .\website\templates\website\home.html:191
 msgid "Afzalliklar"
 msgstr "Advantages"
 
+#: .\website\templates\website\home.html:193
 msgid "Nega VetClinic’ni tanlashadi?"
 msgstr "Why choose VetClinic?"
 
-msgid "VetClinic hayvonlar salomatligiga mas’uliyat bilan yondashadi. Biz mijozlarga qulay, tezkor va ishonchli veterinariya xizmatlarini taqdim etishga harakat qilamiz."
-msgstr "VetClinic takes animal health seriously. We strive to provide convenient, fast, and reliable veterinary services."
+#: .\website\templates\website\home.html:196
+msgid ""
+"VetClinic hayvonlar salomatligiga mas’uliyat bilan yondashadi. Biz "
+"mijozlarga qulay, tezkor va ishonchli veterinariya xizmatlarini taqdim "
+"etishga harakat qilamiz."
+msgstr ""
+"VetClinic takes animal health seriously. We strive to provide convenient, "
+"fast, and reliable veterinary services."
 
+#: .\website\templates\website\home.html:202
 msgid "Tajribali veterinarlar hayvoningiz holatini diqqat bilan tekshiradi."
 msgstr "Experienced veterinarians carefully examine your pet’s condition."
 
+#: .\website\templates\website\home.html:207
 msgid "Laboratoriya tahlillari va diagnostika xizmatlari mavjud."
 msgstr "Laboratory tests and diagnostic services are available."
 
-msgid "Har bir hayvonga mehr va individual yondashuv asosida xizmat ko‘rsatiladi."
+#: .\website\templates\website\home.html:212
+msgid ""
+"Har bir hayvonga mehr va individual yondashuv asosida xizmat ko‘rsatiladi."
 msgstr "Every animal receives caring and individual attention."
 
+#: .\website\templates\website\home.html:218
 msgid "Bizning afzalliklarimiz"
 msgstr "Our advantages"
 
+#: .\website\templates\website\home.html:223
 msgid "Qulay murojaat"
 msgstr "Convenient application"
 
+#: .\website\templates\website\home.html:224
 msgid "Telegram bot orqali tez va oson ariza yuborish mumkin."
 msgstr "You can quickly and easily submit an application through the Telegram bot."
+"You can quickly and easily submit an application through the Telegram "
+"bot.You can quickly and easily submit an application through the Telegram "
+"bot."
 
+#: .\website\templates\website\home.html:231
 msgid "Malakali mutaxassislar"
 msgstr "Qualified specialists"
 
+#: .\website\templates\website\home.html:232
 msgid "Hayvonlar salomatligi bo‘yicha tajribali xodimlar xizmat ko‘rsatadi."
 msgstr "Experienced animal health staff provide services."
 
+#: .\website\templates\website\home.html:239
 msgid "Zamonaviy yondashuv"
 msgstr "Modern approach"
 
+#: .\website\templates\website\home.html:240
 msgid "Ko‘rik, tahlil va diagnostika jarayonlari tartibli olib boriladi."
-msgstr "Examination, analysis, and diagnostic processes are managed in an organized way."
+msgstr "Checkups, tests, and diagnostics are carried out in an organized way."
+"Checkups, tests, and diagnostics are carried out in an organized "
+"way.Examination, analysis, and diagnostic processes are managed in an "
+"organized way."
 
+#: .\website\templates\website\home.html:247
 msgid "Ishonchli xizmat"
 msgstr "Reliable service"
 
-msgid "Mijozlarga tushunarli, qulay va sifatli xizmat ko‘rsatish maqsad qilingan."
-msgstr "Our goal is to provide clear, convenient, and quality service to clients."
+#: .\website\templates\website\home.html:248
+msgid ""
+"Mijozlarga tushunarli, qulay va sifatli xizmat ko‘rsatish maqsad qilingan."
+msgstr ""
+"Our goal is to provide clear, convenient, and quality service to clients."
 
+#: .\website\templates\website\home.html:259
 msgid "Foydali ma’lumotlar"
 msgstr "Useful information"
 
-msgid "Hayvonlar parvarishi, emlash, profilaktika va klinika yangiliklari haqida."
+#: .\website\templates\website\home.html:260
+msgid ""
+"Hayvonlar parvarishi, emlash, profilaktika va klinika yangiliklari haqida."
 msgstr "About animal care, vaccination, prevention, and clinic news."
 
+#: .\website\templates\website\home.html:266
 msgid "Laboratoriya tahlillari nima uchun kerak?"
 msgstr "Why are laboratory tests needed?"
 
-msgid "Tahlillar kasallikni aniqlash va davolash yo‘nalishini tanlashda yordam beradi."
+#: .\website\templates\website\home.html:267
+msgid ""
+"Tahlillar kasallikni aniqlash va davolash yo‘nalishini tanlashda yordam "
+"beradi."
 msgstr "Tests help identify diseases and choose a treatment direction."
 
+#: .\website\templates\website\home.html:272
 msgid "Hayvonlarni vaqtida emlash muhim"
 msgstr "Timely vaccination of animals is important"
 
+#: .\website\templates\website\home.html:273
 msgid "Profilaktik emlashlar ko‘plab xavfli kasalliklarning oldini oladi."
 msgstr "Preventive vaccinations help prevent many dangerous diseases."
 
+#: .\website\templates\website\home.html:278
 msgid "Uy hayvonlarini parvarish qilish"
 msgstr "Pet care"
 
-msgid "To‘g‘ri ovqatlantirish va muntazam ko‘rik sog‘liqni saqlashga yordam beradi."
+#: .\website\templates\website\home.html:279
+msgid ""
+"To‘g‘ri ovqatlantirish va muntazam ko‘rik sog‘liqni saqlashga yordam beradi."
 msgstr "Proper feeding and regular checkups help maintain health."
 
+#: .\website\templates\website\home.html:285
 msgid "Yangiliklarni ko‘rish"
 msgstr "View news"
 
-msgid "Ariza yuborish uchun Telegram botga o‘ting. Klinikamiz xodimlari arizangizni ko‘rib chiqib, siz bilan bog‘lanadi."
-msgstr "To submit an application, go to the Telegram bot. Our clinic staff will review it and contact you."
+#: .\website\templates\website\home.html:303
+msgid "Hayvoningiz uchun ariza yubormoqchimisiz?"
+msgstr "Want to submit an application for your pet?"
 
+#: .\website\templates\website\home.html:304
+msgid ""
+"Ariza yuborish uchun Telegram botga o‘ting. Klinikamiz xodimlari arizangizni "
+"ko‘rib chiqib, siz bilan bog‘lanadi."
+msgstr ""
+"To submit an application, go to the Telegram bot. Our clinic staff will "
+"review it and contact you."
+
+#: .\website\templates\website\home.html:308
+#: .\website\templates\website\home.html:314
 msgid "Telegram botga o‘tish"
 msgstr "Go to Telegram bot"
+
+#: .\website\templates\website\news.html:14
+msgid "Veterinariya va hayvonlar parvarishi bo‘yicha foydali ma’lumotlar"
+msgstr "Useful information about veterinary care and animal care"
+
+#: .\website\templates\website\news.html:16
+msgid ""
+"Bu sahifada klinika yangiliklari, foydali eslatmalar va parvarish bo‘yicha "
+"tavsiyalar joylashtiriladi."
+msgstr ""
+"Clinic news, useful reminders, and care recommendations are posted on this "
+"page."
+
+#: .\website\templates\website\news.html:30
+msgid "Yangiliklar rasmi keyin qo‘shiladi"
+msgstr "News image will be added later"
+
+#: .\website\templates\website\news.html:44
+msgid "Foydali maqolalar"
+msgstr "Useful articles"
+
+#: .\website\templates\website\news.html:45
+msgid "So‘nggi ma’lumotlar"
+msgstr "Latest information"
+
+#: .\website\templates\website\news.html:53
+msgid "Muntazam ko‘rikning ahamiyati"
+msgstr "Importance of regular examination"
+
+#: .\website\templates\website\news.html:54
+#: .\website\templates\website\news.html:62
+msgid "Batafsil"
+msgstr "Read more"
+
+#: .\website\templates\website\news.html:60
+msgid "Parvarish"
+msgstr "Care"
+
+#: .\website\templates\website\news.html:61
+msgid "Uy hayvonlarini to‘g‘ri parvarish qilish"
+msgstr "Proper pet care"
+
+#: .\website\templates\website\services.html:14
+msgid "Hayvonlar uchun sifatli va ishonchli veterinariya xizmatlari"
+msgstr "Quality and reliable veterinary services for animals"
+
+#: .\website\templates\website\services.html:16
+msgid ""
+"VetClinic’da ko‘rik, laboratoriya, diagnostika, davolash va profilaktika "
+"bo‘yicha xizmatlar ko‘rsatiladi."
+msgstr ""
+"VetClinic provides examination, laboratory, diagnostics, treatment, and "
+"prevention services."
+
+#: .\website\templates\website\services.html:19
+msgid "Batafsil ma’lumot"
+msgstr "More information"
+
+#: .\website\templates\website\services.html:35
+#| msgid "Xizmatlar sahifasi rasmi keyin qo‘shiladi"
+msgid "Xizmatlar rasmi keyin qo‘shiladi"
+msgstr "Service page image will be added later"
+
+#: .\website\templates\website\services.html:49
+msgid "Asosiy xizmatlar"
+msgstr "Main services"
+
+#: .\website\templates\website\services.html:50
+msgid "Klinikamizda mavjud xizmatlar"
+msgstr "Services available at our clinic"
+
+#: .\website\templates\website\services.html:77
+msgid "Emlash va profilaktika"
+msgstr "Vaccination and prevention"
+
+#: .\website\templates\website\services.html:82
+#| msgid "Maslahat xizmati"
+msgid "Maslahat"
+msgstr "Consultation service"
+
+#~ msgid "Bekor qilish"
+#~ msgstr "Cancel"
+
+#~ msgid "Qayta yo‘naltirish"
+#~ msgstr "Redirect"
+
+#~ msgid "Bu bemorni bekor qilmoqchimisiz?"
+#~ msgstr "Do you want to cancel this patient?"
+
+#~ msgid "Bemorlar tarixi hozircha yo‘q."
+#~ msgstr "There is no patient history yet."
+
+#~ msgid "Boshqaruv paneli"
+#~ msgstr "Control panel"
+
+#~ msgid "Admin panel"
+#~ msgstr "Admin panel"
+
+#~ msgid "Administrator / Veterinar / Laboratoriya / Diagnostika"
+#~ msgstr "Administrator / Veterinarian / Laboratory / Diagnostics"
+
+#~ msgid "Laboratoriya yozuvlari"
+#~ msgstr "Laboratory records"
+
+#~ msgid "Diagnostika yozuvlari"
+#~ msgstr "Diagnostics records"
+
+#~ msgid "Laboratoriya yozuvlari mavjud emas."
+#~ msgstr "No laboratory records available."
+
+#~ msgid "Diagnostika xulosalari"
+#~ msgstr "Diagnostic conclusions"
+
+#~ msgid "Diagnostika yozuvlari mavjud emas."
+#~ msgstr "No diagnostics records available."
+
+#~ msgid "Dashboardga qaytish"
+#~ msgstr "Return to dashboard"
+
+#~ msgid ""
+#~ "Bemorlarni ko‘rish, laboratoriyaga yuborish va yakuniy ko‘rik/PDF "
+#~ "jarayonlarini boshqarish"
+#~ msgstr ""
+#~ "View patients, send them to the laboratory, and manage final examination/"
+#~ "PDF processes"
+
+#~ msgid "Analiz so‘rovlari"
+#~ msgstr "Analysis requests"
+
+#~ msgid "PDF"
+#~ msgstr "PDF"
+
+#~ msgid "Laboratoriyaga yuborish"
+#~ msgstr "Send to laboratory"
+
+#~ msgid "Faol bemorlar hozircha yo‘q."
+#~ msgstr "There are no active patients yet."
+
+#~ msgid "Qayta PDF yuborish"
+#~ msgstr "Resend PDF"
+
+#~ msgid "Analiz so‘rovlari tarixi"
+#~ msgstr "Analysis request history"
+
+#~ msgid "Hozircha analiz so‘rovlari yo‘q."
+#~ msgstr "There are no analysis requests yet."
+
+#~ msgid "Messages"
+#~ msgstr "Messages"
+
+#~ msgid "Site Maps"
+#~ msgstr "Site Maps"
+
+#~ msgid "Static Files"
+#~ msgstr "Static Files"
+
+#~ msgid "Syndication"
+#~ msgstr "Syndication"
+
+#~ msgid "…"
+#~ msgstr "…"
+
+#~ msgid "That page number is not an integer"
+#~ msgstr "That page number is not an integer"
+
+#~ msgid "That page number is less than 1"
+#~ msgstr "That page number is less than 1"
+
+#~ msgid "That page contains no results"
+#~ msgstr "That page contains no results"
+
+#~ msgid "Enter a valid value."
+#~ msgstr "Enter a valid value."
+
+#~ msgid "Enter a valid domain name."
+#~ msgstr "Enter a valid domain name."
+
+#~ msgid "Enter a valid URL."
+#~ msgstr "Enter a valid URL."
+
+#~ msgid "Enter a valid integer."
+#~ msgstr "Enter a valid integer."
+
+#~ msgid "Enter a valid email address."
+#~ msgstr "Enter a valid email address."
+
+#~ msgid "Enter a valid %(protocol)s address."
+#~ msgstr "Enter a valid %(protocol)s address."
+
+#~ msgid "IPv4"
+#~ msgstr "IPv4"
+
+#~ msgid "IPv6"
+#~ msgstr "IPv6"
+
+#~ msgid "IPv4 or IPv6"
+#~ msgstr "IPv4 or IPv6"
+
+#~ msgid "Enter only digits separated by commas."
+#~ msgstr "Enter only digits separated by commas."
+
+#~ msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+#~ msgstr "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+
+#~ msgid "Ensure this value is less than or equal to %(limit_value)s."
+#~ msgstr "Ensure this value is less than or equal to %(limit_value)s."
+
+#~ msgid "Ensure this value is greater than or equal to %(limit_value)s."
+#~ msgstr "Ensure this value is greater than or equal to %(limit_value)s."
+
+#~ msgid "Ensure this value is a multiple of step size %(limit_value)s."
+#~ msgstr "Ensure this value is a multiple of step size %(limit_value)s."
+
+#~ msgid "Enter a number."
+#~ msgstr "Enter a number."
+
+#~ msgid "Null characters are not allowed."
+#~ msgstr "Null characters are not allowed."
+
+#~ msgid "and"
+#~ msgstr "and"
+
+#~ msgid "%(model_name)s with this %(field_labels)s already exists."
+#~ msgstr "%(model_name)s with this %(field_labels)s already exists."
+
+#~ msgid "Constraint “%(name)s” is violated."
+#~ msgstr "Constraint “%(name)s” is violated."
+
+#~ msgid "Value %(value)r is not a valid choice."
+#~ msgstr "Value %(value)r is not a valid choice."
+
+#~ msgid "This field cannot be null."
+#~ msgstr "This field cannot be null."
+
+#~ msgid "This field cannot be blank."
+#~ msgstr "This field cannot be blank."
+
+#~ msgid "%(model_name)s with this %(field_label)s already exists."
+#~ msgstr "%(model_name)s with this %(field_label)s already exists."
+
+#~ msgid "Field of type: %(field_type)s"
+#~ msgstr "Field of type: %(field_type)s"
+
+#~ msgid "“%(value)s” value must be either True or False."
+#~ msgstr "“%(value)s” value must be either True or False."
+
+#~ msgid "“%(value)s” value must be either True, False, or None."
+#~ msgstr "“%(value)s” value must be either True, False, or None."
+
+#~ msgid "Boolean (Either True or False)"
+#~ msgstr "Boolean (Either True or False)"
+
+#~ msgid "String (up to %(max_length)s)"
+#~ msgstr "String (up to %(max_length)s)"
+
+#~ msgid "String (unlimited)"
+#~ msgstr "String (unlimited)"
+
+#~ msgid "Comma-separated integers"
+#~ msgstr "Comma-separated integers"
+
+#~ msgid "Date (without time)"
+#~ msgstr "Date (without time)"
+
+#~ msgid "Date (with time)"
+#~ msgstr "Date (with time)"
+
+#~ msgid "“%(value)s” value must be a decimal number."
+#~ msgstr "“%(value)s” value must be a decimal number."
+
+#~ msgid "Decimal number"
+#~ msgstr "Decimal number"
+
+#~ msgid "Duration"
+#~ msgstr "Duration"
+
+#~ msgid "File path"
+#~ msgstr "File path"
+
+#~ msgid "“%(value)s” value must be a float."
+#~ msgstr "“%(value)s” value must be a float."
+
+#~ msgid "Floating point number"
+#~ msgstr "Floating point number"
+
+#~ msgid "“%(value)s” value must be an integer."
+#~ msgstr "“%(value)s” value must be an integer."
+
+#~ msgid "Integer"
+#~ msgstr "Integer"
+
+#~ msgid "Big (8 byte) integer"
+#~ msgstr "Big (8 byte) integer"
+
+#~ msgid "Small integer"
+#~ msgstr "Small integer"
+
+#~ msgid "IPv4 address"
+#~ msgstr "IPv4 address"
+
+#~ msgid "IP address"
+#~ msgstr "IP address"
+
+#~ msgid "“%(value)s” value must be either None, True or False."
+#~ msgstr "“%(value)s” value must be either None, True or False."
+
+#~ msgid "Boolean (Either True, False or None)"
+#~ msgstr "Boolean (Either True, False or None)"
+
+#~ msgid "Positive big integer"
+#~ msgstr "Positive big integer"
+
+#~ msgid "Positive integer"
+#~ msgstr "Positive integer"
+
+#~ msgid "Positive small integer"
+#~ msgstr "Positive small integer"
+
+#~ msgid "Slug (up to %(max_length)s)"
+#~ msgstr "Slug (up to %(max_length)s)"
+
+#~ msgid "Text"
+#~ msgstr "Text"
+
+#~ msgid "Time"
+#~ msgstr "Time"
+
+#~ msgid "URL"
+#~ msgstr "URL"
+
+#~ msgid "Raw binary data"
+#~ msgstr "Raw binary data"
+
+#~ msgid "“%(value)s” is not a valid UUID."
+#~ msgstr "“%(value)s” is not a valid UUID."
+
+#~ msgid "Universally unique identifier"
+#~ msgstr "Universally unique identifier"
+
+#~ msgid "File"
+#~ msgstr "File"
+
+#~ msgid "Image"
+#~ msgstr "Image"
+
+#~ msgid "A JSON object"
+#~ msgstr "A JSON object"
+
+#~ msgid "Value must be valid JSON."
+#~ msgstr "Value must be valid JSON."
+
+#~ msgid "%(model)s instance with %(field)s %(value)r is not a valid choice."
+#~ msgstr "%(model)s instance with %(field)s %(value)r is not a valid choice."
+
+#~ msgid "Foreign Key (type determined by related field)"
+#~ msgstr "Foreign Key (type determined by related field)"
+
+#~ msgid "One-to-one relationship"
+#~ msgstr "One-to-one relationship"
+
+#~ msgid "%(from)s-%(to)s relationship"
+#~ msgstr "%(from)s-%(to)s relationship"
+
+#~ msgid "%(from)s-%(to)s relationships"
+#~ msgstr "%(from)s-%(to)s relationships"
+
+#~ msgid "Many-to-many relationship"
+#~ msgstr "Many-to-many relationship"
+
+#~ msgid ":?.!"
+#~ msgstr ":?.!"
+
+#~ msgid "This field is required."
+#~ msgstr "This field is required."
+
+#~ msgid "Enter a whole number."
+#~ msgstr "Enter a whole number."
+
+#~ msgid "Enter a valid date."
+#~ msgstr "Enter a valid date."
+
+#~ msgid "Enter a valid time."
+#~ msgstr "Enter a valid time."
+
+#~ msgid "Enter a valid date/time."
+#~ msgstr "Enter a valid date/time."
+
+#~ msgid "Enter a valid duration."
+#~ msgstr "Enter a valid duration."
+
+#~ msgid "The number of days must be between {min_days} and {max_days}."
+#~ msgstr "The number of days must be between {min_days} and {max_days}."
+
+#~ msgid "No file was submitted. Check the encoding type on the form."
+#~ msgstr "No file was submitted. Check the encoding type on the form."
+
+#~ msgid "No file was submitted."
+#~ msgstr "No file was submitted."
+
+#~ msgid "The submitted file is empty."
+#~ msgstr "The submitted file is empty."
+
+#~ msgid "Please either submit a file or check the clear checkbox, not both."
+#~ msgstr "Please either submit a file or check the clear checkbox, not both."
+
+#~ msgid "Enter a list of values."
+#~ msgstr "Enter a list of values."
+
+#~ msgid "Enter a complete value."
+#~ msgstr "Enter a complete value."
+
+#~ msgid "Enter a valid UUID."
+#~ msgstr "Enter a valid UUID."
+
+#~ msgid "Enter a valid JSON."
+#~ msgstr "Enter a valid JSON."
+
+#~ msgid ":"
+#~ msgstr ":"
+
+#~ msgid "(Hidden field %(name)s) %(error)s"
+#~ msgstr "(Hidden field %(name)s) %(error)s"
+
+#~ msgid "Order"
+#~ msgstr "Order"
+
+#~ msgid "Delete"
+#~ msgstr "Delete"
+
+#~ msgid "Please correct the duplicate data for %(field)s."
+#~ msgstr "Please correct the duplicate data for %(field)s."
+
+#~ msgid "Please correct the duplicate values below."
+#~ msgstr "Please correct the duplicate values below."
+
+#~ msgid "The inline value did not match the parent instance."
+#~ msgstr "The inline value did not match the parent instance."
+
+#~ msgid "“%(pk)s” is not a valid value."
+#~ msgstr "“%(pk)s” is not a valid value."
+
+#~ msgid "Clear"
+#~ msgstr "Clear"
+
+#~ msgid "Currently"
+#~ msgstr "Currently"
+
+#~ msgid "Change"
+#~ msgstr "Change"
+
+#~ msgid "Unknown"
+#~ msgstr "Unknown"
+
+#~ msgid "Yes"
+#~ msgstr "Yes"
+
+#~ msgid "No"
+#~ msgstr "No"
+
+#~ msgid "Ready"
+#~ msgstr "Ready"
+
+#~ msgid "Running"
+#~ msgstr "Running"
+
+#~ msgid "Failed"
+#~ msgstr "Failed"
+
+#~ msgid "Successful"
+#~ msgstr "Successful"
+
+#~ msgid "yes,no,maybe"
+#~ msgstr "yes,no,maybe"
+
+#~ msgid "%s KB"
+#~ msgstr "%s KB"
+
+#~ msgid "%s MB"
+#~ msgstr "%s MB"
+
+#~ msgid "%s GB"
+#~ msgstr "%s GB"
+
+#~ msgid "%s TB"
+#~ msgstr "%s TB"
+
+#~ msgid "%s PB"
+#~ msgstr "%s PB"
+
+#~ msgid "p.m."
+#~ msgstr "p.m."
+
+#~ msgid "a.m."
+#~ msgstr "a.m."
+
+#~ msgid "PM"
+#~ msgstr "PM"
+
+#~ msgid "AM"
+#~ msgstr "AM"
+
+#~ msgid "midnight"
+#~ msgstr "midnight"
+
+#~ msgid "noon"
+#~ msgstr "noon"
+
+#~ msgid "Monday"
+#~ msgstr "Monday"
+
+#~ msgid "Tuesday"
+#~ msgstr "Tuesday"
+
+#~ msgid "Wednesday"
+#~ msgstr "Wednesday"
+
+#~ msgid "Thursday"
+#~ msgstr "Thursday"
+
+#~ msgid "Friday"
+#~ msgstr "Friday"
+
+#~ msgid "Saturday"
+#~ msgstr "Saturday"
+
+#~ msgid "Sunday"
+#~ msgstr "Sunday"
+
+#~ msgid "Mon"
+#~ msgstr "Mon"
+
+#~ msgid "Tue"
+#~ msgstr "Tue"
+
+#~ msgid "Wed"
+#~ msgstr "Wed"
+
+#~ msgid "Thu"
+#~ msgstr "Thu"
+
+#~ msgid "Fri"
+#~ msgstr "Fri"
+
+#~ msgid "Sat"
+#~ msgstr "Sat"
+
+#~ msgid "Sun"
+#~ msgstr "Sun"
+
+#~ msgid "January"
+#~ msgstr "January"
+
+#~ msgid "February"
+#~ msgstr "February"
+
+#~ msgid "April"
+#~ msgstr "April"
+
+#~ msgid "May"
+#~ msgstr "May"
+
+#~ msgid "June"
+#~ msgstr "June"
+
+#~ msgid "July"
+#~ msgstr "July"
+
+#~ msgid "August"
+#~ msgstr "August"
+
+#~ msgid "September"
+#~ msgstr "September"
+
+#~ msgid "October"
+#~ msgstr "October"
+
+#~ msgid "November"
+#~ msgstr "November"
+
+#~ msgid "December"
+#~ msgstr "December"
+
+#~ msgid "jan"
+#~ msgstr "jan"
+
+#~ msgid "feb"
+#~ msgstr "feb"
+
+#~ msgid "mar"
+#~ msgstr "mar"
+
+#~ msgid "apr"
+#~ msgstr "apr"
+
+#~ msgid "may"
+#~ msgstr "may"
+
+#~ msgid "jun"
+#~ msgstr "jun"
+
+#~ msgid "jul"
+#~ msgstr "jul"
+
+#~ msgid "aug"
+#~ msgstr "aug"
+
+#~ msgid "sep"
+#~ msgstr "sep"
+
+#~ msgid "oct"
+#~ msgstr "oct"
+
+#~ msgid "nov"
+#~ msgstr "nov"
+
+#~ msgid "dec"
+#~ msgstr "dec"
+
+#~ msgid "Jan."
+#~ msgstr "Jan."
+
+#~ msgid "Feb."
+#~ msgstr "Feb."
+
+#~ msgid "Aug."
+#~ msgstr "Aug."
+
+#~ msgid "Sept."
+#~ msgstr "Sept."
+
+#~ msgid "Oct."
+#~ msgstr "Oct."
+
+#~ msgid "Nov."
+#~ msgstr "Nov."
+
+#~ msgid "Dec."
+#~ msgstr "Dec."
+
+#~ msgid "This is not a valid IPv6 address."
+#~ msgstr "This is not a valid IPv6 address."
+
+#~ msgid "%(truncated_text)s…"
+#~ msgstr "%(truncated_text)s…"
+
+#~ msgid "or"
+#~ msgstr "or"
+
+#~ msgid ", "
+#~ msgstr ", "
+
+#~ msgid "Forbidden"
+#~ msgstr "Forbidden"
+
+#~ msgid "CSRF verification failed. Request aborted."
+#~ msgstr "CSRF verification failed. Request aborted."
+
+#~ msgid "More information is available with DEBUG=True."
+#~ msgstr "More information is available with DEBUG=True."
+
+#~ msgid "No year specified"
+#~ msgstr "No year specified"
+
+#~ msgid "Date out of range"
+#~ msgstr "Date out of range"
+
+#~ msgid "No month specified"
+#~ msgstr "No month specified"
+
+#~ msgid "No day specified"
+#~ msgstr "No day specified"
+
+#~ msgid "No week specified"
+#~ msgstr "No week specified"
+
+#~ msgid "No %(verbose_name_plural)s available"
+#~ msgstr "No %(verbose_name_plural)s available"
+
+#~ msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
+#~ msgstr "Invalid date string “%(datestr)s” given format “%(format)s”"
+
+#~ msgid "No %(verbose_name)s found matching the query"
+#~ msgstr "No %(verbose_name)s found matching the query"
+
+#~ msgid "Page is not “last”, nor can it be converted to an int."
+#~ msgstr "Page is not “last”, nor can it be converted to an int."
+
+#~ msgid "Invalid page (%(page_number)s): %(message)s"
+#~ msgstr "Invalid page (%(page_number)s): %(message)s"
+
+#~ msgid "Empty list and “%(class_name)s.allow_empty” is False."
+#~ msgstr "Empty list and “%(class_name)s.allow_empty” is False."
+
+#~ msgid "Directory indexes are not allowed here."
+#~ msgstr "Directory indexes are not allowed here."
+
+#~ msgid "“%(path)s” does not exist"
+#~ msgstr "“%(path)s” does not exist"
+
+#~ msgid "Index of %(directory)s"
+#~ msgstr "Index of %(directory)s"
+
+#~ msgid "The install worked successfully! Congratulations!"
+#~ msgstr "The install worked successfully! Congratulations!"
+
+#~ msgid "Django Documentation"
+#~ msgstr "Django Documentation"
+
+#~ msgid "Topics, references, &amp; how-to’s"
+#~ msgstr "Topics, references, &amp; how-to’s"
+
+#~ msgid "Tutorial: A Polling App"
+#~ msgstr "Tutorial: A Polling App"
+
+#~ msgid "Get started with Django"
+#~ msgstr "Get started with Django"
+
+#~ msgid "Django Community"
+#~ msgstr "Django Community"
+
+#~ msgid "Connect, get help, or contribute"
+#~ msgstr "Connect, get help, or contribute"
+
+#~ msgid "%(count)s ta analiz natija kutmoqda"
+#~ msgstr "%(count)s analyses are waiting for results"
+
+#~ msgid ""
+#~ "Admin panelda faol doctor profile qo‘shilgandan keyin bu yerda avtomatik "
+#~ "chiqadi."
+#~ msgstr ""
+#~ "After an active doctor profile is added in the admin panel, it will "
+#~ "appear here automatically."
+
+#~ msgid ""
+#~ "Administrator, veterinar, laboratoriya va diagnostika xodimlari "
+#~ "o‘rtasidagi ish jarayonini yagona tizimda boshqarish."
+#~ msgstr ""
+#~ "Managing the workflow between administrator, veterinarian, laboratory, "
+#~ "and diagnostics staff in one system."
+
+#~ msgid "Asosiy imkoniyatlar"
+#~ msgstr "Main features"
+
+#~ msgid "Bemorlar tarixi"
+#~ msgstr "Patient history"
+
+#~ msgid "Botga o‘tish"
+#~ msgstr "Go to bot"
+
+#~ msgid ""
+#~ "Bu bo‘limdagi xodimlar admin paneldagi faol DoctorProfile ma’lumotlaridan "
+#~ "avtomatik chiqadi."
+#~ msgstr ""
+#~ "Employees in this section are automatically shown from active "
+#~ "DoctorProfile records in the admin panel."
+
+#~ msgid "Bu xodim haqida qo‘shimcha ma’lumot keyin kiritiladi."
+#~ msgstr "Additional information about this employee will be added later."
+
+#~ msgid "Davolash xizmati"
+#~ msgstr "Treatment service"
+
+#~ msgid "Elektron nazorat"
+#~ msgstr "Electronic control"
+
+#~ msgid "Faol bemorlar"
+#~ msgstr "Faol bemorlar"
+
+#~ msgid "Har bir ariza holati aniq bosqichlarda kuzatib boriladi."
+#~ msgstr "Each application status is tracked through clear stages."
+
+#~ msgid ""
+#~ "Har bir xodim faqat o‘ziga tegishli ma’lumotlarni ko‘radi va tahrirlaydi."
+#~ msgstr "Each employee sees and edits only their own data."
+
+#~ msgid ""
+#~ "Hayvoningiz sog‘lig‘iga doimiy e’tibor berish uchun foydali tavsiyalar."
+#~ msgstr "Useful tips for paying regular attention to your animal's health."
+
+#~ msgid "Hayvonlar sog‘lig‘i uchun zamonaviy elektron kartoteka tizimi"
+#~ msgstr "Modern electronic card index system for animal health"
+
+#~ msgid ""
+#~ "Hayvonlarni ko‘rikdan o‘tkazish, tashxislash va parvarish qilish uchun "
+#~ "kerakli xizmatlar bir joyda jamlangan."
+#~ msgstr ""
+#~ "Services needed for examination, diagnosis, and care of animals are "
+#~ "collected in one place."
+
+#~ msgid "Hayvonning holatiga mos ravishda davolash ishlari olib boriladi."
+#~ msgstr "Treatment is carried out according to the animal's condition."
+
+#~ msgid ""
+#~ "Hayvonning umumiy holati tekshiriladi va kerakli tavsiyalar beriladi."
+#~ msgstr ""
+#~ "The animal's general condition is checked and necessary recommendations "
+#~ "are given."
+
+#~ msgid "Hozircha shifokorlar kiritilmagan"
+#~ msgstr "No doctors have been added yet"
+
+#~ msgid ""
+#~ "Kasalliklarning oldini olish uchun emlash va profilaktik nazorat tavsiya "
+#~ "etiladi."
+#~ msgstr ""
+#~ "Vaccination and preventive monitoring are recommended to prevent diseases."
+
+#~ msgid "Kasallikni erta aniqlash davolash jarayonini yengillashtiradi."
+#~ msgstr "Early detection of disease makes treatment easier."
+
+#~ msgid ""
+#~ "Klinika ish jarayonlari bosqichma-bosqich va tartibli nazorat qilinadi."
+#~ msgstr "Clinic workflows are monitored step by step in an organized way."
+
+#~ msgid "Mening bemorlarim tarixi"
+#~ msgstr "My patient history"
+
+#~ msgid ""
+#~ "Mijozlar Telegram bot orqali ariza yuboradi, administrator esa ularni "
+#~ "ko‘rib chiqadi."
+#~ msgstr ""
+#~ "Clients submit applications through the Telegram bot, and the "
+#~ "administrator reviews them."
+
+#~ msgid ""
+#~ "Parvarish, ovqatlantirish va sog‘lom saqlash bo‘yicha maslahatlar "
+#~ "beriladi."
+#~ msgstr "Advice is provided on care, feeding, and keeping animals healthy."
+
+#~ msgid "Qabul qilish imkoniyati"
+#~ msgstr "Application availability"
+
+#~ msgid "Shifokorlar jamoasi rasmi keyin qo‘shiladi"
+#~ msgstr "Doctors team image will be added later"
+
+#~ msgid ""
+#~ "Tahlil va ko‘rik natijalariga ko‘ra tashxis qo‘yish va davolash "
+#~ "yo‘nalishi belgilanadi."
+#~ msgstr ""
+#~ "A diagnosis and treatment direction are determined based on tests and "
+#~ "examination results."
+
+#~ msgid "Telegram ariza / Izoh"
+#~ msgstr "Telegram application / Note"
+
+#~ msgid "Telegram bot orqali tez va qulay ariza qoldiring."
+#~ msgstr ""
+#~ "Submit an application quickly and conveniently through the Telegram bot."
+
+#~ msgid "Tizim nimalarni boshqaradi?"
+#~ msgstr "What does the system manage?"
+
+#~ msgid "Tizim o‘zbek, rus va ingliz tillarida ishlaydi."
+#~ msgstr "The system works in Uzbek, Russian, and English."
+
+#~ msgid ""
+#~ "To‘g‘ri ovqatlantirish, toza muhit va muntazam ko‘rik hayvonlar "
+#~ "salomatligi uchun muhim."
+#~ msgstr ""
+#~ "Proper feeding, a clean environment, and regular examination are "
+#~ "important for animal health."
+
+#~ msgid ""
+#~ "VetClinic hayvonlar ko‘rigi, laboratoriya natijalari, diagnostika "
+#~ "xulosalari va yakuniy ko‘rik tarixini yagona tizimda yuritishga yordam "
+#~ "beradi."
+#~ msgstr ""
+#~ "VetClinic helps manage animal examinations, laboratory results, "
+#~ "diagnostic conclusions, and final visit history in one system."
+
+#~ msgid "Veterinar bemorlari"
+#~ msgstr "Veterinarian patients"
+
+#~ msgid ""
+#~ "Veterinar bemorni laboratoriya va diagnostika bosqichlaridan o‘tkazadi."
+#~ msgstr ""
+#~ "The veterinarian moves the patient through laboratory and diagnostics "
+#~ "stages."
+
+#~ msgid "Veterinar izohi..."
+#~ msgstr "Veterinarian comment..."
+
+#~ msgid "Yakuniy PDF"
+#~ msgstr "Final PDF"
+
+#~ msgid ""
+#~ "Yakuniy ko‘rik natijasi PDF ko‘rinishida mijozga Telegram orqali "
+#~ "yuboriladi."
+#~ msgstr "The final visit result is sent to the client as a PDF via Telegram."
+
+#~ msgid ""
+#~ "Zarur tahlillar o‘tkazilib, natijalar asosida aniqroq ma’lumot olinadi."
+#~ msgstr ""
+#~ "Necessary tests are performed and more accurate information is obtained "
+#~ "from the results."
+
+#~ msgid "{{ dashboard_notification_count }} ta"
+#~ msgstr "{{ dashboard_notification_count }} items"
+
+#~ msgid "%(patient)s bemori laboratoriyaga yuborildi."
+#~ msgstr "Patient %(patient)s was sent to laboratory."
+
+#~ msgid "Bu bemor hali yakuniy ko‘rik uchun tayyor emas."
+#~ msgstr "This patient is not ready for the final visit yet."
+
+#~ msgid ""
+#~ "Ko‘rik saqlandi, lekin Telegramga yuborishda xatolik bo‘ldi: %(error)s"
+#~ msgstr ""
+#~ "Visit saved, but an error occurred while sending to Telegram: %(error)s"
+
+#~ msgid ""
+#~ "Laboratoriya allaqachon natija kiritgan. Endi analiz turini o‘zgartirib "
+#~ "bo‘lmaydi."
+#~ msgstr ""
+#~ "The laboratory has already entered a result. The analysis type can no "
+#~ "longer be changed."
+
+#~ msgid ""
+#~ "Laboratoriya natijasi tahrirlandi. Diagnostika xodimiga ogohlantirish "
+#~ "chiqariladi."
+#~ msgstr ""
+#~ "Laboratory result was edited. A warning will be shown to the diagnostics "
+#~ "employee."
+
+#~ msgid "Laboratoriyaga yuborilgan analiz so‘rovi tahrirlandi."
+#~ msgstr "The analysis request sent to laboratory was edited."
+
+#~ msgid "Natija qaytmadi"
+#~ msgstr "No result returned"
+
+#~ msgid "Sizda Diagnostika dashboardiga kirish huquqi yo‘q."
+#~ msgstr "You do not have access to the diagnostics dashboard."
+
+#~ msgid "Yakunlangan bemorning analiz so‘rovini tahrirlab bo‘lmaydi."
+#~ msgstr "The analysis request of a completed patient cannot be edited."
+
+#~ msgid "Hayvoningiz sog‘lig‘i biz uchun muhim"
+#~ msgstr "Your pet’s health matters to us"
+
+#~ msgid ""
+#~ "VetClinic — hayvonlar sog‘lig‘i uchun zamonaviy veterinariya xizmatlarini "
+#~ "taqdim etuvchi klinika. Arizalar Telegram bot orqali qabul qilinadi va "
+#~ "mutaxassislarimiz siz bilan bog‘lanadi."
+#~ msgstr ""
+#~ "VetClinic is a clinic providing modern veterinary services for animal "
+#~ "health. Applications are accepted through the Telegram bot, and our "
+#~ "specialists will contact you."
+
+#~ msgid "Tahlil so‘rovlari laboratoriya xodimlari tomonidan qayta ishlanadi."
+#~ msgstr "Analysis requests are processed by laboratory staff."
+
+#~ msgid "Natijalar asosida diagnostik xulosa va tavsiyalar tayyorlanadi."
+#~ msgstr ""
+#~ "Diagnostic conclusions and recommendations are prepared based on results."

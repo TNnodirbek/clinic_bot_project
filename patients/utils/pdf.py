@@ -1,4 +1,3 @@
-import tempfile
 from pathlib import Path
 
 from django.conf import settings
@@ -131,10 +130,8 @@ PDF_TEXTS = {
 
 
 def normalize_lang(lang):
-    lang = (lang or "uz").lower()
-    if lang not in PDF_TEXTS:
-        return "uz"
-    return lang
+    lang = (lang or "uz").lower().strip()
+    return lang if lang in PDF_TEXTS else "uz"
 
 
 def safe_text(value, default="-"):
@@ -143,6 +140,80 @@ def safe_text(value, default="-"):
 
     value = str(value).strip()
     return value if value else default
+
+
+def compact_text(value, default="-"):
+    return " ".join(safe_text(value, default).split())
+
+
+def clean_complaint_for_pdf(value):
+    """
+    PDF ichida bot texnik matnlari va eski ko‘riklar tarixi chiqmasligi uchun.
+    """
+    text = compact_text(value, "")
+
+    if not text:
+        return "-"
+
+    # Eski ko‘rik tarixi boshlansa, shu joydan kesamiz
+    cut_markers = [
+        "Veterinar ko‘rigi yakunlandi:",
+        "Veterinar ko'rigi yakunlandi:",
+        "Ko‘rik kodi:",
+        "Ko'rik kodi:",
+        "Umumiy xulosa:",
+        "Tavsiya:",
+        "Qo‘shimcha izoh:",
+        "Qo'shimcha izoh:",
+    ]
+
+    for marker in cut_markers:
+        index = text.find(marker)
+        if index != -1:
+            text = text[:index].strip()
+
+    # Telegram bot texnik iboralarini olib tashlaymiz
+    remove_phrases = [
+        "Telegram bot orqali yuborilgan ariza",
+        "Telegram bot orqali xabar yuborildi.",
+        "Telegram bot orqali xabar yuborildi",
+        "Telegram orqali joylashuv yuborildi",
+        "Xizmat turi:",
+        "Muammo tavsifi / izoh:",
+        "Manzil:",
+        "Xavf turi:",
+    ]
+
+    for phrase in remove_phrases:
+        text = text.replace(phrase, " ")
+
+    text = " ".join(text.split(" ."))
+    text = " ".join(text.split())
+
+    # Agar baribir uzun bo‘lsa, qisqartiramiz
+    if not text:
+        return "-"
+
+    return text[:180].rstrip() + "..." if len(text) > 180 else text
+
+
+def truncate_to_width(pdf, text, max_width, font_name, font_size):
+    text = safe_text(text)
+
+    if pdf.stringWidth(text, font_name, font_size) <= max_width:
+        return text
+
+    result = ""
+
+    for char in text:
+        test = result + char
+
+        if pdf.stringWidth(test + "...", font_name, font_size) > max_width:
+            break
+
+        result = test
+
+    return result.rstrip() + "..." if result else "..."
 
 
 def get_patient(visit):
@@ -169,6 +240,7 @@ def get_doctor_name(visit):
 
     try:
         full_name = doctor.get_full_name()
+
         if full_name:
             return full_name
     except Exception:
@@ -222,8 +294,9 @@ def register_font():
     return "Helvetica"
 
 
-def wrap_text(pdf, text, max_width, font_name, font_size):
-    words = safe_text(text).split()
+def wrap_text(pdf, text, max_width, font_name, font_size, max_lines=None):
+    text = compact_text(text)
+    words = text.split()
     lines = []
     current = ""
 
@@ -235,12 +308,34 @@ def wrap_text(pdf, text, max_width, font_name, font_size):
         else:
             if current:
                 lines.append(current)
+
             current = word
 
-    if current:
+        if max_lines and len(lines) >= max_lines:
+            break
+
+    if current and (not max_lines or len(lines) < max_lines):
         lines.append(current)
 
-    return lines or ["-"]
+    if not lines:
+        lines = ["-"]
+
+    if max_lines and len(lines) > max_lines:
+        lines = lines[:max_lines]
+
+    if max_lines:
+        original = " ".join(words)
+        displayed = " ".join(lines)
+
+        if len(displayed) < len(original):
+            last = lines[-1]
+
+            while last and pdf.stringWidth(last + "...", font_name, font_size) > max_width:
+                last = last[:-1]
+
+            lines[-1] = last.rstrip() + "..."
+
+    return lines
 
 
 def draw_card(pdf, x, y, w, h):
@@ -256,20 +351,25 @@ def draw_section_title(pdf, title, x, y, font_name):
     pdf.drawString(x, y, title)
 
 
-def draw_label_value(pdf, label, value, x, y, label_width, font_name, font_size=8.5):
+def draw_label_value(pdf, label, value, x, y, label_width, font_name, font_size=8.5, max_value_width=None):
     pdf.setFont(font_name, font_size)
     pdf.setFillColor(GRAY)
     pdf.drawString(x, y, f"{label}:")
 
+    value_text = safe_text(value)
+
+    if max_value_width:
+        value_text = truncate_to_width(pdf, value_text, max_value_width, font_name, font_size)
+
     pdf.setFillColor(DARK)
-    pdf.drawString(x + label_width, y, safe_text(value))
+    pdf.drawString(x + label_width, y, value_text)
 
 
-def draw_wrapped_text(pdf, text, x, y, max_width, font_name, font_size=8.5, line_height=12):
+def draw_wrapped_text(pdf, text, x, y, max_width, font_name, font_size=8.5, line_height=12, max_lines=None):
     pdf.setFont(font_name, font_size)
     pdf.setFillColor(DARK)
 
-    lines = wrap_text(pdf, text, max_width, font_name, font_size)
+    lines = wrap_text(pdf, text, max_width, font_name, font_size, max_lines=max_lines)
 
     for line in lines:
         pdf.drawString(x, y, line)
@@ -304,12 +404,11 @@ def draw_table(pdf, x, y, w, rows, texts, font_name):
     pdf.setFillColor(TEAL)
 
     current_x = x
-    for index, header in enumerate(headers):
-        pdf.drawString(current_x + 5, y - 13, header)
-        current_x += col_widths[index]
 
-    pdf.setFillColor(DARK)
-    pdf.setFont(font_name, 8)
+    for index, header in enumerate(headers):
+        header_text = truncate_to_width(pdf, header, col_widths[index] - 8, font_name, 8)
+        pdf.drawString(current_x + 5, y - 13, header_text)
+        current_x += col_widths[index]
 
     table_y = y - header_h
 
@@ -317,25 +416,29 @@ def draw_table(pdf, x, y, w, rows, texts, font_name):
         row_top = table_y - row_index * row_h
 
         pdf.setFillColor(colors.white)
+        pdf.setStrokeColor(LIGHT_GRAY)
         pdf.rect(x, row_top - row_h, w, row_h, stroke=1, fill=1)
 
         current_x = x
+
         for col_index, cell in enumerate(row):
             cell_text = safe_text(cell)
             pdf.setFillColor(DARK)
+            pdf.setFont(font_name, 8)
 
             if col_index == 0:
                 pdf.drawCentredString(current_x + col_widths[col_index] / 2, row_top - 13, cell_text)
             else:
                 max_text_width = col_widths[col_index] - 8
-                words = wrap_text(pdf, cell_text, max_text_width, font_name, 8)
-                pdf.drawString(current_x + 5, row_top - 13, words[0])
+                cell_text = truncate_to_width(pdf, cell_text, max_text_width, font_name, 8)
+                pdf.drawString(current_x + 5, row_top - 13, cell_text)
 
             current_x += col_widths[col_index]
 
     total_h = header_h + len(rows) * row_h
 
     current_x = x
+
     for col_w in col_widths[:-1]:
         current_x += col_w
         pdf.setStrokeColor(LIGHT_GRAY)
@@ -345,12 +448,10 @@ def draw_table(pdf, x, y, w, rows, texts, font_name):
 
 
 def get_treatment_rows(visit):
-    treatment = safe_text(getattr(visit, "treatment", None), "")
+    treatment = compact_text(getattr(visit, "treatment", None), "")
 
     if not treatment:
-        return [
-            ["1", "-", "-", "-"],
-        ]
+        return [["1", "-", "-", "-"]]
 
     lines = [line.strip() for line in treatment.splitlines() if line.strip()]
 
@@ -362,7 +463,7 @@ def get_treatment_rows(visit):
     for index, line in enumerate(lines[:3], start=1):
         rows.append([str(index), line, "-", "-"])
 
-    return rows
+    return rows or [["1", "-", "-", "-"]]
 
 
 def draw_stamp(pdf, x, y, font_name):
@@ -377,6 +478,22 @@ def draw_stamp(pdf, x, y, font_name):
     pdf.drawCentredString(x, y - 8, "STAMP")
 
 
+def get_report_path(visit):
+    media_root = Path(getattr(settings, "MEDIA_ROOT", None) or (Path(settings.BASE_DIR) / "media"))
+    reports_dir = media_root / "reports"
+    reports_dir.mkdir(parents=True, exist_ok=True)
+
+    visit_code = safe_text(getattr(visit, "visit_code", None), "")
+    visit_id = safe_text(getattr(visit, "id", None), "unknown")
+
+    if visit_code and visit_code != "-":
+        file_name = f"visit_{visit_code}.pdf"
+    else:
+        file_name = f"visit_{visit_id}.pdf"
+
+    return reports_dir / file_name
+
+
 def generate_visit_pdf(visit, lang="uz"):
     lang = normalize_lang(lang)
     texts = PDF_TEXTS[lang]
@@ -385,20 +502,17 @@ def generate_visit_pdf(visit, lang="uz"):
     patient = get_patient(visit)
     pet = get_pet(visit, patient)
 
-    temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
-    temp_file.close()
+    output_path = get_report_path(visit)
 
-    pdf = canvas.Canvas(temp_file.name, pagesize=A4)
+    pdf = canvas.Canvas(str(output_path), pagesize=A4)
     width, height = A4
 
     margin = 38
     content_w = width - margin * 2
 
-    # Background
     pdf.setFillColor(VERY_LIGHT)
     pdf.rect(0, 0, width, height, stroke=0, fill=1)
 
-    # Header
     y = height - 46
 
     pdf.setFillColor(TEAL)
@@ -434,24 +548,28 @@ def generate_visit_pdf(visit, lang="uz"):
 
     pdf.setStrokeColor(TEAL)
     pdf.setLineWidth(1.2)
-    pdf.line(margin, y - 31, width - margin, y - 31)
+    pdf.line(margin, y - 48, width - margin, y - 48)
 
-    # Two cards
     card_gap = 12
     card_w = (content_w - card_gap) / 2
     card_h = 91
-    card_y = y - 140
+    card_y = y - 150
 
+    # Client card
     draw_card(pdf, margin, card_y, card_w, card_h)
     draw_section_title(pdf, texts["client_info"], margin + 14, card_y + card_h - 22, font_name)
 
     client_y = card_y + card_h - 42
-    draw_label_value(pdf, texts["full_name"], getattr(patient, "full_name", "-"), margin + 14, client_y, 70, font_name)
-    draw_label_value(pdf, texts["phone"], getattr(patient, "phone", "-"), margin + 14, client_y - 15, 70, font_name)
-    draw_label_value(pdf, texts["telegram_id"], getattr(patient, "telegram_id", "-"), margin + 14, client_y - 30, 70, font_name)
-    draw_label_value(pdf, texts["address"], getattr(patient, "address_text", "-"), margin + 14, client_y - 45, 70, font_name)
+    client_value_w = card_w - 100
 
+    draw_label_value(pdf, texts["full_name"], getattr(patient, "full_name", "-"), margin + 14, client_y, 70, font_name, max_value_width=client_value_w)
+    draw_label_value(pdf, texts["phone"], getattr(patient, "phone", "-"), margin + 14, client_y - 15, 70, font_name, max_value_width=client_value_w)
+    draw_label_value(pdf, texts["telegram_id"], getattr(patient, "telegram_id", "-"), margin + 14, client_y - 30, 70, font_name, max_value_width=client_value_w)
+    draw_label_value(pdf, texts["address"], getattr(patient, "address_text", "-"), margin + 14, client_y - 45, 70, font_name, max_value_width=client_value_w)
+
+    # Pet card
     right_x = margin + card_w + card_gap
+
     draw_card(pdf, right_x, card_y, card_w, card_h)
     draw_section_title(pdf, texts["pet_info"], right_x + 14, card_y + card_h - 22, font_name)
 
@@ -460,23 +578,46 @@ def generate_visit_pdf(visit, lang="uz"):
     pet_type = get_pet_type(pet, patient)
 
     pet_y = card_y + card_h - 42
-    draw_label_value(pdf, texts["pet_id"], pet_code, right_x + 14, pet_y, 70, font_name)
-    draw_label_value(pdf, texts["pet_name"], pet_name, right_x + 14, pet_y - 15, 70, font_name)
-    draw_label_value(pdf, texts["pet_type"], pet_type, right_x + 14, pet_y - 30, 70, font_name)
-    draw_label_value(pdf, texts["pet_age"], "-", right_x + 14, pet_y - 45, 70, font_name)
+    pet_value_w = card_w - 100
+
+    draw_label_value(pdf, texts["pet_id"], pet_code, right_x + 14, pet_y, 70, font_name, max_value_width=pet_value_w)
+    draw_label_value(pdf, texts["pet_name"], pet_name, right_x + 14, pet_y - 15, 70, font_name, max_value_width=pet_value_w)
+    draw_label_value(pdf, texts["pet_type"], pet_type, right_x + 14, pet_y - 30, 70, font_name, max_value_width=pet_value_w)
+    draw_label_value(pdf, texts["pet_age"], "-", right_x + 14, pet_y - 45, 70, font_name, max_value_width=pet_value_w)
 
     # Checkup info
     y2 = card_y - 16
-    check_h = 90
+    check_h = 126
 
     draw_card(pdf, margin, y2 - check_h, content_w, check_h)
     draw_section_title(pdf, texts["checkup_info"], margin + 14, y2 - 22, font_name)
 
     row_y = y2 - 42
-    draw_label_value(pdf, texts["veterinarian"], get_doctor_name(visit), margin + 14, row_y, 90, font_name)
-    draw_label_value(pdf, texts["checkup_date"], get_visit_date(visit), margin + 14, row_y - 15, 90, font_name)
-    draw_label_value(pdf, texts["complaint"], getattr(visit, "complaint", "-"), margin + 14, row_y - 30, 90, font_name)
-    draw_label_value(pdf, texts["general_status"], texts["completed"], margin + 14, row_y - 45, 90, font_name)
+    label_x = margin + 14
+    value_x = label_x + 90
+    value_w = content_w - 28 - 90
+
+    draw_label_value(pdf, texts["veterinarian"], get_doctor_name(visit), label_x, row_y, 90, font_name, max_value_width=value_w)
+    draw_label_value(pdf, texts["checkup_date"], get_visit_date(visit), label_x, row_y - 15, 90, font_name, max_value_width=value_w)
+
+    pdf.setFont(font_name, 8.5)
+    pdf.setFillColor(GRAY)
+    pdf.drawString(label_x, row_y - 30, f"{texts['complaint']}:")
+
+    complaint = clean_complaint_for_pdf(getattr(visit, "complaint", None))
+    complaint_lines = wrap_text(pdf, complaint, value_w, font_name, 8.5, max_lines=3)
+
+    pdf.setFont(font_name, 8.5)
+    pdf.setFillColor(DARK)
+
+    complaint_y = row_y - 30
+
+    for line in complaint_lines:
+        pdf.drawString(value_x, complaint_y, line)
+        complaint_y -= 11
+
+    status_y = y2 - check_h + 16
+    draw_label_value(pdf, texts["general_status"], texts["completed"], label_x, status_y, 90, font_name, max_value_width=value_w)
 
     # Diagnosis
     diag_y = y2 - check_h - 16
@@ -485,8 +626,19 @@ def generate_visit_pdf(visit, lang="uz"):
     draw_card(pdf, margin, diag_y - diag_h, content_w, diag_h)
     draw_section_title(pdf, texts["diagnosis"], margin + 14, diag_y - 22, font_name)
 
-    diagnosis = safe_text(getattr(visit, "diagnosis", None), texts["no_info"])
-    draw_wrapped_text(pdf, diagnosis, margin + 14, diag_y - 42, content_w - 28, font_name, 8.5, 12)
+    diagnosis = compact_text(getattr(visit, "diagnosis", None), texts["no_info"])
+
+    draw_wrapped_text(
+        pdf,
+        diagnosis,
+        margin + 14,
+        diag_y - 42,
+        content_w - 28,
+        font_name,
+        8.5,
+        12,
+        max_lines=3,
+    )
 
     # Treatment
     treat_y = diag_y - diag_h - 16
@@ -505,8 +657,19 @@ def generate_visit_pdf(visit, lang="uz"):
     draw_card(pdf, margin, rec_y - rec_h, content_w, rec_h)
     draw_section_title(pdf, texts["extra_recommendation"], margin + 14, rec_y - 22, font_name)
 
-    extra = safe_text(getattr(visit, "message", None), texts["no_info"])
-    draw_wrapped_text(pdf, extra, margin + 14, rec_y - 42, content_w - 28, font_name, 8.5, 12)
+    extra = compact_text(getattr(visit, "message", None), texts["no_info"])
+
+    draw_wrapped_text(
+        pdf,
+        extra,
+        margin + 14,
+        rec_y - 42,
+        content_w - 28,
+        font_name,
+        8.5,
+        12,
+        max_lines=2,
+    )
 
     # Footer
     footer_y = 65
@@ -528,4 +691,4 @@ def generate_visit_pdf(visit, lang="uz"):
 
     pdf.save()
 
-    return temp_file.name
+    return str(output_path)
