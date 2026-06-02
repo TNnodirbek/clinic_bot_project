@@ -4432,3 +4432,879 @@ body.is-admin-dashboard .admin-stats-grid .stat-card p {
         right: -72px;
     }
 }
+/* =========================================================
+   MOBILE RESPONSIVE PATCH — header, language, compact basics
+   ========================================================= */
+@media (max-width: 768px) {
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .main-content {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 84px;
+        overflow-x: hidden;
+    }
+
+    .mobile-vet-global-header {
+        display: grid !important;
+        grid-template-columns: 48px minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 10px;
+        min-height: 64px;
+    }
+
+    .mobile-vet-global-header > strong {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 17px;
+        line-height: 1.2;
+    }
+
+    .mobile-vet-global-header button,
+    .mobile-avatar {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        border-radius: 14px !important;
+    }
+
+    .mobile-vet-topbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        min-width: max-content;
+    }
+
+    .mobile-language-form {
+        display: block;
+        margin: 0;
+    }
+
+    .mobile-language-form select {
+        width: 52px;
+        height: 40px;
+        border: 1px solid #dbe7f5;
+        border-radius: 14px;
+        background: #ffffff;
+        color: #0f172a;
+        font-size: 12px;
+        font-weight: 900;
+        text-align: center;
+        padding: 0 4px;
+        outline: none;
+    }
+
+    .mobile-back-button i {
+        font-size: 17px;
+    }
+
+    .top-navbar {
+        display: none !important;
+    }
+
+    .content-wrapper {
+        padding: 12px 10px 90px !important;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .panel,
+    .form-card,
+    .application-card,
+    .vet-application-card,
+    .stat-card {
+        border-radius: 16px !important;
+        max-width: 100%;
+    }
+
+    .form-grid-2,
+    .form-grid-3,
+    .admin-overview-grid,
+    .stats-grid,
+    body.is-admin-dashboard .stats-grid.admin-stats-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+
+    .form-card {
+        padding: 14px !important;
+    }
+
+    .form-group {
+        margin-bottom: 12px !important;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        min-height: 44px;
+        font-size: 13px;
+        padding: 9px 11px;
+    }
+
+    .btn {
+        min-height: 40px;
+        padding: 8px 11px;
+        font-size: 12px;
+        border-radius: 10px;
+    }
+
+    .btn i {
+        font-size: 12px;
+    }
+
+    select {
+        max-width: 100%;
+    }
+
+    .notification-menu,
+    .mobile-notification-sheet {
+        max-width: calc(100vw - 20px);
+    }
+
+    .vet-bottom-nav {
+        height: 68px;
+        padding: 6px 6px 8px;
+    }
+
+    .vet-bottom-nav a {
+        min-width: 0;
+        font-size: 10px;
+        gap: 3px;
+    }
+
+    .vet-bottom-nav i {
+        font-size: 17px;
+    }
+}
+
+/* =========================================================
+   MOBILE PATCH 2 — notifications and compact admin cards
+   ========================================================= */
+@media (max-width: 768px) {
+    .mobile-notification-sheet {
+        left: 12px !important;
+        right: 12px !important;
+        top: 70px !important;
+        width: auto !important;
+        max-width: none !important;
+        border-radius: 18px !important;
+        padding: 14px !important;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+
+    .mobile-notification-sheet-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e5edf7;
+        margin-bottom: 8px;
+    }
+
+    .mobile-notification-sheet-header strong {
+        font-size: 18px;
+        line-height: 1.2;
+    }
+
+    .mobile-notification-item {
+        display: grid !important;
+        grid-template-columns: 38px minmax(0, 1fr) !important;
+        align-items: center;
+        gap: 10px !important;
+        padding: 10px 4px !important;
+        text-decoration: none;
+        color: #0f172a;
+    }
+
+    .mobile-notification-item .notification-simple-icon {
+        width: 34px !important;
+        height: 34px !important;
+        min-width: 34px !important;
+        border-radius: 12px !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mobile-notification-item .notification-simple-body {
+        min-width: 0;
+        display: block;
+    }
+
+    .mobile-notification-item .notification-simple-body strong {
+        display: block;
+        font-size: 14px !important;
+        line-height: 1.25 !important;
+        white-space: normal !important;
+        overflow-wrap: anywhere;
+    }
+
+    .mobile-notification-item .notification-simple-body small {
+        display: block;
+        margin-top: 3px;
+        font-size: 12px !important;
+        line-height: 1.25 !important;
+        color: #64748b;
+        white-space: normal !important;
+    }
+
+    .application-card,
+    .admin-application-card,
+    .new-application-card {
+        padding: 16px !important;
+    }
+
+    .application-card .btn,
+    .admin-application-card .btn,
+    .new-application-card .btn {
+        min-height: 38px !important;
+        padding: 8px 10px !important;
+        font-size: 12px !important;
+        border-radius: 10px !important;
+        box-shadow: none !important;
+    }
+
+    .application-card select,
+    .admin-application-card select,
+    .new-application-card select {
+        height: 42px !important;
+        min-height: 42px !important;
+        font-size: 13px !important;
+        border-radius: 10px !important;
+    }
+
+    .application-actions,
+    .admin-application-actions,
+    .card-actions,
+    .request-actions {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+    }
+
+    .application-actions .btn-blue,
+    .admin-application-actions .btn-blue,
+    .card-actions .btn-blue,
+    .request-actions .btn-blue {
+        grid-column: 1 / -1;
+    }
+
+    .application-card h3,
+    .admin-application-card h3,
+    .new-application-card h3 {
+        font-size: 18px !important;
+        line-height: 1.2 !important;
+        margin-bottom: 8px !important;
+    }
+
+    .application-card p,
+    .admin-application-card p,
+    .new-application-card p,
+    .application-card li,
+    .admin-application-card li,
+    .new-application-card li {
+        font-size: 13px !important;
+        line-height: 1.35 !important;
+    }
+}
+
+/* =========================================================
+   MOBILE FINAL FIX — exact admin cards + notification
+   ========================================================= */
+@media (max-width: 768px) {
+    /* Notification modal text fix */
+    .mobile-notification-sheet {
+        width: calc(100vw - 24px) !important;
+        left: 12px !important;
+        right: 12px !important;
+        top: 72px !important;
+        padding: 16px !important;
+        border-radius: 18px !important;
+        overflow: hidden !important;
+    }
+
+    .mobile-notification-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 10px 0 !important;
+    }
+
+    .mobile-notification-item .notification-simple-icon {
+        flex: 0 0 38px !important;
+        width: 38px !important;
+        height: 38px !important;
+        min-width: 38px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .mobile-notification-item .notification-simple-body {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        width: auto !important;
+        display: block !important;
+    }
+
+    .mobile-notification-item .notification-simple-body strong,
+    .mobile-notification-item .notification-simple-body small {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        word-break: normal !important;
+        overflow-wrap: break-word !important;
+        line-height: 1.25 !important;
+    }
+
+    .mobile-notification-item .notification-simple-body strong {
+        font-size: 14px !important;
+        font-weight: 900 !important;
+    }
+
+    .mobile-notification-item .notification-simple-body small {
+        margin-top: 3px !important;
+        font-size: 12px !important;
+        color: #64748b !important;
+    }
+
+    /* Admin new application card compact */
+    .admin-applications-mobile-list {
+        display: grid !important;
+        gap: 10px !important;
+        padding: 12px !important;
+    }
+
+    .admin-application-mobile-card {
+        padding: 14px !important;
+        border-radius: 16px !important;
+        overflow: hidden !important;
+    }
+
+    .admin-mobile-card-head {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        gap: 8px !important;
+        align-items: start !important;
+        margin-bottom: 10px !important;
+    }
+
+    .admin-mobile-card-head h3 {
+        font-size: 18px !important;
+        line-height: 1.15 !important;
+        margin: 4px 0 0 !important;
+        word-break: break-word !important;
+    }
+
+    .admin-mobile-card-head span {
+        font-size: 11px !important;
+        font-weight: 900 !important;
+    }
+
+    .mobile-status-with-time {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-end !important;
+        gap: 4px !important;
+        max-width: 120px !important;
+    }
+
+    .mobile-status-with-time .status-badge {
+        padding: 5px 9px !important;
+        font-size: 11px !important;
+        max-width: 115px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    .mobile-status-with-time small {
+        font-size: 11px !important;
+        line-height: 1.1 !important;
+        text-align: right !important;
+    }
+
+    .admin-mobile-card-meta {
+        display: grid !important;
+        gap: 7px !important;
+        margin: 8px 0 10px !important;
+    }
+
+    .admin-mobile-card-meta p {
+        display: grid !important;
+        grid-template-columns: 24px minmax(0, 1fr) !important;
+        align-items: center !important;
+        gap: 8px !important;
+        margin: 0 !important;
+        font-size: 13px !important;
+        line-height: 1.25 !important;
+        font-weight: 750 !important;
+        word-break: break-word !important;
+    }
+
+    .admin-mobile-card-meta i {
+        width: 24px !important;
+        text-align: center !important;
+        font-size: 13px !important;
+    }
+
+    /* Dropdown full width but not overflowing */
+    .admin-mobile-assign-form {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) 116px !important;
+        gap: 8px !important;
+        align-items: center !important;
+        margin-top: 10px !important;
+    }
+
+    .admin-mobile-assign-form select {
+        width: 100% !important;
+        min-width: 0 !important;
+        height: 40px !important;
+        min-height: 40px !important;
+        padding: 0 10px !important;
+        font-size: 12.5px !important;
+        border-radius: 10px !important;
+    }
+
+    .admin-mobile-assign-form .btn {
+        width: 116px !important;
+        min-width: 116px !important;
+        height: 40px !important;
+        min-height: 40px !important;
+        padding: 0 8px !important;
+        font-size: 12px !important;
+        border-radius: 10px !important;
+        box-shadow: none !important;
+    }
+
+    .admin-mobile-assign-form .btn i {
+        font-size: 12px !important;
+    }
+
+    .admin-mobile-card-actions {
+        display: grid !important;
+        grid-template-columns: 1fr 90px !important;
+        gap: 8px !important;
+        margin-top: 8px !important;
+    }
+
+    .admin-mobile-card-actions .btn,
+    .admin-mobile-card-actions button {
+        width: 100% !important;
+        min-height: 38px !important;
+        height: 38px !important;
+        padding: 0 8px !important;
+        font-size: 12px !important;
+        border-radius: 10px !important;
+        box-shadow: none !important;
+    }
+
+    .admin-mobile-card-actions form {
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .admin-mobile-card-actions i {
+        font-size: 12px !important;
+    }
+
+    /* prevent right overflow */
+    .panel,
+    .table-responsive,
+    .admin-applications-mobile-list,
+    .admin-application-mobile-card {
+        max-width: 100% !important;
+    }
+
+    .table-responsive {
+        overflow-x: hidden !important;
+    }
+
+    .admin-applications-table {
+        display: none !important;
+    }
+}
+
+/* =========================================================
+   MOBILE VET CARD COMPACT ACTIONS
+   ========================================================= */
+@media (max-width: 768px) {
+    .vet-card-list {
+        display: grid !important;
+        gap: 10px !important;
+        padding: 10px !important;
+    }
+
+    .vet-application-card {
+        padding: 14px !important;
+        border-radius: 16px !important;
+        overflow: hidden !important;
+    }
+
+    .vet-card-header {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        gap: 8px !important;
+        align-items: start !important;
+        margin-bottom: 8px !important;
+    }
+
+    .vet-card-header h3 {
+        font-size: 18px !important;
+        line-height: 1.15 !important;
+        margin: 4px 0 0 !important;
+        word-break: break-word !important;
+    }
+
+    .vet-card-header > b.status-badge {
+        padding: 6px 10px !important;
+        font-size: 11px !important;
+        max-width: 120px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    .mobile-vet-card-body {
+        display: grid !important;
+        gap: 8px !important;
+    }
+
+    .mobile-vet-row {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) 38px !important;
+        align-items: center !important;
+        gap: 8px !important;
+        min-height: 38px !important;
+    }
+
+    .mobile-vet-row > span {
+        min-width: 0 !important;
+        font-size: 13px !important;
+        font-weight: 800 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    .mobile-vet-row > a {
+        width: 38px !important;
+        height: 38px !important;
+        border-radius: 12px !important;
+        background: #eff6ff !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-decoration: none !important;
+    }
+
+    .mobile-vet-pet {
+        display: grid !important;
+        grid-template-columns: 42px minmax(0, 1fr) !important;
+        gap: 10px !important;
+        align-items: center !important;
+        padding: 0 !important;
+    }
+
+    .mobile-vet-pet > i {
+        width: 42px !important;
+        height: 42px !important;
+        border-radius: 14px !important;
+    }
+
+    .mobile-service-with-time {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 8px !important;
+        flex-wrap: wrap !important;
+    }
+
+    .mobile-service-chip {
+        padding: 7px 10px !important;
+        font-size: 12px !important;
+        border-radius: 999px !important;
+        line-height: 1 !important;
+    }
+
+    .mobile-vet-card-body p {
+        font-size: 13px !important;
+        line-height: 1.35 !important;
+        margin: 0 !important;
+        word-break: break-word !important;
+    }
+
+    .vet-card-actions.vet-actions-simple {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 7px !important;
+        margin-top: 10px !important;
+        padding-top: 10px !important;
+        border-top: 1px solid #edf2f7 !important;
+    }
+
+    .vet-card-actions.vet-actions-simple form {
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .vet-card-actions.vet-actions-simple .btn,
+    .vet-card-actions.vet-actions-simple button,
+    .vet-card-actions.vet-actions-simple .status-badge {
+        width: 100% !important;
+        height: 34px !important;
+        min-height: 34px !important;
+        padding: 0 8px !important;
+        border-radius: 10px !important;
+        font-size: 11.5px !important;
+        line-height: 1 !important;
+        box-shadow: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    .vet-card-actions.vet-actions-simple .btn i,
+    .vet-card-actions.vet-actions-simple button i,
+    .vet-card-actions.vet-actions-simple .status-badge i {
+        font-size: 11.5px !important;
+        flex: 0 0 auto !important;
+    }
+
+    .vet-card-actions.vet-actions-simple > a:first-child {
+        grid-column: 1 / -1 !important;
+    }
+
+    .vet-card-actions.vet-actions-simple .btn-green {
+        grid-column: auto !important;
+    }
+}
+
+
+
+/* ==== FINAL VET MOBILE COMPACT LAYOUT ==== */
+body,
+button,
+input,
+select,
+textarea,
+a,
+div,
+span,
+p,
+small,
+strong,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Manrope", "Segoe UI", sans-serif !important;
+}
+
+.mobile-vet-hero,
+.vet-status-strip,
+.panel,
+.form-card,
+.stat-card {
+    background: #F0F8FF !important;
+}
+
+@media (max-width: 768px) {
+    .compact-vet-card {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) 118px !important;
+        gap: 12px !important;
+        align-items: stretch !important;
+        padding: 14px !important;
+        border-radius: 18px !important;
+        overflow: hidden !important;
+    }
+
+    .compact-vet-main {
+        min-width: 0 !important;
+        display: grid !important;
+        gap: 8px !important;
+        align-content: start !important;
+    }
+
+    .compact-vet-head {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        gap: 8px !important;
+        align-items: start !important;
+    }
+
+    .compact-vet-code-line {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        flex-wrap: wrap !important;
+        min-width: 0 !important;
+    }
+
+    .compact-vet-code {
+        font-size: 12px !important;
+        font-weight: 800 !important;
+        color: #64748b !important;
+    }
+
+    .compact-vet-service {
+        display: inline-flex !important;
+        align-items: center !important;
+        min-height: 24px !important;
+        padding: 4px 8px !important;
+        border-radius: 999px !important;
+        background: #fee2e2 !important;
+        color: #dc2626 !important;
+        font-size: 11px !important;
+        font-weight: 800 !important;
+        line-height: 1 !important;
+        white-space: nowrap !important;
+    }
+
+    .compact-vet-status {
+        padding: 5px 9px !important;
+        font-size: 11px !important;
+        line-height: 1 !important;
+        white-space: nowrap !important;
+        max-width: 96px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    .compact-vet-name {
+        margin: 0 !important;
+        font-size: 18px !important;
+        font-weight: 800 !important;
+        line-height: 1.15 !important;
+        word-break: break-word !important;
+    }
+
+    .compact-vet-phone-row span,
+    .compact-vet-animal,
+    .compact-vet-date,
+    .compact-vet-address {
+        font-size: 13px !important;
+        line-height: 1.35 !important;
+        color: #0f172a !important;
+        word-break: break-word !important;
+    }
+
+    .compact-vet-phone-row span {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 7px !important;
+        font-weight: 700 !important;
+    }
+
+    .compact-vet-animal {
+        font-weight: 700 !important;
+    }
+
+    .compact-vet-date {
+        color: #64748b !important;
+        font-weight: 700 !important;
+    }
+
+    .compact-vet-address {
+        color: #1f2937 !important;
+    }
+
+    .compact-vet-side {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        gap: 7px !important;
+        min-width: 0 !important;
+    }
+
+    .compact-call-btn {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        border-radius: 14px !important;
+        background: #eef2ff !important;
+        color: #4f46e5 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        align-self: flex-end !important;
+        text-decoration: none !important;
+        box-shadow: none !important;
+    }
+
+    .compact-call-btn i {
+        font-size: 15px !important;
+    }
+
+    .compact-vet-side .vet-card-actions.vet-actions-simple {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+    }
+
+    .compact-vet-side .vet-card-actions.vet-actions-simple > *,
+    .compact-vet-side .vet-card-actions.vet-actions-simple form {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .compact-vet-side .vet-card-actions.vet-actions-simple .btn,
+    .compact-vet-side .vet-card-actions.vet-actions-simple button,
+    .compact-vet-side .vet-card-actions.vet-actions-simple .status-badge {
+        width: 100% !important;
+        min-height: 32px !important;
+        height: 32px !important;
+        padding: 0 7px !important;
+        border-radius: 9px !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        line-height: 1 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        box-shadow: none !important;
+    }
+
+    .compact-vet-side .vet-card-actions.vet-actions-simple .btn i,
+    .compact-vet-side .vet-card-actions.vet-actions-simple button i,
+    .compact-vet-side .vet-card-actions.vet-actions-simple .status-badge i {
+        font-size: 11px !important;
+        flex: 0 0 auto !important;
+    }
+
+    .mobile-vet-pet,
+    .mobile-route-metrics {
+        display: none !important;
+    }
+}
+

@@ -125,46 +125,42 @@
 
     <div class="vet-card-list">
         {% for patient in active_patients %}
-            <article class="vet-application-card">
-                <div class="vet-card-header">
-                    <div>
-                        <span>{{ patient.patient_code|default:"-" }}</span>
-                        <h3>{{ patient.full_name|default:"-" }}</h3>
+            <article class="vet-application-card compact-vet-card">
+                <div class="compact-vet-main">
+                    <div class="compact-vet-head">
+                        <div class="compact-vet-code-line">
+                            <span class="compact-vet-code">{{ patient.patient_code|default:"-" }}</span>
+                            <span class="compact-vet-service">{{ patient.service_label }}</span>
+                        </div>
+                        <b class="status-badge status-pending compact-vet-status">{{ patient.display_status }}</b>
                     </div>
-                    <b class="status-badge status-pending">{{ patient.display_status }}</b>
-                </div>
-                <div class="vet-card-body mobile-vet-card-body">
-                    <div class="mobile-vet-row">
+
+                    <h3 class="compact-vet-name">{{ patient.full_name|default:"-" }}</h3>
+
+                    <div class="compact-vet-phone-row">
                         <span><i class="fa-solid fa-phone"></i> {{ patient.phone|default:"-" }}</span>
-                        {% if patient.phone %}
-                            <a href="tel:{{ patient.phone }}"><i class="fa-solid fa-phone"></i></a>
-                        {% endif %}
                     </div>
-                    <div class="mobile-vet-pet">
-                        <i class="fa-solid fa-paw"></i>
-                        <div>
-                            <strong>{{ patient.animal_name|default:"-" }}</strong>
-                            <small>{{ patient.get_animal_type_display|default:patient.animal_type }}</small>
-                        </div>
+
+                    <div class="compact-vet-animal">{{ patient.animal_name|default:"-" }}</div>
+
+                    <div class="compact-vet-date">
+                        {{ patient.created_at|date:"d F" }} · {{ patient.created_at|time:"H:i" }}
                     </div>
-                        <div class="mobile-service-with-time">
-                            <span class="mobile-service-chip">{{ patient.service_label }}</span>
-                            <small class="table-subtext request-time">
-                                {{ patient.created_at|date:"d F" }} · {{ patient.created_at|time:"H:i" }}
-                            </small>
-                        </div>
+
                     {% if patient.address_text %}
-                        <p><i class="fa-solid fa-location-dot"></i> {{ patient.address_text }}</p>
+                        <div class="compact-vet-address">{{ patient.address_text }}</div>
                     {% endif %}
-                    {% if patient.can_travel %}
-                        <div class="mobile-route-metrics">
-                            <span><i class="fa-solid fa-location-dot"></i> {{ patient.route_distance_text|default:"-" }}<small>{% trans "Masofa" %}</small></span>
-                            <span><i class="fa-regular fa-clock"></i> {{ patient.estimated_minutes_text|default:"-" }}<small>{% trans "Taxminiy vaqt" %}</small></span>
-                        </div>
-                    {% endif %}
-                    <p>{{ patient.problem_text|truncatechars:120 }}</p>
                 </div>
-                {% include "dashboard/partials/vet_actions.html" with patient=patient %}
+
+                <div class="compact-vet-side">
+                    {% if patient.phone %}
+                        <a href="tel:{{ patient.phone }}" class="compact-call-btn" aria-label="{% trans 'Qo‘ng‘iroq qilish' %}">
+                            <i class="fa-solid fa-phone"></i>
+                        </a>
+                    {% endif %}
+
+                    {% include "dashboard/partials/vet_actions.html" with patient=patient %}
+                </div>
             </article>
         {% empty %}
             <div class="notification-empty">
