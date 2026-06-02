@@ -5,19 +5,22 @@ Django settings for config project.
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # =========================
 # SECURITY
 # =========================
+SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-dev-key")
 
-SECRET_KEY = "django-insecure-your-secret-key-here"
+DEBUG = os.getenv("DEBUG", "True") == "True"
 
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
 # =========================
 # APPLICATIONS
@@ -200,8 +203,8 @@ JAZZMIN_SETTINGS = {
 
 JAZZMIN_UI_TWEAKS = {
     "theme": "darkly",
-    "dark_mode_theme": "darkly",
-
+    "default_theme_mode": "dark",
+    
     "navbar": "navbar-dark",
     "sidebar": "sidebar-dark-primary",
     "brand_colour": "navbar-primary",
@@ -229,6 +232,6 @@ JAZZMIN_UI_TWEAKS = {
     "brand_small_text": False,
 }
 
-LOGIN_URL = "login"
-LOGIN_REDIRECT_URL = "dashboard_home"
-LOGOUT_REDIRECT_URL = "login"
+LOGIN_URL = "/dashboard/login/"
+LOGIN_REDIRECT_URL = "/dashboard/"
+LOGOUT_REDIRECT_URL = "/dashboard/login/"
