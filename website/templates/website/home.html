@@ -11,19 +11,19 @@
         <div class="home-hero-left">
             <span class="section-badge">🐾 {% trans "Zamonaviy veterinariya klinikasi" %}</span>
 
-            <h1>{% trans "Hayvoningiz sog‘lig‘i biz uchun muhim" %}</h1>
+            <h1>{% trans "Biz ularning sog‘lig‘i uchun, sizning xotirjamligingiz uchun." %}</h1>
 
             <p>
-                {% trans "VetClinic — hayvonlar sog‘lig‘i uchun zamonaviy veterinariya xizmatlarini taqdim etuvchi klinika. Arizalar Telegram bot orqali qabul qilinadi va mutaxassislarimiz siz bilan bog‘lanadi." %}
+                {% trans "VetClinic — uy hayvonlari va xo‘jalik hayvonlari uchun zamonaviy ko‘rik, davolash, emlash va diagnostika xizmatlarini bir joyda taqdim etuvchi klinika." %}
             </p>
 
             <div class="home-hero-actions">
                 <a href="https://t.me/veterenariya_klinikabot" target="_blank" class="btn-primary">
-                    ✈ {% trans "Telegram orqali ariza yuborish" %}
+                    ✈ {% trans "Qabulga yozilish" %}
                 </a>
 
                 <a href="{% url 'website:services' %}" class="btn-secondary">
-                    {% trans "Xizmatlarni ko‘rish" %}
+                    {% trans "Xizmatlar bilan tanishish" %}
                 </a>
             </div>
 
@@ -109,20 +109,38 @@
         <div class="home-services-grid">
             <div class="home-service-card">
                 <div class="home-service-icon">🩺</div>
-                <h3>{% trans "Veterinar ko‘rigi" %}</h3>
+                <h3>{% trans "Umumiy ko‘rik" %}</h3>
                 <p>{% trans "Hayvonning umumiy holati tekshiriladi va davolash yo‘nalishi belgilanadi." %}</p>
             </div>
 
             <div class="home-service-card">
-                <div class="home-service-icon">🧪</div>
-                <h3>{% trans "Laboratoriya tahlillari" %}</h3>
-                <p>{% trans "Tahlil so‘rovlari laboratoriya xodimlari tomonidan qayta ishlanadi." %}</p>
+                <div class="home-service-icon">💉</div>
+                <h3>{% trans "Emlash" %}</h3>
+                <p>{% trans "Profilaktik emlashlar orqali xavfli kasalliklarning oldi olinadi." %}</p>
             </div>
 
             <div class="home-service-card">
-                <div class="home-service-icon">🔬</div>
-                <h3>{% trans "Diagnostika" %}</h3>
-                <p>{% trans "Natijalar asosida diagnostik xulosa va tavsiyalar tayyorlanadi." %}</p>
+                <div class="home-service-icon">🦷</div>
+                <h3>{% trans "Stomatologiya" %}</h3>
+                <p>{% trans "Tish va og‘iz bo‘shlig‘i muammolari bo‘yicha maslahat va davolash." %}</p>
+            </div>
+
+            <div class="home-service-card">
+                <div class="home-service-icon">🏥</div>
+                <h3>{% trans "Jarrohlik amaliyotlar" %}</h3>
+                <p>{% trans "Zarur hollarda xavfsiz va nazoratli jarrohlik xizmatlari." %}</p>
+            </div>
+
+            <div class="home-service-card">
+                <div class="home-service-icon">🧪</div>
+                <h3>{% trans "Laboratoriya" %}</h3>
+                <p>{% trans "Tahlillar kasallikni aniqlash va davolash rejasini tuzishga yordam beradi." %}</p>
+            </div>
+
+            <div class="home-service-card">
+                <div class="home-service-icon">✂️</div>
+                <h3>{% trans "Grooming" %}</h3>
+                <p>{% trans "Tozalik, parvarish va chiroyli ko‘rinish uchun qulay xizmatlar." %}</p>
             </div>
         </div>
 
@@ -130,6 +148,39 @@
             <a href="{% url 'website:services' %}" class="btn-secondary">
                 {% trans "Barcha xizmatlarni ko‘rish" %}
             </a>
+        </div>
+    </div>
+</section>
+
+<section class="home-vets-section section">
+    <div class="container">
+        <div class="section-title">
+            <span>{% trans "Veterinarlar" %}</span>
+            <h2>{% trans "Hayvoningiz ishonchli qo‘llarda" %}</h2>
+            <p>{% trans "Klinikamiz mutaxassislari murojaatlarni diqqat bilan ko‘rib chiqadi va har bir bemorga individual yondashadi." %}</p>
+        </div>
+
+        <div class="home-vets-grid">
+            <article class="home-vet-card">
+                <img src="{% static 'website/images/hakimov.jpg' %}" alt="Hakimov Shuhrat" onerror="this.style.display='none';">
+                <span>{% trans "Terapiya" %}</span>
+                <h3>Hakimov Shuhrat</h3>
+                <p>{% trans "Klinik ko‘rik, davolash va profilaktika bo‘yicha veterinar." %}</p>
+            </article>
+
+            <article class="home-vet-card">
+                <img src="{% static 'website/images/doc-nozima.jpg' %}" alt="Nilufar Bobojonova" onerror="this.style.display='none';">
+                <span>{% trans "Diagnostika" %}</span>
+                <h3>Nilufar Bobojonova</h3>
+                <p>{% trans "Uyga chaqiruvlar va xavfli holatlar bo‘yicha mas’ul mutaxassis." %}</p>
+            </article>
+
+            <article class="home-vet-card">
+                <img src="{% static 'website/images/doc-otabek.jpg' %}" alt="Adhambek Xudoyberganov" onerror="this.style.display='none';">
+                <span>{% trans "Jarrohlik" %}</span>
+                <h3>Adhambek Xudoyberganov</h3>
+                <p>{% trans "Murakkab holatlar, jarrohlik va reabilitatsiya bo‘yicha maslahat." %}</p>
+            </article>
         </div>
     </div>
 </section>
@@ -258,5 +309,9 @@
         </a>
     </div>
 </section>
+
+<a href="https://t.me/veterenariya_klinikabot" target="_blank" class="mobile-sticky-telegram">
+    ✈ {% trans "Telegram botga o‘tish" %}
+</a>
 
 {% endblock %}

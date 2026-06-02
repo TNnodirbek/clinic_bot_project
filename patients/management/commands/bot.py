@@ -692,10 +692,9 @@ def get_last_address_for_owner(owner_id):
         NewPatient.objects
         .filter(
             telegram_id=owner.telegram_id,
+            note__icontains="Manzil:",
         )
-        .filter(models.Q(address_text__isnull=False) | models.Q(note__icontains="Manzil:"))
         .exclude(note__icontains="Manzil: Klinika ichida")
-        .exclude(address_text="Klinika ichida")
         .order_by("-created_at")
         .first()
     )
@@ -703,7 +702,7 @@ def get_last_address_for_owner(owner_id):
     if not last_patient:
         return ""
 
-    return (getattr(last_patient, "address_text", "") or address_from_note(last_patient.note)).strip()
+    return address_from_note(last_patient.note)
 
 
 @sync_to_async
@@ -756,10 +755,6 @@ def create_application(owner_id, pet_id=None, service_type=SERVICE_CLINIC, addre
         "telegram_id": owner.telegram_id,
         "animal_name": animal_name,
         "animal_type": animal_type,
-        "service_type": service_type,
-        "address_text": address_text,
-        "latitude": latitude,
-        "longitude": longitude,
         "selected_doctor": None,
         "status": "new",
         "note": "\n".join(str(item) for item in note_parts if item),

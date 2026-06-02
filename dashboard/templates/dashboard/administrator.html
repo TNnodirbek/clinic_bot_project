@@ -79,41 +79,6 @@
     </a>
 </div>
 
-<div class="panel dashboard-notifications-panel" style="margin-bottom: 24px;">
-    <div class="panel-header">
-        <h2>
-            <i class="fa-regular fa-bell"></i>
-            {% trans "Bildirishnomalar" %}
-        </h2>
-        <span class="status-badge status-new">
-            {{ dashboard_notification_count }} {% trans "ta" %}
-        </span>
-    </div>
-
-    <div class="dashboard-notification-list">
-        {% if dashboard_notifications %}
-            {% for item in dashboard_notifications %}
-                <a href="{{ item.url }}" class="dashboard-notification-card">
-                    <span class="dashboard-notification-icon">
-                        <i class="{{ item.icon }}"></i>
-                    </span>
-                    <span class="dashboard-notification-content">
-                        <strong>{{ item.title }}</strong>
-                        <small>{{ item.message }}</small>
-                    </span>
-                    <span class="dashboard-notification-count">{{ item.count }}</span>
-                    <em>{% trans "Ko‘rish" %}</em>
-                </a>
-            {% endfor %}
-        {% else %}
-            <div class="notification-empty">
-                <i class="fa-regular fa-circle-check"></i>
-                <p>{% trans "Yangi bildirishnoma yo‘q" %}</p>
-            </div>
-        {% endif %}
-    </div>
-</div>
-
 <div class="panel" id="quick-request" style="margin-bottom: 24px;">
     <div class="panel-header">
         <h2>
@@ -317,6 +282,71 @@
                 {% endfor %}
             </tbody>
         </table>
+    </div>
+
+    <div class="admin-applications-mobile-list">
+        {% for patient in new_patients %}
+            <article class="admin-application-mobile-card">
+                <div class="admin-mobile-card-head">
+                    <div>
+                        <span>{{ patient.patient_code|default:"-" }}</span>
+                        <h3>{{ patient.full_name|default:"-" }}</h3>
+                    </div>
+                    <b class="status-badge {{ patient.compact_status.class }}">
+                        <span class="status-icon-text">{{ patient.compact_status.icon }}</span>
+                        {{ patient.compact_status.label }}
+                    </b>
+                </div>
+
+                <div class="admin-mobile-card-meta">
+                    <p><i class="fa-solid fa-phone"></i>{{ patient.phone|default:"-" }}</p>
+                    <p><i class="fa-solid fa-paw"></i>{{ patient.animal_name|default:"-" }} / {{ patient.get_animal_type_display|default:patient.animal_type }}</p>
+                    <p><i class="fa-solid fa-briefcase-medical"></i>{{ patient.service_label }}</p>
+                    <p><i class="fa-solid fa-location-dot"></i>{{ patient.address_text|default:"-"|truncatechars:58 }}</p>
+                </div>
+
+                <form method="post"
+                      action="{% url 'assign_patient_to_vet' patient.id %}"
+                      class="admin-mobile-assign-form">
+                    {% csrf_token %}
+                    <select name="doctor_id" required class="table-select doctor-status-select">
+                        <option value="">{% trans "Veterinar tanlang" %}</option>
+                        {% for item in doctor_options %}
+                            <option value="{{ item.profile.id }}"
+                                    data-risk="{{ item.status.risk }}"
+                                    data-warning="{{ item.status.warning }}">
+                                {{ item.label }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-blue btn-sm">
+                        <i class="fa-solid fa-user-check"></i>
+                        {% trans "Biriktirish" %}
+                    </button>
+                </form>
+
+                <div class="admin-mobile-card-actions">
+                    <a href="{% url 'patient_card' patient.id %}" class="btn btn-light btn-sm">
+                        <i class="fa-solid fa-id-card"></i>
+                        {% trans "Bemor kartasi" %}
+                    </a>
+                    <form method="post"
+                          action="{% url 'cancel_patient' patient.id %}"
+                          onsubmit="return confirm('{% trans 'Bu arizani bekor qilmoqchimisiz?' %}');">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-red btn-sm">
+                            <i class="fa-solid fa-xmark"></i>
+                            {% trans "Bekor" %}
+                        </button>
+                    </form>
+                </div>
+            </article>
+        {% empty %}
+            <div class="notification-empty">
+                <i class="fa-regular fa-circle-check"></i>
+                <p>{% trans "Hozircha yangi arizalar yo‘q." %}</p>
+            </div>
+        {% endfor %}
     </div>
 </div>
 

@@ -81,21 +81,26 @@
         }
 
         .brand-icon {
-            width: 78px;
-            height: 62px;
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.94);
+            width: 150px;
+            height: auto;
+            border-radius: 0;
+            background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
+            box-shadow: none;
             overflow: hidden;
         }
 
-        .brand-icon img {
-            width: 72px;
-            height: 54px;
+        .login-logo-image {
+            display: block;
+            max-width: 150px;
+            width: 100%;
+            height: auto;
             object-fit: contain;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .brand h1 {
@@ -363,7 +368,7 @@
     <div class="login-left">
         <div class="brand">
             <div class="brand-icon">
-                <img src="{% static 'dashboard/images/vet-logo.png' %}" alt="VET Farm & Pet Clinic">
+                <img src="{% static 'dashboard/images/vet-logo.png' %}" alt="VET Farm & Pet Clinic" class="login-logo-image">
             </div>
             <div>
                 <h1>VetClinic</h1>

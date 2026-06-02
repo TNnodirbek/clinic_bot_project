@@ -135,13 +135,23 @@
 
     <main class="main-content">
 
-        {% if dashboard_is_vet_user %}
+        {% if dashboard_is_vet_user or dashboard_is_admin_user %}
             <header class="mobile-vet-global-header">
                 <button type="button" data-mobile-sidebar-open aria-label="{% trans 'Menyu' %}">
                     <i class="fa-solid fa-bars"></i>
                 </button>
                 <strong>
-                    {% if request.resolver_match.url_name == "vet_profile" %}
+                    {% if dashboard_is_admin_user %}
+                        {% if request.resolver_match.url_name == "admin_profile" %}
+                            {% trans "Profil" %}
+                        {% elif request.resolver_match.url_name == "admin_history" %}
+                            {% trans "Tarix" %}
+                        {% elif request.resolver_match.url_name == "admin_staff_location" %}
+                            {% trans "Xodimlar joylashuvi" %}
+                        {% else %}
+                            {% trans "Administrator dashboard" %}
+                        {% endif %}
+                    {% elif request.resolver_match.url_name == "vet_profile" %}
                         {% trans "Profil" %}
                     {% elif request.resolver_match.url_name == "vet_history" %}
                         {% trans "Tarix" %}
@@ -161,7 +171,7 @@
                         <i class="fa-regular fa-bell"></i>
                         {% if dashboard_notification_count > 0 %}<b>{{ dashboard_notification_count }}</b>{% endif %}
                     </button>
-                    <a href="{% url 'vet_profile' %}" class="mobile-avatar" aria-label="{% trans 'Profil' %}">
+                    <a href="{% if dashboard_is_admin_user %}{% url 'admin_profile' %}{% else %}{% url 'vet_profile' %}{% endif %}" class="mobile-avatar" aria-label="{% trans 'Profil' %}">
                         {{ request.user.username|slice:":1"|upper }}
                     </a>
                 </div>
@@ -332,7 +342,7 @@
     </section>
 {% endif %}
 
-{% if dashboard_is_vet_user %}
+{% if dashboard_is_vet_user or dashboard_is_admin_user %}
     <div class="mobile-sidebar-backdrop" data-mobile-sidebar-close></div>
 
     <div class="mobile-notification-backdrop" data-mobile-notification-close></div>
@@ -362,7 +372,9 @@
             </div>
         {% endif %}
     </section>
+{% endif %}
 
+{% if dashboard_is_vet_user %}
     <nav class="vet-bottom-nav" aria-label="{% trans 'Veterinar mobil menyu' %}">
         <a href="{% url 'veterinar_dashboard' %}"
            class="{% if request.resolver_match.url_name == 'veterinar_dashboard' and not request.GET.service and not request.GET.scope %}active{% endif %}">
@@ -383,6 +395,31 @@
            class="{% if request.resolver_match.url_name == 'vet_profile' %}active{% endif %}">
             <i class="fa-regular fa-user"></i>
             <span>{% trans "Profil" %}</span>
+        </a>
+    </nav>
+{% endif %}
+
+{% if dashboard_is_admin_user %}
+    <nav class="vet-bottom-nav admin-bottom-nav" aria-label="{% trans 'Administrator mobil menyu' %}">
+        <a href="{% url 'administrator_dashboard' %}" class="{% if request.resolver_match.url_name == 'administrator_dashboard' and not request.GET.service %}active{% endif %}">
+            <i class="fa-solid fa-house"></i>
+            <span>{% trans "Bosh sahifa" %}</span>
+        </a>
+        <a href="{% url 'administrator_dashboard' %}#new-applications" class="{% if request.resolver_match.url_name == 'administrator_dashboard' and request.GET.service %}active{% endif %}">
+            <i class="fa-solid fa-list-check"></i>
+            <span>{% trans "Arizalar" %}</span>
+        </a>
+        <a href="{% url 'patients_status' %}">
+            <i class="fa-solid fa-paw"></i>
+            <span>{% trans "Bemorlar" %}</span>
+        </a>
+        <a href="{% url 'admin_history' %}" class="{% if request.resolver_match.url_name == 'admin_history' %}active{% endif %}">
+            <i class="fa-regular fa-chart-bar"></i>
+            <span>{% trans "Hisobotlar" %}</span>
+        </a>
+        <a href="{% url 'admin_settings' %}" class="{% if request.resolver_match.url_name == 'admin_settings' %}active{% endif %}">
+            <i class="fa-solid fa-gear"></i>
+            <span>{% trans "Sozlamalar" %}</span>
         </a>
     </nav>
 {% endif %}

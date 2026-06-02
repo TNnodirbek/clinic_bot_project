@@ -14,9 +14,10 @@ from urllib.parse import quote_plus
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.db.models import Q
 from django.http import HttpResponseForbidden, JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.utils.dateparse import parse_date, parse_datetime
 from django.utils.translation import gettext as _
@@ -35,8 +36,8 @@ from patients.models import (
     Pet,
     Visit,
 )
-from patients.telegram import send_telegram_message, send_telegram_document
-
+from patients.telegram import send_telegram_document
+from patients.utils.telegram_pdf import send_visit_pdf_to_telegram as send_visit_pdf_document_async
 
 # =========================
 # UMUMIY YORDAMCHI FUNKSIYALAR
@@ -1566,7 +1567,7 @@ def vet_complete_application(request, patient_id):
             complaint=patient.note or "",
             diagnosis=final_conclusion,
             treatment=recommendation,
-            message=telegram_text,
+            message=extra_note,
             is_sent=False,
         )
 
@@ -1590,19 +1591,47 @@ def vet_complete_application(request, patient_id):
             telegram_chat_id = 0
 
         if telegram_chat_id > 0:
-            telegram_result = send_telegram_message(telegram_chat_id, telegram_text)
+            lab_result = LabResult.objects.filter(patient=patient).order_by("-updated_at").first()
+            diagnostic_result = DiagnosticResult.objects.filter(patient=patient).order_by("-updated_at").first()
+            pdf_path = None
+
+            try:
+                pdf_path = create_visit_pdf(
+                    visit,
+                    lab_result=lab_result,
+                    diagnostic_result=diagnostic_result,
+                )
+                telegram_result = send_telegram_document(
+                    telegram_chat_id,
+                    pdf_path,
+                    caption=(
+                        _("Yakuniy ko‘rik PDF xulosasi")
+                        + f"\n{_('Ko‘rik kodi')}: {visit.visit_code}"
+                    ),
+                )
+            except Exception as exc:
+                telegram_result = {
+                    "ok": False,
+                    "description": str(exc),
+                }
+            finally:
+                if pdf_path and os.path.exists(pdf_path):
+                    try:
+                        os.remove(pdf_path)
+                    except OSError:
+                        pass
 
             if telegram_result.get("ok"):
                 visit.is_sent = True
                 visit.save(update_fields=["is_sent"])
                 messages.success(
                     request,
-                    _("Ko‘rik yakunlandi va mijozga Telegram orqali xabar yuborildi.")
+                    _("Ko‘rik yakunlandi va PDF mijozga Telegram orqali yuborildi.")
                 )
             else:
                 messages.warning(
                     request,
-                    _("Ko‘rik yakunlandi, lekin Telegram xabar yuborilmadi: %(error)s") % {
+                    _("Ko‘rik yakunlandi, lekin PDF Telegramga yuborilmadi: %(error)s") % {
                         "error": telegram_result.get("description", _("Noma’lum xato"))
                     }
                 )
@@ -2129,3 +2158,28 @@ def send_visit_pdf_to_telegram(request, visit_id):
         )
 
     return redirect("patient_card", patient_id=patient.id)
+
+
+@require_POST
+def complete_visit(request, visit_id):
+    visit = get_object_or_404(Visit, id=visit_id)
+
+    # Visitni yakunlash
+    if hasattr(visit, "status"):
+        visit.status = "completed"
+
+    if hasattr(visit, "is_completed"):
+        visit.is_completed = True
+
+    visit.save()
+
+    try:
+        asyncio.run(send_visit_pdf_document_async(visit))
+        messages.success(request, "Ko‘rik yakunlandi va PDF Telegram orqali yuborildi.")
+    except Exception as exc:
+        messages.warning(
+            request,
+            f"Ko‘rik yakunlandi, lekin PDF Telegramga yuborilmadi: {exc}"
+        )
+
+    return redirect("patients:visit_detail", visit_id=visit.id)
