@@ -100,7 +100,13 @@
                         <td>{{ patient.full_name|default:"-" }}</td>
                         <td>{{ patient.phone|default:"-" }}</td>
                         <td>{{ patient.animal_name|default:"-" }}<small class="table-subtext">{{ patient.get_animal_type_display|default:patient.animal_type }}</small></td>
-                        <td><span class="status-badge status-assigned">{{ patient.service_label }}</span></td>
+                        <td>
+                            <span class="status-badge status-assigned">{{ patient.service_label }}</span>
+                            <small class="table-subtext request-time">
+                                {{ patient.created_at|date:"d F" }}<br>
+                                {{ patient.created_at|time:"H:i" }}
+                            </small>
+                        </td>
                         <td class="text-limit">
                             {{ patient.address_text|default:"-"|truncatechars:32 }}
                             {% if patient.can_travel %}
@@ -141,7 +147,12 @@
                             <small>{{ patient.get_animal_type_display|default:patient.animal_type }}</small>
                         </div>
                     </div>
-                    <span class="mobile-service-chip">{{ patient.service_label }}</span>
+                        <div class="mobile-service-with-time">
+                            <span class="mobile-service-chip">{{ patient.service_label }}</span>
+                            <small class="table-subtext request-time">
+                                {{ patient.created_at|date:"d F" }} · {{ patient.created_at|time:"H:i" }}
+                            </small>
+                        </div>
                     {% if patient.address_text %}
                         <p><i class="fa-solid fa-location-dot"></i> {{ patient.address_text }}</p>
                     {% endif %}

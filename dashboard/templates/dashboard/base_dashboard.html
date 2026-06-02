@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static i18n tz %}
 
 <!DOCTYPE html>
 <html lang="{{ request.LANGUAGE_CODE|default:'uz' }}">
@@ -222,17 +222,16 @@
                         {% if dashboard_notifications %}
                             {% for item in dashboard_notifications %}
                                 <a href="{{ item.url }}" class="notification-menu-item">
-                                    <div class="notification-menu-icon">
+                                    <span class="notification-simple-icon">
                                         <i class="{{ item.icon }}"></i>
-                                    </div>
+                                    </span>
 
-                                    <div class="notification-menu-text">
+                                    <span class="notification-simple-body">
                                         <strong>{{ item.title }}</strong>
-                                        <small>{{ item.message }}</small>
-                                        <em>{% trans "Ko‘rish" %}</em>
-                                    </div>
-
-                                    <b>{{ item.count }}</b>
+                                        {% if item.time_text %}
+                                            <small>{{ item.time_text }}</small>
+                                        {% endif %}
+                                    </span>
                                 </a>
                             {% endfor %}
                         {% else %}
@@ -357,12 +356,16 @@
         {% if dashboard_notifications %}
             {% for item in dashboard_notifications %}
                 <a href="{{ item.url }}" class="mobile-notification-item">
-                    <span><i class="{{ item.icon }}"></i></span>
-                    <div>
+                    <span class="notification-simple-icon">
+                        <i class="{{ item.icon }}"></i>
+                    </span>
+
+                    <span class="notification-simple-body">
                         <strong>{{ item.title }}</strong>
-                        <small>{{ item.message }}</small>
-                    </div>
-                    <b>{{ item.count }}</b>
+                        {% if item.time_text %}
+                            <small>{{ item.time_text }}</small>
+                        {% endif %}
+                    </span>
                 </a>
             {% endfor %}
         {% else %}

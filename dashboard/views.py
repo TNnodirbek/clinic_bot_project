@@ -116,7 +116,20 @@ VET_STAGE_CONFIG = {
         "message": _("Yetib borish belgilandi."),
     },
 }
-
+PDF_CAPTIONS = {
+    "uz": {
+        "title": "Yakuniy ko‘rik PDF xulosasi",
+        "code": "Ko‘rik kodi",
+    },
+    "ru": {
+        "title": "Итоговое PDF заключение осмотра",
+        "code": "Код осмотра",
+    },
+    "en": {
+        "title": "Final checkup PDF report",
+        "code": "Visit code",
+    },
+}
 
 def get_note_value(note, label):
     prefix = f"{label}:"
@@ -1597,13 +1610,16 @@ def vet_complete_application(request, patient_id):
             pdf_path = None
 
             try:
-                pdf_path = generate_visit_pdf(visit)
+                patient_lang = getattr(patient, "language", "uz") or "uz"
+                pdf_path = generate_visit_pdf(visit, lang=patient_lang)
+                caption_texts = PDF_CAPTIONS.get(patient_lang, PDF_CAPTIONS["uz"])
+            
                 telegram_result = send_telegram_document(
                     telegram_chat_id,
                     pdf_path,
                     caption=(
-                        _("Yakuniy ko‘rik PDF xulosasi")
-                        + f"\n{_('Ko‘rik kodi')}: {visit.visit_code}"
+                        caption_texts["title"]
+                        + f"\n{caption_texts['code']}: {visit.visit_code}"
                     ),
                 )
             except Exception as exc:

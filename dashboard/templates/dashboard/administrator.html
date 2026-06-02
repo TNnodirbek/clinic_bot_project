@@ -1,6 +1,6 @@
 {% extends "dashboard/base_dashboard.html" %}
 
-{% load i18n %}
+{% load i18n tz %}
 {% block title %}{% trans "Administrator dashboard" %}{% endblock %}
 
 {% block page_title %}{% trans "Administrator dashboard" %}{% endblock %}
@@ -16,6 +16,8 @@
 {% endblock %}
 
 {% block content %}
+
+{% trans "Bu arizani bekor qilmoqchimisiz?" as cancel_confirm %}
 
 <div class="stats-grid admin-stats-grid">
     <a href="{% url 'admin_history' %}?date={{ today_date }}" class="stat-card">
@@ -154,7 +156,6 @@
     </div>
 </div>
 
-
 <div class="panel" id="new-applications" style="margin-bottom: 24px;">
     <div class="panel-header">
         <h2>
@@ -196,14 +197,18 @@
                             <strong>{{ patient.full_name|default:"-" }}</strong>
                             <small class="table-subtext">{{ patient.patient_code|default:"-" }}</small>
                         </td>
+
                         <td>{{ patient.phone|default:"-" }}</td>
+
                         <td>
                             {{ patient.animal_name|default:"-" }}
                             <small class="table-subtext">{{ patient.get_animal_type_display|default:patient.animal_type }}</small>
                         </td>
+
                         <td>
                             <span class="status-badge status-assigned">{{ patient.service_label }}</span>
                         </td>
+
                         <td class="admin-address-cell">
                             <span title="{{ patient.address_text|default:'-' }}">
                                 {% if patient.latitude_value and patient.longitude_value %}
@@ -212,18 +217,25 @@
                                     {{ patient.address_text|default:"-"|truncatechars:28 }}
                                 {% endif %}
                             </span>
+
                             {% if patient.map_url %}
                                 <a href="{{ patient.map_url }}" target="_blank" class="map-chip" title="{% trans 'Google Mapsda ochish' %}">
                                     <i class="fa-solid fa-map-location-dot"></i>
                                 </a>
                             {% endif %}
                         </td>
+
                         <td>
                             <span class="status-badge {{ patient.compact_status.class }}">
                                 <span class="status-icon-text">{{ patient.compact_status.icon }}</span>
                                 {{ patient.compact_status.label }}
                             </span>
+                                <small class="table-subtext request-time">
+                                    {{ patient.created_at|localtime|date:"d.m.Y" }}<br>
+                                    {{ patient.created_at|localtime|time:"H:i" }}
+                                </small>
                         </td>
+
                         <td>
                             <span class="note-preview" title="{{ patient.note|default:'-' }}">
                                 {% if patient.problem_text %}
@@ -233,6 +245,7 @@
                                 {% endif %}
                             </span>
                         </td>
+
                         <td class="admin-action-cell">
                             <form method="post"
                                   id="assign-form-{{ patient.id }}"
@@ -249,6 +262,7 @@
                                         </option>
                                     {% endfor %}
                                 </select>
+
                                 <button type="submit" class="btn btn-blue btn-sm">
                                     <i class="fa-solid fa-user-check"></i>
                                     {% trans "Biriktirish" %}
@@ -263,7 +277,7 @@
 
                                 <form method="post"
                                       action="{% url 'cancel_patient' patient.id %}"
-                                      onsubmit="return confirm('{% trans 'Bu arizani bekor qilmoqchimisiz?' %}');">
+                                      onsubmit="return confirm('{{ cancel_confirm|escapejs }}');">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-red btn-sm">
                                         <i class="fa-solid fa-xmark"></i>
@@ -292,10 +306,17 @@
                         <span>{{ patient.patient_code|default:"-" }}</span>
                         <h3>{{ patient.full_name|default:"-" }}</h3>
                     </div>
-                    <b class="status-badge {{ patient.compact_status.class }}">
-                        <span class="status-icon-text">{{ patient.compact_status.icon }}</span>
-                        {{ patient.compact_status.label }}
-                    </b>
+
+                    <div class="mobile-status-with-time">
+                        <b class="status-badge {{ patient.compact_status.class }}">
+                            <span class="status-icon-text">{{ patient.compact_status.icon }}</span>
+                            {{ patient.compact_status.label }}
+                        </b>
+                        <small class="table-subtext request-time">
+                            {{ patient.created_at|localtime|date:"d M" }}<br>
+                            {{ patient.created_at|localtime|time:"H:i" }}
+                        </small>
+                    </div>
                 </div>
 
                 <div class="admin-mobile-card-meta">
@@ -319,6 +340,7 @@
                             </option>
                         {% endfor %}
                     </select>
+
                     <button type="submit" class="btn btn-blue btn-sm">
                         <i class="fa-solid fa-user-check"></i>
                         {% trans "Biriktirish" %}
@@ -330,9 +352,10 @@
                         <i class="fa-solid fa-id-card"></i>
                         {% trans "Bemor kartasi" %}
                     </a>
+
                     <form method="post"
                           action="{% url 'cancel_patient' patient.id %}"
-                          onsubmit="return confirm('{% trans 'Bu arizani bekor qilmoqchimisiz?' %}');">
+                          onsubmit="return confirm('{{ cancel_confirm|escapejs }}');">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-red btn-sm">
                             <i class="fa-solid fa-xmark"></i>

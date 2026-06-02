@@ -236,7 +236,7 @@ class NewPatient(models.Model):
         verbose_name=_("Telefon")
     )
     telegram_id = models.BigIntegerField(
-        unique=True,
+        db_index=True,
         verbose_name=_("Telegram ID")
     )
     telegram_username = models.CharField(
@@ -245,7 +245,11 @@ class NewPatient(models.Model):
         null=True,
         verbose_name=_("Telegram username")
     )
-
+    language = models.CharField(
+    max_length=5,
+    default="uz",
+    verbose_name=_("Foydalanuvchi tili")
+    )
     animal_name = models.CharField(
         max_length=100,
         blank=True,

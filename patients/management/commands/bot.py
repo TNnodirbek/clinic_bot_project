@@ -706,20 +706,16 @@ def get_last_address_for_owner(owner_id):
 
 
 @sync_to_async
-def create_application(owner_id, pet_id=None, service_type=SERVICE_CLINIC, address="", latitude=None, longitude=None, danger_type=""):
-    """
-    Telegram botdan ariza yaratadi.
-
-    Muhim: eski bazada NewPatient.telegram_id unique bo‘lsa, bir foydalanuvchi
-    ikkinchi marta ariza yuborganda IntegrityError chiqadi. Shuning uchun bu
-    funksiya avval yangi ariza yaratishga urinadi. Agar telegram_id unique xatosi
-    chiqsa, bot yiqilmasligi uchun shu foydalanuvchining mavjud NewPatient
-    yozuvini yangi ariza ma’lumotlari bilan yangilaydi.
-
-    Eng to‘g‘ri yechim: models.py da NewPatient.telegram_id dan unique=True ni
-    olib tashlash va migration qilish. Lekin bu fallback hozirgi bazada ham botni
-    ishlatib turadi.
-    """
+def create_application(
+    owner_id,
+    pet_id=None,
+    service_type=SERVICE_CLINIC,
+    address="",
+    latitude=None,
+    longitude=None,
+    danger_type="",
+    language=LANG_UZ,
+):
     owner = Owner.objects.get(id=owner_id)
     pet = Pet.objects.filter(id=pet_id).first() if pet_id else None
 
@@ -760,6 +756,9 @@ def create_application(owner_id, pet_id=None, service_type=SERVICE_CLINIC, addre
         "note": "\n".join(str(item) for item in note_parts if item),
     }
 
+    if model_has_field(NewPatient, "language"):
+        data["language"] = language
+
     if model_has_field(NewPatient, "telegram_username"):
         data["telegram_username"] = getattr(owner, "telegram_username", None)
 
@@ -768,7 +767,6 @@ def create_application(owner_id, pet_id=None, service_type=SERVICE_CLINIC, addre
     try:
         patient = NewPatient.objects.create(**data)
     except IntegrityError as exc:
-        # patients_newpatient.telegram_id UNIQUE bo‘lib qolgan eski bazalar uchun.
         if "telegram_id" not in str(exc):
             raise
 
@@ -799,7 +797,6 @@ def create_application(owner_id, pet_id=None, service_type=SERVICE_CLINIC, addre
         "pet_code": pet_code(pet),
         "created_new": created_new,
     }
-
 
 # =========================
 # NAVIGATION HELPERS
@@ -1324,6 +1321,7 @@ async def finish_application_from_query(query, context):
             latitude=context.user_data.get("latitude"),
             longitude=context.user_data.get("longitude"),
             danger_type=context.user_data.get("danger_type", ""),
+            language=lang,
         )
     except Exception:
         await query.message.reply_text(
@@ -1340,8 +1338,6 @@ async def finish_application_from_query(query, context):
     )
 
     return MAIN_MENU
-
-
 async def finish_application_from_message(message, context):
     lang = get_lang(context)
 
@@ -1354,6 +1350,7 @@ async def finish_application_from_message(message, context):
             latitude=context.user_data.get("latitude"),
             longitude=context.user_data.get("longitude"),
             danger_type=context.user_data.get("danger_type", ""),
+            language=lang,
         )
     except Exception:
         await message.reply_text(
@@ -1375,8 +1372,6 @@ async def finish_application_from_message(message, context):
     )
 
     return MAIN_MENU
-
-
 async def cancel_flow(update: Update, context: ContextTypes.DEFAULT_TYPE):
     lang = get_lang(context)
     context.user_data.clear()
