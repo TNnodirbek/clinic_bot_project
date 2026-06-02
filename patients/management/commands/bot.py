@@ -27,7 +27,7 @@ from telegram.ext import (
     filters,
 )
 
-from patients.models import NewPatient, Owner, Pet, TelegramUser, TelegramUser
+from patients.models import NewPatient, Owner, Pet, TelegramUser
 
 
 BASE_DIR = Path(__file__).resolve().parents[4]
@@ -771,7 +771,7 @@ def get_or_create_owner(user, lang):
         data["full_name"] = ""
 
     if model_has_field(Owner, "phone"):
-        data["phone"] = ""
+        data["phone"] = f"tg-{user.id}"
 
     if model_has_field(Owner, "language"):
         data["language"] = lang
