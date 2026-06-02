@@ -37,6 +37,7 @@ from patients.models import (
     Visit,
 )
 from patients.telegram import send_telegram_document
+from patients.utils.pdf import generate_visit_pdf
 from patients.utils.telegram_pdf import send_visit_pdf_to_telegram as send_visit_pdf_document_async
 
 # =========================
@@ -1596,11 +1597,7 @@ def vet_complete_application(request, patient_id):
             pdf_path = None
 
             try:
-                pdf_path = create_visit_pdf(
-                    visit,
-                    lab_result=lab_result,
-                    diagnostic_result=diagnostic_result,
-                )
+                pdf_path = generate_visit_pdf(visit)
                 telegram_result = send_telegram_document(
                     telegram_chat_id,
                     pdf_path,
