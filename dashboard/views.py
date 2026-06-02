@@ -654,8 +654,34 @@ def get_admin_doctor_select_status(doctor):
         .exclude(status__in=["new", "completed", "cancelled"])
         .order_by("-updated_at")
     ]
+
     travel_task = next(
-        (patient for patient in active_patients if patient.service_type in ["vet_call", "danger"]),
+        (
+            patient
+            for patient in active_patients
+            if patient.service_type in ["vet_call", "danger"]
+            and patient.status in ["en_route", "arrived"]
+        ),
+        None,
+    )
+
+    danger_task = next(
+        (
+            patient
+            for patient in active_patients
+            if patient.service_type == "danger"
+            and patient.status not in ["en_route", "arrived"]
+        ),
+        None,
+    )
+
+    call_task = next(
+        (
+            patient
+            for patient in active_patients
+            if patient.service_type == "vet_call"
+            and patient.status not in ["en_route", "arrived"]
+        ),
         None,
     )
 
@@ -664,7 +690,23 @@ def get_admin_doctor_select_status(doctor):
             "label": _("Safarda / %(code)s") % {"code": travel_task.patient_code},
             "class": "status-pending",
             "risk": "busy",
-            "warning": _("Tanlangan veterinar hozir safarda yoki band."),
+            "warning": _("Tanlangan veterinar hozir safarda."),
+        }
+
+    if danger_task:
+        return {
+            "label": _("Xavfli ariza / %(code)s") % {"code": danger_task.patient_code},
+            "class": "status-cancelled",
+            "risk": "busy",
+            "warning": _("Tanlangan veterinarga xavfli ariza biriktirilgan."),
+        }
+
+    if call_task:
+        return {
+            "label": _("Chaqiruv biriktirilgan / %(code)s") % {"code": call_task.patient_code},
+            "class": "status-pending",
+            "risk": "on_call",
+            "warning": _("Tanlangan veterinarga chaqiruv biriktirilgan."),
         }
 
     if active_patients:
